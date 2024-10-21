@@ -1,0 +1,135 @@
+.page-giveaway-mothers-day {
+  background: #aabf80;
+}
+.page-giveaway-mothers-day #shopify-section-header,
+.page-giveaway-mothers-day #shopify-section-footer {
+  display: none !important;
+}
+@media screen and (max-width: 768px) {
+  .page-giveaway-mothers-day .section-wrapper--page {
+    padding-top: 20px !important;
+  }
+}
+
+.section-giveaways {
+  max-width: 90%;
+  margin: 0 auto;
+  flex-direction: column-reverse;
+}
+@media screen and (min-width: 769px) {
+  .section-giveaways {
+    -moz-column-gap: 50px;
+         column-gap: 50px;
+    flex-direction: row;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .section-giveaways {
+    height: 100vh;
+    align-items: center;
+  }
+}
+.section-giveaways .image-wrapper {
+  flex: 0 0 50%;
+}
+@media screen and (max-width: 767px) {
+  .section-giveaways .image-wrapper {
+    padding-top: 30px;
+  }
+}
+.section-giveaways .image-wrapper .image-element__wrap {
+  max-width: 800px;
+}
+.section-giveaways .back-top {
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  color: #fff;
+}
+.section-giveaways .back-top a {
+  color: #fff;
+}
+
+.content-wrapper .flower-base {
+  margin-bottom: 10px;
+  max-width: 80px;
+}
+.content-wrapper #giveaway-wrapper {
+  max-width: 600px;
+  padding: 60px 30px;
+  background: url("{{ 'mothersdaygiveaway-stribes-bg.jpg' | file_url }}") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+@media screen and (max-width: 767px) {
+  .content-wrapper #giveaway-wrapper {
+    padding: 50px 30px;
+    background: url("{{ 'mothersdaygiveaway-stripedbackground-m.jpg' | file_url }}") no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+}
+.content-wrapper #giveaway-wrapper .content {
+  padding: 10px 20px;
+  color: #6c7a56;
+}
+.content-wrapper #giveaway-wrapper .content a {
+  color: #6c7a56;
+  text-decoration: underline;
+}
+.content-wrapper #giveaway-wrapper .content h1 {
+  font-size: 90px;
+  text-align: center;
+  margin: 0;
+}
+@media screen and (max-width: 1199px) {
+  .content-wrapper #giveaway-wrapper .content h1 {
+    font-size: 50px;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1440px) {
+  .content-wrapper #giveaway-wrapper .content h1 {
+    font-size: 75px;
+  }
+}
+.content-wrapper #giveaway-wrapper .content h2 {
+  font-weight: 800;
+  letter-spacing: 21px;
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
+}
+@media screen and (max-width: 1199px) {
+  .content-wrapper #giveaway-wrapper .content h2 {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1440px) {
+  .content-wrapper #giveaway-wrapper .content h2 {
+    font-size: 18px;
+  }
+}
+.content-wrapper #giveaway-wrapper .content h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+.content-wrapper #giveaway-wrapper .content ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+.content-wrapper #giveaway-wrapper .content ul li {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 769px) {
+  .content-wrapper #giveaway-wrapper .content ul {
+    padding: 0 150px 0 20px;
+    background: url("{{ 'FlowerVase.png' | file_url }}") no-repeat;
+    background-position: right;
+    background-size: 130px;
+  }
+  .content-wrapper #giveaway-wrapper .content ul li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+}

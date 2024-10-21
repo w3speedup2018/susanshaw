@@ -1,0 +1,175 @@
+<script
+  type="application/json"
+  data-section-type="image-text"
+  data-section-id="{{ section.id }}"
+>
+</script>
+<section class="collection--banner is-flex justify-space-between container"> 
+  {% comment %} Content settings {% endcomment %} 
+  {%- assign image = collection.metafields.custom.hero-banners.value -%}
+  {%- assign icon = collection.metafields.custom.persona_icon.value -%}
+  {%- assign title = collection.metafields.custom.hero-title.value -%}
+  {%- assign description = collection.description -%}
+  {% comment %} End content settings {% endcomment %}      
+    <div class="collection--image two-thirds column medium-down--one-whole">    
+        {% if image != blank %}
+          {%
+            render 'image-element',
+            image: image,
+            alt: image.alt,
+            stretch_width: true
+          %}
+        {% else %}
+          {% capture i %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+          {{ 'collection-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--promotions' }}
+        {% endif %}
+    </div>
+    <div class="collection--description-wrapper is-flex is-align-center one-third column medium-down--one-whole">
+      {% if icon != blank %}
+        {%
+          render 'image-element',
+          image: icon,
+          alt: icon.alt,
+          stretch_width: true,
+          additional_classes: "persona-icons"
+        %}    
+      {% endif %}
+      <div class="collection--description">
+        <h4>GIFT GUIDE</h4>
+        <h1>
+            {%- if title != blanl -%}
+              {{title}}
+            {%- else -%}
+              {{collection.title}}          
+            {%- endif -%} 
+        </h1>
+        {{description}}
+      </div>
+  </div>
+</section>
+
+<style>
+  .section-wrapper--collection{
+    padding:0;
+  }
+  .section-wrapper--collection .collection--title{
+    display:none;
+  }
+  .shopify-section--hero-banner .collection--banner{
+    justify-content:space-between;
+  }
+  .shopify-section--hero-banner{
+    margin: 40px 0 0px 0;    
+    padding:0;
+    background:var(--colorClassicNavy);   
+  }    
+  .shopify-section--hero-banner .collection--image{
+    margin:0;    
+  }  
+  .shopify-section--hero-banner .collection--description-wrapper{
+    position:relative;
+  }
+  .shopify-section--hero-banner .collection--description-wrapper .image-element__wrap{
+    position: absolute;
+    right: -140px;
+    max-width: 200px;
+  }
+  .shopify-section--hero-banner .collection--description{
+    width:90%;
+    margin:0 auto;
+    padding:20px 0;
+    font-size: 14px;
+    color:#fff;
+  }
+  .shopify-section--hero-banner h1{
+    margin:0 0 15px;
+    font-size: 42px;
+  }  
+  .shopify-section--hero-banner h4{
+    font-size:16px;
+    margin:0;
+  }
+
+  @media screen and (max-width:768px){
+    .shopify-section--hero-banner .collection--image{
+      width:100%;     
+    }  
+    .collection-template-section{
+      margin-top: 10px !important;
+    }
+    .shopify-section--hero-banner .collection--description-wrapper .image-element__wrap{         
+      max-width: 130px;
+      top: -21%;
+      right: 0;
+    }
+  }
+
+  @media screen and (min-width:769px){
+    .shopify-section--hero-banner{
+      margin: 0 0 30px 0;          
+    }  
+    .shopify-section--hero-banner .collection--banner{
+      flex-direction: row-reverse;
+    }
+    .shopify-section--hero-banner h1{   
+      font-size: 68px;
+    }
+    .shopify-section--hero-banner h4{
+      font-size:22px;    
+    } 
+    .shopify-section--hero-banner .collection--description{     
+      width:80%;
+      font-size: 18px;
+    }
+   
+    
+  }
+
+</style>
+
+{% schema %}
+{
+  "name": "Collection Banner w/Text",
+  "class": "shopify-section--hero-banner page-width",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "wide_display",
+      "label": "Wide display",
+      "default": false
+    }, 
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "Bacground"     
+    },    
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [{
+    "name": "Collection Banner w/Text",
+    "category": "Collection",
+    "settings": {
+   
+    }
+  }]
+  
+}
+
+{% endschema %}

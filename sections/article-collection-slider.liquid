@@ -1,0 +1,253 @@
+<script
+  type="application/json"
+  data-section-type="featured-collection"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{% assign collection = collections[section.settings.collection] %}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: section.id
+  %}
+  #shopify-section-{{section.id}}{
+    background:{{section.settings.background_color}};
+  }
+  #shopify-section-{{section.id}} .container{
+    margin:0 20px;
+  }
+
+  #shopify-section-{{section.id}} .product-list--collection .product-info__caption .other-colors{
+    text-align:center !important;
+  }
+{% endstyle %}
+
+{% if collection == blank %}
+  {%- assign section_onboarding = true -%}
+  {% comment %} Assign product length to be selected limit for onboarding {% endcomment %}
+  {%- assign products_length = section.settings.products_limit | plus: 0 -%}
+{% else %}
+  {%- assign section_onboarding = false -%}
+{% endif %}
+
+<div class="{{ section.settings.css_class }}">
+  <section class="section">
+    <div class="container">
+      <div class="one-whole column center homepage_content">
+        <div class="featured-header">
+          {% if section.settings.title != blank %}      
+          <div class="header-content is-flex is-align-center is-justify-space-between">  
+              <h1 class="title medium-down--text-center text-left"> 
+                <a href="{{ collection.url }}">{{ section.settings.title | escape }}</a>
+              </h1>
+              <h4 class="border-bottom small--hide">
+                <a href="{{ collection.url }}"> {{'SHOP ALL' }}</a>
+              </h4>       
+          </div>        
+          {% endif %}
+        </div>
+
+        {% if section.settings.collection_description and collection.description != blank %}
+          <div class="featured-collection__description rte">
+            {{ collection.description }}
+          </div> 
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% if section.settings.collection_style == 'slider' %}
+    <div class="js-product-slider homepage-product-slider full-width--true  {% if section.settings.products_per  == 2 or section.settings.products_per  == 4 or section.settings.products_per  == 6 %}even-num-slides{% endif %} featured-collection__products">
+      {% if section_onboarding == false %}
+        {% if collection.products.size > 0 %}
+          {%
+            render 'product-slider',
+            limit: section.settings.products_limit,
+            products: collection.products,
+            collection: collection,
+            per_slide: section.settings.products_per,
+            featured_collection: collection,
+          %}
+        {% endif %}
+      {% else %}
+        <div class="slider-gallery products-slider products-length-{{ products_length }}"
+             data-products-per-slide="{{ section.settings.products_per }}"
+             data-products-limit="{{ section.settings.products_limit }}"
+             data-products-available="{{ products_length }}">
+          {% for i in (1..section.settings.products_limit) %}
+            {%- assign per_slide_num = section.settings.products_per -%}
+
+            <div class="gallery-cell thumbnail {% if products_length > per_slide_num %}visible-{{ section.settings.products_per }}{% else %}visible-{{ products_length }}{% endif %}">
+              <div class="product-wrap">
+                <div class="relative product_image">
+                  <a href="#">
+                    <object class="placeholder-image">
+                      {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+                      {{ 'product-' | append: num | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product' }}
+                    </object>
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        
+      {% endif %}
+
+      <h4 class="medium-up--hide text-center">
+        <a href="/collections/best-sellers" class="border-bottom "> {{'Shop all best sellers' }}</a>
+      </h4>    
+    </div>
+     
+  {% else %}
+    {% if section_onboarding == false %}
+      <section class="section">
+        <div class="container">
+          <div class="one-whole column">
+            {%
+              render 'product-loop',
+              limit: section.settings.products_limit | plus: 1,
+              products: collection.products,
+              collection: collection,
+              skip_product: product, 
+              products_per_row: section.settings.products_per,
+            %}
+          </div>
+        </div>
+      </section>
+    {% else %}
+      <section class="section">
+        <div class="product-list product-list--collection">
+          <div class="container">
+            {% for i in (1..section.settings.products_limit) %}
+              {% comment %}{% assign collection_group = products | map: 'section.id' %}{% endcomment %}
+              {%- assign collection_group_thumb = collection_group | append : 'thumb' -%}
+              {%- assign collection_group_mobile = collection_group | append : 'mobile' -%}
+
+              <div class="{% render 'column-width', value: section.settings.products_per %} column {% if settings.collection_secondary_image != blank and product.media[1] != blank %}has-secondary-media-swap{% endif %} thumbnail {% if settings.mobile_products_per_row == '1' %}medium-down--one-half small-down--one-whole{% else %}medium-down--one-half small-down--one-half{% endif %}">
+                <div class="product-wrap {% if settings.collection_secondary_image != blank and product.media[1] != blank %}has-secondary-media-swap{% endif %}">
+                  <div class="relative product_image">
+                    <a href="#">
+                      {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+                      {{ 'product-' | append: num | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product' }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Blog - Collection Slider",
+  "class": "shopify-section--featured-collection best-sellers",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_description",
+      "label": "Show description",
+      "default": true 
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "radio",
+      "id": "collection_style",
+      "label": "Collection layout",
+      "default": "slider",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "products_per",
+      "label": "Products per row",
+      "min": 2,
+      "max": 7,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Limit products",
+      "min": 2,
+      "max": 50,
+      "step": 1,
+      "default": 21
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog - Collection Slider",
+      "category": "Article"
+    }
+  ],
+  "templates": [
+    "404",
+    "article",
+    "blog",
+    "cart",
+    "collection",
+    "list-collections",
+    "index",
+    "page",
+    "product",
+    "search"
+  ]
+}
+
+{% endschema %}

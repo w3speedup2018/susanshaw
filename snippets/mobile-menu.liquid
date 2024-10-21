@@ -1,0 +1,111 @@
+
+
+{% if context == 'top_bar_menu' %}
+  {% for link in linklists[menu].links %}
+    <li class="menu-{{ link.title | handleize }}">
+      {% if link.url == 'http://' or link.url == '' or link.url == '/' or link.url == 'https://' or link.url == '#' %}
+        <a data-no-instant href="{{ link.url }}" class="parent-link--false">
+          {{ link.title }}
+        </a>
+      {% else %}
+        <a data-no-instant href="{{ link.url }}" class="parent-link--true">
+          {{ link.title }}
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+{% else %}
+  <template data-nav-parent-template>
+    <li class="sublink">
+      <a href="#" data-no-instant class="parent-link--false"><div class="mobile-menu-item-title" data-nav-title></div><span class="right icon-plus"></span></a>     
+      <ul class="mobile-mega-menu" data-meganav-target-container>
+      </ul>     
+    </li>
+  </template> 
+  {% for link in linklists[menu].links %}
+    {%- assign linkTitle = link.handle -%}
+    {% if linklists[link.handle] == empty %}   
+    
+      <li data-mobile-dropdown-rel="{{ link.handle }}" data-meganav-mobile-target="{{ link.title | handle }}">
+        {% if link.url == 'http://' or link.url == '' or link.url == '/' or link.url == 'https://' or link.url == '#' %}
+          <a data-nav-title data-no-instant href="{{ link.url }}" class="parent-link--false {% if linkTitle == 'shop-v2' %}is-active active{% endif%}">
+            {{ link.title }}
+          </a>
+        {% else %}
+          <a data-nav-title data-no-instant href="{{ link.url }}" class="parent-link--true {% if linkTitle == 'shop-v2' %}is-active active{% endif%}">
+            {{ link.title }}
+          </a>
+        {% endif %}
+      </li>
+    {% else %}
+      <li data-mobile-dropdown-rel="{{ link.handle }}" class="sublink" data-meganav-mobile-target="{{ link.title | handle }}">
+        {% if link.url == 'http://' or link.url == '' or link.url == '/' or link.url == 'https://' or link.url == '#' %}
+          <a data-no-instant href="{{ link.url }}" class="parent-link--false {% if linkTitle == 'shop-v2' %}is-active active{% endif%}">
+            <div class="mobile-menu-item-title" data-nav-title> {{ link.title | remove: '-v2' }}</div>
+            <span class="right icon-down-arrow"></span>
+          </a>
+        {% else %}
+          <a data-no-instant href="{{ link.url }}" class="parent-link--true {% if linkTitle == 'shop-v2' %}is-active active{% endif%}">
+            <div class="mobile-menu-item-title" data-nav-title> {{ link.title | remove: '-v2' }}</div>
+            <span class="right icon-down-arrow"></span>
+          </a>
+        {% endif %}
+
+        <ul class="submenu-wrapper">
+          {% for link in linklists[link.handle].links %}
+              {%- assign menu_title = link.title | handleize -%}     
+              <div class="icons">
+                {%- comment -%} Get Icons Dynamically {%- endcomment -%}            
+                  {%- assign menu_title = link.title | handleize -%}     
+                  {%- case menu_title -%}                   
+                    {%- when "the-latest" -%}
+                        {% render 'icon-featherquillandink' %}
+                    {%- else -%}                      
+                  {%- endcase -%}    
+              </div>
+
+            {% if linklists[link.handle] == empty %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% else %}             
+              <li class="sublink"> 
+                {%- unless menu_title contains "collection-title" -%}
+                  {% if link.url == 'http://' or link.url == '' or link.url == '/' or link.url == 'https://' or link.url == '#' %}
+                    <a data-no-instant href="{{ link.url }}" class="parent-link--false">
+                      {{ link.title }}
+                    </a>
+                  {% else %}
+                    <a data-no-instant href="{{ link.url }}" class="parent-link--true">
+                      {{ link.title }} <span class="right icon-down-arrow"></span>
+                    </a>
+                  {% endif %}
+                {%- endunless -%}               
+               
+
+                <div class="icons">
+                  {%- comment -%} Get Icons Dynamically {%- endcomment -%}            
+                    {%- assign menu_title = link.title | handleize -%}     
+                    {%- case menu_title -%}
+                      {%- when "about-us" -%}
+                          {% render 'icon-susanshawcottage' %}
+                      {%- when "customer-care" -%}
+                          {% render 'icon-handmade' %}
+                      {%- when "the-latest" -%}
+                          {% render 'icon-featherquillandink' %}
+                      {%- else -%}                      
+                    {%- endcase -%}    
+                </div>
+                <ul>                  
+                  {% for link in linklists[link.handle].links %}     
+                  {%- assign menu_title = link.title | handleize -%}                  
+                    <li class="{{menu_title}}"><a href="{{ link.url }}" {% if menu_title contains 'ready-to-ship' %}style="color:#D16446;"{% endif %}>{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>  
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul> 
+      </li>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+

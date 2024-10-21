@@ -1,0 +1,367 @@
+{% comment %}
+ LayoutHub (https://layouthub.com)
+ You SHOULD NOT modify source code in this page because
+ It is automatically generated from LayoutHub
+ {% endcomment %} 
+ 
+ <div class="lh-sections-wrapper" data-id="62bf03a4571917162e697042" data-type="article">
+<section id="" data-section-id="vk02wtm1wtd" data-section="the-best-benefits-2" data-dev="hongyen" data-lh-page-id="1073" data-lh-page-name="Xmas - Landing" data-layouthub="section">  
+  
+ 
+ 
+ 
+ 
+
+<div class="lh-benefits" >
+    <div class="lh-container">
+    	<div class="lh-row">
+    		<div class="lh-col-md-12">
+    			<h3 class="lh-title"  data-lhi="txt_title" data-lh-lang></h3>	
+    		</div>
+        </div>
+        <div class="lh-list">
+              
+            <div class="lh-item lh-left" data-hub-attr-state="class%3D%22lh-item%20lh-%22"   data-hub-attr-list_item_0_img_value="list_item[0]img_value" data-lhis="list_item-img_value" >
+                <div class="lh-row">
+                    
+                    <div class="lh-col-md-6 ">    
+                         <div class="lh-img"  data-lhi="list_item[0]bg_img" data-lhis="list_item-bg_img"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/untitled_WFnL_570x715_crop_center.png" /></div>                     
+                    </div>
+                    <div class="lh-col-md-1"></div>
+                    <div class="lh-col-md-5 order">
+                        <div class="lh-infor ">
+                            <h4 class="lh-text"  data-lhi="list_item[0]txt_lable" data-lh-lang data-lhis="list_item-txt_lable">{{'vk02wtm1wtd.lh_9wid92_lable' | t }}</h4>
+                            <div class="lh-desc"  data-lhi="list_item[0]txt_desc" data-lh-lang data-lhis="list_item-txt_desc">{{'vk02wtm1wtd.lh_9wid92_desc_html' | t }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+              
+            <div class="lh-item lh-right" data-hub-attr-state="class%3D%22lh-item%20lh-%22"   data-hub-attr-list_item_1_img_value="list_item[1]img_value" data-lhis="list_item-img_value" >
+                
+                <div class="lh-row">
+                    <div class="lh-col-md-5 order">
+                        <div class="lh-infor ">
+                            <h4 class="lh-text"  data-lhi="list_item[1]txt_lable" data-lh-lang data-lhis="list_item-txt_lable">{{'vk02wtm1wtd.lh_a5w0bb_lable' | t }}</h4>
+                            <div class="lh-desc"  data-lhi="list_item[1]txt_desc" data-lh-lang data-lhis="list_item-txt_desc">{{'vk02wtm1wtd.lh_a5w0bb_desc_html' | t }}</div>
+                        </div>
+                    </div>
+                    <div class="lh-col-md-1"></div>
+                    <div class="lh-col-md-6 ">    
+                       <div class="lh-img"  data-lhi="list_item[1]bg_img" data-lhis="list_item-bg_img"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/untitled_WtSg_570x710_crop_center.png" /></div>         
+                    </div>
+                </div>
+            </div>
+                 
+                
+        </div>
+    </div>
+</div>
+  </section><section id="" data-section-id="t3vm7j93taf" data-section="product-slider-8" data-dev="trong-dai" data-lh-page-id="746" data-lh-page-name="Gent - FAQs" data-layouthub="section">  
+  
+
+<div class="lh-wrapper">
+  <div class="lh-container">
+    <div class="lh-heading">
+      <h3  data-lhi="heading" data-lh-lang>{{'t3vm7j93taf.heading' | t }}</h3>
+      <div class="lh-btn"  data-lhi="btn" data-lh-lang data-lhi-child="a"><a href="#" data-lhlink></a></div>
+    </div>
+
+    <div class="lh-product-content">
+        <div class="lh-info-wrapper b_show bad_disable full" data-hub-attr-state="class%3D%22lh-info-wrapper%20%257B%253A%257Bsection.settings.button_action%257D%253A%257D%20%257B%253A%257Bsection.settings.button_badges%257D%253A%257D%20%257B%253A%257Bsection.settings.name_product%257D%253A%257D%22"  data-hub-attr-button_action  data-hub-attr-button_badges  data-hub-attr-name_product >
+        <include data-live-show_2 data-live-nav data-live-dots data-live-show_2 data-name="product-grid" data-id="1">  
+ <div class="lh-product-grid " >
+	<div class="lh-product-slider lh-product-related swiper-container" data-navigation='{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"}'>
+		<div class="owl-carousel owl-theme">
+			{% assign current = collections['4th-of-july-edit'] %}
+			 
+
+			{% assign limit = 10 %}
+
+			{% for product in current.products limit:limit %}
+			<div class="swiper-slide">
+				<div class="lh-collection-item">
+					<div class="lh-product-thumb">
+						<a class="lh-wrap-thumb" href="{{product.url | within: collection}}">
+							 
+								<img src="{{ product.featured_image | img_url: '270x360_crop_center' }}" alt="{{product.title}}">
+								{% if product.images.size > 1 %}
+									<img src="{{product.images[1] | img_url : '270x360_crop_center' }}" class="lh-img-hover" alt="{{product.title}}">
+								{% else %}
+									<img src="{{product.featured_image | img_url: '270x360_crop_center' }}" class="lh-img-hover" alt="{{product.title}}">
+								{% endif %}
+							 
+						</a>
+						
+						<div class="lh-product-item-actions">
+							<div class="lh-wishlist-wrapper lh-tooltip_d" data-lh-tooltip="{{'t3vm7j93taf.wishlist' | t }}">
+								{%- capture wishlist_content -%}
+									<svg version="1.1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><path fill="currentColor" d="M90.4,14.9c-5-5-11.6-7.7-18.7-7.7c-7.1,0-13.8,2.7-18.7,7.7l-3,3l-3-3c-5-4.8-11.8-7.6-18.6-7.6c-7.1,0-13.7,2.7-18.7,7.6C-0.7,25.2-0.7,42,9.7,52.4l15.8,15.8l5.9,5.9l0.2,0.2L50.3,93L69,74.3l16.8-17l4.9-4.9c4.9-4.9,7.7-11.6,7.7-18.7C98.1,26.5,95.4,19.8,90.4,14.9z M86.5,48.3l-5,5l-16.7,17L50.1,85.1L35.4,70.3l-0.2-0.2l-5.9-5.9L13.6,48.5c-8.2-8.2-8.2-21.5,0-29.7c3.9-3.9,9.1-6,14.8-6c5.4,0,10.8,2.2,14.8,6l6.9,6.9l6.9-6.9c3.9-3.9,9.2-6.1,14.8-6.1c5.6,0,10.9,2.2,14.8,6.1c3.9,3.9,6,9.1,6,14.8C92.6,39.2,90.4,44.4,86.5,48.3z"/></svg>
+								{%- endcapture -%}
+								{%- render 'layouthub_wishlist', wishlist_content:wishlist_content, wishlist_type: 'other',product: product -%}
+							</div>
+							<div class="lh-quickview-wrapper lh-tooltip_d" data-lh-tooltip="">
+								{%- capture quickview_content -%}
+									<svg version="1.1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><path fill="currentColor" d="M93.9,46.6C83.6,35,67.5,28.3,49.8,28.3C32,28.6,16,35.2,5.7,46.7l-2.9,3.4l3,3.3C16.2,65,32.3,71.7,49.9,71.7c17.8,0,33.9-6.7,44.1-18.3l3.2-3.4L93.9,46.6z M49.9,66.2c-16,0-30.4-5.9-39.8-16.2c9.3-10,23.7-15.9,39.7-16.1c16,0,30.5,5.9,39.8,16.2C80.4,60.3,65.9,66.2,49.9,66.2z"/><circle fill="currentColor" cx="49.8" cy="50" r="7.7"/></g></svg>
+								{%- endcapture -%}
+								{%- render 'layouthub_quickview', quickview_content: quickview_content, product: product -%}
+							</div>
+							<div class="lh-btn-cart-group">
+								{%- capture icon_cart -%}
+									<svg version="1.1" width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><path fill="currentColor" d="M90.6,2.5h-8c-1.9,0-3.5,1.4-3.7,3.4L77,24.9H11.4c-1.5,0-2.8,0.7-3.8,1.8c-0.9,1.2-1.2,2.7-0.8,4.1l10.7,41.9c0.5,2.1,2.4,3.6,4.6,3.6H73c0.3,0,0.7,0,1-0.1c0.2,0,0.3,0.1,0.5,0.1c0.1,0,0.2,0,0.3,0c1.4,0,2.6-1.1,2.7-2.5l0.2-1.7c0,0,0,0,0,0l4.9-47.1h-0.1L84.2,8h6.4c1.5,0,2.8-1.2,2.8-2.8S92.2,2.5,90.6,2.5z M12.3,30.4h64.1l-4.1,40.4H22.7L12.3,30.4z"/><circle fill="currentColor" cx="31.2" cy="89.4" r="8"/><circle fill="currentColor" cx="64.2" cy="89.4" r="8"/></g></svg>
+								{%- endcapture -%}
+								{% if product.available %}
+									{% if product.variants.size > 1 %}
+										<a href="{{ product.url | within: collection }}" class="lh-btn-product-options lh-tooltip_d" data-handle="{{product.handle}}" data-pid="{{product.id}}" data-lh-tooltip="{{'t3vm7j93taf.lh_txhi7h_shop' | t }}">
+											{{icon_cart}}
+										</a>
+									{% else %}
+										<a href="/cart/add/{{product.variants.first.id}}" data-id="{{product.variants.first.id}}"  class="lh-btn-add-to-cart lh-tooltip_d" data-handle="{{product.handle}}" data-pid="{{product.id}}" data-lh-tooltip="{{'t3vm7j93taf.lh_8e01_cart' | t }}">
+											{{icon_cart}}
+										</a>
+									{% endif %}
+								{% else %}
+									<a href="{{ product.url | within: collection }}" class="lh-btn-outstock lh-tooltip_d" data-handle="{{product.handle}}" data-pid="{{product.id}}" data-lh-tooltip="{{'t3vm7j93taf.lh_hth6t_more' | t }}">
+										{{icon_cart}}
+									</a>
+								{% endif %}
+							</div>
+						</div>
+
+						<div class="lh-product-badges">
+									{% if product.available == false %}
+									<span class="lh-sold-out"  data-lhi="soldout_text">Sold out</span>
+									{% else %}
+										{% if  product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+											{% assign onehundred = 100 %}
+											<span class="lh-onsale"  data-lhi="text_sale">Sale</span>
+
+										{% elsif product.compare_at_price_varies %}
+											{% assign onehundred = 100 %}
+											<span class="lh-onsale"  data-lhi="text_sale">Sale</span>
+										{% endif%}
+										{% if product.tags contains 'new' %}
+											<span class="lh-hot"  data-lhi="trans_new_text">New</span>
+										{% endif %}
+									{% endif %}
+						</div>
+					</div>
+					
+					<div class="lh-product-info ">
+						<h3 class="lh-product-title">
+							<a href="{{product.url | within: collection}}">{{product.title}}</a>
+						</h3>
+						<div class="lh-wrap-price">
+							{% if product.compare_at_price_max > product.price %}
+								<span class="lh-price-set lh-sale">{{product.compare_at_price_max | money}}</span>
+							{% endif %}
+							<span class="lh-price-set lh-cost">{{product.price | money}}</span>
+						</div>
+											
+					</div>
+				</div>
+			</div>
+			{% endfor %}</div>
+	</div>
+</div>
+
+    </include></div>
+    </div>
+  </div>
+</div>
+
+   </section><section id="" data-section-id="s1ctv8y0oca" data-section="the-best-benefits-26" data-dev="hongyen" data-lh-page-id="1073" data-lh-page-name="Xmas - Landing" data-layouthub="section">  
+  
+ 
+ 
+ 
+ 
+
+<div class="lh-benefits" >
+    <div class="lh-container">
+    	<div class="lh-row">
+    		<div class="lh-col-md-12">
+    			<h3 class="lh-title"  data-lhi="txt_title" data-lh-lang></h3>	
+    		</div>
+        </div>
+        <div class="lh-list">
+              
+            <div class="lh-item lh-right" data-hub-attr-state="class%3D%22lh-item%20lh-%22"   data-hub-attr-list_item_0_img_value="list_item[0]img_value" data-lhis="list_item-img_value" >
+                
+                <div class="lh-row">
+                    <div class="lh-col-md-5 order">
+                        <div class="lh-infor ">
+                            <h4 class="lh-text"  data-lhi="list_item[0]txt_lable" data-lh-lang data-lhis="list_item-txt_lable">{{'s1ctv8y0oca.lh_9wid92_lable' | t }}</h4>
+                            <div class="lh-desc"  data-lhi="list_item[0]txt_desc" data-lh-lang data-lhis="list_item-txt_desc">{{'s1ctv8y0oca.lh_9wid92_desc_html' | t }}</div>
+                        </div>
+                    </div>
+                    <div class="lh-col-md-1"></div>
+                    <div class="lh-col-md-6 ">    
+                       <div class="lh-img"  data-lhi="list_item[0]bg_img" data-lhis="list_item-bg_img"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/4_C0Ah_570x670_crop_center.png" /></div>         
+                    </div>
+                </div>
+            </div>
+                 
+                
+        </div>
+    </div>
+</div>
+  </section><section id="" data-section-id="cwvmyozyw1s" data-section="collection-sliders-5" data-lh-page-id="464" data-lh-page-name="Homepage - Roise" data-layouthub="section">  
+ 
+
+<div class="lh-category-block">
+
+	<div class="lh-category-wrapper">
+
+		<div class="lh-container">
+
+			<div class="lh-heading-title">
+
+				<h2 class="lh-title"  data-lhi="heading_title" data-lh-lang>{{'cwvmyozyw1s.lh_nkyb1a_title_html' | t }}</h2>
+
+				<p class="lh-desc"  data-lhi="desc" data-lh-lang>{{'cwvmyozyw1s.desc' | t }}</p>
+
+			</div>
+
+			<include data-live-group_category data-live-loop data-live-auto data-live-time data-live-group_category__active data-live-group_category__active data-name="category" data-id="1">  
+ <div class="lh-category-list">
+	<div class="js-category owl-carousel owl-theme">
+		 <div class="">
+			<div class="lh-category-item">
+				<div class="lh-category-thumbnail">
+					<p  data-lhi="group_category[0]image" data-lhis="group_category-image"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/3537bf5d-e624-4208-aac2-269329cedab5_Ro6E.jpeg?v=1656684270340" alt="Wellness" class="hub-img" /></p>
+					<div class="lh-link">
+						<p  data-lhi="group_category[0]button_label" data-lh-lang data-lhi-child="a" data-lhis="group_category-button_label"><a target="_blank" href="https://www.nordstrom.com/s/starla-ankle-wrap-sandal-women/6785322?color=CAPPUCCINO&amp;utm_content=132419457023&amp;utm_term=pla-1828356084712&amp;utm_channel=low_nd_shopping_smart&amp;adpos=&amp;creative=583793410252&amp;device=c&amp;matchtype=&amp;network=u&amp;acctid=21700000001689570&amp;dskeywordid=92700069636453606&amp;lid=92700069636453606&amp;ds_s_kwgid=58700007687306318&amp;ds_s_inventory_feed_id=97700000007631122&amp;dsproductgroupid=1828356084712&amp;product_id=2554031&amp;merchid=1243147&amp;prodctry=US&amp;prodlang=en&amp;channel=online&amp;storeid=&amp;locationid=9028050&amp;targetid=pla-1828356084712&amp;campaignid=16369080694&amp;adgroupid=132419457023&amp;gclid=CjwKCAjwk_WVBhBZEiwAUHQCmQUFymIwOmeknZ4g7Hagu-o1Kerd05j9SkyKim5Xb-XyEIIUvkUsHBoCop8QAvD_BwE&amp;gclsrc=aw.ds" data-ga-action="tracking" data-ga-label="Label button" data-lhlink>{{'cwvmyozyw1s.lh_bo2obi_label' | t }}</a></p>
+					</div>
+				</div>
+				<div class="lh-category-content">
+					<div class="lh-heading ">
+						<h2 class="lh-category__title"  data-lhi="group_category[0]title" data-lh-lang data-lhis="group_category-title">{{'cwvmyozyw1s.lh_mfr4en_title' | t }}</h2>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		 <div class="">
+			<div class="lh-category-item">
+				<div class="lh-category-thumbnail">
+					<p  data-lhi="group_category[1]image" data-lhis="group_category-image"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/untitledcopy_2CgK.png?v=165668463044" alt="Makeup" class="hub-img" /></p>
+					<div class="lh-link">
+						<p  data-lhi="group_category[1]button_label" data-lh-lang data-lhi-child="a" data-lhis="group_category-button_label"><a target="_blank" href="https://www.neimanmarcus.com/p/love-the-label-v-neck-ruffle-tiered-midi-dress-prod245800282?childItemId=NMT2F3R_" data-ga-action="tracking" data-ga-label="Label button" data-lhlink>{{'cwvmyozyw1s.lh_3gzmqn_label' | t }}</a></p>
+					</div>
+				</div>
+				<div class="lh-category-content">
+					<div class="lh-heading ">
+						<h2 class="lh-category__title"  data-lhi="group_category[1]title" data-lh-lang data-lhis="group_category-title">{{'cwvmyozyw1s.lh_mfr4eo_title' | t }}</h2>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		 <div class="">
+			<div class="lh-category-item">
+				<div class="lh-category-thumbnail">
+					<p  data-lhi="group_category[2]image" data-lhis="group_category-image"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/untitled_B9Vk.png?v=1656684887302" alt="Skincare" class="hub-img" /></p>
+					<div class="lh-link">
+						<p  data-lhi="group_category[2]button_label" data-lh-lang data-lhi-child="a" data-lhis="group_category-button_label"><a target="_blank" href="https://www2.hm.com/en_us/productpage.1060875006.html" data-ga-action="tracking" data-ga-label="Label button" data-lhlink>{{'cwvmyozyw1s.lh_4q3eu8_label' | t }}</a></p>
+					</div>
+				</div>
+				<div class="lh-category-content">
+					<div class="lh-heading ">
+						<h2 class="lh-category__title"  data-lhi="group_category[2]title" data-lh-lang data-lhis="group_category-title">{{'cwvmyozyw1s.lh_mfr4ep_title' | t }}</h2>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		 <div class="">
+			<div class="lh-category-item">
+				<div class="lh-category-thumbnail">
+					<p  data-lhi="group_category[3]image" data-lhis="group_category-image"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/untitled2_ef5o.png?v=1656685052308" alt="Wellness" class="hub-img" /></p>
+					<div class="lh-link">
+						<p  data-lhi="group_category[3]button_label" data-lh-lang data-lhi-child="a" data-lhis="group_category-button_label"><a target="_blank" href="https://migolondrina.com/collections/fourth-of-july-2022/products/olivia-costa-rojo-y-azul-brilliante" data-ga-action="tracking" data-ga-label="Label button" data-lhlink>{{'cwvmyozyw1s.lh_cx6gf3_label' | t }}</a></p>
+					</div>
+				</div>
+				<div class="lh-category-content">
+					<div class="lh-heading ">
+						<h2 class="lh-category__title"  data-lhi="group_category[3]title" data-lh-lang data-lhis="group_category-title">{{'cwvmyozyw1s.lh_mfr4eq_title' | t }}</h2>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		 <div class="">
+			<div class="lh-category-item">
+				<div class="lh-category-thumbnail">
+					<p  data-lhi="group_category[4]image" data-lhis="group_category-image"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/untitled3_cHx0.png?v=1656685182473" alt="Bodycare" class="hub-img" /></p>
+					<div class="lh-link">
+						<p  data-lhi="group_category[4]button_label" data-lh-lang data-lhi-child="a" data-lhis="group_category-button_label"><a target="_blank" href="https://www.tnuck.com/jeans-claro-chiara-espadrille-0.html" data-ga-action="tracking" data-ga-label="Label button" data-lhlink>{{'cwvmyozyw1s.lh_l49hzy_label' | t }}</a></p>
+					</div>
+				</div>
+				<div class="lh-category-content">
+					<div class="lh-heading ">
+						<h2 class="lh-category__title"  data-lhi="group_category[4]title" data-lh-lang data-lhis="group_category-title">{{'cwvmyozyw1s.lh_mfr4er_title' | t }}</h2>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		 <div class="">
+			<div class="lh-category-item">
+				<div class="lh-category-thumbnail">
+					<p  data-lhi="group_category[5]image" data-lhis="group_category-image"><img src="https://cdn.shopify.com/s/files/1/3098/4704/t/115/assets/untitled4_8rPU.png?v=1656685385915" /></p>
+					<div class="lh-link">
+						<p  data-lhi="group_category[5]button_label" data-lh-lang data-lhi-child="a" data-lhis="group_category-button_label"><a target="_blank" href="https://www.tnuck.com/sky-jules-tote-0.html" data-ga-action="tracking" data-ga-label="Label button" data-lhlink>{{'cwvmyozyw1s.lh_tbcjkt_label' | t }}</a></p>
+					</div>
+				</div>
+				<div class="lh-category-content">
+					<div class="lh-heading ">
+						<h2 class="lh-category__title"  data-lhi="group_category[5]title" data-lh-lang data-lhis="group_category-title">{{'cwvmyozyw1s.lh_mfr4es_title' | t }}</h2>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		 
+	</div>
+</div>
+
+   </include></div>
+
+	</div>
+
+</div>  </section><section id="" data-section-id="3a1dpwoup8i" data-section="about-us-8" data-dev="huynh-duc" data-lh-page-id="497" data-lh-page-name="About Us - Nabi" data-layouthub="section">  
+  
+
+<div class="lh-wrapper lh-aboutus-section">
+  <div class="lh-container">
+    <div class="lh-row">
+      <div class="lh-col-md-10 lh-mg-auto">
+        <div class="lh-wrap-content">
+          <div class="lh-heading">
+            <div class="lh-subtitle">
+              <h5  data-lhi="subtitle" data-lh-lang>{{'3a1dpwoup8i.subtitle' | t }}</h5>
+            </div>
+            <div class="lh-title">
+              <h3  data-lhi="title" data-lh-lang></h3>
+            </div>
+          </div>
+          <div class="lh-wrap-banner">
+            <div class="lh-row">
+               
+            </div>
+          </div>
+          <div class="lh-content" id="lh-content"  data-lhi="content" data-lh-lang>{{'3a1dpwoup8i.content_html' | t }}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
+  </section>
+</div>
+ {%schema%} 
+{"locales":{"en":{"vk02wtm1wtd":{"lh_9wid92_lable":"MADE IN AMERICA","lh_9wid92_desc_html":"As summer kicks into high gear and we prepare for the Fourth, we realize it might look a bit different this year, but we can still make it festive and fun! With all our products proudly made in the USA, we love to embrace that fact and celebrate every chance we get. Since more of us may opt to stay home this year, we have several idedas of how to make your celebrations as cheerful and memorable as can be.&nbsp;","lh_a5w0bb_lable":"IT STARTS WITH STYLE","lh_a5w0bb_desc_html":"There is no one right way to celebrate! No matter how you are planning to enjoy the day, dressing for the occasion is a fun way to add to the festive spirit. You simply can't go wrong with a patriotic color palette of light and breezy silhouettes to help endure the heat.&nbsp;<div><br><\/div><div>We've put together our red, white and blue pieces perfect for the occasion, and we've linked accompanying looks from some of our favorite brands.&nbsp;<\/div>"},"t3vm7j93taf":{"wishlist":"Wishlist","lh_txhi7h_shop":"Quick shop","lh_8e01_cart":"Add to cart","lh_hth6t_more":"View more","heading":"pair it with:"},"s1ctv8y0oca":{"lh_9wid92_lable":"SET THE SCENE","lh_9wid92_desc_html":"Entertaining in the backyard is a great way to celebrate, whether ir be just your family or a couple of friends and neighbors stopping by. A fun picnic in the yard with a beautiful blanket makes for the perfect casual meal spot, or a dressed up tablescape with simple flowers, votive candles and festive linens makes for a more upscale setting.&nbsp;<div><br><\/div><div>We love this table setting by Mary Catherine of Mary Catherine Studio. It's the perfect time to utilize your blue and white!&nbsp;<\/div><div><br><\/div><div>See more entertaining finds to fill your 4th with fun linked below.&nbsp;<\/div>"},"cwvmyozyw1s":{"lh_nkyb1a_title_html":"<i>festive finds<\/i>","desc":"for your closet","lh_bo2obi_label":"SHOP","lh_mfr4en_title":"Loeffler Randall Sandal","lh_3gzmqn_label":"SHOP","lh_mfr4eo_title":"Love the Label Dress","lh_4q3eu8_label":"SHOP","lh_mfr4ep_title":"Straw Shopper","lh_cx6gf3_label":"SHOP","lh_mfr4eq_title":"Mi Golondrina Top","lh_l49hzy_label":"SHOP","lh_mfr4er_title":"Castaner Wedges","lh_tbcjkt_label":"SHOP","lh_mfr4es_title":"BTB Tote"},"3a1dpwoup8i":{"subtitle":"a","content_html":"<div style=\"text-align: center;\"><font size=\"4\">We have been loving yard games lately, particularly cornhole and croquet! Both are easy to pick up and fun for any age player. There's something about a little friendly competition that livens the spirits at any gathering.&nbsp;<\/font><span style=\"font-size: large;\">No matter your plans for the Fourth this year, we hope we have given you a little inspiration for a memorable day with loved ones!&nbsp;<\/span><\/div><div style=\"text-align: center;\"><span style=\"font-size: large; display: inline !important;\"><br><\/span><\/div><div style=\"text-align: center;\"><span style=\"font-size: large; display: inline !important;\">Take care,&nbsp;<\/span><\/div><div style=\"text-align: center;\"><span style=\"font-size: large; display: inline !important;\">The Susan Shaw Team<\/span><\/div><!--lh-live-editor-->"}}},"name":"4th of July"}
+ {%endschema%}

@@ -1,0 +1,178 @@
+{%
+  render 'mega-menu',
+  section: section,
+  section_type: 'mega-menu-1',
+%}
+
+
+{%- comment -%}
+  //Show or Hide images from Metafields on Hover
+{%- endcomment -%}
+
+
+<script>
+
+  function megaMouseOver(e){          
+    // console.log(x.dataset.hover); 
+    var _parents = e.closest('.dropdown_content');
+    _parents.classList.remove('active_orig');
+    _parents.classList.add('active_hover');
+
+    var img_orig = document.querySelector('.dropdown_content.active_hover .mega-menu__image-caption-link .image-element__wrap img');      
+    var caption = document.querySelector(".dropdown_content.active_hover .image-element__wrap ~ .mega-menu__image-caption"); 
+    var img_hover = e.dataset.hover;
+    var title = e.dataset.title; 
+
+    caption.innerHTML = title;
+    img_orig.src = img_hover;
+    img_orig.srcset = img_hover;
+    img_orig.dataset.src = img_hover;
+    img_orig.dataset.srcset = img_hover;
+   
+    //console.log('========image_wrapper:'+img_orig.src);     
+    //console.log('======title:'+title);
+  } 
+
+  function megaMouseOut(e){
+    var _parents = e.closest('.dropdown_content');
+    _parents.classList.remove('active_hover');   
+
+    var img_orig = _parents.querySelector('.dropdown_content .mega-menu__image-caption-link .image-element__wrap img');     
+    var caption = _parents.querySelector(".dropdown_content .image-element__wrap ~ .mega-menu__image-caption");  
+    var img = e.dataset.orig;
+    var img_caption = e.dataset.caption; 
+
+    caption.innerHTML = img_caption;
+    img_orig.src = img;
+    img_orig.srcset = img;
+    img_orig.dataset.src = img;
+    img_orig.dataset.srcset = img;
+
+   // console.log(img);     
+  }
+</script>
+
+
+{% schema %}
+{
+  "name": "Mega menu 1",
+  "class": "shopify-section--mega-menu",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "parent",
+      "label": "Link title",
+      "info": "The mega menu will appear below this parent link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Top content"
+        },
+        {
+          "type": "richtext",
+          "id": "richtext_top",
+          "label": "Text area"
+        },
+        {
+          "type": "text",
+          "id": "icon_name",
+          "label": "Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_top",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_caption_top",
+          "label": "Image caption"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Color"         
+        },
+        {
+          "type": "url",
+          "id": "image_link_top",
+          "label": "Image link"
+        },
+        {
+          "type": "header",
+          "content": "Navigation"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_1",
+          "label": "Menu 1"
+        },
+        {
+          "type": "url",
+          "id": "menu_1_link",
+          "label": "Menu 1 link",
+          "info": "Add a link to the title of the menu."
+        },
+        {
+          "type": "header",
+          "content": "Mobile Content"        
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_caption_mobile",
+          "label": "Image caption"
+        },
+        {
+          "type": "url",
+          "id": "image_link_mobile",
+          "label": "Image link"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "column",
+        "settings": {
+          "richtext_top": "<p>Add description, images, menus and links to your mega menu</p>"
+        }
+      },
+      {
+        "type": "column",
+        "settings": {
+          "richtext_top": "<p>A column with no settings can be used as a spacer</p>"
+        }
+      },
+      {
+        "type": "column"
+      },
+      {
+        "type": "column",
+        "settings": {
+          "richtext_top": "<p>Link to your collections, sales and even external links</p>"
+        }
+      },
+      {
+        "type": "column",
+        "settings": {
+          "richtext_top": "<p>Add up to five columns</p>"
+        }
+      }
+    ]
+  }
+}
+
+{% endschema %}

@@ -1,0 +1,179 @@
+<style>
+html:not(.jsload) .hide-this-var {
+  display: none;
+}
+html:not(.jsload) .hide-this-image {
+  display: none;
+}
+.transition--appear {
+  opacity: 1 !important;
+  transition: opacity !important;
+}
+
+.theme-wv {
+  visibility: hidden !important;
+}
+
+.promo-banner {
+  transition: all 0s linear;
+  height: auto !important;
+  min-height: 30px !important;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+}
+
+.transition--appear.lazyloaded {
+  opacity: 1;
+}
+
+.product_section .product_form,
+.product_gallery,
+.price-ui {
+  opacity: 1 !important;
+}
+
+.promo-banner {
+  background: #fff url(//susanshaw.com/cdn/shop/t/209/assets/gg23-timer-bg.png?v=58301050369682390071705483959) repeat-x;
+  background-size: 35px;
+  background-position: bottom center;
+  padding: 12px 0 15px !important;
+}
+
+.nav_arrows {
+  float: right;
+}
+.animate_down, .animate_left, .animate_right, .animate_up {
+    opacity: 1 !important;
+}
+section.about-susan h1, .h1 {
+    font-family: freightbigcmp-pro,serif !important;
+    font-weight: 300 !important;
+    font-style: normal !important;
+    font-size: 38px;
+    line-height: 1.08;
+    letter-spacing: .54px;
+}
+section.about-susan *{
+    animation: none !important;
+}
+@media(max-width: 768px) {
+  .product .product-main .page-width.product_section .product_gallery:not(.flickity-enabled) .gallery-cell:nth-child(n+2) {
+    display: none;
+  }
+
+  .product .product-main .page-width.product_section .product_gallery_nav:not(.flickity-enabled) {
+    max-height: 48px;
+  }
+
+  .section-wrapper--product .shopify-section--product-template .product-main .product_section .product-image-wrapper .product--badges {
+    width: 80px;
+    z-index: 2;
+    position: absolute;
+    padding: 5px;
+  }
+
+  .js-product-slider.homepage-product-slider .slider-gallery:not(.flickity-enabled) .gallery-cell {
+    margin-right: 10px;
+    min-width: 45%;
+  }
+
+  .js-product-slider.homepage-product-slider .slider-gallery:not(.flickity-enabled) {
+    transform: translateX(27.5%);
+  }
+}
+
+.js-product-slider.homepage-product-slider .slider-gallery:not(.flickity-enabled) {
+  display: flex;
+}
+
+.js-product-slider.homepage-product-slider .slider-gallery:not(.flickity-enabled) .gallery-cell:nth-child(n+5) {
+  display: none;
+}
+
+.js-product-slider.homepage-product-slider .slider-gallery .gallery-cell {
+  background: var(--colorWhite);
+}
+
+.price--sale {
+  margin-right: 5px;
+  color: #d16446;
+}
+
+.section-wrapper--product .shopify-section--product-template .product-main .product_section .product-details-wrapper .product-block--price .modal_price .price--sale {
+  order: 2;
+  margin-left: 10px;
+}
+
+.compare-at-price {
+  text-decoration: line-through;
+  color: #cecaca;
+}
+
+.product__details--product-page .price-ui .compare-at-price {
+  margin-right: 5px;
+}
+
+@media(max-width: 575px) {
+  .slider-gallery.products-slider.products-length-28.transparentBackground--true {
+    overflow: hidden;
+}
+
+.slider-gallery.js-product-review-slider.products-length-.transparentBackground--true {
+    overflow: hidden;
+}
+  html:not(.w3_start) body.index .featured-promotions .featured-collection-list figure:nth-child(n+6) img {
+    opacity: 0 !important;
+  }
+
+  html:not(.w3_start) body.product .product-main .gallery-wrap .product_gallery .gallery-cell:not(#slide_1) img {
+    opacity: 0 !important;
+  }
+}
+@media(min-width: 1200px) {
+ .product--badges {
+    width: 120px !Important;
+    left: 140px !Important;
+    position: absolute;
+    z-index: 2;
+    padding: 5px;
+    max-height: 125.59px;
+    max-width: 120px;
+}  
+body.product div#product-image-wrapper .product_gallery .flickity-viewport .gallery-cell {
+    transform: none !important;
+}  
+span.stamped-starrating.stamped-badge-starrating {
+    min-width: 86.41px;
+}}
+@media screen and (min-width: 769px) {
+  .shopify-section--hero-banners .hero-banners .main-banner-content .main-banner-info .main-banner-details h1 {
+    margin: 20px 0;
+  }
+  .stamped-badge-caption[data-reviews][data-label][data-version="2"]>span {
+    display: inline!important;
+}
+}
+
+.section-wrapper--collection .section .product-list--collection .product-item .product-info__caption .product-details .title,
+.section-wrapper--collection .section .product-list .product-item .product-info__caption .product-details .title,
+.section-wrapper--collection .collection-la-dolce-vita .product-list--collection .product-item .product-info__caption .product-details .title,
+.section-wrapper--collection .collection-la-dolce-vita .product-list .product-item .product-info__caption .product-details .title,
+.section-wrapper--la-dolce-vita .section .product-list--collection .product-item .product-info__caption .product-details .title,
+.section-wrapper--la-dolce-vita .section .product-list .product-item .product-info__caption .product-details .title,
+.section-wrapper--la-dolce-vita .collection-la-dolce-vita .product-list--collection .product-item .product-info__caption .product-details .title,
+.section-wrapper--la-dolce-vita .collection-la-dolce-vita .product-list .product-item .product-info__caption .product-details .title {
+  flex: 0 0 60%;
+  font-size: 18px;
+  font-size: 1.05vw;
+  text-align: left;
+}
+
+@media (max-width: 768px){
+.js-product-slider.homepage-product-slider .slider-gallery:not(.flickity-enabled) {
+    transform: none !important;
+}}
+html:not(.jsload) select[data-variants] {
+    display: none;
+}
+</style>

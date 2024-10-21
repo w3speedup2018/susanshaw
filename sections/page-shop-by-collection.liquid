@@ -1,0 +1,49 @@
+<section class="section">
+  <div class="container content page">
+    <div class="one-whole column collection-menu">      
+      <div class="button-group filters-button-group d-flex is-align-center is-justify-center is-justify-md-center">     
+          <div class="small--hide">FILTER:</div>                                 
+          <button class="button is-checked" data-filter=".collection--edit">EDIT</button>        
+          <button class="button" data-filter=".collection--newest">NEWEST</button>     
+          <button class="button" data-filter=".collection--essentials">ESSENTIALS</button>             
+          <button class="button" data-filter=".collection--alphabetical">ALPHABETICAL</button>    
+      </div>         
+    </div>      
+  </div> 
+
+  {% assign alphabet_list = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" | split: ',' %}    
+  <div class="collection-alphabetical-filter">    
+    <h1 class="h1 text-align--center">Alphabetical</h1>     
+    <ul class="d-flex is-justify-center">
+    {%- for letter in alphabet_list -%}
+        {%- assign letter_first = letter | slice: 0 -%}
+        <li class="letter-{{letter}}"><a href="#collection--{{letter}}">{{letter}}</a></button>
+    {%- endfor -%}           
+    </ul> 
+    
+  </div>
+
+
+</section>
+
+
+<style>
+  #shopify-section-{{section.id}}{
+    background:var(--colorWhite);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    top: 80px;
+    z-index: 99;
+    background: #fff;
+    position: sticky;      
+  }
+
+  @media screen and (max-width: 1024px) {
+    #shopify-section-{{section.id}}{
+      top:124px;
+      overflow-x: scroll;
+      margin-bottom:30px;
+    }
+  }
+</style>  

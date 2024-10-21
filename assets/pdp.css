@@ -1,0 +1,119 @@
+/* Benifits box */
+.pdp_benefits--row {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 13px;
+    row-gap: 10px;
+    margin: 10px 0;
+    border-top: 1px solid #F4F5F5;
+    border-bottom: 1px solid #F4F5F5;
+    padding: 20px 0;
+}
+
+.pdp_benefits--box {
+display: flex;
+align-items: center;
+gap: 12px;}
+
+.pdp_box--image img {
+    max-width: 100%;
+}
+
+.pdp_box--image {
+    width: 23%;
+}
+
+.pdp_benefits--box p {
+    margin: 0;
+    color: #223345;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.18px;
+    font-family: Freight;
+}
+
+/* Delivery Details */
+.delivery-details{   
+    margin:10px 0;   
+    text-align: center;
+    font-family: var(--sweet-sans-pro);
+    font-weight: 700;
+
+    a{
+        text-decoration: underline;
+        text-underline-offset: 5px;
+    }
+    .delivery-details--estimate{
+        margin:15px 0;
+        color: #8D9871;
+
+        .items_left{
+            color: #8D9871;
+            font-style: normal;
+            padding-right: 3px;
+        }
+        p{
+            margin-bottom: 10px;
+        } 
+    }
+    .delivery-details--copy{   
+        p{
+            margin: 0;
+        }        
+    }
+    @media screen and (min-width:769px) {
+       
+        .delivery-details--copy{   
+            margin-top: 10px;
+            padding: 8px 10px 12px 10px;
+            background: var(--colorEggShell);
+        }
+    }
+   
+}
+
+
+@media screen and (max-width: 768px){
+    .pdp_benefits--row{
+        border-color: #223346;
+    }
+    .product  .other-colors{
+            display: none !important;
+    }
+    .product .collection_swatches{
+        padding:10px 5px;           
+      
+    }
+    .product .collection_swatches span{
+        min-width: 20px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+}
+
+
+/* Variant Images */
+label.variant-images{
+    width: 100px;
+    height: 100px;
+    color: transparent;
+    background-size: cover;
+}
+
+/* Pink for Purpose */
+@media screen and (max-width:768px) {
+ 
+    #product-pink-for-a-purpose-1 .gallery-cell.is-selected,
+    #product-pink-for-a-purpose-1 .gallery-cell{
+        display: none !important;
+    }
+    #product-pink-for-a-purpose-1 .flickity-slider .gallery-cell,
+    #product-pink-for-a-purpose-1 .flickity-slider .gallery-cell.is-selected{
+        display: block !important;
+    }
+   
+ 
+}

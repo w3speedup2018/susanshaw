@@ -1,0 +1,97 @@
+<script
+  type="application/json"
+  data-section-type="custom-liquid"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+<section class="section {{ section.settings.css_class }}"> 
+  <div class="badge-wrapper container">    
+    {%- for block in section.blocks -%}
+      {%- assign video = block.settings.video -%}    
+      {%- assign loop = forloop.index -%}       
+        <a href="{{block.settings.button_link}}" class="column badge-{{loop}}">
+              <div class="badge--image" style="background:{{block.settings.bg_color}};">
+                {%
+                    render 'image-element-gift-guide',
+                    image: block.settings.image,
+                    alt: block.settings.image.alt,
+                    stretch_width: true                   
+                %}              
+              </div>      
+              <h3 class="text-center">{{block.settings.title}}</h3>     
+            </a>  
+    {% endfor %}
+      
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Persona Badges",
+  "class": "shopify-section--persona-badges",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descriptions"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks":[
+    {
+      "type": "cards",
+      "name":"Cards",
+      "settings":[  
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background"
+        },    
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },        
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },   
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link"
+        }        
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Persona Badges",
+      "category": "Gift Guide"
+    }
+  ]
+}
+
+{% endschema %}

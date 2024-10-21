@@ -1,0 +1,400 @@
+{%- comment -%}Preload Our Story Resources{%- endcomment -%}
+
+<link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>          
+{{ 'our-story.css' | asset_url | stylesheet_tag }}
+
+  <script defer>
+  window.addEventListener('load', function() {   
+      const swiper = new Swiper('.swipe-slider', {
+          autoplay: {
+            delay: 111500,            // Autoplay delay in milliseconds
+            disableOnInteraction: false, // Continue autoplay on user interaction
+          },
+          loop: true,                         // loop
+          slidesPerView: 2,                   // how many slides to show
+          centeredSlides: true,               // centering the first slide                
+          effect: "coverflow",                // applying the coverflow effect
+          coverflowEffect: {
+              rotate: 0,                      // Rotate of the prev and next slides
+              depth: 200,                     // Depth of the prev and next slides
+              stretch: 100,                    // Space between the slides
+              modifier: 1,                    // Multiply the values of rotate, depth, and stretc
+              scale: 1,                       // Size ratio of the prev and next slides
+              slideShadows: false,            // Presence of shadow on the surfaces of the prev and next slides            
+          },        
+          fadeEffect: { 
+            crossFade: true          // Enable cross-fade transition
+          },
+            // Responsive breakpoints
+          breakpoints: {                      
+            // when window width is >= 640px
+            1023: {
+              slidesPerView: 3,
+              coverflowEffect: {
+                  rotate: 0,      
+                  depth: 300,      
+                  stretch: 200                                
+              }                       
+            }
+          },
+          navigation: {                       // navigation(arrows)
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+          },
+          on: {
+            init: function () {              
+              
+              this.el.addEventListener('mouseenter', function () {
+                console.log('======hover start');
+                swiper.autoplay.stop();
+               
+              });
+              this.el.addEventListener('mouseleave', function () {
+                console.log('======hover end');
+                swiper.autoplay.start();  // Stop autoplay when not hovering
+              });
+            }
+          }               
+      });    
+      
+      var susanHQ = document.querySelector('#Layer_2');
+      var hqTitle = document.querySelector('.hq-wtree .hq-title');
+      susanHQ.addEventListener('mouseenter',function(){
+        console.log('==========');
+        hqTitle.classList.add('animate_down');
+      });
+      susanHQ.addEventListener('mouseleave',function(){
+        console.log('==========');
+      
+      });
+    
+  });
+  </script>
+  
+
+<section class="about-susan">  
+  <div class="page-width d-flex">
+    <div class="copy">
+        <h2 class="h1 colorWhite">HANDMADE IN THE HEART OF TEXAS SINCE 1979</h2>
+        <div class="colorWhite desc">As a young woman inspired by her Southern surroundings, Texas roots, and world travels, Susan began designing her handmade jewelry collection as a creative outlet but it quickly grew to mean so much more. </div>
+    </div>
+    <div class="image d-flex">
+      <div class="image1">
+        {%
+          render 'image-element-fileurl',
+          image: 'story-susan.jpg',
+          alt: block.settings.image.alt,
+          stretch_width: true,
+          additional_classes: mobile_crop 
+        %}
+      </div>
+      <div class="image2">
+        {%
+          render 'image-element-fileurl',
+          image: 'story-susan2.jpg',
+          alt: block.settings.image.alt,
+          stretch_width: true,
+          additional_classes: mobile_crop 
+        %}
+      </div>
+    </div>
+    <div class="image3 animate_left">
+      {%
+        render 'image-element-fileurl',
+        image: 'story-necklace.png',
+        alt: block.settings.image.alt,
+        stretch_width: true,
+        additional_classes: mobile_crop 
+      %}
+    </div>
+    <div class="image4 animate_right">
+      {%
+        render 'image-element-fileurl',
+        image: 'story-coin.png',
+        alt: block.settings.image.alt,
+        stretch_width: true,
+        additional_classes: mobile_crop 
+      %}
+    </div>
+  </div>
+</section>
+
+<section class="section featured-copy"> 
+    <h2 class="quote text-center byronrr-medium">&ldquo; As a busy, working mother, I learned early on<br /> that it doesn't matter how beautiful a piece is,</h2>
+    <h1 class="h1 text-center">if it isn't effortless,<br/>you won't wear it! &rdquo;</h1>
+</section>
+
+<section class="susan-snapshot">
+    <div class="page-width">
+      <span class="certified-traveler animate_right">{% render 'icon-certified-traveler' %}</span>
+      <h1 class="h1 italic byronrr-medium colorWhite text-center ">Susan's Snapshots</h1>
+      <h2 class="h3 text-center colorWhite">Time travel with us and explore some snaphot moments from Susan’s life.</h2>
+      <div class="swiper swipe-slider">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}         
+            <div class="swiper-slide">
+                <div class="card">
+                  <div class="fronts">
+                    {%
+                      render 'image-element',
+                      image: block.settings.image,
+                      alt: block.settings.image.alt,
+                      stretch_width: true,
+                      additional_classes: block.settings.image_fit
+                    %}   
+                  </div>    
+                  <div class="back">                   
+                    <div class="desc">
+                      {{block.settings.description}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+          {%- endfor -%}         
+          
+        </div>      
+        <div class="swiper-button-prev animate_left">
+          {% render 'icon-arrow-head-left'%}
+        </div>
+        <div class="swiper-button-next animate_right">
+          {% render 'icon-arrow-head-right'%} 
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="what-we-made">
+    <h1 class="h1 text-center animate_down medium-up--hide">WE'LL SHOW YOU WHAT<br />WE'RE MADE OF!</h1>   
+    <div class="page-width d-flex">    
+      {%
+        render 'image-element-fileurl',
+        image: 'story-bee-coin-ring.png',
+        alt: block.settings.image.alt,
+        stretch_width: true,
+        additional_classes: "bee-coin-ring animate_left" 
+      %}
+      <div class="content">
+        <h1 class="h1 animate_right small--hide text-left">WE'LL SHOW YOU WHAT<br />WE'RE MADE OF!</h1>   
+        {%
+          render 'image-element-fileurl',
+          image: 'story-plated.png',
+          alt: block.settings.image.alt,
+          stretch_width: true,
+          additional_classes: "story-24k animate_right delay-05s" 
+        %}
+        {%
+          render 'image-element-fileurl',
+          image: 'story-ss.png',
+          alt: block.settings.image.alt,
+          stretch_width: true,
+          additional_classes: "story-silver animate_right delay-1s" 
+        %}
+        {%
+          render 'image-element-fileurl',
+          image: 'story-made.png',
+          alt: block.settings.image.alt,
+          stretch_width: true,
+          additional_classes: "story-hand-made animate_right delay-15s"  
+        %}
+        
+      </div>
+    </div>
+</section>
+
+<section class="happy-family">
+    <div class="page-width">
+      <h1 class="h1 italic byronrr-medium colorWhite text-center ">Memories Made</h1>
+      <h2 class="h3 text-center colorWhite small--hide">Here at Susan Shaw, we love to see how each of our customers style our<br />
+      handmade pieces to shine in their own unique way! </h2>
+      <h2 class="h3 text-center colorWhite medium-up--hide">Here at Susan Shaw, we love to see how each of our
+       customers style our handmade pieces to shine in their own unique way! </h2>
+
+       <a href="https://www.instagram.com/susanshaw/" target="_blank">
+        {%
+          render 'image-element-fileurl',
+          image: 'story-instagram-ribbon.png',
+          alt: block.settings.image.alt,
+          stretch_width: true,
+          additional_classes: "instagram-ribbon animate_right" 
+        %}
+       </a>
+      <div class="galleries d-flex">
+        <div class="gallery gallery-1">       
+        {%
+          render 'image-element-fileurl',
+          image: 'story-fam_1.png',
+          alt: block.settings.image.alt,
+          stretch_width: true,
+          additional_classes: "fam-img-1 animate_left" 
+        %}         
+            {%- comment -%}
+          <div class="card">
+            {%
+              render 'image-element-fileurl',
+              image: 'story-fam_1.png',
+              alt: block.settings.image.alt,
+              stretch_width: true,
+              additional_classes: "fam-img-1 animate_left" 
+            %}        
+        
+            <div class="back">
+              <h1 class="h1 card-title byronrr-medium text-center">Susan Snapshot</h1>
+              <div class="year"><span>YEAR:</span> <span>1837</span></div>
+              <div class="location"><span>LOCATION:</span> <span>Florence</span></div>
+              <div class="desc">
+                <span>DESCRIPTION:</span>
+                
+              </div>
+            </div> 
+            
+          </div>
+          {%- endcomment -%}
+        </div>
+        <div class="gallery gallery-2">
+          {%
+            render 'image-element-fileurl',
+            image: 'story-fam_2.png',
+            alt: block.settings.image.alt,
+            stretch_width: true,
+            additional_classes: "fam-img-2 animate_up" 
+          %}
+          {%
+            render 'image-element-fileurl',
+            image: 'story-fam_3.png',
+            alt: block.settings.image.alt,
+            stretch_width: true,
+            additional_classes: "fam-img-3 animate_up" 
+          %}
+          {%
+            render 'image-element-fileurl',
+            image: 'story-fam_4.png',
+            alt: block.settings.image.alt,
+            stretch_width: true,
+            additional_classes: "fam-img-4 animate_up" 
+          %}
+        </div>
+        <div class="gallery gallery-3">
+          {%
+            render 'image-element-fileurl',
+            image: 'story-fam_5.png',
+            alt: block.settings.image.alt,
+            stretch_width: true,
+            additional_classes: "fam-img-2 animate_up" 
+          %}        
+        </div>
+        <div class="gallery gallery-4">         
+          {%
+            render 'image-element-fileurl', 
+            image: 'story-fam_6.png',
+            alt: block.settings.image.alt,
+            stretch_width: true,
+            additional_classes: "fam-img-3 animate_right" 
+          %}
+          {%
+            render 'image-element-fileurl',
+            image: 'story-fam_7.png',
+            alt: block.settings.image.alt,
+            stretch_width: true,
+            additional_classes: "fam-img-4 animate_right" 
+          %}
+        </div>
+      </div> 
+
+    </div>
+
+</section>
+
+<section class="susan-hq">
+  <div class="page-width d-flex">  
+      <div class="hq-wtree">
+        <div class="hq-titles">
+          {%
+            render 'image-element-fileurl',
+            image: 'story-hq_title.png',
+            alt: block.settings.image.alt,
+            stretch_width: true,
+            additional_classes: "hq-title" 
+          %}
+        </div>
+        {% render 'icon-story-susan-hq'%}
+      </div>
+      <div class="shop-local text-center">      
+        <h1 class="h1 text-center">SHOP LOCAL </h1>
+       
+        <h2 class="h3">Susan Shaw jewelry is proudly carried in gift shops and fine boutiques in all 50 states and 14 countries. 
+        Search for a local retailer near you!</h3>
+
+        <div class="cta">
+          <a href="/pages/store-locator" class="global-button">STORE LOCATOR</a>
+        </div>   
+      </div>
+  </div>
+</section>
+
+<section class="susan-jewelry-box">
+  <div class="page-width">
+      <h1 class="h1 text-center colorWhite">SHOP SUSAN'S JEWELRY BOX</h1>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Our Story",
+  "class": "shopify-section--our-story",
+  "settings": [    
+    { 
+      "type": "header",
+      "content": "Our Story"
+    }
+  ], 
+  "blocks":[
+    {
+    "type":"flow_slider",
+    "name": "Susan's Snapshot",
+    "settings":[        
+        {
+          "type": "header",
+          "content": "Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },     
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Image Fit",
+          "options": [
+            {          
+            "value": "image_cover",
+            "label": "Cover"
+            },
+            {          
+              "value": "image_contain",
+              "label": "Contain"
+            }
+          ],
+          "default": "image_contain"         
+        },       
+      
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }        
+      ]
+    }
+
+  ],
+  "presets": [ 
+    {
+      "name": "Our Story",
+      "category": "Page"
+    }
+  ]
+}
+
+{% endschema %}

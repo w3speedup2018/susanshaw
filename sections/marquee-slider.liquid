@@ -1,0 +1,137 @@
+<div class="parent container-fluid">
+  <div class="child d-flex is-justify-start is-align-center">
+    {%- for block in section.blocks -%} 
+        <div class="h1"><a href="{{block.settings.link}}">{{block.settings.title }}</a></div>    
+    {%- endfor -%}
+    {%- for block in section.blocks -%} 
+        <div class="h1"><a href="{{block.settings.link}}">{{block.settings.title }}</a></div>    
+    {%- endfor -%}   
+  </div>
+  
+</div>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+/* Scroll to 2rem above the target */
+:target {
+    scroll-margin-top: 180px;   
+    scroll-padding-top:0;
+
+}
+@media screen and (min-width: 769px) {
+    :target {
+        scroll-margin-top: 120px;      
+    }
+}
+.parent {  
+  overflow: hidden
+}
+.h1{
+    font-size: 48px;   
+    flex: 0 0 auto;
+    padding:0 15px 20px 15px;
+}
+ 
+
+.h1 a:hover, 
+.h1 a:focus{
+  font-style: italic;
+  color:#9CB6D2 !important;
+}
+
+@media screen and (min-width: 769px) {
+    .h1{
+        font-size: 68px;         
+        padding:20px 15px;
+    }
+}
+
+.parent .child {
+  animation: marquee 10s linear infinite;
+}
+@keyframes marquee {
+  0% {
+    margin-left: 0;
+  }
+  100% { 
+    margin-left: calc(-850px);
+  }
+}  
+
+
+
+@media screen and (min-width: 769px) {
+    .parent .child {
+      animation: marquee 5s linear infinite;
+    }
+    @keyframes marquee {
+      0% {
+        margin-left: 0;
+      }
+      100% { 
+        margin-left: calc(-100% + 90%);
+      }
+    }  
+
+
+    .parent .child:hover {
+        -webkit-animation-play-state: paused; 
+        -moz-animation-play-state: paused;
+        -o-animation-play-state: paused;
+        animation-play-state: paused; 
+    }
+}
+</style>
+ 
+{% schema %}
+{
+  "name": "Marquee Slider",
+  "class": "shopify-section--collection-list collection--edit shopify-section--marquee",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    }   
+  ], 
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+        },      
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Slider",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "title"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

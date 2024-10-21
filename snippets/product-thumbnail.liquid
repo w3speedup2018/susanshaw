@@ -1,0 +1,318 @@
+{%- assign secondaryImage = product.media[1] -%}
+{%- assign collection_handles = product.collections | map: 'handle' -%}
+
+{% if product.featured_media.preview_image.alt contains 'youtube' or image.alt contains 'vimeo' %}
+  {%- assign alt_text = product.title -%}
+{% else %}
+  {%- assign alt_text = product.featured_image.alt -%}
+{% endif %}
+
+{% style %}
+  .shopify-model-viewer-ui model-viewer {
+    --progress-bar-height: 2px;
+    --progress-bar-color: $product-media-fill-color;
+  }
+{% endstyle %}
+
+{% capture product_html %}
+  <div
+  class="product-item product-num-{{index}}
+    {%
+      render 'column-width',
+      value: products_per_row
+    %}
+    column
+    thumbnail
+    thumbnail-hover-enabled--{{ settings.thumbnail_hover_enabled }}
+    {% if settings.mobile_products_per_row == '1' %}
+      medium-down--one-half
+      small-down--one-whole
+    {% else %}
+      medium-down--one-half
+    {% endif %}
+    {% if settings.quick_shop_enabled %}
+      quick-shop-style--{{ settings.quick_shop_style }}
+      product__details
+    {% endif %}
+  "
+  {% if settings.pagination_type != 'basic_pagination' %}
+    data-load-more--grid-item
+  {% endif %}
+  >
+  <div class="product-{{ product.id }} product-image-wrap">
+  <div class="product-wrap {% if settings.collection_secondary_image != blank and secondaryImage != blank %}has-secondary-media-swap{% endif %}">
+    <div class="user-cta is-flex-column">
+      <!-- Swym Collections product-thumbnail.liquid Line 137 -->
+      {%- comment -%}
+      <button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}" data-variant-id="{{product.variants[0].id}}" data-product-url="{{ shop.url }}{{ product.url }}"></button>
+      {%- endcomment -%}
+      <!-- End  of collections swym Button 139 -->
+    </div>
+    
+    <div class="relative product_image">     
+        <div class="image__container {% if settings.collection_secondary_image != blank and secondaryImage != blank %}mobile-slider{% endif %}">
+          
+          {% if settings.product_form_style == 'select' %}
+            {%
+              render 'quick-shop-gallery',
+              product: product,
+            %}
+          {% else %}
+            {% if settings.quick_shop_enabled and settings.quick_shop_style == 'inline' and product.selected_or_first_available_variant.image %}
+              {%
+                render 'image-element-collection',
+                image: product.selected_or_first_available_variant.image,
+                alt: alt_text,
+                object_fit: align_height,
+                max_height: collection_height,
+                product:product,
+                link_type: link_type
+              %}
+            {% else %}
+              {%
+                render 'image-element-collection',
+                image: product.featured_media.preview_image,
+                alt: alt_text,
+                object_fit: align_height,
+                max_height: collection_height,
+                product:product,
+                link_type: link_type
+              %}
+            {% endif %}
+
+            {% if settings.collection_secondary_image != blank and product.media[1] != blank %}            
+                {%
+                  render 'image-element-collection',
+                  image: product.media[1].preview_image,
+                  alt: alt_text,
+                  additional_classes: 'medium-up--hide m-secondary-image',
+                  product:product,
+                  link_type: link_type
+                %}           
+            {% endif %}
+
+          {% endif %}        
+        </div>
+      
+        {% if settings.collection_secondary_image != blank and product.media[1] != blank %}
+
+          {%- comment -%} Collection LP {%- endcomment -%}   
+          {%- if template.suffix contains "collection-lp" -%}   
+            <a href="{{ product.url | within: collection }}" class="js-quick-shop-link cursor-pointe" data-id="{{ product.id }}"
+              data-url="{{ product.url }}">
+
+                {% if product.media[1].media_type == 'external_video' %}
+                  <div class="external-video__container lazyload lazypreload secondary-media-hidden video-on-hover">
+                    <div class="youtube-wrapper" data-youtube-video>
+                      {{ product.media[1] | external_video_tag }}
+                    </div>
+                  </div>
+                {% elsif product.media[1].media_type == 'video' %}
+                  <div class="video__container lazyload lazypreload secondary-media-hidden video-on-hover" data-html5-video>
+                    {{ product.media[1] | video_tag: controls: false }}
+                  </div>
+                {% else %}
+                  {%
+                    render 'image-element',
+                    image: product.media[1].preview_image,
+                    alt: alt_text,
+                    additional_classes: 'secondary lazypreload secondary-media-hidden',
+                    product:product,
+                    link_type: link_type
+                  %}
+                {% endif %}
+            </a>
+          {%- else -%}
+            <a href="{{ product.url | within: collection }}">
+
+                {% if product.media[1].media_type == 'external_video' %}
+                  <div class="external-video__container lazyload lazypreload secondary-media-hidden video-on-hover">
+                    <div class="youtube-wrapper" data-youtube-video>
+                      {{ product.media[1] | external_video_tag }}
+                    </div>
+                  </div>
+                {% elsif product.media[1].media_type == 'video' %}
+                  <div class="video__container lazyload lazypreload secondary-media-hidden video-on-hover" data-html5-video>
+                    {{ product.media[1] | video_tag: controls: false }}
+                  </div>
+                {% else %}
+                  {%
+                    render 'image-element',
+                    image: product.media[1].preview_image,
+                    alt: alt_text,
+                    additional_classes: 'secondary lazypreload secondary-media-hidden',
+                    product:product,
+                    link_type: link_type
+                  %}
+                {% endif %}
+            </a>
+          {%- endif -%}
+        
+        {% endif %}      
+    </div>
+
+    {%
+      render 'product-details',
+      product: product,
+      collection: collection,
+      collection_handles: collection_handles,
+    %}
+  </div> 
+  </div> 
+
+  {%- if template.suffix contains "collection-lp" -%}   
+    <a class="product-info__caption js-quick-shop-link cursor-pointer {% if settings.thumbnail_hover_enabled %}hidden{% endif %}" href="{{ product.url | within: collection }}" data-id="{{ product.id }}"
+      data-url="{{ product.url }}">
+      {%
+        render 'product-info',
+        product: product,
+        collection_handles: collection_handles,
+      %}
+    </a>
+  {%- else -%}
+    <a class="product-info__caption  {% if settings.thumbnail_hover_enabled %}hidden{% endif %}" href="{{ product.url | within: collection }}">
+      {%
+        render 'product-info',
+        product: product,
+        collection_handles: collection_handles,
+      %}
+    </a>
+  {%- endif -%}
+
+
+  
+   
+
+  {% if settings.quick_shop_enabled and settings.quick_shop_style == 'popup' %}
+    {%
+      render 'quick-shop-button',
+      product: product,
+      button_text: "ADD TO BASKET"
+    %}
+  {% endif %}
+
+  {% unless settings.quick_shop_style == 'inline' and settings.quick_shop_enabled %}
+    {%
+      render 'collection-swatch',
+      product: product,
+    %}
+  {% endunless %}
+
+  {% if settings.quick_shop_style == 'inline' and settings.quick_shop_enabled %}
+    {% unless collection_handles contains 'coming-soon' %}
+      <div
+        class="
+          inline-quickshop
+          js-product-section
+          product-{{ product.id }}
+        "
+      >
+        {%
+          render 'product-form',
+          product: product,
+          show_payment_button: settings.show_dynamic_checkout_button,
+          collection_handles: collection_handles,
+        %}
+      </div>
+    {% endunless %}
+  {% endif %}
+  </div>
+
+
+{% endcapture %}
+
+{{product_html}}  
+
+{%- comment -%}
+//Banners 
+
+{%- capture banner1 -%}
+{%- assign banner1_img = 'https://cdn.shopify.com/s/files/1/1901/8741/files/gardenpartyimg_400x.jpg' -%}
+<div class="product-item lookbook one-fourth column thumbnail thumbnail-hover-enabled--false medium-down--one-half">
+  <a href="/pages/shop-looks">
+    <img class="lazyload lazyimage" 
+      width="{{ banner1_img.width }}"  
+      height="{{ banner1_img.height }}" 
+      alt="{{ alt_text | escape }}"                
+      src="{{ banner1_img }}"
+      data-srcset="{{ banner1_img }}" />
+    <h4 class="text-left">It's a Garden Party</h4>
+    <p class="text-left">Blooms that last forever.</p>
+    <p class="shop-look text-underline text-left">Shop the Look</p>
+    </a>
+</div>
+{%- endcapture -%}
+
+{%- capture banner2 -%}
+{%- assign banner2_img = 'https://cdn.shopify.com/s/files/1/1901/8741/files/goldengirl_800x.jpg' -%}
+<div class="product-item lookbook one-fourth column thumbnail thumbnail-hover-enabled--false medium-down--one-half">
+  <a href="/pages/shop-looks">
+    <img class="lazyload lazyimage" 
+      width="{{ banner2_img.width }}"  
+      height="{{ banner2_img.height }}" 
+      alt="{{ alt_text | escape }}"                
+      src="{{ banner2_img }}"
+      data-srcset="{{ banner2_img }}" />
+    <h4 class="text-left">Golden Girl</h4>
+    <p class="text-left">Like sun drops in your jewelry box.</p>
+    <p class="shop-look text-underline text-left">Shop the Look</p>
+    </a>
+</div>
+{%- endcapture -%}
+
+{%- capture banner3 -%}
+{%- assign banner3_img = 'https://cdn.shopify.com/s/files/1/1901/8741/files/bestofblueandwhite_800x.jpg' -%}
+<div class="product-item lookbook one-fourth column thumbnail thumbnail-hover-enabled--false medium-down--one-half">
+  <a href="/pages/shop-looks">
+    <img class="lazyload lazyimage" 
+      width="{{ banner3_img.width }}"  
+      height="{{ banner3_img.height }}" 
+      alt="{{ alt_text | escape }}"                
+      src="{{ banner3_img }}"
+      data-srcset="{{ banner3_img }}" />
+      <h4 class="text-left">Best of Blue & White</h4>
+      <p class="text-left">Inspired by the hand painted tradition.</p>
+      <p class="shop-look text-underline text-left">Shop the Look</p>
+    </a>
+</div>
+{%- endcapture -%}
+
+{%- capture banner4 -%}
+{%- assign banner4_img = 'https://cdn.shopify.com/s/files/1/1901/8741/files/weddingguestbest_800x.jpg' -%}
+<div class="product-item lookbook one-fourth column thumbnail thumbnail-hover-enabled--false medium-down--one-half">
+  <a href="/pages/shop-looks">
+    <img class="lazyload lazyimage" 
+      width="{{ banner4_img.width }}"  
+      height="{{ banner4_img.height }}" 
+      alt="{{ alt_text | escape }}"                
+      src="{{ banner4_img }}"
+      data-srcset="{{ banner4_img }}" />
+    <h4 class="text-left">Wedding Guest Best</h4>
+    <p class="text-left">Wedding season is in full swing.</p>
+    <p class="shop-look text-underline text-left">Shop the Look</p>
+    </a>
+</div>
+{%- endcapture -%}
+{%- endcomment -%}
+
+{%- comment -%}
+//Add custom banners for specific loops
+
+{%- if template contains "collection" -%}
+  {%- case index -%}
+    {%- when 8 -%}
+      {{product_html | append: banner1}}
+    {%- when 18 -%}
+      {{product_html | append: banner2}}
+    {%- when 22 -%}
+      {{product_html | append: banner3}}
+    {%- when 32 -%}
+      {{product_html | append: banner4}}
+    {%- else -%}
+      {{product_html}}
+  {%- endcase -%}
+{%- else -%}
+  {{product_html}}  
+{%- endif -%}
+
+{%- endcomment -%}

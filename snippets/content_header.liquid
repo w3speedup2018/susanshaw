@@ -1,0 +1,73 @@
+<script>
+  window.theme_scripts =  [
+       {% if canonical_url contains 'products' %}{ url: "{{ 'slick.js' | asset_url | replace: '//', 'https://'  }}", type: "JS" },{% endif %} 
+       { url: "{{ 'vendors.js'      | asset_url | replace: '//', 'https://'  }}", type: "JS" },
+       { url: "{{ 'sections.js'     | asset_url | replace: '//', 'https://'  }}", type: "JS" },
+       { url: "{{ 'utilities.js'    | asset_url | replace: '//', 'https://'  }}", type: "JS" },           
+       { url: "{{ 'app.min.js'      | asset_url | replace: '//', 'https://'  }}", type: "JS" },    
+  ];
+     
+  window.addEventListener("DOMContentLoaded", () => {
+    
+    (() => {
+        const e = (new Date).getDate();
+        sessionStorage.getItem("cacheDate") != e && (sessionStorage.clear(),
+                                                     sessionStorage.setItem("cacheDate", e))
+        Array.prototype.forEachAsync=function(n,t){var i=this;setTimeout(function(){var r=0,e=function(){this.burned||(this.burned=!0,++r>=i.length?t&&t():n(i[r],e.bind({})))};0==i.length?t&&t():n(i[0],e.bind({}))},0)};       
+
+        const addJS = function(data, el) {
+          let script = document.createElement('script');
+          script.innerHTML = script.innerHTML + data;
+          console.log(el + " was added: JS");
+          document.getElementsByTagName('head')[0].appendChild(script); 
+        }
+        
+        const addCSS = function(data, el) {
+//           let style = document.createElement('style');
+//           style.type = 'text/css';
+//           style.styleSheet ? style.styleSheet.cssText = data : style.appendChild(document.createTextNode(data));
+//           document.getElementsByTagName('head')[0].appendChild(style); 
+//           console.log(el + " was added: CSS");
+//           window.scrollTo(0, 0)
+//           document.body.classList.contains('hidden_load') ? document.body.classList.remove('hidden_load') : '';
+        };
+
+        window.theme_scripts.forEachAsync(function (el, next) {
+             if (sessionStorage.getItem(el.url) == null) {
+               fetch(el.url).then(response => response.text()).then(data => {
+                 sessionStorage.setItem(el.url, data);
+                 el.type == 'CSS' ? addCSS(data, el.url) : addJS(data, el.url)
+                 next();
+               });  
+             } else {
+               let data = sessionStorage.getItem(el.url);
+               el.type == 'CSS' ? addCSS(data, el.url) : addJS(data, el.url)
+               next();
+             }
+        }, function () {
+          console.log("All done!");
+          emitEvent('allReady', window, {});
+        });   
+    })(); 
+  });
+</script>
+
+{% if canonical_url contains 'products' %} 
+    {% render 'slick-min' %}
+
+    <style>
+      .stamped-location-flag img {
+        height: 13.5px;
+      }
+      
+      .stamped-reviews:not(.slick-initialized) .stamped-review {
+        flex-shrink: 0;
+        width: 100%;
+      }
+      .stamped-reviews:not(.slick-initialized) {
+        display: flex;
+        overflow-y: scroll;
+      }
+    </style>
+{% endif %}  
+ 

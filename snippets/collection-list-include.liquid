@@ -1,0 +1,94 @@
+<script src="{{ 'isotope.pkgd.min.js' | asset_url }}"></script>
+<script>
+    // external js: isotope.pkgd.js
+    // https://isotope.metafizzy.co/
+
+    // init Isotope
+    var iso = new Isotope( '.collection-list-wrapper', { 
+        itemSelector: '.shopify-section--collection-list', 
+        layoutMode: 'fitRows'
+    });
+
+    // filter functions 
+    var filterFns = {
+        // show if name ends with -ium
+        ium: function( itemElem ) {
+        var name = itemElem.querySelector('.name').textContent;
+        return name.match( /ium$/ );
+        }
+    };
+    
+    // bind filter button click
+    var filtersElem = document.querySelector('.filters-button-group');       
+    const filterAlphabet = document.querySelector('.collection-alphabetical-filter'); 
+    const filterAlphabetTitle = document.querySelector('.collection-alphabetical-filter .h1'); 
+    const filterEdit = document.querySelector("[data-filter='.collection--edit']");          
+    
+    //Click selected buttons by default                
+    setTimeout(function(){
+        filterEdit.click();               
+    },1500);
+
+    //check Scroll event   
+     window.addEventListener("scroll", (event) => {
+     // event.preventDefault();
+        let scroll = this.scrollY;           
+        if ($(window).width() <= 768) {
+            if ( scroll >= 370) {         
+                filterAlphabetTitle.classList.add('hide');
+            }else{
+                filterAlphabetTitle.classList.remove('hide');
+            }               
+        }
+    }); 
+
+    filtersElem.addEventListener( 'click', function( event ) {
+        // only work with buttons
+        if ( !matchesSelector( event.target, 'button' ) ) {
+        return;
+        }
+        var filterValue = event.target.getAttribute('data-filter');
+
+        // use matching filter function
+        filterValue = filterFns[ filterValue ] || filterValue;
+        iso.arrange({ filter: filterValue });
+    
+        if(filterValue === ".collection--alphabetical"){                 
+        filterAlphabet.classList.add('show');                   
+        }else{                  
+        filterAlphabet.classList.remove('show');
+        }
+
+    });
+
+    // change is-checked class on buttons
+    var buttonGroups = document.querySelectorAll('.button-group');
+    for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
+        var buttonGroup = buttonGroups[i];
+        radioButtonGroup( buttonGroup );
+    }
+    function radioButtonGroup( buttonGroup ) {
+        buttonGroup.addEventListener( 'click', function( event ) {
+        //scroll to top
+
+            if ($(window).width() <= 768) {
+            $('html, body').animate({
+                scrollTop: $("#scroll-wrapper").offset().top - 150
+            }, 100);
+            }else{
+            $('html, body').animate({
+                scrollTop: $("#scroll-wrapper").offset().top - 200
+            }, 100);
+            }
+
+        // only work with buttons
+        if ( !matchesSelector( event.target, 'button' ) ) {
+            return;
+        }
+        buttonGroup.querySelector('.is-checked').classList.remove('is-checked');
+        event.target.classList.add('is-checked');    
+        
+        });
+    }
+
+</script>

@@ -1,0 +1,155 @@
+
+{% assign icon_first = shop.metafields.sf_product_data.icon_first %}
+{% assign content_first = shop.metafields.sf_product_data.content_first %}
+{% assign icon_second = shop.metafields.sf_product_data.icon_second %}
+{% assign content_second = shop.metafields.sf_product_data.content_second %}
+{% assign icon_third = shop.metafields.sf_product_data.icon_third %}
+{% assign content_third = shop.metafields.sf_product_data.content_third %}
+{% assign icon_fourth = shop.metafields.sf_product_data.icon_fourth %}
+{% assign content_fourth = shop.metafields.sf_product_data.content_fourth %}
+{% assign icon_five = shop.metafields.sf_product_data.icon_five %}
+{% assign content_five = shop.metafields.sf_product_data.content_five %}
+{% assign hover_image_first = shop.metafields.sf_product_data.hover_image_first %}
+{% assign hover_image_second = shop.metafields.sf_product_data.hover_image_second %}
+{% assign hover_image_third = shop.metafields.sf_product_data.hover_image_third %}
+{% assign hover_image_fourth = shop.metafields.sf_product_data.hover_image_fourth %}
+{% assign hover_image_fifth = shop.metafields.sf_product_data.hover_image_fifth %}
+
+<div class="five_icons container " >
+  <div class="five_icons_inner is-flex is-justify-space-between">
+    <div class="item">
+      <div class="icon">
+        {% render 'icon-gifting-made-easy' %}
+      </div>
+      <div class="content">
+       <h3>GIFTING MADE EASY</h3>
+       <p>Each individual item is hand-packed in its own custom Susan Shaw packaging with keepsake velvet pouch.</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="icon">
+        {% render 'icon-manmade-to-order' %}
+      </div>
+      <div class="content">
+        <h3>Handmade to Order</h3>
+        <p>Since 1979, every piece has been handcrafted in Texas and made of high-quality, authentic materials.</p>
+      </div>
+    </div>   
+    <div class="item">
+      <div class="icon">
+        {% render 'icon-livable-and-durable' %}
+      </div>
+      <div class="content">
+        <h3>Livable and Durable</h3>
+        <p>Triple-plated in 24 karat gold and sterling silver, our pieces are designed for everyday occasions, but can last a lifetime.</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="icon">
+        {% render 'icon-simple-seamless-returns' %}
+      </div>
+      <div class="content">
+        <h3>Simple, Seamless Returns</h3>
+        <p>We want you to love your jewelry! Request your refund or exchange within 15 days, no questions asked.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #shopify-section-{{section.id}}{
+    background:{{section.settings.bgcolor}}; 
+  }
+
+  @media only screen and (max-width: 900px) and (min-width: 320px) {
+    .five_icons {
+      display: block !important;     
+      margin-top: 0px;
+      padding-top: 0px;
+    }
+
+    .five_icons .five_icons_inner {
+      display: flex;
+    }
+
+    .five_icons .five_icons_inner .fi_sub {
+      width: 100% !important;
+      flex-shrink: 0;
+    }
+
+    .five_icons .five_icons_inner.flickity-enabled {
+      display: block !important;
+      width: 100% !important;
+    }
+
+
+    .five_icons_inner.flickity-enabled.is-draggable .fi_sub {
+      width: 100% !important;
+      /*           height: 100% !important; */
+    }
+
+    .five_icons_inner.flickity-enabled.is-draggable .fi_sub img {
+      /*           width: 100% !important;
+      height: auto !important;
+      object-fit: contain; */
+    }
+
+    .five_icons_inner.flickity-enabled button.flickity-prev-next-button.next svg .arrow,
+    .five_icons_inner.flickity-enabled button.flickity-prev-next-button.previous svg .arrow {
+      fill: #000 !important;
+      opacity: 1;
+    }
+    .five_icons_inner.flickity-enabled .flickity-prev-next-button.previous,
+    .five_icons_inner.flickity-enabled .flickity-prev-next-button.next {
+      background: transparent;
+    }
+
+    .five_icons_inner.flickity-enabled button.flickity-prev-next-button.previous svg,
+    .five_icons_inner.flickity-enabled button.flickity-prev-next-button.next svg {
+      
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener("load", () => {
+    requestIdleCallback(() => {
+      let slide_match = window.matchMedia('screen and (min-width: 900px)');
+        function productInfoSlider(e) {
+          if (e.matches) {
+            $('.five_icons .five_icons_inner.flickity-enabled').flickity('destroy');
+          } else {
+            requestIdleCallback(() => {
+               $('.five_icons .five_icons_inner').flickity({
+                  autoPlay: 2000,
+                  wrapAround: true,
+                  pageDots: false
+            	});
+            });              
+          }
+      	}
+      slide_match.addListener(productInfoSlider);
+      productInfoSlider(slide_match)
+    });  
+   });
+</script>
+
+{% schema %}
+{
+    "name": "Five Icons", 
+    "class": "five-icons",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bgcolor",
+        "label": "Background",
+        "default": "#263344"      
+      }
+    ],
+    "presets": [
+        {
+            "category": "custom", 
+            "name":"Five Icons"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,10 @@
+{%- layout none -%}
+{%- capture content -%}
+{% paginate search.results by 48 %}
+  {%- assign has_js = true %}
+  {%- assign products = search.results -%}
+  {%- assign products_per_row = 4 -%}
+  {%- include 'product-infinite-loop' -%}
+{%- endpaginate -%}
+{%- endcapture -%}
+{{ content | strip_newlines }}

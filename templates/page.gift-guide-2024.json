@@ -1,0 +1,1007 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-gift-guide-2024",
+      "blocks": {
+        "f6496e53-ebe4-4f69-be47-8abd42d8043e": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thelifeoftheparty-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thelifeoftheparty-white.png",
+            "title": "The Life of the Party",
+            "image_link": "shopify:\/\/collections\/life-of-the-party",
+            "image_width": 13,
+            "position_top": 69,
+            "position_left": 14
+          }
+        },
+        "45570586-6b0f-4cbc-ab8d-1c8eee8f478b": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thelifeoftheparty-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thelifeoftheparty-white.png",
+            "title": "The Life of the Party",
+            "image_link": "shopify:\/\/collections\/life-of-the-party",
+            "image_width": 13,
+            "position_top": 27,
+            "position_left": 85
+          }
+        },
+        "a316aed3-a9e1-4830-8be5-7a1588d7305a": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thelifeoftheparty-transparent-add_a30ea0d5-dd5b-4633-8a30-4f622fadb286.png",
+            "image_hover": "shopify:\/\/shop_images\/thelifeoftheparty-white-add_c91b920a-c58b-4c63-a5b6-25b2e461ff0d.png",
+            "title": "The Life of the Party",
+            "image_link": "shopify:\/\/collections\/life-of-the-party",
+            "image_width": 6,
+            "position_top": "6",
+            "position_left": "87"
+          }
+        },
+        "5a50942d-6eff-4a3d-95de-79646d530b3c": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesunseeker-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thesunseeker-white.png",
+            "title": "The Sunseeker",
+            "image_link": "shopify:\/\/collections\/the-sunseeker",
+            "image_width": 18,
+            "position_top": 6,
+            "position_left": 70
+          }
+        },
+        "7a5b2ad0-a0d7-4cb9-af59-c069328fde0c": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesunseeker-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thesunseeker-white.png",
+            "title": "The Sunseeker",
+            "image_link": "shopify:\/\/collections\/the-sunseeker",
+            "image_width": 18,
+            "position_top": "-15",
+            "position_left": "2"
+          }
+        },
+        "8e9f6d37-08f3-4c86-b5a4-5c98a552117a": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesunseeker-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thesunseeker-white-add.png",
+            "title": "The Sunseeker",
+            "image_link": "shopify:\/\/collections\/the-sunseeker",
+            "image_width": 6,
+            "position_top": "-3",
+            "position_left": "45"
+          }
+        },
+        "e54314f0-1cfe-47ed-a135-b4b9ec3a016c": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesunseeker-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thesunseeker-white-add.png",
+            "title": "The Sunseeker",
+            "image_link": "shopify:\/\/collections\/the-sunseeker",
+            "image_width": 6,
+            "position_top": "50",
+            "position_left": "75"
+          }
+        },
+        "e3625087-a91f-45d8-9bb7-52c1dd8a4ea4": {
+          "type": "persona",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesunseeker-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thesunseeker-white.png",
+            "title": "The Sunseeker",
+            "image_link": "shopify:\/\/collections\/the-sunseeker",
+            "image_width": 10,
+            "position_top": 1,
+            "position_left": 1
+          }
+        },
+        "e472c9cd-bfc4-477c-baea-b44c73d4dce9": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thewesternwoman-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thewesternwoman-white.png",
+            "title": "The Western Woman",
+            "image_link": "shopify:\/\/collections\/western",
+            "image_width": 12,
+            "position_top": 28,
+            "position_left": 22
+          }
+        },
+        "98adc7ac-e35f-48b5-88d7-2ac41c88053c": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thewesternwoman-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thewesternwoman-white-add.png",
+            "title": "The Western Woman",
+            "image_link": "shopify:\/\/collections\/western",
+            "image_width": 6,
+            "position_top": "1",
+            "position_left": "35"
+          }
+        },
+        "7e00d03b-036b-4245-bb84-5520eb0cead4": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thewesternwoman-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thewesternwoman-white-add.png",
+            "title": "The Western Woman",
+            "image_link": "shopify:\/\/collections\/western",
+            "image_width": 6,
+            "position_top": "82",
+            "position_left": "67"
+          }
+        },
+        "235cccd0-7d3a-4f36-b577-5edb2717f39a": {
+          "type": "persona",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/card-western-woman.png",
+            "image_hover": "shopify:\/\/shop_images\/card-western-woman.png",
+            "title": "The Western Woman",
+            "image_link": "\/collections\/western",
+            "image_width": 10,
+            "position_top": 1,
+            "position_left": 69
+          }
+        },
+        "505a0c88-5f02-4264-8a79-437e1b8002c3": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thegardener-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thegardener-white.png",
+            "title": "The Gardener",
+            "image_link": "shopify:\/\/collections\/the-gardener",
+            "image_width": 12,
+            "position_top": 2,
+            "position_left": 22
+          }
+        },
+        "43678165-cde3-4acb-8d7a-f1688080b6c1": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thegardener-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thegardener-white.png",
+            "title": "The Gardener",
+            "image_link": "shopify:\/\/collections\/the-gardener",
+            "image_width": 12,
+            "position_top": "6",
+            "position_left": "95"
+          }
+        },
+        "b13c3140-a54a-401f-ae67-97d4f0eda599": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thegardener-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thegardener-transparent-add.png",
+            "title": "The Gardener",
+            "image_link": "shopify:\/\/collections\/the-gardener",
+            "image_width": 6,
+            "position_top": "8",
+            "position_left": "15"
+          }
+        },
+        "b05944a6-dfd5-4ab0-adff-fb7c1f1c5a19": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thegardener-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thegardener-white-add.png",
+            "title": "The Gardener",
+            "image_link": "shopify:\/\/collections\/the-gardener",
+            "image_width": 6,
+            "position_top": "-5",
+            "position_left": "80"
+          }
+        },
+        "5ae67710-10c7-4b18-aa91-8aafad317763": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesophisticate-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thesophisticate-white.png",
+            "title": "The Sophisticate",
+            "image_link": "shopify:\/\/collections\/the-sophisticate",
+            "image_width": 12,
+            "position_top": 63,
+            "position_left": 33
+          }
+        },
+        "a7163195-7a51-4826-b649-4c6bde08081f": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesophisticate-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thesophisticate-white.png",
+            "title": "The Sophisticate",
+            "image_link": "shopify:\/\/collections\/the-sophisticate",
+            "image_width": 12,
+            "position_top": 72,
+            "position_left": 76
+          }
+        },
+        "97f4c967-658e-4ce1-a0fe-ce847e2b7688": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesophisticate-transparent-add_13cd891c-09ed-496f-909b-f74e23efabf0.png",
+            "image_hover": "shopify:\/\/shop_images\/thesophisticate-white-add.png",
+            "title": "The Sophisticate",
+            "image_link": "shopify:\/\/collections\/the-sophisticate",
+            "image_width": 6,
+            "position_top": "25",
+            "position_left": "32"
+          }
+        },
+        "c488bf62-6752-425f-bd80-bb7a03531605": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thesophisticate-transparent-add_13cd891c-09ed-496f-909b-f74e23efabf0.png",
+            "image_hover": "shopify:\/\/shop_images\/thesophisticate-white-add.png",
+            "title": "The Sophisticate",
+            "image_link": "shopify:\/\/collections\/the-sophisticate",
+            "image_width": 6,
+            "position_top": "60",
+            "position_left": "70"
+          }
+        },
+        "8d7e3fd9-7095-4086-ad40-522de9091c37": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thegalonthego-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thegalonthego-white.png",
+            "title": "The Gal on the Go",
+            "image_link": "shopify:\/\/collections\/gal-on-the-go",
+            "image_width": 12,
+            "position_top": 3,
+            "position_left": 54
+          }
+        },
+        "cda1df7a-b8cf-4ff6-811b-d0718bffc99e": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thegalonthego-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thegalonthego-white.png",
+            "title": "The Gal on the Go",
+            "image_link": "shopify:\/\/collections\/gal-on-the-go",
+            "image_width": 12,
+            "position_top": 70,
+            "position_left": 46
+          }
+        },
+        "62a7f2a1-7635-4289-a0b3-cd796c349dfa": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thegalonthego-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thegalonthego-white-add.png",
+            "title": "The Gal on the Go",
+            "image_link": "shopify:\/\/collections\/gal-on-the-go",
+            "image_width": 8,
+            "position_top": "12",
+            "position_left": "42"
+          }
+        },
+        "42f13115-6ff0-4ee8-98ae-cc5c6e10fbd4": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thegalonthego-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thegalonthego-white-add.png",
+            "title": "The Gal on the Go",
+            "image_link": "shopify:\/\/collections\/gal-on-the-go",
+            "image_width": 8,
+            "position_top": "70",
+            "position_left": "60"
+          }
+        },
+        "3d6dc69a-9a89-4e5f-8eb5-8efcdb3004f6": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thejetsetter-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/thejetsetter-white.png",
+            "title": "The Jetsetter",
+            "image_link": "shopify:\/\/collections\/jetsetter",
+            "image_width": 13,
+            "position_top": 20,
+            "position_left": 5
+          }
+        },
+        "bf091d2b-60df-4639-898f-c21f5ef643fc": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thejetsetter-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thejetsetter-white-add.png",
+            "title": "The Jetsetter",
+            "image_link": "shopify:\/\/collections\/jetsetter",
+            "image_width": 8,
+            "position_top": "55",
+            "position_left": "5"
+          }
+        },
+        "4b749d20-ec5a-4de6-8c5e-298009e3bada": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/thejetsetter-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/thejetsetter-white-add.png",
+            "title": "The Jetsetter",
+            "image_link": "shopify:\/\/collections\/jetsetter",
+            "image_width": 8,
+            "position_top": "45",
+            "position_left": "63"
+          }
+        },
+        "e63d8c67-81a8-4696-8aec-f3b74f2f7050": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/theoldsoul-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/theoldsoul-white.png",
+            "title": "The Old Soul",
+            "image_link": "shopify:\/\/collections\/the-old-soul",
+            "image_width": 12,
+            "position_top": 69,
+            "position_left": 1
+          }
+        },
+        "4ed0ba24-1ac0-438e-901a-1337374516b9": {
+          "type": "persona",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/theoldsoul-transparent.png",
+            "image_hover": "shopify:\/\/shop_images\/theoldsoul-white.png",
+            "title": "The Old Soul",
+            "image_link": "shopify:\/\/collections\/the-old-soul",
+            "image_width": 12,
+            "position_top": 53,
+            "position_left": 84
+          }
+        },
+        "1fdaf720-e225-4d81-a980-94b3c0794ee5": {
+          "type": "persona_add",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/theoldsoul-transparent-add.png",
+            "image_hover": "shopify:\/\/shop_images\/theoldsoul-white-add.png",
+            "title": "The Old Soul",
+            "image_link": "shopify:\/\/collections\/the-old-soul",
+            "image_width": 8,
+            "position_top": "17",
+            "position_left": "-2"
+          }
+        }
+      },
+      "block_order": [
+        "f6496e53-ebe4-4f69-be47-8abd42d8043e",
+        "45570586-6b0f-4cbc-ab8d-1c8eee8f478b",
+        "a316aed3-a9e1-4830-8be5-7a1588d7305a",
+        "5a50942d-6eff-4a3d-95de-79646d530b3c",
+        "7a5b2ad0-a0d7-4cb9-af59-c069328fde0c",
+        "8e9f6d37-08f3-4c86-b5a4-5c98a552117a",
+        "e54314f0-1cfe-47ed-a135-b4b9ec3a016c",
+        "e3625087-a91f-45d8-9bb7-52c1dd8a4ea4",
+        "e472c9cd-bfc4-477c-baea-b44c73d4dce9",
+        "98adc7ac-e35f-48b5-88d7-2ac41c88053c",
+        "7e00d03b-036b-4245-bb84-5520eb0cead4",
+        "235cccd0-7d3a-4f36-b577-5edb2717f39a",
+        "505a0c88-5f02-4264-8a79-437e1b8002c3",
+        "43678165-cde3-4acb-8d7a-f1688080b6c1",
+        "b13c3140-a54a-401f-ae67-97d4f0eda599",
+        "b05944a6-dfd5-4ab0-adff-fb7c1f1c5a19",
+        "5ae67710-10c7-4b18-aa91-8aafad317763",
+        "a7163195-7a51-4826-b649-4c6bde08081f",
+        "97f4c967-658e-4ce1-a0fe-ce847e2b7688",
+        "c488bf62-6752-425f-bd80-bb7a03531605",
+        "8d7e3fd9-7095-4086-ad40-522de9091c37",
+        "cda1df7a-b8cf-4ff6-811b-d0718bffc99e",
+        "62a7f2a1-7635-4289-a0b3-cd796c349dfa",
+        "42f13115-6ff0-4ee8-98ae-cc5c6e10fbd4",
+        "3d6dc69a-9a89-4e5f-8eb5-8efcdb3004f6",
+        "bf091d2b-60df-4639-898f-c21f5ef643fc",
+        "4b749d20-ec5a-4de6-8c5e-298009e3bada",
+        "e63d8c67-81a8-4696-8aec-f3b74f2f7050",
+        "4ed0ba24-1ac0-438e-901a-1337374516b9",
+        "1fdaf720-e225-4d81-a980-94b3c0794ee5"
+      ],
+      "settings": {
+        "title": "",
+        "countdown": "2023, 11, 25, 23, 59, 59"
+      }
+    },
+    "45616908-5d54-4a5c-9720-62178bbe8207": {
+      "type": "featured-collection-slider-with-title",
+      "settings": {
+        "background_color": "#6882ab",
+        "title": "Top 10 Gifts of the Year",
+        "description": "<p>Based on personalized notes, reviews and overall purchases.<\/p>",
+        "collection": "top-10-gifts-2023",
+        "products_per": 5,
+        "products_limit": 25,
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "ad559af8-a1cc-4b29-89a1-bcf50abce4e4": {
+      "type": "persona-badges",
+      "blocks": {
+        "4911a942-4fb4-4f49-9bf7-97c315afc926": {
+          "type": "cards",
+          "settings": {
+            "bg_color": "#b2d9d0",
+            "title": "The<br>Jetsetter",
+            "image": "shopify:\/\/shop_images\/thejetsetter-white-add_df4d27e1-2ac4-49ec-9b42-752373ed758d.png",
+            "button_label": "",
+            "button_link": "shopify:\/\/collections\/jetsetter"
+          }
+        },
+        "c723ce31-f295-43af-ae04-9d595670f654": {
+          "type": "cards",
+          "settings": {
+            "bg_color": "#aabf7e",
+            "title": "The<br>Gardener",
+            "image": "shopify:\/\/shop_images\/thegardener-white-add_0c7e4431-637c-4eac-a1ee-40c7912488ce.png",
+            "button_label": "",
+            "button_link": "shopify:\/\/collections\/the-gardener"
+          }
+        },
+        "842e26ad-285a-40d7-86ce-7df252312614": {
+          "type": "cards",
+          "settings": {
+            "bg_color": "#d16446",
+            "title": "The<br>Old Soul",
+            "image": "shopify:\/\/shop_images\/oldsoul-previewtile.png",
+            "button_label": "",
+            "button_link": "shopify:\/\/collections\/the-old-soul"
+          }
+        },
+        "792dcd08-2620-4387-86e4-946fdc666bce": {
+          "type": "cards",
+          "settings": {
+            "bg_color": "#bfaccd",
+            "title": "The<br>Sophisticate",
+            "image": "shopify:\/\/shop_images\/thesophisticate-white-add_e91cf760-e820-416b-b472-4417b7117eea.png",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/the-sophisticate"
+          }
+        },
+        "5be997e6-7669-4622-9b1c-55e49d406984": {
+          "type": "cards",
+          "settings": {
+            "bg_color": "#b2d9d0",
+            "title": "The<br>Sunseeker",
+            "image": "shopify:\/\/shop_images\/thesunseeker-white_0610e653-1c78-40ee-b2af-0ca505ab2403.png",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/the-sunseeker"
+          }
+        },
+        "a7e306b3-3c2b-4fe8-bff7-a691c5c40cd3": {
+          "type": "cards",
+          "settings": {
+            "bg_color": "#ba8568",
+            "title": "The Western<br>Woman",
+            "image": "shopify:\/\/shop_images\/western-woman-previewtile.png",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/western"
+          }
+        },
+        "7c9f7d87-a377-469e-a591-3a0669da8b57": {
+          "type": "cards",
+          "settings": {
+            "bg_color": "#f1ab9b",
+            "title": "The Life <br>of the Party",
+            "image": "shopify:\/\/shop_images\/thelifeoftheparty-white-add_f3515918-f428-4cdd-b56f-5d4685caea07.png",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/life-of-the-party"
+          }
+        },
+        "64aa4c95-2eda-4b20-968b-0cee3fa7b830": {
+          "type": "cards",
+          "settings": {
+            "bg_color": "#aabf7e",
+            "title": "The Gal<br>on the Go",
+            "image": "shopify:\/\/shop_images\/thegalonthego-white-add_251ffb47-a09e-4822-8e9a-2256e6039e35.png",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/gal-on-the-go"
+          }
+        }
+      },
+      "block_order": [
+        "4911a942-4fb4-4f49-9bf7-97c315afc926",
+        "c723ce31-f295-43af-ae04-9d595670f654",
+        "842e26ad-285a-40d7-86ce-7df252312614",
+        "792dcd08-2620-4387-86e4-946fdc666bce",
+        "5be997e6-7669-4622-9b1c-55e49d406984",
+        "a7e306b3-3c2b-4fe8-bff7-a691c5c40cd3",
+        "7c9f7d87-a377-469e-a591-3a0669da8b57",
+        "64aa4c95-2eda-4b20-968b-0cee3fa7b830"
+      ],
+      "settings": {
+        "title": "",
+        "description": "",
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "a2a6ce43-32de-47d3-97bc-af9369160dfd": {
+      "type": "persona-cards",
+      "blocks": {
+        "2c9bdb08-6a20-48e1-9e7c-66e1992e6ac3": {
+          "type": "cards",
+          "settings": {
+            "title": "The Gardener",
+            "description": "She blooms where she's planted.",
+            "image": "shopify:\/\/shop_images\/thegardener-white.png",
+            "video_poster": "shopify:\/\/shop_images\/poster_thegardener.jpg",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/0da9b2b4d2804d12a35c900c7b74c396.mp4",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/the-gardener"
+          }
+        },
+        "4f692302-de16-4c65-8a33-5530cdb0b983": {
+          "type": "cards",
+          "settings": {
+            "title": "The Western Woman",
+            "description": "She needs wide open spaces.",
+            "image": "shopify:\/\/shop_images\/thewesternwoman-white.png",
+            "video_poster": "shopify:\/\/shop_images\/poster_westernwomen.jpg",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/6824b47fa2114022b1c52d4be3328e0a.mp4",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/western"
+          }
+        },
+        "40e553ab-037b-4c8e-8c6b-781ee64cc978": {
+          "type": "cards",
+          "settings": {
+            "title": "The Sunseeker",
+            "description": "The coast is calling.",
+            "image": "shopify:\/\/shop_images\/card-sunseeker.png",
+            "video_poster": "shopify:\/\/shop_images\/poster_thesunseeker.jpg",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/6e66aec1c96845f38c7c329a5d9ea16c.mp4",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/the-sunseeker"
+          }
+        },
+        "fe33c829-8020-4fe4-9d30-80ec169e7419": {
+          "type": "cards",
+          "settings": {
+            "title": "The Sophisticate",
+            "description": "She keeps it classic.",
+            "image": "shopify:\/\/shop_images\/thesophisticate-white.png",
+            "video_poster": "shopify:\/\/shop_images\/poster_thesophistiated.jpg",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/77c1b0b2836741bab63161d2c92b8e93.mp4",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/the-sophisticate"
+          }
+        },
+        "f4606941-394d-4fb0-b574-75ac69ca7d58": {
+          "type": "cards",
+          "settings": {
+            "title": "The Life of the Party",
+            "description": "She's at home in the spotlight. ",
+            "image": "shopify:\/\/shop_images\/thelifeoftheparty-white.png",
+            "video_poster": "shopify:\/\/shop_images\/poster_lifeofparty.jpg",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/52e00db6cbfc4f1d91dcd86c92d8c5c0.mp4",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/life-of-the-party"
+          }
+        },
+        "b346fb2b-6dc0-4ec8-9bcd-5ea7764eacfa": {
+          "type": "cards",
+          "settings": {
+            "title": "The Old Soul",
+            "description": "True style is eternal. ",
+            "image": "shopify:\/\/shop_images\/theoldsoul-white.png",
+            "video_poster": "shopify:\/\/shop_images\/poster_oldsould.jpg",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/57b3dbc6741a44bb96155cde2d0e2841.mp4",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/the-old-soul"
+          }
+        },
+        "cbc31e97-aa5a-463a-8ce8-a812fde3291d": {
+          "type": "cards",
+          "settings": {
+            "title": "The Gal on the Go",
+            "description": "Ease is everything for her.",
+            "image": "shopify:\/\/shop_images\/thegalonthego-white.png",
+            "video_poster": "shopify:\/\/shop_images\/poster_girlonthego.jpg",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/dc75385c78fc435785a3a0a240782c53.mp4",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/gal-on-the-go"
+          }
+        },
+        "9d2b7552-0b2d-4574-af66-e43a2e7385df": {
+          "type": "cards",
+          "settings": {
+            "title": "The Jetsetter",
+            "description": "Her bags are always packed.",
+            "image": "shopify:\/\/shop_images\/thejetsetter-white.png",
+            "video_poster": "shopify:\/\/shop_images\/poster_thejetsetter.jpg",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/105310a4339d4363b376ad18f2481e5d.mp4",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify:\/\/collections\/jetsetter"
+          }
+        }
+      },
+      "block_order": [
+        "2c9bdb08-6a20-48e1-9e7c-66e1992e6ac3",
+        "4f692302-de16-4c65-8a33-5530cdb0b983",
+        "40e553ab-037b-4c8e-8c6b-781ee64cc978",
+        "fe33c829-8020-4fe4-9d30-80ec169e7419",
+        "f4606941-394d-4fb0-b574-75ac69ca7d58",
+        "b346fb2b-6dc0-4ec8-9bcd-5ea7764eacfa",
+        "cbc31e97-aa5a-463a-8ce8-a812fde3291d",
+        "9d2b7552-0b2d-4574-af66-e43a2e7385df"
+      ],
+      "settings": {
+        "title": "The <i>Perfect<\/i> Fit",
+        "description": "<p>We’ve curated eight collections based on common archetypes we see in the women in our lives, with pieces they will love and easily fit into their lifestyle.<\/p>",
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "acc98068-6054-4db4-a0ac-864958052e35": {
+      "type": "maps",
+      "blocks": {
+        "11ff8f80-2109-4062-a427-7bf8c7c82632": {
+          "type": "location",
+          "settings": {
+            "title": "The Great Plains",
+            "collection_title": "Buffalo Nickels",
+            "collection": "buffalo-nickel",
+            "position_top": 34,
+            "position_left": 11
+          }
+        },
+        "c077b125-f963-4c50-8014-70ca1041e9cd": {
+          "type": "location",
+          "settings": {
+            "title": "Texas",
+            "collection_title": "The Crossroads Collection",
+            "collection": "the-crossroads-collection",
+            "position_top": 67,
+            "position_left": 16
+          }
+        },
+        "1b5c36ee-75af-4432-8ded-85cb2db631a1": {
+          "type": "location",
+          "settings": {
+            "title": "Louisville, Kentucky",
+            "collection_title": "The Equestrian Collection",
+            "collection": "equestrian",
+            "position_top": 46,
+            "position_left": 31
+          }
+        },
+        "9d0ba2ff-974b-4c73-a8cb-a4d118234e6f": {
+          "type": "location",
+          "settings": {
+            "title": "The Florida Coast",
+            "collection_title": "The Coastal Collection",
+            "collection": "coastal-designs",
+            "position_top": 71,
+            "position_left": 39
+          }
+        },
+        "67ae0448-68ae-4e5b-a041-0e3f61c7548b": {
+          "type": "location",
+          "settings": {
+            "title": "London, England",
+            "collection_title": "The Crown Collection",
+            "collection": "the-crown-collection",
+            "position_top": 52,
+            "position_left": 68
+          }
+        },
+        "e33661ed-590e-47ea-80dc-b406c3c8f30a": {
+          "type": "location",
+          "settings": {
+            "title": "France",
+            "collection_title": "French Feels",
+            "collection": "french-feels",
+            "position_top": 59,
+            "position_left": 71
+          }
+        },
+        "45b27344-9b36-4f98-ab80-fcb5264b348e": {
+          "type": "location",
+          "settings": {
+            "title": "The Spanish Coast",
+            "collection_title": "La Dolce Vita",
+            "collection": "la-dolce-vita",
+            "position_top": 79,
+            "position_left": 65
+          }
+        },
+        "b157b1b8-121b-4c93-b20b-e4a6437a755b": {
+          "type": "location",
+          "settings": {
+            "title": "Venice",
+            "collection_title": "Italy - Venetian Glass",
+            "collection": "venetian-glass",
+            "position_top": 64,
+            "position_left": 80
+          }
+        },
+        "0442cb65-1642-41dd-b064-cbef9e168e06": {
+          "type": "location",
+          "settings": {
+            "title": "Italy",
+            "collection_title": "Italian Influences",
+            "collection": "italian-influences",
+            "position_top": 71,
+            "position_left": 80
+          }
+        },
+        "f32d035e-0c9e-453f-8666-cbcca589c5fa": {
+          "type": "location",
+          "settings": {
+            "title": "Greece",
+            "collection_title": "Greek Glow",
+            "collection": "greek-glow",
+            "position_top": 75,
+            "position_left": 88
+          }
+        },
+        "98411038-b5bc-447b-8f17-d201ec378aef": {
+          "type": "location",
+          "settings": {
+            "title": "The Island of Malta",
+            "collection_title": "Malta 1976",
+            "collection": "malta-1976",
+            "position_top": 82,
+            "position_left": 82
+          }
+        }
+      },
+      "block_order": [
+        "11ff8f80-2109-4062-a427-7bf8c7c82632",
+        "c077b125-f963-4c50-8014-70ca1041e9cd",
+        "1b5c36ee-75af-4432-8ded-85cb2db631a1",
+        "9d0ba2ff-974b-4c73-a8cb-a4d118234e6f",
+        "67ae0448-68ae-4e5b-a041-0e3f61c7548b",
+        "e33661ed-590e-47ea-80dc-b406c3c8f30a",
+        "45b27344-9b36-4f98-ab80-fcb5264b348e",
+        "b157b1b8-121b-4c93-b20b-e4a6437a755b",
+        "0442cb65-1642-41dd-b064-cbef9e168e06",
+        "f32d035e-0c9e-453f-8666-cbcca589c5fa",
+        "98411038-b5bc-447b-8f17-d201ec378aef"
+      ],
+      "settings": {
+        "title": "",
+        "image_badge": "shopify:\/\/shop_images\/badge-certified-traveler.png",
+        "image": "shopify:\/\/shop_images\/GiftGuideMap.jpg",
+        "image_mobile": "shopify:\/\/shop_images\/Gift_Guide_Map_-_mobile.jpg",
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "8227a9de-0625-49ba-b46f-6202642d6bdf": {
+      "type": "video-slider",
+      "blocks": {
+        "868b866d-e90c-4793-a0fa-3a8f9587c55f": {
+          "type": "video",
+          "settings": {
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/e28280603aa54a4f8759697d62e4779f.mp4",
+            "title": "STOCKING<br>\nSTUFFERS",
+            "button_label": "SHOP",
+            "button_link": "shopify:\/\/collections\/stocking-stuffers"
+          }
+        },
+        "093e7965-4dd6-4da7-82bd-af098023f8dd": {
+          "type": "video",
+          "settings": {
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/800be6ec9c194a1596ae5c251c2f6cdb.mp4",
+            "title": "REASON<br>\nFOR THE<br>\nSEASON",
+            "button_label": "SHOP",
+            "button_link": "shopify:\/\/collections\/cross"
+          }
+        },
+        "9a572ce8-ef25-4271-a6ac-be40c295cc86": {
+          "type": "video",
+          "settings": {
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/60503d8d005146a3bfafa44b84c5eadc.mp4",
+            "title": "ORNAMENTS",
+            "button_label": "SHOP",
+            "button_link": "shopify:\/\/collections\/christmas-ornaments"
+          }
+        },
+        "98ce5ed9-d9f6-4244-8158-7f618aa51d30": {
+          "type": "video",
+          "settings": {
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/6d24036bfd634286ae52d9d071e6eb80.mp4",
+            "title": "STYLES<br>\nTHAT<br>\nSPARKLE",
+            "button_label": "SHOP",
+            "button_link": "shopify:\/\/collections\/the-holiday-soiree-collection"
+          }
+        },
+        "5c04c3a2-639f-414b-9bf3-b3224e3ca861": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/e28280603aa54a4f8759697d62e4779f.mp4",
+            "title": "STOCKING<br>\nSTUFFERS",
+            "button_label": "SHOP",
+            "button_link": "shopify:\/\/collections\/stocking-stuffers"
+          }
+        }
+      },
+      "block_order": [
+        "868b866d-e90c-4793-a0fa-3a8f9587c55f",
+        "093e7965-4dd6-4da7-82bd-af098023f8dd",
+        "9a572ce8-ef25-4271-a6ac-be40c295cc86",
+        "98ce5ed9-d9f6-4244-8158-7f618aa51d30",
+        "5c04c3a2-639f-414b-9bf3-b3224e3ca861"
+      ],
+      "settings": {
+        "title": "",
+        "align_height": false,
+        "video_height": 200,
+        "videos_per_row": 3,
+        "autoplay": true,
+        "autoloop": true,
+        "mute_video": false,
+        "show_controls": true,
+        "video_dark_overlay": false,
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "f9a49c4a-5d48-4767-a0e9-934897bcaa89": {
+      "type": "giftguide-text-columns-with-images",
+      "blocks": {
+        "template--16902838124759__f9a49c4a-5d48-4767-a0e9-934897bcaa89-text_block-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/gg23-gift--cards.jpg",
+            "title": "",
+            "heading_size": "regular_text",
+            "text": "",
+            "button_label": "",
+            "button_link": "shopify:\/\/products\/rise-ai-giftcard",
+            "align_text": "left",
+            "border_style": "none"
+          }
+        },
+        "3e7415d1-4ca0-43d2-bb2d-d8d7185175a5": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/gg23-gift-under-50.jpg",
+            "title": "",
+            "heading_size": "regular_text",
+            "text": "",
+            "button_label": "",
+            "button_link": "shopify:\/\/collections\/gifts-under-50",
+            "align_text": "left",
+            "border_style": "none"
+          }
+        },
+        "53fc0963-17ce-41b1-aa61-546586c23df6": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/gg23-gift-under-100.jpg",
+            "title": "",
+            "heading_size": "regular_text",
+            "text": "",
+            "button_label": "",
+            "button_link": "shopify:\/\/collections\/gifts-under-101",
+            "align_text": "left",
+            "border_style": "none"
+          }
+        },
+        "a224c08d-9a90-4ecb-99f8-11a7e00bb720": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/gg23-luxe-gifts.jpg",
+            "title": "",
+            "heading_size": "regular_text",
+            "text": "",
+            "button_label": "",
+            "button_link": "shopify:\/\/collections\/luxe-gifts",
+            "align_text": "left",
+            "border_style": "none"
+          }
+        }
+      },
+      "block_order": [
+        "template--16902838124759__f9a49c4a-5d48-4767-a0e9-934897bcaa89-text_block-1",
+        "3e7415d1-4ca0-43d2-bb2d-d8d7185175a5",
+        "53fc0963-17ce-41b1-aa61-546586c23df6",
+        "a224c08d-9a90-4ecb-99f8-11a7e00bb720"
+      ],
+      "settings": {
+        "title": "",
+        "button_text": "",
+        "button_url": "",
+        "css_class": "image-box",
+        "custom_css": ""
+      }
+    },
+    "9fa0bf97-0996-43e3-b186-2498e7df8783": {
+      "type": "image-with-titles",
+      "blocks": {
+        "template--16902838124759__9fa0bf97-0996-43e3-b186-2498e7df8783-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/feat_ornamental.jpg",
+            "image_crop": "center",
+            "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/60503d8d005146a3bfafa44b84c5eadc.mp4",
+            "subtitle": "Susan Shaw",
+            "title": "ORNAMENTS",
+            "text": "<p>ORIGINAL<\/p>",
+            "button_label": "SHOP NOW",
+            "link": "shopify:\/\/collections\/christmas-ornaments",
+            "button_label_2": "",
+            "link_2": "",
+            "bg_color": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16902838124759__9fa0bf97-0996-43e3-b186-2498e7df8783-image-1"
+      ],
+      "settings": {
+        "wide_display": false,
+        "bgcolor": "#f5f3ee",
+        "featured_links_per_row": "1",
+        "frontpage_text_align": "center",
+        "frontpage_image_position": "row",
+        "css_class": "ornaments",
+        "custom_css": ""
+      }
+    },
+    "2b9d8fb9-e639-48ef-9ee7-df4c4c0b212f": {
+      "type": "image-text",
+      "blocks": {
+        "template--16902838124759__2b9d8fb9-e639-48ef-9ee7-df4c4c0b212f-image-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/gg23-giftboxes.png",
+            "image_crop": "none",
+            "subtitle": "",
+            "title": "<span>Gift<\/span> Ready",
+            "text": "<p>Every piece of Susan Shaw jewelry arrives in our signature box and pouch.<\/p>",
+            "button_label": "",
+            "link": "",
+            "button_label_2": "",
+            "link_2": "",
+            "bg_color": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16902838124759__2b9d8fb9-e639-48ef-9ee7-df4c4c0b212f-image-2"
+      ],
+      "settings": {
+        "wide_display": false,
+        "bgcolor": "",
+        "featured_links_per_row": "1",
+        "frontpage_text_align": "center",
+        "frontpage_image_position": "row-reverse",
+        "css_class": "gift-boxes",
+        "custom_css": ""
+      }
+    },
+    "a56e02c7-792b-49f5-ad86-805341d48121": {
+      "type": "custom-html",
+      "settings": {
+        "background_color": "",
+        "custom_html": "<div class=\"page-width is-flex\">\n<div class=\"four text-center is-flex is-flex-column is-justify-center\">\n<h2 style=\"margin:20px 0;\" class=\"byronrr-medium\"><a href=\"https:\/\/www.instagram.com\/susanshaw\/\"><span style=\"\n    position: relative;\n    top: 9px;\n\">@<\/span>susanshaw<\/a><\/h2>\n<p>Get a taste of the style (and lifestyle) of<br> Susan Shaw, and share yours with us, too.<\/p>\n<\/div>\n<div class=\"twelve\">\n<div id=\"insta-feed\"><\/div>\n<\/div>\n<\/div>",
+        "css_class": "instafeed-wrapper",
+        "custom_css": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "45616908-5d54-4a5c-9720-62178bbe8207",
+    "ad559af8-a1cc-4b29-89a1-bcf50abce4e4",
+    "a2a6ce43-32de-47d3-97bc-af9369160dfd",
+    "acc98068-6054-4db4-a0ac-864958052e35",
+    "8227a9de-0625-49ba-b46f-6202642d6bdf",
+    "f9a49c4a-5d48-4767-a0e9-934897bcaa89",
+    "9fa0bf97-0996-43e3-b186-2498e7df8783",
+    "2b9d8fb9-e639-48ef-9ee7-df4c4c0b212f",
+    "a56e02c7-792b-49f5-ad86-805341d48121"
+  ]
+}

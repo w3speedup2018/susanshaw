@@ -1,0 +1,154 @@
+{% comment %}
+** Featured products - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% if section.settings.wide_display == false %}
+  <div class="container">
+    <div class="sixteen columns">
+{% endif %}
+
+
+  <section class="collection-in-detail">
+      <div class="another-images"></div>
+  </section>
+
+
+{% if section.settings.wide_display == false %}
+  </div>
+</div> 
+{% endif %}
+
+<style>
+#shopify-section-{{ section.id }} .another-images .gallery-cell:nth-of-type(1) {
+  display:none; 
+}
+#shopify-section-{{ section.id }} .another-images video{
+  width:100%;
+}
+</style>
+{% schema %}
+{
+"name": "Featured Product Images",
+"class": "featured__product-image-grid featured-products-section medium-up--hide",
+"settings": [
+  {
+    "type": "checkbox",
+    "id": "wide_display",
+    "label": "Wide display",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "frontpage_product_stagger",
+    "label": "Stagger products left and right",
+    "default": true
+  },
+  {
+    "type": "header",
+    "content": "Product image"
+  },
+  {
+    "type": "checkbox",
+    "id": "activate_autoplay",
+    "label": "Enable product gallery slideshow"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_product_lightbox",
+    "label": "Show product gallery popup",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "gallery_arrows",
+    "label": "Show arrows on product gallery"
+  },
+  {
+    "type": "checkbox",
+    "id": "activate_zoom",
+    "label": "Enable 'Hover to zoom'"
+  },
+  {
+    "type": "select",
+    "id": "slideshow_animation",
+    "label": "Gallery transition",
+    "options": [
+      {
+        "value": "fade",
+        "label": "Fade"
+      },
+      {
+        "value": "slide",
+        "label": "Slide"
+      }
+    ],
+    "default": "slide"
+  },
+  {
+    "type": "header",
+    "content": "Product info"
+  },
+  {
+    "type": "checkbox",
+    "id": "display_vendor",
+    "label": "Show vendor"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_shopify_product_badges",
+    "label": "Display star rating on product",
+    "info": "Reviews app must be enabled. [Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360008549274#section2)",
+    "default": false
+  },
+  {
+    "type": "checkbox",
+    "id": "display_savings",
+    "label": "Show price savings",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "frontpage_display_description",
+    "label": "Show product description",
+    "default": true
+  },
+  {
+    "type": "radio",
+    "id": "product_description_position",
+    "label": "Description position",
+    "options": [
+      {
+        "value": "top",
+        "label": "Above product form"
+      },
+      {
+        "value": "bottom",
+        "label": "Below product form"
+      }
+    ]
+  },
+  {
+    "type": "header",
+    "content": "Dynamic checkout button"
+  },
+  {
+    "type": "paragraph",
+    "content": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+  },
+  {
+    "type": "checkbox",
+    "id": "show_payment_button",
+    "label": "Show dynamic checkout button",
+    "default": true
+  }
+],  
+"presets": [{
+  "name": "Featured Product Images",
+  "category": "Product",
+  "settings": {
+  }
+}]
+}
+{% endschema %}

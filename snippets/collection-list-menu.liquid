@@ -1,0 +1,27 @@
+{% assign current_url = template.suffix %}
+
+{%- case current_url -%}
+  {%- when "shop-by-collection" -%}
+      {%- assign active = "edit" -%}
+  {%- when "shop-by-newest" -%}
+      {%- assign active = "newest" -%}
+  {%- when "shop-by-essentials" -%}
+      {%- assign active = "essentials" -%}
+  {%- when "shop-by-alphabetical" -%}
+      {%- assign active = "alphabetical" -%}
+  {%- else -%}
+
+{%- endcase -%}
+
+
+<div class="one-whole column">
+<div class="collection-menu">
+    <ul class="d-flex is-align-center is-justify-center">            
+        <li>Filter:</li>
+        <li><a href="/pages/shop-by-collection-dev" {% if active contains "edit"%} class="active" {% endif %}>EDIT</a></li>
+        <li><a href="/pages/shop-by-newest" {% if active contains "newest"%} class="active"  {% endif %}>NEWEST</a></li>
+        <li><a href="/pages/shop-by-essentials" {% if active contains "essentials"%} class="active"  {% endif %}>ESSENTIALS</a></li>
+        <li><a href="/pages/shop-by-alphabetical" {% if active contains "alphabetical"%} class="active"  {% endif %}>ALPHABETICAL</a></li>
+    </ul>
+</div>
+</div> 

@@ -1,0 +1,270 @@
+<div class="parent container-fluid">
+  {%- if section.settings.title != blank -%}
+    <h1 class="h1 colorWhite text-center py-100 small--hide">{{section.settings.title}}</h1>
+  {%- endif -%}
+  <div class="child d-flex is-justify-start is-align-center">
+    {%- for block in section.blocks -%} 
+      {%- capture block_size -%} {{ forloop.length }} {%- endcapture -%}
+     
+        {%- if block.settings.title != blank -%}
+         <div class="h1"><a href="{{block.settings.link}}">{{block.settings.title }}</a></div>    
+        {%- endif -%}
+        {%- if block.settings.image != blank -%}
+        <div class="image-wrapper">
+          <a href="{{block.settings.link}}" target="_blank">
+          {%
+            render 'image-element',
+            image: block.settings.image,
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image',
+          %}   
+          </a>
+        </div>
+        {%- endif -%}
+     {%- endfor -%}
+     {%- for block in section.blocks -%} 
+        {%- if block.settings.title != blank -%}
+         <div class="h1"><a href="{{block.settings.link}}">{{block.settings.title }}</a></div>    
+        {%- endif -%}
+        {%- if block.settings.image != blank -%}
+        <div class="image-wrapper">
+          <a href="{{block.settings.link}}" target="_blank">
+          {%
+            render 'image-element',
+            image: block.settings.image,
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image',
+          %}   
+          </a>
+        </div>
+        {%- endif -%}
+     {%- endfor -%} 
+     {%- for block in section.blocks -%} 
+        {%- if block.settings.title != blank -%}
+         <div class="h1"><a href="{{block.settings.link}}">{{block.settings.title }}</a></div>    
+        {%- endif -%}
+        {%- if block.settings.image != blank -%}
+        <div class="image-wrapper">
+          <a href="{{block.settings.link}}" target="_blank">
+          {%
+            render 'image-element',
+            image: block.settings.image,
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image',
+          %}   
+          </a>
+        </div>
+        {%- endif -%}
+     {%- endfor -%} 
+     {%- for block in section.blocks -%} 
+        {%- if block.settings.title != blank -%}
+         <div class="h1"><a href="{{block.settings.link}}">{{block.settings.title }}</a></div>    
+        {%- endif -%}
+        {%- if block.settings.image != blank -%}
+        <div class="image-wrapper">
+          <a href="{{block.settings.link}}" target="_blank">
+          {%
+            render 'image-element',
+            image: block.settings.image,
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image',
+          %}   
+          </a>
+        </div>
+        {%- endif -%}
+     {%- endfor -%} 
+     {%- for block in section.blocks -%} 
+        {%- if block.settings.title != blank -%}
+         <div class="h1"><a href="{{block.settings.link}}">{{block.settings.title }}</a></div>    
+        {%- endif -%}
+        {%- if block.settings.image != blank -%}
+        <div class="image-wrapper">
+          <a href="{{block.settings.link}}" target="_blank">
+          {%
+            render 'image-element',
+            image: block.settings.image,
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image',
+          %}   
+          </a>
+        </div>
+        {%- endif -%}
+     {%- endfor -%} 
+     {%- for block in section.blocks -%} 
+        {%- if block.settings.title != blank -%}
+         <div class="h1"><a href="{{block.settings.link}}">{{block.settings.title }}</a></div>    
+        {%- endif -%}
+        {%- if block.settings.image != blank -%}
+        <div class="image-wrapper">
+          <a href="{{block.settings.link}}" target="_blank">
+          {%
+            render 'image-element',
+            image: block.settings.image,
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image',
+          %}   
+          </a>
+        </div>
+        {%- endif -%}
+     {%- endfor -%} 
+     
+  </div>
+  
+</div>
+
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+.shopify-section--marquee-image-slider .parent {  
+  position: relative;  
+}  
+@media screen and (min-width: 769px) {
+  .shopify-section--marquee-image-slider .parent {  
+    overflow: hidden;
+  }  
+}
+.shopify-section--marquee-image-slider .parent .h1{    
+    width: 100%;
+    font-size:36px;   
+    flex: 0 0 auto;
+    margin:0;
+    padding: 30px 15px 50px 15px; 
+    background:var(--colorHydrangea);
+}
+.shopify-section--marquee-image-slider .parent  .h1 a:hover, 
+.shopify-section--marquee-image-slider .parent  .h1 a:focus{
+  font-style: italic;
+  color:#9CB6D2 !important;
+}
+
+.shopify-section--marquee-image-slider .parent .child {  
+  position: absolute;
+  z-index: 9;
+  margin-top: -36px;
+  width: calc(60px * {{block_size | times: 6 }});
+  animation: marquee 40s linear infinite;
+}
+
+.shopify-section--marquee-image-slider .parent .image-wrapper{
+  flex: 0 0 60px;
+  animation: rotation 10s infinite linear;
+}
+
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(calc(-60px * {{block_size | times: 3 }}));
+  }
+  100% {     
+    transform: translateX(0px);
+  }
+}  
+
+@media screen and (min-width: 769px) {    
+
+    .shopify-section--marquee-image-slider .parent .image-wrapper{
+      flex: 0 0 100px;
+    }
+    .shopify-section--marquee-image-slider .parent  .h1{
+        font-size: 68px;       
+        padding:80px 15px;         
+        background:{{section.settings.bgcolor}};  
+       
+    }
+    .shopify-section--marquee-image-slider .parent .child {
+      position: relative;     
+      width: calc(100px * {{block_size | times: 6 }});
+      margin-top: -56px;
+      animation: marquee 40s linear infinite;
+    }
+    @keyframes marquee {
+      0% {        
+        transform: translateX(calc(-100px * {{block_size | times: 3 }}));
+      }
+      100% { 
+        transform: translateX(0px);
+      }
+    }  
+
+
+    .shopify-section--marquee-image-slider .parent .child:hover {
+        -webkit-animation-play-state: paused; 
+        -moz-animation-play-state: paused;
+        -o-animation-play-state: paused;
+        animation-play-state: paused; 
+    }
+}
+</style>
+ 
+{% schema %}
+{
+  "name": "Marquee Image Slider",
+  "class": "shopify-section--collection-list collection--edit shopify-section--marquee-image-slider",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "Background",
+      "default": "#223346"     
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    }   
+  ], 
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+        },      
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Images"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Image Slider",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "title"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

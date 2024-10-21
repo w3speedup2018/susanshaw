@@ -1,0 +1,286 @@
+/* HEADER */
+#header .nav-search-bar {
+  display: none;
+}
+
+/* HERO BANNERS */
+@media screen and (max-width: 767px) {
+  .shopify-section--hero-banners {
+    margin-top: -50px;
+  }
+}
+
+.hero-banners .main-banner-details {
+  justify-content: center;
+}
+.hero-banners .content-copy {
+  color: #fff;
+}
+.hero-banners .content-copy h1 {
+  margin: 0 30px;
+  font-size: 48px;
+  font-family: "ByronRR-Medium", sans-serif !important;
+}
+.hero-banners .content-copy .subtitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+.hero-banners .content-copy .description p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+@media screen and (min-width: 769px) {
+  .hero-banners .content-copy {
+    background: #f5f3ee url("{{ 'gg23-timer-bg.png' | asset_url }}") repeat-x;
+    background-size: 35px;
+    background-position: bottom center;
+    order: 2;
+    margin-top: -2px;
+    padding: 12px 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hero-banners .content-wrapper {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (min-width: 769px) {
+  .hero-banners .content-wrapper .image:first-child {
+    display: none;
+  }
+}
+
+/* FEATURED COLLECTION */
+@media screen and (max-width: 768px) {
+  .shopify-section--featured-collection {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+  }
+  .shopify-section--featured-collection .container {
+    margin: 0 !important;
+  }
+  .shopify-section--featured-collection h1.title {
+    font-size: 32px;
+  }
+}
+.shopify-section--featured-collection .product-list--collection {
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+@media screen and (max-width: 767px) {
+  .shopify-section--featured-collection .product-list--collection {
+    -moz-column-gap: 3px;
+         column-gap: 3px;
+  }
+}
+.shopify-section--featured-collection .product-list--collection .product__details {
+  width: calc(50% - 10px);
+}
+.shopify-section--featured-collection .product-list--collection .product__details .product-wrap {
+  background: #fff;
+}
+.shopify-section--featured-collection .product-list--collection .product__details .product-wrap .product-info__caption {
+  padding: 0 10px;
+  min-height: 70px;
+}
+.shopify-section--featured-collection .product-list--collection .product__details .product-wrap .product-info__caption .product-details {
+  display: flex;
+  justify-content: space-between;
+  text-align: left !important;
+}
+.shopify-section--featured-collection .product-list--collection .product__details .product-wrap .product-info__caption .product-details .title {
+  text-align: left !important;
+}
+@media screen and (min-width: 769px) {
+  .shopify-section--featured-collection .product-list--collection .product__details .product-wrap .product-info__caption {
+    padding: 0 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .shopify-section--featured-collection .product-list--collection .product__details {
+    width: calc(25% - 3px);
+  }
+  .shopify-section--featured-collection .product-list--collection .product__details .product-wrap .product-info__caption {
+    margin: 0;
+    padding: 5px;
+    min-height: 35px;
+  }
+  .shopify-section--featured-collection .product-list--collection .product__details .product-wrap .product-info__caption .product-details .title {
+    font-size: 7px;
+  }
+  .shopify-section--featured-collection .product-list--collection .product__details .product-wrap .product-info__caption .product-details .price {
+    margin: 0;
+    font-size: 7px;
+  }
+  .shopify-section--featured-collection .product-list--collection .product__details .product-wrap .product-info__caption .other-colors {
+    display: none;
+  }
+}
+.shopify-section--featured-collection .product-list--collection .product__details .quick_shop {
+  display: flex !important;
+  opacity: 1;
+  transform: none;
+  width: 100%;
+  background: var(--colorClassicNavy);
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .shopify-section--featured-collection .product-list--collection .product__details .quick_shop {
+    padding: 0;
+    min-height: 20px;
+    height: 20px;
+    font-size: 7px;
+  }
+}
+.shopify-section--featured-collection .product-list--collection .product__details .product_image {
+  min-width: 100%;
+  aspect-ratio: 1/1;
+}
+.shopify-section--featured-collection .product-list--collection .product__details .product_image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.shopify-section--featured-collection .product-list--collection .product__details .flickity-slider .gallery-cell .product-info__caption {
+  min-height: 101px !important;
+}
+@media screen and (min-width: 769px) {
+  .shopify-section--featured-collection .product-list--collection .product__details {
+    width: calc(25% - 15px);
+  }
+}
+.shopify-section--featured-collection .product-list--collection .custom-content {
+  width: calc(25% - 3px);
+}
+.shopify-section--featured-collection .product-list--collection .custom-content .image-element__wrap {
+  width: 100%;
+  height: 100%;
+}
+.shopify-section--featured-collection .product-list--collection .custom-content .image-element__wrap img {
+  height: calc(100% - 25px);
+}
+.shopify-section--featured-collection .product-list--collection .custom-content .copy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 85%;
+}
+.shopify-section--featured-collection .product-list--collection .custom-content .copy a {
+  text-align: center;
+  font-family: var(--sweet-sans-pro);
+  font-size: 14px;
+  border-bottom: 1px solid var(--colorClassicNavy);
+  padding-bottom: 3px;
+}
+@media screen and (min-width: 769px) {
+  .shopify-section--featured-collection .product-list--collection .custom-content {
+    width: calc(25% - 15px);
+  }
+  .shopify-section--featured-collection .product-list--collection .custom-content .copy {
+    height: 100%;
+  }
+  .shopify-section--featured-collection .product-list--collection .custom-content a {
+    font-size: 22px;
+  }
+}
+
+/* GIFT BOXES */
+.shopify-section--image-with-text {
+  padding: 0;
+}
+@media screen and (max-width: 767px) {
+  .shopify-section--image-with-text {
+    padding-top: 35px;
+  }
+}
+.shopify-section--image-with-text .section {
+  max-width: 100%;
+}
+
+.gift-boxes {
+  position: relative;
+  background: var(--colorFrenchBlue);
+}
+.gift-boxes::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 29%;
+  background: var(--colorClassicNavy);
+  z-index: 0;
+  bottom: 0%;
+}
+.gift-boxes .container {
+  padding: 0 10px;
+  margin: 0 auto !important;
+}
+.gift-boxes .container .image-with-text__image-column,
+.gift-boxes .container .image-with-text__text-column {
+  margin: 0;
+}
+@media screen and (min-width: 769px) {
+  .gift-boxes .container .image-with-text__image-column {
+    flex: 0 0 55%;
+  }
+  .gift-boxes .container .image-with-text__text-column {
+    flex: 0 0 42%;
+  }
+}
+.gift-boxes .image-with-text__text-column {
+  position: relative;
+  margin-top: -10% !important;
+}
+.gift-boxes .image-with-text__text-column .description {
+  margin: 20px 0;
+  font-family: "sweet-sans-pro", sans-serif !important;
+  font-size: 22px;
+}
+.gift-boxes .image-with-text__text-column h1 span {
+  font-style: italic;
+}
+.gift-boxes .image-with-text__text-column h1 a {
+  font-size: 90px;
+  font-weight: 500;
+}
+.gift-boxes .image-with-text__image-column {
+  z-index: 2;
+}
+@media screen and (max-width: 768px) {
+  .gift-boxes .container {
+    flex-direction: column-reverse !important;
+  }
+  .gift-boxes .image-with-text__text-column {
+    position: relative;
+    margin-top: 0 !important;
+  }
+  .gift-boxes .image-with-text__text-column .info {
+    padding: 0;
+  }
+  .gift-boxes .image-with-text__text-column h1 a {
+    display: block !important;
+    font-size: 70px;
+    font-weight: 500;
+  }
+  .gift-boxes .image-with-text__text-column .description {
+    font-size: 14px;
+  }
+  .gift-boxes::after {
+    height: 17%;
+  }
+}
+
+/* GIF */
+.shopify-section--image-with-text-overlay {
+  background: var(--colorEggShell);
+}
+@media screen and (max-width: 767px) {
+  .shopify-section--image-with-text-overlay {
+    padding-bottom: 35px;
+  }
+}
+
+/* INSTAFEED */
+.instafeed-wrapper {
+  padding: 20px 0;
+}

@@ -1,0 +1,49 @@
+<link rel="preload" as="font" href="{{ settings.regular__font | font_url  }}" crossorigin>
+<link rel="preload" as="font" href="{{ settings.regular__font | font_modify: 'weight', 'bolder' | font_url }}" crossorigin>
+<link rel="preload" as="font" href="{{ settings.headline__font | font_url }}" crossorigin>
+<link rel="preload" as="font" href="{{ settings.headline__font | font_modify: 'weight', 'bolder' | font_url }}" crossorigin>
+
+<link rel="preload" as="font" href="{{ settings.regular__font | font_url: 'woff'  }}" crossorigin>
+<link rel="preload" as="font" href="{{ settings.regular__font | font_modify: 'weight', 'bolder' | font_url: 'woff' }}" crossorigin>
+<link rel="preload" as="font" href="{{ settings.headline__font | font_url: 'woff' }}" crossorigin>
+<link rel="preload" as="font" href="{{ settings.headline__font | font_modify: 'weight', 'bolder' | font_url: 'woff' }}" crossorigin>
+
+<style>
+  /* #Fonts ================================================== */
+  {%- capture fonts -%}
+    {%- capture font_settings_list -%}
+      {% assign fdisplay = 'optional' %}
+      {{ settings.regular__font | font_face: font_display: fdisplay }}~
+      {{ settings.regular__font | font_modify: 'weight', 'bolder' | font_face: font_display: fdisplay }}~
+      {%- comment -%}{{ settings.logo__font | font_face: font_display: fdisplay }}~{{ settings.logo__font | font_modify: 'weight', 'bolder' | font_face: font_display: fdisplay }}~{%- endcomment -%}
+      {{ settings.headline__font | font_face: font_display: fdisplay }}~
+      {{ settings.headline__font | font_modify: 'weight', 'bolder' | font_face: font_display: fdisplay }}~
+      {{ settings.nav__font | font_face: font_display: fdisplay }}~
+      {{ settings.nav__font | font_modify: 'weight', 'bolder' | font_face: font_display: fdisplay }}~
+      {%- comment -%}{{ settings.nav__font | font_modify: 'weight', 'lighter' | font_face: font_display: fdisplay }}~{%- endcomment -%}
+      {{ settings.slideshow_headline__font | font_face: font_display: fdisplay }}~
+      {{ settings.slideshow_headline__font | font_modify: 'weight', 'bolder' | font_face: font_display: fdisplay }}~
+      {{ settings.slideshow_subtitle__font | font_face: font_display: fdisplay }}~
+      {{ settings.slideshow_subtitle__font | font_modify: 'weight', 'bolder' | font_face: font_display: fdisplay }}
+    {%- endcapture -%}
+    {%- assign font_array = font_settings_list | split: '~' -%}
+    {%- for name in font_array -%}{%- unless name contains 'error' -%}{{ name }}{%- endunless -%}{%- endfor -%}
+  {%- endcapture -%}
+  {{ fonts | strip_newlines }}
+  
+  {% comment %}
+  /*    
+    @font-face {
+    font-family: 'Berkeley';
+    src: url('Berkeley-Book.eot');
+    src: url('Berkeley-Book.eot?#iefix') format('embedded-opentype'),
+    url('Berkeley-Book.woff2') format('woff2'),
+    url('Berkeley-Book.woff') format('woff'),
+    url('Berkeley-Book.ttf') format('truetype'),
+    url('Berkeley-Book.svg#Berkeley-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  } */
+  {% endcomment %}
+</style>

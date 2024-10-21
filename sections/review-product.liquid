@@ -1,0 +1,30 @@
+<div class="review-wrapper">
+    <div id="stamped-main-widget" class="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}">
+          
+        {%- unless product.metafields.stamped.reviews == blank -%}
+        <h2 class="title text-center">Customer Reviews</h2>      
+        {%- endunless -%}
+        {{ product.metafields.stamped.reviews | replace: 'href="//cdn1.stamped.io/files/widget.min.css"', 'data-href="//cdn1.stamped.io/files/widget.min.css"' }}
+    </div>
+</div>
+ 
+{% schema %}
+{
+    "name": "Product Review", 
+    "class": "product-review",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable",
+            "label": "Enable", 
+            "default": true   
+        }
+    ],
+    "presets": [
+        {
+            "category": "custom",
+            "name":"Product Review"
+        }
+    ]
+}
+{% endschema %} 

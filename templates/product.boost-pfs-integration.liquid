@@ -1,0 +1,10 @@
+{% layout none %}
+
+{%- capture quickview -%}
+  {%- render 'boost-pfs-quickview' -%}
+{%- endcapture -%}
+
+{
+  "id": {{ product.id | json }},          
+  "quickview": {{ quickview | json }}
+}

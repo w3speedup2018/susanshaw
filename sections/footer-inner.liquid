@@ -1,0 +1,62 @@
+{% comment %}
+** Footer - default view **
+- Static section
+- Uses blocks
+{% endcomment %}
+
+<footer class="footer custom_footer">
+
+  <div class="footer-inner container is-flex is-justify-space-between is-align-end">
+      
+          <div class="footer-left small--hide">          
+              <ul>
+                <li><a href="/pages/about-the-jewelry">FAQS</a></li>                 
+                <li><a href="/pages/shipping-faq">SHIPPING & RETURNS</a></li>     
+              </ul>
+          </div>
+          <div class="footer-middle text-center">
+                <a href="{{ routes.root_url }}" title="{{ shop.name | escape }}" class="mobile_logo logo">
+                  <img src="{{ 'ss-logo-black.svg' | file_url }}" alt="{{ shop.name | escape }}" class="lazyload" width="250" />            
+                </a>
+                <div class="social-links-wrapper">
+                  <ul>                   
+                    <li><a href="https://www.instagram.com/susanshaw/" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.pinterest.com/SusanShaw1979/" target="_blank">Pinterest</a></li>
+                    <li><a href="https://www.facebook.com/SusanShaw1979/" target="_blank">Facebook</a></li>
+                  </ul>                   
+                </div>
+          </div>
+          <div class="footer-right"> 
+              <ul>
+                <li class="medium-up--hide"><a href="/pages/about-the-jewelry">FAQS</a></li>                 
+                <li class="medium-up--hide"><a href="/pages/shipping-faq">SHIPPING & RETURNS</a></li>   
+                <li><a href="/pages/contact-us">CONTACT US</a></li>                 
+                <li><a href="https://susanshaw.com/">{{"now" | date: "%Y" | prepend: '@' }} SUSAN SHAW</a></li>
+              </ul> 
+          </div>      
+  </div> 
+
+
+</footer>
+<style>
+  #shopify-section-{{section.id}}{
+    margin-top:50px;
+    background:{{section.settings.bgcolor}};
+  }
+</style>
+{% schema %}
+
+{
+  "name": "Footer",
+  "class": "footer-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "Background"
+    }    
+  ]  
+}
+
+{% endschema %}
+

@@ -1,0 +1,304 @@
+<script
+  type="application/json"
+  data-section-type="featured-text"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{% style %}
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: section.id
+  %}
+{% endstyle %}
+
+<div class="page-width">
+    <section class="section {{ section.settings.css_class }}">
+      <div class="image-wrapper">
+        <div class="image-item image_1 animate_left">     
+          {%
+            render 'image-element',
+            image: section.settings.image_1.src,
+            alt: section.settings.image_1.alt,
+            stretch_width: true
+          %} 
+        </div>
+        <div class="image-item image_2 animate_down">     
+          {%
+            render 'image-element',
+            image: section.settings.image_2.src,
+            alt: section.settings.image_2.alt,
+            stretch_width: true
+          %}
+        </div>
+        <div class="image-item image_3 animate_left">     
+          {%
+            render 'image-element',
+            image: section.settings.image_3.src,
+            alt: section.settings.image_3.alt,
+            stretch_width: true
+          %}
+        </div>
+        <div class="image-item image_4 animate_left">     
+          {%
+            render 'image-element',
+            image: section.settings.image_4.src,
+            alt: section.settings.image_4.alt,
+            stretch_width: true
+          %}
+        </div>
+        <div class="image-item image_5 animate_right">     
+          {%
+            render 'image-element',
+            image: section.settings.image_5.src,
+            alt: section.settings.image_5.alt,
+            stretch_width: true
+          %}
+        </div>
+        <div class="image-item image_6 animate_right">     
+          {%
+            render 'image-element',
+            image: section.settings.image_6.src,
+            alt: section.settings.image_6.alt, 
+            stretch_width: true
+          %}
+        </div>
+        <div class="image-item image_7 animate_up">     
+          {%
+            render 'image-element',
+            image: section.settings.image_7.src,
+            alt: section.settings.image_7.alt,
+            stretch_width: true
+          %}
+        </div>
+        <div class="image-item image_8 animate_up">     
+          {%
+            render 'image-element',
+            image: section.settings.image_8.src,
+            alt: section.settings.image_8.alt,
+            stretch_width: true
+          %}
+        </div>
+      </div>
+      <div class="container">
+        <div class="one-whole column">
+          <div class="rich-text__content {{ section.settings.text_alignment }} animate_up">
+            {% if section.settings.image %}
+              {% if section.settings.mobile_image %}
+                <div class="is-hidden-mobile-only">
+              {% endif %}
+              {%
+                render 'image-element',
+                image: section.settings.image.src,
+                alt: section.settings.image.alt,
+                stretch_width: true
+              %}
+              {% if section.settings.mobile_image %}
+                </div>
+                <div class="is-hidden-desktop-only">
+                  {%
+                    render 'image-element',
+                    image: section.settings.mobile_image,
+                    alt: section.settings.mobile_image.alt,
+                    stretch_width: true
+                  %}
+                </div>
+              {% endif %}
+            {% endif %}
+
+            {% if section.settings.title != blank %}
+              <div class="icon">
+                {% render 'icon-flower-base' %}
+              </div>
+              <h4 class="title">
+                {{ section.settings.title | escape }}
+              </h4>         
+            {% endif %}
+
+            <div class="rich-text__text {{ section.settings.text_size }}">
+              {% if section.settings.content != blank %}
+              <h2>{{ section.settings.content }}</h2>
+              {% endif %}
+
+              {% if section.settings.button_label != blank %}
+                <a class="global-button" href="{{ section.settings.button_link }}">
+                  {{ section.settings.button_label }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+<style>
+  #shopify-section-{{section.id}}{
+    background:{{section.settings.background_color}};
+    padding:0 !important;
+    position: relative;
+  }
+
+  #shopify-section-{{section.id}} .page-width{  
+    padding: 50px 40px!important;   
+  }
+
+  #shopify-section-{{section.id}} .global-button{
+    min-width: 265px;
+    background:{{section.settings.button_bg}};
+    border:1px solid {{section.settings.button_bg}};
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{section.id}} .page-width{     
+      padding: 9% 3% !important;
+    }  
+  }
+
+  
+</style>
+{% schema %}
+{
+  "name": "About Susan",
+  "class": "shopify-section--about-susan",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background"
+    },
+    {
+      "type": "header",
+      "content": "Banner"
+    },    
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background"    
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text size",
+      "default": "featured_text",
+      "options": [
+        {
+          "value": "regular_text",
+          "label": "Regular"
+        },
+        {
+          "value": "featured_text",
+          "label": "Large"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "align_left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Backgrounds"    
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"   
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"   
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"   
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"   
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"   
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"   
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image 7"   
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Image 8"   
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Susan",
+      "category": "Text"
+    }
+  ]
+}
+
+{% endschema %}

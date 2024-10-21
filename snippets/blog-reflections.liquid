@@ -1,0 +1,36 @@
+
+{% liquid
+    assign article_title = article_title
+    assign article_tag = article_title
+    assign blog = blogs['reflecting-on-45-years']
+    assign enable_slide = enable_slide
+  
+%}
+
+<h1 class="byronrr-medium text-center">{{article_title}}</h1>
+<div class="js-article-slider homepage-product-slider full-width--true even-num-slides featured-collection__products">    
+     <div class="{% if enable_slide == true %}slider-gallery article-slider{% else %}d-flex is-justify-center{% endif %}" data-products-per-slide="4">
+        {% for article in blog.articles reversed %}          
+            {% if article.tags contains article_title %}
+                <div class="article column one-fourth medium-down--one-half">               
+                    {% if article.image != blank %}
+                    <a href="{{ article.url }}" title="{{ article.title | escape }}">
+                        {%
+                        render 'image-element',
+                        image: article.image,
+                        alt: image.alt,
+                        %}
+                    </a>
+                    {% endif %}   
+                    <h3 class="tit_blog"><a href="{{ article.url }}">{{ article.title }}</a></h3>    
+                    {% if article.excerpt != blank %}
+                        <div class="excerpt text-center"> {{ article.excerpt }}</div>
+                    {% else %}
+                        <div class="excerpt text-center"> {{ article.content }}</div>
+                    {% endif %}   
+                </div>  
+            {% endif %}
+                
+        {% endfor %}
+      </div>    
+  </div>

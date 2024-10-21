@@ -1,0 +1,211 @@
+<style>
+  #shopify-section-header,
+  #shopify-section-footer{
+    display:none !important;
+  }
+
+
+
+  .fullpage{  
+    display: flex;   
+    align-items:flex-end;
+    margin: 0 20px;
+  }
+
+  @media screen and (max-width:767px){
+    .fullpage{  
+      padding-bottom:20px !important;
+    }
+    .logo img,
+    .background img{
+      display:none;     
+    }
+    .logo{
+      position: absolute !important;
+      top: -22%;
+      left: 53%;
+      width: 200px;
+      height: 100px;
+      background:url('https://cdn.shopify.com/s/files/1/3098/4704/files/sweepstakes-logo-mobile.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .background{
+      background:url('https://cdn.shopify.com/s/files/1/3098/4704/files/sweepstakes-mobilebackground.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 0 -40px;
+    }
+    .fullpage .container{
+      font-size:12px;
+      padding:10px;
+      background:url('https://cdn.shopify.com/s/files/1/3098/4704/files/giveaway-m-bg-mid.png');
+    }
+    .fullpage .container::before{
+      content: "";     
+      background: url('https://cdn.shopify.com/s/files/1/3098/4704/files/giveaway-m-bg-top.png');
+      background-repeat: no-repeat;
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      left: 0px;
+      top: -28px;
+      background-size: 100%;
+      background-position: top;
+    }
+    .fullpage .container::after{
+      content: "";     
+      background: url('https://cdn.shopify.com/s/files/1/3098/4704/files/giveaway-m-bg-bot.png');
+      background-repeat: no-repeat;
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      left: 2px;
+      bottom: -30px;
+      background-size: 100%;      
+      background-position: bottom;  
+    }
+    .fullpage .title,
+    .fullpage .description.tep{
+      padding:5px 10px !important;
+    }
+    .fullpage .form{
+      padding:10px 10px 0 10px !important;
+    }
+    .fullpage .title{
+      padding:0;
+      margin:0;
+    }
+
+    .name.form_item_wrapper span{
+      display:flex !important;
+      justify-content: end;
+      column-gap: 10px;
+      margin:0 !important;
+
+    }
+    .name.form_item_wrapper span .form-item{
+      flex:0 0 calc(50% - 10px);
+    }
+    form ul.pages{
+      padding:10px 0 !important;
+    }
+    .submit.form_continue{
+      height:40px;
+      line-height:40px;
+    }
+  }
+
+  .fullpage .logo{
+      position: absolute !important;
+      top: -35%;
+      left: 40%;
+  }
+  .fullpage .title{
+    padding:10px 0 0 0;
+  }
+  .fullpage .title.tep p{
+      font-family:freightbigcmp-pro,serif;
+      color:#6c7a56;
+      font-size:36px;
+  }
+  .fullpage .footer{
+    background: url(https://cdn.shopify.com/s/files/1/3098/4704/files/sweepstakes-flowers.png?v=1710522398);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    min-height: 50px;
+  }
+
+  /* Content */
+    .fullpage .container{
+      margin:5% 0 0 0;    
+      background-repeat:no-repeat;
+      background-size:100%;
+      padding:20px 30px !important;
+    }
+    .fullpage form input[type="text"],
+    .fullpage form input[type="email"]{
+      min-height:30px;
+      border-radius:5px;
+    }
+    .fullpage form div.form-item.icon > i{
+      top:1px;
+    }
+    .fullpage form .checkbox span label p{
+      font-size:8px;
+      margin-top:2px;
+    }
+
+  @media screen and (min-width:769px){
+    .fullpage{  
+       display: flex;
+       justify-content: flex-end;
+       align-items: center;
+       margin: 0 10% 0 0;
+     }
+     .fullpage .form{
+       margin:0;
+      }
+     
+     .fullpage .logo{
+         position: absolute !important;
+         top: -30%;
+         left: 4%;
+     }
+     .fullpage .title{
+        padding:20px 0 0 0;
+     }
+     .fullpage .title.tep p{        
+         font-size:58px;
+     }
+     .fullpage .footer{
+         padding:20px 20px;
+     }
+     
+     /* Content */
+     .fullpage .container{
+        margin:0;
+          
+        background-repeat:no-repeat;
+        background-size:100%;
+         padding:20px 30px !important;
+     }
+     .fullpage form input[type="text"],
+     .fullpage form input[type="email"]{
+       min-height:40px;
+       border-radius:5px;
+     }
+     .fullpage form div.form-item.icon > i{
+       top:4px;
+     }
+     .fullpage form .checkbox span label p{
+       font-size:10px;
+       margin-top:2px;
+     }
+     
+     /* Footer */
+     
+     .fullpage .footer{
+             background:url('https://cdn.shopify.com/s/files/1/3098/4704/files/sweepstakes-flowers.png?v=1710522398');
+         background-size: 100%;
+         background-repeat: no-repeat;
+         min-height: 80px;
+         margin-top: 20px;
+     }
+    
+   }
+
+
+
+
+
+
+
+
+
+</style>
+{% layout none %}
+{%
+  render 'page-multi-column',
+  content: page.content,
+%} 

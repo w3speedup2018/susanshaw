@@ -1,0 +1,217 @@
+<script
+  type="application/json"
+  data-section-type="image-text"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+<section class="collection--banner is-flex justify-space-between container"> 
+  {% comment %} Content settings {% endcomment %} 
+  {%- assign image = collection.metafields.custom.hero-banners.value -%}
+  {%- assign title = collection.metafields.custom.hero-title.value -%}
+  {%- assign description = collection.description -%}
+  {% comment %} End content settings {% endcomment %}      
+    <div class="collection--image two-thirds column medium-down--one-whole">    
+        {% if image != blank %}
+          {%
+            render 'image-element',
+            image: image,
+            alt: image.alt,
+            stretch_width: true
+          %}
+        {% else %}
+          {% capture i %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+          {{ 'collection-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--promotions' }}
+        {% endif %}
+    </div>
+    <div class="collection--description-wrapper is-flex is-align-center one-third column medium-down--one-whole">
+      <div class="collection--description">
+        <h1>
+            {%- if title != blank -%}
+              {{title}}
+            {%- else -%}
+              {{collection.title}}          
+            {%- endif -%} 
+        </h1>
+        {{description}}
+      </div>
+  </div>
+</section>
+  
+
+{%- comment -%}Spring Sale Navigation{%- endcomment -%}
+{% assign spring_sale_collections = collection.metafields.custom.spring_sale %}
+
+{%- if spring_sale_collections == true -%}
+  <section class="spring-sale">
+     
+    <div class="button-group filters-button-group">
+      <a  class="button {% if collection.title contains "Mother" %}active-collection{% endif %}" href="/collections/mothers-day">Mother's Day</a>
+      <a class="button {% if collection.title contains "Graduation" %}active-collection{% endif %}" href="/collections/graduation">Graduation</a>
+      <a class="button {% if collection.title contains "Derby" %}active-collection{% endif %}" href="/collections/kentucky-derby-style">Derby</a>
+      <a class="button {% if collection.title contains "Trending" %}active-collection{% endif %}" href="/collections/trending">Trending</a>
+      <a class="button {% if collection.title contains "Garden" %}active-collection{% endif %}" href="/collections/in-the-garden">In the Garden</a>
+      <a class="button {% if collection.title contains "Wedding" %}active-collection{% endif %}" href="/collections/wedding-shop">The Wedding Shop</a>
+      <a class="button {% if collection.title contains "Spring" %}active-collection{% endif %}" href="/collections/spring-parties">Spring Parties</a>
+    </div>
+    <div class="m-description-wrapper medium-up--hide">
+      {{description}}
+    </div>
+</section>
+
+
+{%- comment -%}Make it ScrollIntoView Horizontally{%- endcomment -%}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var targetElement = document.querySelector('.active-collection');
+      if (targetElement) {
+        console.log('target');       
+          targetElement.parentElement.scrollLeft = targetElement.offsetLeft - (window.innerWidth - targetElement.offsetWidth) / 2;
+      }
+
+      // Function to check if an element is in the viewport
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+
+   
+     
+      // Function to handle scroll event
+      function onScroll() {
+        const bannerElement = document.querySelector('.spring-sale');
+        const springNavigation = document.querySelector('body');
+
+        if (isInViewport(bannerElement)) {
+            springNavigation.classList.remove('spring-messaging');
+            console.log('Element is in the viewport');
+        } else {
+            // Add a delay of 200 milliseconds before adding the class
+            setTimeout(() => {
+                springNavigation.classList.add('spring-messaging');
+                console.log('Element is not in the viewport');
+            }, 100);
+        }
+      }
+
+
+      // Attach scroll event listener
+      window.addEventListener('scroll', onScroll);
+
+      // Initial check when the page loads
+      document.addEventListener('DOMContentLoaded', onScroll);
+
+
+
+    });
+  </script>
+{%- endif -%}
+<style>
+  .section-wrapper--collection{
+    padding:0;
+  }
+  .section-wrapper--collection .collection--title{
+    display:none;
+  }
+  .shopify-section--hero-banner .collection--banner{
+    justify-content:space-between;
+  }
+  .shopify-section--hero-banner{
+    margin: 40px 0 0px 0;    
+    padding:0;
+    background:var(--colorClassicNavy);   
+  }    
+  .shopify-section--hero-banner .collection--image{
+    margin:0;    
+  }  
+  .shopify-section--hero-banner .collection--description{
+    width:90%;
+    margin:0 auto;
+    padding:20px 0;
+    font-size: 14px;
+    color:#fff;
+  }
+  .shopify-section--hero-banner h1{
+    margin:0 0 15px;
+    font-size: 42px;
+
+  }  
+
+  @media screen and (max-width:768px){
+    .shopify-section--hero-banner .collection--image{
+      width:100%;     
+    }  
+    .collection-template-section{
+      margin-top: 10px !important;
+    }
+  }
+
+  @media screen and (min-width:769px){
+    .shopify-section--hero-banner{
+      margin: 0 0 30px 0;          
+    }  
+    .shopify-section--hero-banner .collection--banner{
+      flex-direction: row-reverse;
+    }
+    .shopify-section--hero-banner h1{   
+      font-size: 68px;
+    } 
+    .shopify-section--hero-banner .collection--description{     
+      width:80%;
+      font-size: 18px;
+    }
+  }
+
+</style>
+
+{% schema %}
+{
+  "name": "Collection Banner w/Text",
+  "class": "shopify-section--hero-banner page-width",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "wide_display",
+      "label": "Wide display",
+      "default": false
+    }, 
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "Bacground"     
+    },    
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [{
+    "name": "Collection Banner w/Text",
+    "category": "Collection",
+    "settings": {
+   
+    }
+  }]
+  
+}
+
+{% endschema %}

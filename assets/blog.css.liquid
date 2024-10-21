@@ -1,0 +1,357 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.page-all-articles,
+.blog,
+.blog-susan-says {
+  overflow-x: hidden;
+}
+.page-all-articles .section-wrapper--blog,
+.blog .section-wrapper--blog,
+.blog-susan-says .section-wrapper--blog {
+  background: var(--colorEggShell);
+  padding-top: 100px;
+}
+.page-all-articles .section-wrapper--blog .section-title h1,
+.blog .section-wrapper--blog .section-title h1,
+.blog-susan-says .section-wrapper--blog .section-title h1 {
+  font-family: "ByronRR-Medium", sans-serif !important;
+  position: relative;
+  font-size: 60px !important;
+  position: relative;
+  top: 37px;
+  margin: 20px 0 !important;
+}
+@media screen and (min-width: 769px) {
+  .page-all-articles .section-wrapper--blog .section-title h1,
+  .blog .section-wrapper--blog .section-title h1,
+  .blog-susan-says .section-wrapper--blog .section-title h1 {
+    top: 51px;
+    font-size: 120px !important;
+  }
+}
+.page-all-articles .section-wrapper--blog .shopify-section--image-with-text,
+.blog .section-wrapper--blog .shopify-section--image-with-text,
+.blog-susan-says .section-wrapper--blog .shopify-section--image-with-text {
+  padding: 0;
+}
+.page-all-articles .section-wrapper--blog .shopify-section--image-with-text .section,
+.blog .section-wrapper--blog .shopify-section--image-with-text .section,
+.blog-susan-says .section-wrapper--blog .shopify-section--image-with-text .section {
+  color: var(--colorWhite);
+}
+.page-all-articles .section-wrapper--blog .shopify-section--image-with-text .section h1 a, .page-all-articles .section-wrapper--blog .shopify-section--image-with-text .section h4,
+.blog .section-wrapper--blog .shopify-section--image-with-text .section h1 a,
+.blog .section-wrapper--blog .shopify-section--image-with-text .section h4,
+.blog-susan-says .section-wrapper--blog .shopify-section--image-with-text .section h1 a,
+.blog-susan-says .section-wrapper--blog .shopify-section--image-with-text .section h4 {
+  color: var(--colorWhite);
+}
+.page-all-articles .section-wrapper--blog .shopify-section--image-with-text .section .global-button,
+.blog .section-wrapper--blog .shopify-section--image-with-text .section .global-button,
+.blog-susan-says .section-wrapper--blog .shopify-section--image-with-text .section .global-button {
+  background: var(--colorClassicNavy);
+  border: none;
+}
+@media screen and (max-width: 768px) {
+  .page-all-articles .section-wrapper--blog .shopify-section--image-with-text .section h1,
+  .blog .section-wrapper--blog .shopify-section--image-with-text .section h1,
+  .blog-susan-says .section-wrapper--blog .shopify-section--image-with-text .section h1 {
+    margin: 0;
+  }
+  .page-all-articles .section-wrapper--blog .shopify-section--image-with-text .section h4,
+  .blog .section-wrapper--blog .shopify-section--image-with-text .section h4,
+  .blog-susan-says .section-wrapper--blog .shopify-section--image-with-text .section h4 {
+    margin-bottom: 0;
+  }
+}
+.page-all-articles .section-wrapper--blog .filters-button-group,
+.blog .section-wrapper--blog .filters-button-group,
+.blog-susan-says .section-wrapper--blog .filters-button-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: sticky;
+  top: 120px;
+  z-index: 99;
+  background: #fff;
+  position: sticky;
+  overflow-y: scroll;
+}
+@media screen and (min-width: 769px) {
+  .page-all-articles .section-wrapper--blog .filters-button-group,
+  .blog .section-wrapper--blog .filters-button-group,
+  .blog-susan-says .section-wrapper--blog .filters-button-group {
+    top: 81px;
+    justify-content: center;
+    overflow-y: hidden;
+  }
+}
+.page-all-articles .section-wrapper--blog .filters-button-group button,
+.page-all-articles .section-wrapper--blog .filters-button-group .button,
+.blog .section-wrapper--blog .filters-button-group button,
+.blog .section-wrapper--blog .filters-button-group .button,
+.blog-susan-says .section-wrapper--blog .filters-button-group button,
+.blog-susan-says .section-wrapper--blog .filters-button-group .button {
+  background: none;
+  border: none;
+  margin: 0 2px;
+  font-family: "sweet-sans-pro";
+  font-size: 14px;
+  color: #858f96;
+  font-weight: bold;
+}
+.page-all-articles .section-wrapper--blog .filters-button-group button.filter-label, .page-all-articles .section-wrapper--blog .filters-button-group button:hover, .page-all-articles .section-wrapper--blog .filters-button-group button.is-checked,
+.page-all-articles .section-wrapper--blog .filters-button-group .button.filter-label,
+.page-all-articles .section-wrapper--blog .filters-button-group .button:hover,
+.page-all-articles .section-wrapper--blog .filters-button-group .button.is-checked,
+.blog .section-wrapper--blog .filters-button-group button.filter-label,
+.blog .section-wrapper--blog .filters-button-group button:hover,
+.blog .section-wrapper--blog .filters-button-group button.is-checked,
+.blog .section-wrapper--blog .filters-button-group .button.filter-label,
+.blog .section-wrapper--blog .filters-button-group .button:hover,
+.blog .section-wrapper--blog .filters-button-group .button.is-checked,
+.blog-susan-says .section-wrapper--blog .filters-button-group button.filter-label,
+.blog-susan-says .section-wrapper--blog .filters-button-group button:hover,
+.blog-susan-says .section-wrapper--blog .filters-button-group button.is-checked,
+.blog-susan-says .section-wrapper--blog .filters-button-group .button.filter-label,
+.blog-susan-says .section-wrapper--blog .filters-button-group .button:hover,
+.blog-susan-says .section-wrapper--blog .filters-button-group .button.is-checked {
+  color: var(--colorClassicNavy);
+}
+.page-all-articles .section-wrapper--blog .blog-template-wrapper,
+.blog .section-wrapper--blog .blog-template-wrapper,
+.blog-susan-says .section-wrapper--blog .blog-template-wrapper {
+  margin: 20px auto;
+}
+.page-all-articles .section-wrapper--blog .blog-template-wrapper .article-grid_wrap,
+.blog .section-wrapper--blog .blog-template-wrapper .article-grid_wrap,
+.blog-susan-says .section-wrapper--blog .blog-template-wrapper .article-grid_wrap {
+  border: 0;
+}
+.page-all-articles .section-wrapper--blog .blog-template-wrapper .article-grid_wrap h4,
+.blog .section-wrapper--blog .blog-template-wrapper .article-grid_wrap h4,
+.blog-susan-says .section-wrapper--blog .blog-template-wrapper .article-grid_wrap h4 {
+  margin-bottom: 0;
+}
+.page-all-articles .section-wrapper--blog .favorite-stories,
+.blog .section-wrapper--blog .favorite-stories,
+.blog-susan-says .section-wrapper--blog .favorite-stories {
+  border: none;
+  width: 100%;
+  min-height: 300px;
+  background: var(--colorWhite);
+  padding: 20px;
+}
+@media screen and (min-width: 769px) {
+  .page-all-articles .section-wrapper--blog .favorite-stories,
+  .blog .section-wrapper--blog .favorite-stories,
+  .blog-susan-says .section-wrapper--blog .favorite-stories {
+    width: 98.8%;
+    padding: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .page-all-articles .section-wrapper--blog .favorite-stories .favorite-stories--articles,
+  .blog .section-wrapper--blog .favorite-stories .favorite-stories--articles,
+  .blog-susan-says .section-wrapper--blog .favorite-stories .favorite-stories--articles {
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .page-all-articles .section-wrapper--blog .favorite-stories .favorite-stories--articles .article,
+  .blog .section-wrapper--blog .favorite-stories .favorite-stories--articles .article,
+  .blog-susan-says .section-wrapper--blog .favorite-stories .favorite-stories--articles .article {
+    flex: 0 0 70%;
+  }
+}
+.page-all-articles .section-wrapper--blog .favorite-stories .favorite-stories--articles .article,
+.blog .section-wrapper--blog .favorite-stories .favorite-stories--articles .article,
+.blog-susan-says .section-wrapper--blog .favorite-stories .favorite-stories--articles .article {
+  padding: 0 3%;
+}
+.page-all-articles .section-wrapper--blog .favorite-stories h1,
+.blog .section-wrapper--blog .favorite-stories h1,
+.blog-susan-says .section-wrapper--blog .favorite-stories h1 {
+  margin-top: 0;
+  color: var(--colorClassicNavy);
+}
+.page-all-articles .section-wrapper--blog .favorite-stories h3,
+.blog .section-wrapper--blog .favorite-stories h3,
+.blog-susan-says .section-wrapper--blog .favorite-stories h3 {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+.page-all-articles .section-wrapper--blog .favorite-stories p,
+.blog .section-wrapper--blog .favorite-stories p,
+.blog-susan-says .section-wrapper--blog .favorite-stories p {
+  text-align: center;
+}
+.page-all-articles .section-wrapper,
+.blog .section-wrapper,
+.blog-susan-says .section-wrapper {
+  padding: 0 !important;
+}
+@media screen and (max-width: 767px) {
+  .page-all-articles .section-wrapper,
+  .blog .section-wrapper,
+  .blog-susan-says .section-wrapper {
+    padding-top: 50px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .page-all-articles .section-wrapper .section-title,
+  .blog .section-wrapper .section-title,
+  .blog-susan-says .section-wrapper .section-title {
+    margin-top: -30px;
+  }
+}
+.page-all-articles .section-wrapper .featured-blog,
+.blog .section-wrapper .featured-blog,
+.blog-susan-says .section-wrapper .featured-blog {
+  justify-content: space-between;
+}
+.page-all-articles .section-wrapper .featured-blog .image-with-text-container,
+.blog .section-wrapper .featured-blog .image-with-text-container,
+.blog-susan-says .section-wrapper .featured-blog .image-with-text-container {
+  width: calc(33.3333333333% - 40px);
+}
+@media screen and (min-width: 769px) {
+  .page-all-articles .section-wrapper .featured-blog .featured-articles h1,
+  .blog .section-wrapper .featured-blog .featured-articles h1,
+  .blog-susan-says .section-wrapper .featured-blog .featured-articles h1 {
+    font-size: 52px !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .page-all-articles .section-wrapper .featured-blog,
+  .blog .section-wrapper .featured-blog,
+  .blog-susan-says .section-wrapper .featured-blog {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .page-all-articles .section-wrapper .featured-blog .featured-articles,
+  .blog .section-wrapper .featured-blog .featured-articles,
+  .blog-susan-says .section-wrapper .featured-blog .featured-articles {
+    margin-top: 20px;
+  }
+  .page-all-articles .section-wrapper .featured-blog .featured-articles .featured-articles--container,
+  .blog .section-wrapper .featured-blog .featured-articles .featured-articles--container,
+  .blog-susan-says .section-wrapper .featured-blog .featured-articles .featured-articles--container {
+    margin-top: 30px !important;
+    padding: 0 20px;
+  }
+  .page-all-articles .section-wrapper .featured-blog .featured-articles h3,
+  .blog .section-wrapper .featured-blog .featured-articles h3,
+  .blog-susan-says .section-wrapper .featured-blog .featured-articles h3 {
+    font-size: 24px !important;
+  }
+  .page-all-articles .section-wrapper .featured-blog .featured-articles .global-button,
+  .blog .section-wrapper .featured-blog .featured-articles .global-button,
+  .blog-susan-says .section-wrapper .featured-blog .featured-articles .global-button {
+    padding: 10px 0 !important;
+  }
+  .page-all-articles .section-wrapper .featured-blog .image-with-text-container,
+  .blog .section-wrapper .featured-blog .image-with-text-container,
+  .blog-susan-says .section-wrapper .featured-blog .image-with-text-container {
+    width: calc(38% - 40px) !important;
+  }
+}
+.page-all-articles .section-wrapper .button-group a,
+.blog .section-wrapper .button-group a,
+.blog-susan-says .section-wrapper .button-group a {
+  background: none;
+  border: none;
+  margin: 0 2px;
+  font-family: sweet-sans-pro;
+  font-size: 14px;
+  color: #858f96;
+  font-weight: 700;
+}
+@media screen and (max-width: 768px) {
+  .page-all-articles .section-wrapper .button-group,
+  .blog .section-wrapper .button-group,
+  .blog-susan-says .section-wrapper .button-group {
+    top: 85px !important;
+    padding: 10px 0;
+  }
+}
+.page-all-articles .section-wrapper .article-grid_wrap,
+.blog .section-wrapper .article-grid_wrap,
+.blog-susan-says .section-wrapper .article-grid_wrap {
+  margin: 0 0 40px 0;
+}
+.page-all-articles .section-wrapper .article-grid_wrap .one-fourth,
+.blog .section-wrapper .article-grid_wrap .one-fourth,
+.blog-susan-says .section-wrapper .article-grid_wrap .one-fourth {
+  padding: 0;
+}
+@media screen and (min-width: 769px) {
+  .page-all-articles .section-wrapper .article-grid_wrap .one-fourth,
+  .blog .section-wrapper .article-grid_wrap .one-fourth,
+  .blog-susan-says .section-wrapper .article-grid_wrap .one-fourth {
+    padding: 0 30px;
+  }
+}
+.page-all-articles .flickity-page-dots,
+.blog .flickity-page-dots,
+.blog-susan-says .flickity-page-dots {
+  bottom: 0;
+}
+.page-all-articles .flickity-page-dots .dot,
+.blog .flickity-page-dots .dot,
+.blog-susan-says .flickity-page-dots .dot {
+  margin-bottom: 10px;
+}
+.page-all-articles .cta-all,
+.blog .cta-all,
+.blog-susan-says .cta-all {
+  margin: -40px auto 100px auto;
+}
+.page-all-articles .cta-all .global-button,
+.blog .cta-all .global-button,
+.blog-susan-says .cta-all .global-button {
+  background: var(--colorClassicNavy);
+}
+
+/* Layout Hub */
+.article-layouthub-6160d6ac151ba402353eedb2 .lh-category-item .lh-category-thumbnail .lh-link,
+.article-layouthub-60bf7f59b7d632428a657c92 .lh-category-item .lh-category-thumbnail .lh-link,
+.article-layouthub-6112c609b899ca2b79083472 .lh-category-item .lh-category-thumbnail .lh-link {
+  display: none !important;
+}
+
+.article-layouthub-6112c609b899ca2b79083472 [data-section-id=qr315r2mms] .lh-item:hover,
+.article-layouthub-6112c609b899ca2b79083472 [data-section-id=n40bn78ztl] .lh-item:hover {
+  background: #fbf3ee !important;
+  color: var(--colorClassicNavy) !important;
+}
+
+.article-layouthub-6064d4a47661cb65cf33ce02 .lh-link a {
+  background: var(--colorFrenchBlue) !important;
+  color: var(--colorWhite) !important;
+}
+.article-layouthub-6064d4a47661cb65cf33ce02 .lh-link a:hover {
+  background: var(--colorFrenchBlue) !important;
+  color: var(--colorWhite) !important;
+}
+
+.blog-article__main {
+  display: none !important;
+}
+
+.section-wrapper--article {
+  background: var(--colorEggShell);
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+  .section-wrapper--article {
+    padding-left: 20px;
+  }
+  .section-wrapper--article .shopify-section--article-template {
+    padding-top: 40px;
+  }
+}

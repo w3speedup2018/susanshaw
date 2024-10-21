@@ -1,0 +1,14 @@
+<script defer>
+  function swymCallbackFn(swat){
+    // your API calls go here
+    $(document).on("swym:infiniteload",function(){
+      swat.initializeActionButtons(".twelve.columns, .container");
+    });
+  }
+  
+  if(!window.SwymCallbacks){
+    window.SwymCallbacks = [];
+  }
+  
+  window.SwymCallbacks.push(swymCallbackFn);
+</script>

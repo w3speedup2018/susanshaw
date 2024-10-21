@@ -1,0 +1,287 @@
+{% assign product_found = false %}
+{% assign skip = false %}
+{% assign collection_group = products | map: 'id' %}
+{% assign collection_group_thumb = collection_group | append : 'thumb' %}
+{% assign collection_group_mobile = collection_group | append : 'mobile' %}
+
+{% if template contains 'collection' %}
+  {% assign matrixType = 'collection-matrix' %}
+{% elsif template contains 'search' %}
+  {% assign matrixType = 'search-matrix' %}
+{% endif %}
+
+{% assign forLimit = limit %}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {% for product in products limit: limit %}
+{%- if product.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
+        {
+          "@type": "ListItem",
+          "position": "{{ forloop.index | json }}",
+          "url": "{{ shop.url }}{{ product.url }}",
+          "name": "{{ product.title }}"
+        } {%- unless forloop.last -%},{%- endunless -%}
+      {% endfor %}
+    ]
+  }
+</script>
+
+{% for product in products limit: limit %}
+{%- if product.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
+  {% if product.id == skip_product.id  %}
+    {% assign forLimit = limit | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+<div itemtype="http://schema.org/ItemList" class="product-list {{ matrixType }} clearfix equal-columns--clear equal-columns--outside-trim">
+  {% for product in products limit: limit %}
+    {%- if product.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
+  	{% include 'shappify-sales-icon-collection' %}
+  
+      <div class="
+                  {% if products_per_row == 2 %}
+                  eight columns
+                  {% elsif products_per_row == 3 %}
+                  one-third column
+                  {% elsif products_per_row == 4 %}
+                  four columns
+                  {% elsif products_per_row == 5 %}
+                  one-fifth column
+                  {% elsif products_per_row == 6 %}
+                  one-sixth column
+                  {% else %}
+                  one-seventh column
+                  {% endif %}
+                  {% if settings.mobile_products_per_row == '1' %}
+                  medium-down--one-half
+                  small-down--one-whole
+                  {% else %}
+                  medium-down--one-half
+                  small-down--one-half
+                  {% endif %}
+                  thumbnail
+                  {% cycle collection_group_mobile: 'even', 'odd' %}
+                  quick-shop-style--{{ settings.quick_shop_style }}
+                  product-{{ product.id }}">
+
+
+        {% assign collection_handles = product.collections | map: 'handle' %}
+
+        {% if product.featured_image.alt contains 'youtube' or image.alt contains 'vimeo' %}
+        {% assign alt_text = product.title %}
+        {% else %}
+        {% assign alt_text = product.featured_image.alt %}
+        {% endif %}
+
+        <div class="product-wrap">
+          <div class="relative product_image swap-{{ settings.collection_secondary_image }}">
+            <a href="{{ product.url | within: collection }}">
+              <div class="image__container">
+                {% if search.performed %}
+                {% assign search_val = search.terms | remove:'*' | downcase %} 
+                {% else %}
+                {% assign search_val = current_tags | downcase %} 
+                {% endif %}
+
+                {% assign colorFlag = false %}
+                {% assign altname = '' %}
+                {% assign varaint_image = '' %}
+                {% assign colWord = ''%}
+
+                {% assign seachHandle = search_val | handleize %}
+                {% assign coll_synonym = '' %}
+                {% assign tagFlag = false %}
+
+                {% for i in (1..20) %}
+                {% capture synonyms %}synonyms_{{i}}{% endcapture %}
+                {% assign colGroup = settings[synonyms] | downcase %}   
+                {% assign words = colGroup | split: ',' %}
+                {% for word in words %}
+                {% if search_val contains word %}  
+
+                {% assign coll_synonym = settings[synonyms] %}
+                {% assign colWord = word %}
+                {% assign tagFlag = true %}	
+                {% break %}
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+
+                {% assign img_src = '' %}
+                {% assign img_alt = '' %}
+                {% assign varaint_image = false %}
+                {% assign ptitle = product.title | handleize %}    
+
+                {% for img in product.images %}          
+                {% assign alt = img.alt | handleize %}        
+                {% if img.alt != blank and  alt != ptitle %}          
+                {% assign colors = coll_synonym | split: ',' %}  
+
+                {% for color in colors %}
+                {% assign colorHandle = color | handleize %}    
+                {% if alt == colorHandle %}
+                {% assign img_src = img.src %}         
+                {% assign img_alt = img.alt %}         
+                {% assign altname = img.alt | downcase %}
+                {% assign varaint_image = true %}           
+                {% break %}
+                {% endif %}
+                {% endfor %}	
+
+                {% if tagFlag == true %}     
+                {% if alt contains seachHandle %}
+                {% assign img_src = img.src %}         
+                {% assign img_alt = img.alt %}         
+                {% assign altname = img.alt | downcase %}
+                {% assign varaint_image = true %}           
+                {% break %}
+                {% endif %}
+                {% endif %}	  
+
+                {% if varaint_image == true %}
+                {% break %}	
+                {% endif %}
+                {% endif %}
+                {% endfor %} 
+
+                {% if varaint_image == true %}  
+                {% include 'image-element-infinite', small: true, image: img_src, alt: img_alt, object_fit: settings.align_height, max_height: section.settings.collection_height %}
+                {% else %}
+                {% include 'image-element-infinite', small: true, image: product.images[0], alt: alt_text, object_fit: settings.align_height, max_height: section.settings.collection_height %}
+                {% endif %}
+              </div>
+
+              {% if settings.collection_secondary_image != blank %}
+              <div class="image__container">
+                {% if product.images[1] != blank %}
+                {% assign secimage = product.images[1] %}
+                {% else %}
+                {% assign secimage = product.featured_image %}
+                {% endif %}
+
+                {% if secimage %}
+                <img class="secondary lazyimage" 
+                     width="{{ secimage.width }}"  
+                     height="{{ secimage.height }}" 
+                     alt="{{ alt_text | escape }}"                
+                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{ secimage.width }} {{ secimage.height }}'%3E%3C/svg%3E"
+                     data-src="{{ secimage | img_url: '100x' }}"
+                     data-srcset="{%- capture lazysrcs -%}{{ secimage | img_url: '200x' }} 200w,
+                                  {{ secimage | img_url: '300x' }} 300w,
+                                  {{ secimage | img_url: '400x' }} 400w,
+                                  {{ secimage | img_url: '500x' }} 500w,
+                                  {{ secimage | img_url: '600x' }} 600w
+                                  {%- endcapture -%}{{lazysrcs}}" />
+                {% endif %}
+              </div>
+              {% endif %}
+            </a>
+
+            {% include "product-details" %}
+
+            {% if settings.quick_shop_style == 'inline' %}
+            	{% include 'collection-swatch' %}
+            {% endif %}
+          </div>
+
+          <!-- Swym Collections product-thumbnail.liquid Line 137 -->
+          <button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}" data-variant-id="{{product.variants[0].id}}" data-product-url="{{ shop.url }}{{ product.url }}"></button>
+          <!-- End  of collections swym Button 139 -->
+
+          <a class="product-info__caption {% if settings.thumbnail_hover_enabled and template == "index" %}hidden{% endif %}" href="{{ product.url | within: collection }}">
+            {% include "product-info" %}
+          </a>
+        </div>
+
+        {% if settings.quick_shop_style == 'popup' and settings.quick_shop_enabled %}
+        {% include 'collection-swatch' %}
+        {% endif %}
+
+        {% if template contains 'search' %}
+        {% assign file_extension = 'png' %}
+        {% for option in product.options %}
+        {% assign downcased_option = option | downcase %}
+        {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+        {% assign option_index = forloop.index0 %}
+        {% assign values = '' %}
+        <div class="collection_swatches">
+
+          {% for variant in product.variants %}
+          {% unless variant.metafields.secomapp.freegifts %}
+          {% unless variant.title contains '(Freegifts)' %}
+
+          {% assign value = variant.options[option_index] %}
+          {% unless values contains value %}
+          {% assign values = values | join: ',' %}
+          {% assign values = values | append: ',' | append: value %}
+          {% assign values = values | split: ',' %}
+
+          <a href="{{ variant.url | within: collection }}" class="swatch" data-swatch-name="meta-{{ downcased_option }}_{{ value | replace: ' ', '_' | downcase }}">
+            <span {% if section.settings.products_per_row == 2 %}
+                  data-image="{{ variant.featured_image | product_img_url: '600x' }}"
+                  {% elsif section.settings.products_per_row == 3 %}
+                  data-image="{{ variant.featured_image | product_img_url: '500x' }}"
+                  {% else %}
+                  data-image="{{ variant.featured_image | product_img_url: '400x' }}"
+                  {% endif %}
+                  style="background-image: url({{ value | handle | append: '.' | append: file_extension | asset_img_url: '50x' | prepend: 'https:' }}); background-color: {{ value | split: ' ' | last | handle }};">
+            </span>
+          </a>
+          {% endunless %}
+
+          {%endunless%}
+          {%endunless%}
+          {% endfor %}
+
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if settings.quick_shop_style == 'inline' and settings.quick_shop_enabled %}
+        {% unless collection_handles contains 'coming-soon' %}
+        <div class="inline-quickshop js-product_section product-{{ product.id }}">
+          {% include 'product-form', show_payment_button_quickshop: settings.show_payment_button %}
+        </div>
+        {% endunless %}
+        {% endif %}
+      </div>
+
+  
+  {% endfor %}
+  
+  {% if template contains 'collection' %}
+    {% if settings.pagination_type == 'load_more' or settings.pagination_type == 'infinite_scroll' %}
+      {% if paginate.next.url %}
+        <span class="js-load-more load-more">
+          <a href="{{ paginate.next.url | append: "&view=infinite" }}" data-no-instant class="load-more__btn action_button continue-button">
+            {% if template contains 'collection' %}
+              {{ 'collections.general.load_more' | t }}
+            {% elsif template contains 'search' %}
+              {{ 'general.search.load_more' | t }}
+            {% endif %}
+          </a>
+        </span>
+      {% endif %}
+    {% endif %}
+  {% elsif template contains 'search' %}
+    {% if settings.search_pagination_type == 'load_more' or settings.search_pagination_type == 'infinite_scroll' %}
+      {% if paginate.next.url %}
+        <span class="js-load-more load-more">
+          <a href="{{ paginate.next.url | append: "&view=infinite"}}" data-no-instant class="load-more__btn action_button continue-button">
+            {% if template contains 'collection' %}
+              {{ 'collections.general.load_more' | t }}
+            {% elsif template contains 'search' %}
+              {{ 'general.search.load_more' | t }}
+            {% endif %}
+          </a>
+        </span>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+</div>
+<div class="load-more__icon"></div>

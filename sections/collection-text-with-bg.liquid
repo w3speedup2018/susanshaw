@@ -1,0 +1,134 @@
+{%- capture block_html -%}
+{%- for block in section.blocks -%}       
+    {%- if block.settings.image != blank -%}
+    <div class="image-wrapper">
+    
+      {%
+        render 'image-element',
+        image: block.settings.image,
+        alt: block.settings.image.alt,
+        additional_classes: 'marquee__image',
+      %}    
+      
+    </div>
+    {%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}    
+
+<div class="parent container">
+  {%- if section.settings.title != blank -%}
+    <h1 class="h1 colorWhite text-center py-100 small--hide">{{section.settings.title}}</h1>
+  {%- endif -%}
+  <div class="bg-images d-flex">
+    {% for i in (1..12) %}
+      {{ block_html }}
+    {% endfor %%}
+    
+  </div>
+</div>
+
+
+<style> 
+.shopify-section--marquee-image-slider.page-width{
+  padding:0; 
+}
+.shopify-section--marquee-image-slider .parent{
+  position:relative;
+}
+.shopify-section--marquee-image-slider .parent .bg-images{  
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  z-index: 2;
+  top: 75%;
+}
+.shopify-section--marquee-image-slider .parent .image-wrapper{
+  width:150px;
+}
+.shopify-section--marquee-image-slider .parent .image-wrapper:nth-of-type(odd){
+  transform: rotate(70deg);
+}
+.shopify-section--marquee-image-slider .parent .image-wrapper:nth-of-type(even){
+  transform: rotate(330deg);
+}
+
+.shopify-section--marquee-image-slider .parent .h1{    
+    width: 100%;
+    font-size:36px;   
+    flex: 0 0 auto;
+    margin:0;
+    padding: 30px 15px 50px 15px; 
+    background-color:var(--colorHydrangea);
+}
+.shopify-section--marquee-image-slider .parent  .h1 a:hover, 
+.shopify-section--marquee-image-slider .parent  .h1 a:focus{
+  font-style: italic;
+  color:#9CB6D2 !important;
+}
+@media screen and (min-width: 769px) {      
+  .shopify-section--marquee-image-slider .parent  .h1{
+    background-color:{{section.settings.bgcolor}};    
+    font-size: 68px;       
+    padding:80px 15px;     
+     
+  }  
+}
+
+</style>
+ 
+{% schema %}
+{
+  "name": "Collection - Text w/bg",
+  "class": "shopify-section--collection-list collection--edit shopify-section--marquee-image-slider page-width",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "Background",
+      "default": "#223346"     
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    }   
+  ], 
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [       
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Images"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection - Text w/bg",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "title"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,40 @@
+<h1 class="byronrr-medium text-center">STYLE</h1>
+
+{% for article in blogs.articles reversed %}
+    {% if article.tags contains 'Style' %}
+      <!-- Display the article content here -->
+      <h2>{{ article.title }}</h2>
+      <p>{{ article.content }}</p>
+      <!-- Add more content display as needed -->
+    {% endif %}
+  {% endfor %}
+
+<div class="js-article-slider homepage-product-slider full-width--true even-num-slides featured-collection__products">
+    
+    <div class="slider-gallery article-slider" data-products-per-slide="4">
+
+
+        {% for article in blogs.articles reversed %}
+            {% if article.tags contains 'Style' %}
+                {{ article.tags }}
+                <div class="article column one-fourth medium-down--one-half">               
+                    {% if article.image != blank %}
+                    <a href="{{ article.url }}" title="{{ article.title | escape }}">
+                        {%
+                        render 'image-element',
+                        image: article.image,
+                        alt: image.alt,
+                        %}
+                    </a>
+                    {% endif %}   
+                    <h3 class="tit_blog"><a href="{{ article.url }}">{{ article.title }}</a></h3>    
+                    {% if article.excerpt != blank %}
+                        <div class="excerpt text-center"> {{ article.excerpt }}</div>
+                    {% endif %}   
+                </div>          
+            {% endif %}            
+        {% endfor %}
+
+      </div>
+    
+  </div>

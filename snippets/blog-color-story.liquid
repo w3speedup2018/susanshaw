@@ -1,0 +1,27 @@
+<h1 class="byronrr-medium text-center">A Color Story</h1>
+<div class="js-article-slider homepage-product-slider full-width--true even-num-slides featured-collection__products">
+    
+    <div class="slider-gallery article-slider" data-products-per-slide="4">
+
+
+           {% for article in blogs.a-color-story.articles reversed %}
+            <div class="article column one-fourth medium-down--one-half">               
+            {% if article.image != blank %}
+            <a href="{{ article.url }}" title="{{ article.title | escape }}">
+                {%
+                render 'image-element',
+                image: article.image,
+                alt: image.alt,
+                %}
+            </a>
+            {% endif %}   
+            <h3 class="tit_blog"><a href="{{ article.url }}">{{ article.title }}</a></h3>    
+            {% if article.excerpt != blank %}
+                <div class="excerpt text-center"> {{ article.excerpt }}</div>
+            {% endif %}   
+        </div>          
+        {% endfor %}
+
+      </div>
+    
+  </div>

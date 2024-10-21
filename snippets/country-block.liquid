@@ -1,0 +1,23 @@
+{%- capture country_block -%}
+<p class="country-wrapper"><img src="{{'logo_-_Susan_Shaw_-_2020-01.png' | file_img_url: '300x' }}"  /></p>
+{%- endcapture -%}
+<script>
+    //rs: check if country if International Checkout and show the consent  
+  function getCountry (data) {
+    //console.log(data.ip, data.country);
+    let _country = data.country;      
+    if(_country == "HK" || _country == "CN"){
+        document.querySelector('body').innerHTML = '{{country_block | strip_newlines }}';        
+    }
+  } 
+</script>
+<script src="https://ipinfo.io/json?callback=getCountry"></script> 
+<style>
+    .country-wrapper{
+        width: 100%;
+        height: 100vh;
+        display: flex;     
+        justify-content: center;
+        align-items: center;
+    }
+</style>

@@ -1,0 +1,47 @@
+/* PageFly Element Styles */
+						.irilUZ { padding: 15px 0px; position: relative; }
+.iIwwEJ { margin: 0 calc(-1 * var(--pf-s-lg)); }
+@media (max-width: 1199px) and (min-width: 992px) {
+  .iIwwEJ { margin: 0 calc(-1 * var(--pf-s-md)); }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .iIwwEJ { margin: 0 calc(-1 * var(--pf-s-sm)); }
+}
+@media (max-width: 767px) {
+  .iIwwEJ { margin: 0 calc(-1 * var(--pf-s-xs)); }
+}
+.bejofX { padding: var(--pf-s-lg); }
+@media (max-width: 1199px) and (min-width: 992px) {
+  .bejofX { padding: var(--pf-s-md); }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .bejofX { padding: var(--pf-s-sm); }
+}
+@media (max-width: 767px) {
+  .bejofX { padding: var(--pf-s-xs); }
+}
+.fJTCAC { position: relative; }
+.lphJbu { min-height: 30px; }
+						/* PageFly Styles */
+						
+@media all {
+	.__pf .pf-860d47fb {
+		background-image: url("https://cdn.shopify.com/s/files/1/3098/4704/t/166/assets/pf-25152356--mobilecover.jpg?v=1582845481");
+	}
+}
+@media only screen and (max-width: 767px) {
+	.__pf .pf-860d47fb {
+		background-image: url("https://cdn.shopify.com/s/files/1/3098/4704/t/166/assets/pf-25152356--mobilecover.jpg?v=1582845481");
+	}
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	.__pf .pf-860d47fb {
+		background-image: url("https://cdn.shopify.com/s/files/1/3098/4704/t/166/assets/pf-25152356--mobilecover.jpg?v=1582845481");
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.__pf .pf-860d47fb {
+		background-image: url("https://cdn.shopify.com/s/files/1/3098/4704/t/166/assets/pf-25152356--mobilecover.jpg?v=1582845481");
+	}
+}
+						

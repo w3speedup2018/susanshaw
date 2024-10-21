@@ -1,0 +1,91 @@
+<div class="page-occasions-template">
+  <div class="po_rich_text">
+    <div class="container">
+      <div class="sixteen columns"> 
+        <div class="section center clearfix">
+          <h2 class="title">{{ section.settings.title }}</h2>
+          <div class="featured_text"> 
+            <p>{{ section.settings.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="po_coll_items">
+    <div class="container">
+      <div class="sixteen columns po_items"> 
+        {% for block in section.blocks %}
+        <div class="po_item">
+          <div class="po_img">
+           {{ block.settings.item_image | img_url:'master' | img_tag}}
+          </div>
+          <p class="po_text">
+          {{ block.settings.item_title }}
+          </p>
+          <a class="po_link" href="{{ block.settings.item_link }}"></a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Page Occasions Template",
+    "settings": [
+    {
+    "type":"textarea",
+    "id":"title",
+    "label":"Title"
+    },
+    {
+    "type":"textarea",
+    "id":"text",
+    "label":"Text"
+    }
+   ],
+   "blocks":[
+   {
+   "type":"item",
+   "name":"Item",
+   "settings":[
+    {
+    "type":"image_picker",
+    "id":"item_image",
+    "label":"Image"
+    },
+    {
+    "type":"text",
+    "id":"item_title",
+    "label":"Title"
+    },
+    {
+    "type":"url",
+    "id":"item_link",
+    "label":"Link"
+    }
+   ]
+   }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<script>
+  $('.po_item').each(function(){
+var width= $(this).outerWidth();
+$(this).css('height',width);
+});
+  $( window ).resize(function() {
+  $('.po_item').each(function(){
+var width= $(this).outerWidth();
+$(this).css('height',width);
+});
+});
+</script>

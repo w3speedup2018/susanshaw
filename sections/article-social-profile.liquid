@@ -1,0 +1,402 @@
+<script
+  type="application/json"
+  data-section-type="featured-promotions"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{%- assign id = section.id -%}
+
+{% comment %} Content settings {% endcomment %}
+{%- assign blocks = section.blocks -%}
+{% comment %} End content settings {% endcomment %}
+
+{% comment %} Advanced {% endcomment %}
+{%- assign css_class = section.settings.css_class -%}
+{%- assign custom_css = section.settings.custom_css -%}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: custom_css,
+    id: id
+  %}
+{% endstyle %}
+
+{% if blocks.size > 0 %}
+  <section
+    class="
+      section custom_desktop featured-promotions 
+      {% if section.settings.wide_display == true %}
+        is-width-wide
+        has-no-side-gutter
+      {% endif %}
+      {{ css_class }}
+    "
+  >
+  {% if section.settings.title != blank %}
+    <h2 class="title text-center">{{section.settings.title }}</h2>
+  {% endif %}
+  {% if section.settings.subtitle != blank %}
+    <div class="text-center">{{section.settings.subtitle }}</div>
+  {% endif %}
+  
+    <div
+      class="         
+        js-featured-promotions
+        featured-promotions
+        full-width--{{ section.settings.wide_display }}
+      "
+      data-promo-animation="{{ section.settings.featured_links_animation }}"
+    >
+      {% for block in blocks %}
+        {% comment %} Content settings {% endcomment %}
+        {%- assign image = block.settings.image -%}
+        {%- assign mobile_image = block.settings.mobile_image -%}
+        {% comment %} End content settings {% endcomment %}
+
+        <figure class="feature-section section-{{ forloop.index }} promo-{{ forloop.index }} {% render 'column-width', value: section.settings.featured_promos_per_row %} column medium-down--one-whole title-overlay-{{ section.settings.promo_text_on_image_enabled }} {% if section.settings.featured_links_animation != blank %}promo-animation--true{% endif %}" {{ block.shopify_attributes }}>
+          <div class="feature-inner feature-style--{{ section.settings.feature_style }}">
+            <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}>
+              {%
+                render 'image-element',
+                image: image,
+                alt: image.alt,
+                stretch_width: true
+              %}      
+            </a>
+          </div> 
+ 
+        
+          {% if block.settings.title != blank %}
+              <h3 class="title title-below text-left">{{ block.settings.title }}</h3>
+          {% endif %}
+          {% if block.settings.text != blank %}
+            <div class="subheading text-left">
+              {{block.settings.text}}
+            </div>       
+          {% endif %}
+         
+          
+          <div class="social-wrapper is-flex is-align-center">
+            {% if block.settings.link_ig != blank %}   
+                <span>CONNECT:</span>                     
+                <a href="{{ block.settings.link_ig }}" target="_blank" class="">{{ 'Instagram' }}</a>           
+            {% endif %}
+            {% if block.settings.link_website != blank %}            
+                <a href="{{ block.settings.link_website }}" target="_blank" class="">{{ 'Website' }}</a>           
+            {% endif %}
+          </div>
+          
+        </figure>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{%- comment -%}
+
+<script type="text/javascript">
+  window.addEventListener("load", () => {  
+    console.log('slider');
+    requestIdleCallback(() => {
+      let slide_match = window.matchMedia('screen and (min-width: 799px)');
+        function productInfoSlider(e) {
+          if (e.matches) {
+            if (typeof featuredPromotions == "object") {
+              featuredPromotions.init();
+            }
+            $('.custom_desktop .js-featured-promotions.flickity-enabled').flickity('destroy');
+          } else {
+            requestIdleCallback(() => {
+               $('.custom_desktop .js-featured-promotions').flickity({
+                  wrapAround: true,
+                  pageDots: false,
+	                groupCells: 1,
+                  cellAlign: 'left',
+                  imagesLoaded: true
+                });               
+                $('.custom_desktop .js-featured-promotions').removeAttr('data-promo-animation');
+                $('.custom_desktop .js-featured-promotions').find('.feature-section').removeClass('animated fadeInDown');
+            });              
+          }
+        }
+      slide_match.addListener(productInfoSlider);
+      productInfoSlider(slide_match)
+    });  
+  });
+</script>
+{%- endcomment -%}
+<style>
+  #shopify-section-{{ section.id }} .custom_desktop{
+    display: block;
+  }
+  #shopify-section-{{ section.id }} h2.title{
+    margin-bottom: 0;
+  }
+ @media screen  and (min-width: 769px){
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions{
+      position: relative;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1680px;
+      padding:0 20px;
+    }  
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .feature-section{ 
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+ }
+
+  @media only screen and (max-width: 798px) {
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions{
+      position: relative;
+      margin: 20px auto 0 auto;
+      display: flex;
+      flex-wrap: wrap;     
+      justify-content: space-between;
+    }  
+    #shopify-section-{{ section.id }} .fadeInDown{
+      animation-name: none;
+      animation-duration: 0ms;
+    }
+    #shopify-section-{{ section.id }} .custom_desktop{
+     
+    }
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4:not(.flickity-enabled) {
+      display: flex;
+      overflow-x: auto;
+    }
+    
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4:not(.flickity-enabled) .feature-section {
+      flex-shrink: 0;
+    }
+    
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4 {
+      margin-right: 0px;
+      margin-left: 0px;
+    }
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .feature-section.one-third {
+      flex:0 0 31%;
+    }
+    #shopify-section-{{ section.id }} .feature-section.one-third h2.title{
+      margin: 10px 0 0;
+      font-size: 21px;
+      min-height: 50px;
+    }
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .feature-section.one-half {
+      flex:0 0 48%;
+    }
+    #shopify-section-{{ section.id }} .feature-section.one-half h2.title{
+      margin: 10px 0 0;
+      font-size: 21px;  
+    }
+    #shopify-section-{{ section.id }} .feature-section.one-half .cta-wrapper{
+      margin-top: 10px;
+    }
+    #shopify-section-{{ section.id }} .cta-wrapper{
+      margin-top: 0;
+    }
+    #shopify-section-{{ section.id }} .cta-wrapper .global-button--clear{
+      font-size: 12px;;
+    }
+    
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions button.flickity-prev-next-button.next svg .arrow,
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions button.flickity-prev-next-button.previous svg .arrow {      
+      opacity: 1;
+    }
+   
+
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions button.flickity-prev-next-button.previous svg,
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions button.flickity-prev-next-button.next svg {
+      
+    }
+
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .flickity-prev-next-button:hover, 
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .flickity-prev-next-button:active {
+      filter: alpha(opacity=100);
+      opacity: 1;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) { 
+    #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4 .feature-section {
+      width: 100%;
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
+  }
+
+
+  
+  #shopify-section-{{ section.id }} .social-wrapper{
+    margin-bottom: 20px;
+  }
+  #shopify-section-{{ section.id }} h3{
+    margin: 0 10px 0 0;
+  }
+  #shopify-section-{{ section.id }} .subheading{
+    color:#878787;
+  }
+  #shopify-section-{{ section.id }}  .social-wrapper a{
+    font-style: italic;
+    margin: 0  5px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Blog - Social Profile",
+  "class": "shopify-section--featured-promotions",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "wide_display",
+      "label": "Wide display",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "promo_text_on_image_enabled",
+      "label": "Show title on image",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "featured_promos_per_row",
+      "label": "Promotions per row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "featured_links_animation",
+      "label": "Promotions animation",
+      "default": "fadeInDown",
+      "options": [
+        {
+          "value": "fadeIn",
+          "label": "Fade In"
+        },
+        {
+          "value": "fadeInUp",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fadeInDown",
+          "label": "Fade Down"
+        },
+        {
+          "value": "",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "feature_style",
+      "label": "Promotions style",
+      "default": "square",
+      "options": [
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "rounded",
+          "label": "Rounded"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Promotion",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "840 x 840px recommended"
+        },   
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Header",
+          "default": "Feature"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Promotion description details.</p>"
+        },
+        {
+          "type": "url",
+          "id": "link_ig",
+          "label": "Instagram"
+        },
+        {
+          "type": "url",
+          "id": "link_website",
+          "label": "Website"
+        }        
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Blog - Social Profile",
+    "category": "Image",
+    "blocks": [
+      {
+        "type": "image"
+      },
+      {
+        "type": "image"
+      },
+      {
+        "type": "image"
+      }
+    ]
+  }]
+}
+
+{% endschema %}

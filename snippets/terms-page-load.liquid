@@ -1,0 +1,14 @@
+<script src="{{ 'jquery.min.js' | asset_url }}"></script>
+ <script>
+      $(function() {
+           // Wrap shopify policy in grid layout classes
+          $('.shopify-policy__container').wrap('<section class="section shopify-policy-template"><div class="container content"></div>');
+        
+          // Add classes to determine column size
+          $('.shopify-policy__container').addClass('five-eighths offset-by-three columns is-hidden-offset-mobile-only medium-down--one-whole');
+        
+          // Add featured divider beneath page title
+          $('.shopify-policy__title').append('<div class="feature-divider"></div>');
+      });
+
+ </script>

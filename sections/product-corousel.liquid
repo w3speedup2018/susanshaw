@@ -1,0 +1,155 @@
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<!--product-corousel!-->
+<div class="homepage-stl">
+  <section class="section" >
+  <div class="container">
+
+    {% if section.settings.title1 != blank %}
+    <div class="sixteen columns">
+      <h2 class="title center">{{ section.settings.title1 | escape }}</h2>
+      <div class="feature_divider"></div>
+    </div>
+    {% endif %}
+    
+    <div class="stl_row_items sixteen columns">
+      <div class="stl_row_item {% if section.settings.image_right %}image_right{% endif %}" >  
+        <div class="stl_image_item">
+          <img
+               class="lazyload" 
+               alt="{{ section.settings.title1 | escape }}"
+               height="{{ section.settings.feat_image.height }}" 
+               width="{{ section.settings.feat_image.width }}"
+               src="{{ section.settings.feat_image | img_url:'540x' }}" />
+        </div>
+        <div class="stlproduct-corousel" >
+          {% include 'collection-grid', type: 'section' %}
+        </div>
+      </div>
+    </div>
+    
+    <div class="two_btn">
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="btn1">
+        {{ section.settings.button_label | escape }}
+      </a>
+      {% endif %}
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link2 }}" class="btn2">
+        {{ section.settings.button_label2 | escape }}
+      </a>
+      {% endif %}
+    </div>
+
+  </div> 
+</section> 
+</div>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+$('#slick-product-slider').slick({
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  prevArrow: '<svg class="flickity-button-icon prev" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 62,90 L 22,50  L 62,10 L 60,0 Z" class="arrow"></path></svg>',
+  nextArrow: '<svg class="flickity-button-icon next" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 62,90 L 22,50  L 62,10 L 60,0 Z" class="arrow"></path></svg>'
+});
+	  
+</script>
+
+{% schema %}
+  {
+    "name": "Featured Rows",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title1",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+   
+    {
+    "type":"image_picker",
+    "id":"feat_image",
+    "label":"Image"
+    },
+    {
+    "type":"checkbox",
+    "id":"image_right",
+    "label":"Image in right "
+    },
+     {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Featured collection"
+        },
+        {
+          "type": "checkbox",
+          "id": "collection_description",
+          "label": "Show collection description",
+          "default": false
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "radio",
+          "id": "collection_style",
+          "label": "Collection layout",
+          "default": "grid",
+          "options": [
+            {
+              "value": "slider",
+              "label": "Slider"
+            },
+            {
+              "value": "grid",
+              "label": "Grid"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "products_per",
+          "label": "Products per row",
+          "min": 2,
+          "max": 7,
+          "step": 1,
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "products_limit",
+          "label": "Limit products",
+          "min": 1,
+          "max": 50,
+          "step": 1,
+          "default": 48
+        }
+    ],
+    "presets": [
+      {
+        "name": "Product corousel",
+        "category": "Text"
+
+      }
+    ]
+    }
+    
+{% endschema %}

@@ -1,0 +1,301 @@
+{{ 'gift-guide-2024.css' | asset_url | stylesheet_tag }}
+
+<div class="countdown-banner">
+    <div class="container is-align-center is-justify-center">
+        <h3 class="sweet-sans-pro">COUNTDOWN TO <span>Christmas</span></h3>
+        <div class="timer">           
+        </div>
+    </div>
+</div>
+
+<div class="gift-guide-banner">
+    <h1>Gift Guide</h1>
+    <h2>2023</h2>
+
+    {%- for block in section.blocks -%}
+        {%- liquid  
+            assign title = block.settings.title | handleize 
+            assign image = block.settings.image 
+            assign image_hover = block.settings.image_hover 
+            assign image_link = block.settings.image_link              
+        -%}
+       
+        {%- case block.type -%}
+            {%- when "persona" -%}
+                <a href="{{image_link}}" class="hover-animation icon--{{title}}-{{forloop.index}}">    
+                    {%
+                        render 'image-element-gift-guide',
+                        image: image,
+                        alt: block.settings.image.alt,
+                        stretch_width: true,
+                        additional_classes: 'image-front'
+                    %}
+                    {%
+                        render 'image-element-gift-guide',
+                        image: image_hover,
+                        alt: block.settings.image.alt,
+                        stretch_width: true,
+                        additional_classes: 'image-back'
+                    %}
+                    <div class="alt-text">{{ block.settings.title }}</div>
+                </a>
+            {%- else -%}
+                <a href="{{image_link}}" class="hover-animation icon--{{title}}-{{forloop.index}}">    
+                    {%
+                        render 'image-element-gift-guide',
+                        image: image,
+                        alt: block.settings.image.alt,
+                        stretch_width: true,
+                        additional_classes: 'image-front'
+                    %}
+                    {%
+                        render 'image-element-gift-guide',
+                        image: image_hover,
+                        alt: block.settings.image.alt,
+                        stretch_width: true,
+                        additional_classes: 'image-back'
+                    %}                    
+                    <div class="alt-text">{{ block.settings.title }}</div>
+                </a> 
+        {%- endcase -%}
+        <style>
+            .icon--{{title}}-{{forloop.index}}{
+                width:{{block.settings.image_width}}%;
+                top:{{block.settings.position_top}}%;
+                left:{{block.settings.position_left}}%;
+            }
+            
+        </style>
+    {%- endfor -%} 
+     
+</div> 
+
+
+{% assign date = section.settings.countdown %}
+<script>
+    // Set the target date and time for the countdown (YYYY, MM-1, DD, HH, MM, SS)  
+    const targetDate = new Date({{date}});
+ 
+    function updateCountdown() {
+        const currentDate = new Date();
+        const timeDifference = targetDate - currentDate;
+
+        if (timeDifference <= 0) {
+        // The countdown has expired
+        document.querySelector(".timer").innerHTML = "Countdown expired!";
+        } else {
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        const countdownText = `<div class="number">${days}</div> <div class="text">days</div> 
+                                <div class="number">${hours}</div> <div class="text">hours</div>
+                                <div class="number">${minutes}</div> <div class="text">minutes</div>
+                                <div class="number">${seconds}</div> <div class="text">seconds</div>`;
+        document.querySelector(".timer").innerHTML = countdownText;
+        }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    
+    //Auto animate
+    var counter = 0;
+    var newInterval = setInterval(function() {
+        var changewait = document.querySelector('.gift-guide-banner > a');
+        if (!changewait) {
+            if (counter++ >= 25) {
+                clearInterval(newInterval);
+            }
+            return;
+        }
+
+        clearInterval(newInterval);
+        
+    let intervalId;
+    let lastRandomIndex = -1;
+
+    function addHoverState() {
+        const listItems = document.querySelectorAll('.gift-guide-banner > a');
+        if (listItems.length === 0) return;
+
+        let randomIndex;
+        do {
+        randomIndex = Math.floor(Math.random() * listItems.length);
+        } while (randomIndex === lastRandomIndex); 
+        lastRandomIndex = randomIndex;
+
+        const randomElement = listItems[randomIndex];
+        randomElement.classList.add("hover-state");
+
+        setTimeout(() => {
+            randomElement.classList.remove("hover-state");
+        }, 1000);
+    }
+
+    function startInterval() {
+        intervalId = setInterval(addHoverState, 2000);
+    }
+
+    function stopInterval() {
+        clearInterval(intervalId);
+        addHoverState(); 
+    }
+
+    startInterval();
+
+    const list = document.querySelector('.gift-guide-banner');
+        list.addEventListener('mouseenter', stopInterval);
+        list.addEventListener('mouseleave', startInterval);
+    }, 2000);    
+
+</script>
+
+{% schema %}
+    {
+        "name": "Gift Guide 2024",
+        "class": "gift-guide-2024",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "header",
+                "content": "Countdown Settings"               
+            },
+            {
+                "type": "text",
+                "id": "countdown",
+                "label": "Countdown",
+                "default": "2023, 11, 24, 23, 59, 59",
+                "info": "Set the target date and time for the countdown (YYYY, MM-1, DD, HH, MM, SS)",
+                "placeholder": "2023, 11, 24, 23, 59, 59"
+            }
+        
+        ],
+        "blocks":[
+            {
+                "type": "persona",
+                "name": "Persona",
+                "settings":[
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "Image"                        
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "image_hover",
+                        "label": "Image Hover"
+                    },
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    },
+                    {
+                        "type": "url",
+                        "id": "image_link",
+                        "label": "Link"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Image Settings"                     
+                    },
+                    {
+                        "type": "range",
+                        "id": "image_width",
+                        "min": 10,
+                        "max": 100,
+                        "step": 1,
+                        "unit": "%",
+                        "label": "Image width",
+                        "default":10                  
+                    },
+                    {
+                        "type": "range",
+                        "id": "position_top",
+                        "min": 1,
+                        "max": 100,
+                        "step": 1,
+                        "unit": "%",
+                        "label": "Top",
+                        "default":1                  
+                    },
+                    {
+                        "type": "range",
+                        "id": "position_left",
+                        "min": 1,
+                        "max": 100,
+                        "step": 1,
+                        "unit": "%",
+                        "label": "Left",
+                        "default":1                  
+                    }
+                ]
+                
+            },
+            {
+                "type": "persona_add",
+                "name": "Persona Add",
+                "settings":[                  
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "Image"                        
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "image_hover",
+                        "label": "Image Hover"
+                    },    
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    },
+                    {
+                        "type": "url",
+                        "id": "image_link",
+                        "label": "Link"
+                    },                
+                    {
+                        "type": "header",
+                        "content": "Image Settings"                     
+                    },
+                    {
+                        "type": "range",
+                        "id": "image_width",
+                        "min": 5,
+                        "max": 100,
+                        "step": 1,
+                        "unit": "%",
+                        "label": "Image width",
+                        "default":10                  
+                    },                   
+                    {
+                        "type": "text",
+                        "id": "position_top",
+                        "label": "Top"             
+                    },
+                    {
+                        "type": "text",
+                        "id": "position_left",
+                        "label": "Left"            
+                    }
+                ]
+                
+            }
+        ],
+        "presets": [ 
+            {
+              "name": "Gift Guide 2024",
+              "category": "Custom"             
+            }
+        ]
+    }
+{% endschema %}

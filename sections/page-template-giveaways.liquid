@@ -1,0 +1,34 @@
+{{ 'giveaway.css' | asset_url | stylesheet_tag }}
+{% layout none %}
+
+<div class="section-giveaways d-flex">
+    <div class="image-wrapper">
+      {%
+        render 'image-element-fileurl',
+        image: 'mothersdaygiveaway_content.jpg',
+        alt: block.settings.image.alt,
+        stretch_width: true,
+        additional_classes: 'small--hide' 
+      %}
+      {%
+        render 'image-element-fileurl',
+        image: 'mothersdaygiveaway-content-mobile.jpg',
+        alt: block.settings.image.alt,
+        stretch_width: true,
+        additional_classes: 'medium-up--hide' 
+      %}
+
+      <p class="back-top medium-up--hide sweet-sans-pro"><a href="#shopify-section-template--17825618100439__main">BACK TO TOP</a></p>
+    </div>
+    <div class="content-wrapper">
+      {%
+        render 'image-element-fileurl',
+        image: 'FlowerVase.png',
+        alt: block.settings.image.alt,
+        stretch_width: true,
+        additional_classes: 'medium-up--hide flower-base' 
+      %}
+      {{page.content}}
+    </div>
+</div>
+

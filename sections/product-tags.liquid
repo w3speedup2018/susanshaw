@@ -1,0 +1,91 @@
+ {%- comment -%}Get Product Tags{%- endcomment -%}
+ {%- assign product_tags = product.tags | join: ',' -%}
+
+ {%- assign has_custom_tag = false -%}
+ {% if product_tags contains 'earring of the month' %}
+   {% for tag in product.tags %}    
+     {% if tag contains 'earring of the month' %}       
+         {%- assign has_custom_label = true -%}
+         {%- assign custom_tag = tag -%}       
+     {% endif %}
+   {% endfor %}
+ {% endif %} 
+ {%- if has_custom_label == true -%}
+   <div class="earring-month">
+     <div class="ribbon">
+      {{'Earring of the Month'}}
+     </div>
+     <div class="ribbon-right"></div>
+   </div>
+ {%- endif -%}
+
+{%- comment -%}Check for Product colors{%- endcomment -%}
+{%- assign has_more_colors = false -%}
+{% if product_tags contains 'color' %}
+ {% for tag in product.tags %}  
+   {% if tag contains 'color' %}       
+       {%- assign has_more_colors = true -%}
+       {%- assign custom_tag = tag -%}       
+   {% endif %}
+ {% endfor %}
+{% endif %} 
+{%- if has_more_colors == true -%}
+    <div class="more-colors">
+        <div class="ribbon-left"></div>
+        <div class="ribbon">{{ 'More Colors' }}</div>
+        <div class="ribbon-right"></div>
+    </div>
+{%- endif -%}
+
+{%- comment -%}Check for Product colors{%- endcomment -%}
+{%- assign has_best_seller = false -%}
+{% if product_tags contains 'week_best_seller' %}
+ {% for tag in product.tags %}  
+   {% if tag contains 'week_best_seller' %}       
+       {%- assign has_best_seller = true -%}
+       {%- assign custom_tag = tag -%}       
+   {% endif %}
+ {% endfor %}
+{% endif %} 
+{%- if has_best_seller == true -%}
+    <div class="best-seller">
+        <div class="ribbon-left"></div>
+        <div class="ribbon">{{ "This Week's Best Seller" }}</div>
+        <div class="ribbon-right"></div>
+    </div>
+{%- endif -%}
+ 
+
+
+ {% assign option_index = 0 %}
+ {% for option in product.options %}
+    {% capture downcased_option %}{{ option | downcase }}{% endcapture %}
+    {% assign option_index = forloop.index0 %}
+    {% assign how_many_options = 0 %}
+    {% assign current_options = '' %}
+    {% for variant in product.variants %}
+        {% assign current_option = variant.options[option_index] %}
+        {% unless current_options contains current_option %}
+        {% if how_many_options > 0 %}
+            {% assign current_options = current_options | join: '|' | append: '|' %}
+        {% endif %}
+        {% assign current_options = current_options | append: current_option %}
+        {% assign current_options = current_options | split: '|' | sort %}
+        {% assign how_many_options = current_options | size %}
+        {% endunless %}
+    {% endfor %}
+    
+    {%- comment -%}
+    
+    {% unless option == "Title" %}
+        {% if current_options.size > 2 and option contains "Color"%}
+           <div class="more-colors">
+               <div class="ribbon-left"></div>
+               <div class="ribbon">{{ 'More Colors' }}</div>
+               <div class="ribbon-right"></div>
+           </div>
+        {% endif %}
+    {% endunless %}
+    {%- endcomment -%}
+ {% endfor %}
+

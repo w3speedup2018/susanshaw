@@ -1,0 +1,29 @@
+<div id="shopify-block-8776485610325655785" class="shopify-block shopify-app-block">
+    <link data-href="https://cdn.shopify.com/extensions/b595195d-21e6-4d1d-85db-60bd2e3d4241/hiko-social-login-21/assets/style.css" rel="stylesheet">
+    <script src="https://cdn.shopify.com/extensions/b595195d-21e6-4d1d-85db-60bd2e3d4241/hiko-social-login-21/assets/app.js?"></script>
+    <!-- BEGIN app snippet: powered-by -->
+    <style>#login-credit{overflow:hidden;text-align:left;font-family:HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;font-weight:100;font-size:11px!important;display: none }#login-credit-inner{color:#888;mix-blend-mode:difference;opacity: 0.6 }#login-credit a{color:inherit;text-decoration:none}#smiley{color:#aaa;font-size:14px}@media screen and (max-width:750px){#login-credit{font-size:9px!important}#smiley{font-size:12px!important}}</style>
+    <div id="login-credit">
+        <div id="login-credit-inner">
+            <a target="_blank" href="https://apps.shopify.com/simple-social-login"></a>by <a target="_blank" href="https://hiko.link/">HIKO&nbsp;<span id="smiley">&#9786;</span></a>
+        </div>
+    </div>
+    <!-- END app snippet -->
+</div>
+<script>
+    setTimeout(function() {
+        var hero_media = document.querySelectorAll('video[preload="none"]');
+        hero_media.forEach(function(val) {
+    		val.load();
+    		val.muted="muted";
+            val.play();
+        });
+    });
+    var lazyPoster = document.querySelectorAll("video[data-poster]");
+	lazyPoster.forEach(function(a) {
+		if (a.dataset.poster != null && a.dataset.poster != "") {
+			a.poster = a.dataset.poster;
+			delete a.dataset.poster;
+		}
+	});
+</script>

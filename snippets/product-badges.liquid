@@ -1,0 +1,56 @@
+ {%- comment -%}Get Product Badges{%- endcomment -%}
+ {%- assign product_tags = product.tags | join: ',' -%}
+
+{%- assign has_greatgift = false -%}
+{%- assign has_heirloomstyle = false -%}
+{%- assign has_jboxstaple = false -%}
+{%- assign has_susansfavorite = false -%}
+{%- assign has_trending = false -%}
+
+{% for tag in product.tags %}    
+    {% if tag contains 'greatgift' %}       
+        {%- assign has_greatgift = true -%}         
+    {% endif %}
+    {% if tag contains 'heirloomstyle' %}       
+        {%- assign has_heirloomstyle = true -%}         
+    {% endif %}
+    {% if tag contains 'jboxstaple' %}       
+        {%- assign has_jboxstaple = true -%}         
+    {% endif %}
+    {% if tag contains 'susansfavorite' %}       
+        {%- assign has_susansfavorite = true -%}         
+    {% endif %}
+    {% if tag == 'trending' %}       
+        {%- assign has_trending = true -%}         
+    {% endif %}
+{% endfor %}
+
+
+{%- if has_greatgift == true -%}
+    <div class="product--badges">
+        {% render 'icon-greatgift' %}
+    </div>
+{%- endif -%} 
+{%- if has_heirloomstyle == true -%}
+    <div class="product--badges">
+        {% render 'icon-heirloomstyle' %}
+    </div>
+{%- endif -%}
+{%- if has_jboxstaple == true -%}
+    <div class="product--badges">
+        {% render 'icon-jboxstaple' %}
+    </div>
+{%- endif -%}
+{%- if has_susansfavorite == true -%}
+    <div class="product--badges">
+        {% render 'icon-susansfavorite' %}
+    </div>
+{%- endif -%}
+{%- if has_trending == true -%}
+    <div class="product--badges">
+        {% render 'icon-trending' %}
+    </div>
+{%- endif -%}
+
+ 
+

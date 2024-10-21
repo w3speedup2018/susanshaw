@@ -1,0 +1,36 @@
+<section class="section">
+  <div
+    class="
+      container
+      content
+      page
+    "
+  >
+  {% render 'collection-list-menu' %}
+
+    {%
+      render 'page-multi-column',
+      content: page.content,
+    %}
+  </div>
+
+</section>
+<style>
+  #shopify-section-{{section.id}}{
+    background:var(--colorWhite);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    top: 80px;
+    z-index: 99;
+    background: #fff;
+    position: sticky;      
+  }
+  @media screen and (max-width: 1024px) {
+    #shopify-section-{{section.id}}{
+      top:124px;
+      overflow-x: scroll;
+      margin-bottom:30px;
+    }
+  }
+</style>

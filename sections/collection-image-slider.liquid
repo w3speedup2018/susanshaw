@@ -1,0 +1,288 @@
+<script
+  type="application/json"
+  data-section-type="featured-collection giftguide"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{% assign collection = collections[section.settings.collection] %}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: section.id
+  %}
+  #shopify-section-{{section.id}}{
+    background:{{section.settings.background_color}};
+  }
+  #shopify-section-{{section.id}} .container{
+    margin:0 20px;
+  }
+  #shopify-section-{{section.id}} h1{
+    margin:20px 0;
+  }
+  #shopify-section-{{section.id}} .product-wrap .cta-wrapper{
+    width: 100%;
+    top: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  #shopify-section-{{section.id}} .product-wrap .product-info__caption .product-details{
+    justify-content:center !important;
+  }
+  #shopify-section-{{section.id}} .product-wrap .cta-wrapper:hover .global-button{
+    display:block !important; 
+  }
+  #shopify-section-{{section.id}} .product-wrap .cta-wrapper .global-button{
+    display:none;
+    padding:15px 30px; 
+  }
+    
+    
+
+  
+{% endstyle %}
+
+{% if collection == blank %}
+  {%- assign section_onboarding = true -%}
+  {% comment %} Assign product length to be selected limit for onboarding {% endcomment %}
+  {%- assign products_length = section.settings.products_limit | plus: 0 -%}
+{% else %}
+  {%- assign section_onboarding = false -%}
+{% endif %}
+ 
+<div class="{{ section.settings.css_class }}">
+  <section class="section">
+    <div class="container">
+      <div class="one-whole column center homepage_content">
+        <div class="featured-header">
+          {% if section.settings.title != blank %}
+            <a href="{{ collection.url }}" class="my-20 is-flex is-align-center is-justify-{{section.settings.text_align}}">
+              <h1 class="title text-left">{{ section.settings.title | escape }}</h1>
+            </a>
+            
+          {% endif %}
+        </div>
+
+        {% if section.settings.description != blank %}
+          <h4 class="featured-collection__description rte is-flex is-align-center is-justify-{{section.settings.text_align}}">
+            {{ section.settings.description }}
+          </h4> 
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+
+    <div class="js-product-slider homepage-product-slider full-width--true {% if section.settings.products_per  == 2 or section.settings.products_per  == 4 or section.settings.products_per  == 6 %}even-num-slides{% endif %} featured-collection__products">
+      {% if section_onboarding == false %}
+            {%- for block in section.blocks -%}
+                {%- if block.type == "image" -%}
+                    {{block.settings.title}}
+                {%- endif -%}
+            {%- endfor -%}
+
+        {% if collection.products.size > 0 %}
+          {%
+            render 'product-slider',
+            limit: section.settings.products_limit,
+            products: collection.products,
+            collection: collection,
+            per_slide: section.settings.products_per,
+            featured_collection: collection
+          %}
+        {% endif %}
+      {% else %}
+        <div class="slider-gallery products-slider products-length-{{ products_length }}"
+             data-products-per-slide="{{ section.settings.products_per }}"
+             data-products-limit="{{ section.settings.products_limit }}"
+             data-products-available="{{ products_length }}">
+             {%- for block in section.blocks -%}
+                {%- if block.type == "image" -%}                    
+
+                    {%- assign per_slide_num = section.settings.products_per -%}
+
+                    <div class="gallery-cell thumbnail {% if products_length > per_slide_num %}visible-{{ section.settings.products_per }}{% else %}visible-{{ products_length }}{% endif %}">
+                      <div class="product-wrap relative">
+                       
+                        <div class="relative product_image">                          
+                          {%
+                            render 'image-element',
+                            image: block.settings.image,
+                            alt: block.settings.image.alt,
+                            stretch_width: true                      
+                          %}                            
+                        </div>    
+                                         
+                      </div>
+                    </div>
+
+                {%- endif -%}
+            {%- endfor -%}
+
+
+        </div>
+      {% endif %}
+    </div>
+  
+</div>
+
+
+{% schema %}
+{
+  "name": "Collection - Image Slider",
+  "class": "shopify-section--featured-collection shopify-section---image-slider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"       
+        },
+        {
+          "value": "center",
+          "label": "Center"        
+        },
+        {
+          "value": "end",
+          "label": "Right"      
+        }
+      ]
+    },   
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "radio",
+      "id": "collection_style",
+      "label": "Collection layout",
+      "default": "slider",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "products_per",
+      "label": "Products per row",
+      "min": 2,
+      "max": 7,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Limit products",
+      "min": 2,
+      "max": 50,
+      "step": 1,
+      "default": 21
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "800 x 800px recommended"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Collection - Image Slider",
+      "category": "Collection"
+    }
+  ],
+  "templates": [
+    "404",
+    "article",
+    "blog",
+    "cart",
+    "collection",
+    "list-collections",
+    "index",
+    "page",
+    "product",
+    "search"
+  ]
+}
+
+{% endschema %}

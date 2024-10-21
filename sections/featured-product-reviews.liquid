@@ -1,0 +1,243 @@
+{% comment %}
+** Featured products - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% if section.settings.wide_display == false %}
+    <div class="container">
+      <div class="sixteen columns">
+  {% endif %}
+
+
+  <section class="section">
+    <div class="container">
+      <div class="one-whole column center homepage_content"> 
+        <div class="featured-header">
+          {% if section.settings.title != blank %}          
+            <h1 class="title text-center byronrr-medium">{{ section.settings.title | escape }}</h1>       
+          {% endif %}
+        </div>
+ 
+        {% if section.settings.collection_description and collection.description != blank %}
+          <div class="featured-collection__description rte">
+            {{ collection.description }}
+          </div> 
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+{% if section.blocks.size > 0 %}
+
+<div class="js-product-slider homepage-product-slider full-width--true  {% if section.settings.products_per  == 2 or section.settings.products_per  == 4 or section.settings.products_per  == 6 %}even-num-slides{% endif %} featured-collection__products">
+    
+
+
+    <div class="slider-gallery js-product-review-slider products-length-{{ products_length }} transparentBackground--{{settings.slideshow_button_style}}"
+      data-products-per-slide="{{ visible_products }}"
+      data-products-limit="{{ limit }}"
+      data-products-available="{{ products_length }}">
+
+      {% for block in section.blocks %}
+        {%- assign product = all_products[block.settings.featured_product] -%}        
+
+        {%- assign collection_handles = product.collections | map: 'handle' -%}
+        
+          <div class="gallery-cell          
+                      thumbnail
+                      visible-{{ visible_products }}
+                      quick-shop-style--{{ settings.quick_shop_style }}
+                      product__details
+                      thumbnail-hover-enabled--{{ settings.thumbnail_hover_enabled }}
+                      product-{{ product.id }}">
+            <div class="product-wrap {% if settings.collection_secondary_image != blank and product.media[1] != blank %}has-secondary-media-swap{% endif %} is-flex is-justify-space-between">
+              <div class="image-wrapper one-half">
+                  <div class="relative product_image">
+                    <a href="{{ product.url }}">
+                      <div class="image__container">
+                        {% if settings.quick_shop_enabled and settings.quick_shop_style == 'inline' and product.selected_or_first_available_variant.image %}
+                          {%
+                            render 'image-element',
+                            image: product.selected_or_first_available_variant.image,
+                            alt: alt_text,
+                            object_fit: settings.align_height,
+                            max_height: settings.collection_height,
+                          %}
+                        {% else %}
+                          {%
+                            render 'image-element',
+                            image: product.featured_media.preview_image,
+                            alt: alt_text,
+                            object_fit: settings.align_height,
+                            max_height: settings.collection_height,
+                          %}
+                        {% endif %}
+                        {% if settings.collection_secondary_image != blank and product.media[1] != blank %}
+                          {% if product.media[1].media_type == 'external_video' %}
+                            <div class="external-video__container lazyload lazypreload secondary-media-hidden video-on-hover">
+                              <div class="youtube-wrapper" data-youtube-video>
+                                {{ product.media[1] | external_video_tag }}
+                              </div>
+                            </div>
+                          {% elsif product.media[1].media_type == 'video' %}
+                            <div class="video__container lazyload lazypreload secondary-media-hidden video-on-hover" data-html5-video>
+                              {{ product.media[1] | video_tag: controls: false }}
+                            </div>
+                          {% else %}
+                            {% render 'image-element',
+                                    image: product.media[1].preview_image,
+                                    alt: alt_text,
+                                    additional_classes: 'secondary secondary-media-hidden'
+                            %}
+                          {% endif %}
+                        {% endif %}
+                      </div>
+                    </a>
+        
+                    {%
+                      render 'product-details',
+                      product: product,
+                      collection: collection,
+                      collection_handles: collection_handles,
+                    %}
+        
+                    {% if settings.quick_shop_style == 'inline' %}
+                      {%
+                        render 'collection-swatch',
+                        product: product
+                      %}
+                    {% endif %}
+                  </div>
+                  
+                    <h4>
+                      <a class="product-info__caption sweet-sans-pro-medium {% if settings.thumbnail_hover_enabled %}hidden{% endif %}" href="{{ product.url | within: collection }}">
+                        {{ product.title }}
+                      </a>
+                    </h4>
+                  
+              </div>         
+              <div class="reviews-wrapper one-half">
+            
+               {%- comment -%}
+                <div id="stamped-reviews-widget" data-widget-type="single" data-full="true" data-product-ids="{{product.id}}" data-min-length="50"></div>
+               {%- endcomment -%}
+        
+                <div class="review-content">
+                  {% if block.settings.title != blank %}
+                    <div class="title">{{block.settings.title}}</div>
+                  {% endif %}
+                 {%- if block.settings.product_review  != blank -%}
+                    <p class="review small--hide">&quot;{{block.settings.product_review | truncatewords: 36, '...'}}&quot;</p>
+                    <p class="review medium-up--hide">&quot;{{block.settings.product_review | truncatewords: 16, '...'}}&quot;</p>
+                 {%- endif -%}
+                {% if block.settings.person != blank %}
+                    <div class="name sweet-sans-pro-medium text-transform">&#8212;{{block.settings.person}}</div>
+                {% endif %}
+                  
+                </div>
+                <!-- Stamped - Begin Star Rating Badge -->
+                <span class="stamped-product-reviews-Badgebadge stamped-main-badge" 
+                data-id="{{product.id}}" 
+                data-product-sku="{{ product.handle }}" 
+                data-product-title="{{product.title}}" 
+                data-product-type="{{product.type}}" 
+                style="display: block;">
+                {{product.metafields.stamped.badge}}
+                </span>
+                <!-- Stamped - End Star Rating Badge -->
+            
+          
+              </div> 
+            </div>
+          
+          </div> 
+      
+
+
+      {% endfor %}
+
+    
+    </div>
+</div>  
+{% endif %}
+
+{% if section.settings.wide_display == false %}
+    </div>
+  </div>
+{% endif %}
+
+<style>
+   #shopify-section-{{section.id}}{
+    background:{{section.settings.background_color}};
+  }
+
+</style>
+{% schema %}
+{
+  "name": "Featured Product Reviews",
+  "class": "featured-product-reviews",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "wide_display",
+      "label": "Wide display",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"     
+    }
+   
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "featured_product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "product_review",
+          "label": "Review"         
+        },
+        {
+          "type": "text",
+          "id": "person",
+          "label": "Name"
+        } 
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Featured Product Reviews",
+    "category": "Product",
+    "settings": {
+    },
+    "blocks": [
+      {
+        "type": "product"
+      },
+      {
+        "type": "product"
+      }
+    ]
+  }]
+}
+{% endschema %}

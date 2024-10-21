@@ -1,0 +1,146 @@
+<a name="pagecontent" id="pagecontent"></a>
+
+<div class="sixteen columns page clearfix centered">
+  <div class="gifting-inner">
+    <h1 class="page-title title ">Get Gifting</h1>
+    <p>We'll help you shop!</p>
+  </div>
+  <div class="gifting-options">
+    <a href="/pages/gifting-quiz" class="gift-tile">
+      <div class="img-wrapper">
+        <img src="https://cdn.shopify.com/s/files/1/3098/4704/files/quizbutton.png?v=1635777929" class="icon-img">
+      </div>
+      <p class="gift-title">GIFT QUIZ</p>
+      <p class="gift-desc">Answer 4 simple questions about the person you’re shopping for and get dynamic suggestions.</p>
+    </a>
+    <a href="/pages//gift-guide-2021" class="gift-tile">
+      <div class="img-wrapper">
+        <img src="https://cdn.shopify.com/s/files/1/3098/4704/files/guidebutton.png?v=1635777928" class="icon-img">
+      </div>
+      <p class="gift-title">GIFT GUIDE</p>
+      <p class="gift-desc">Explore the gift guide with suggestions based on your recipient’s relationship and&nbsp;style.</p>
+    </a>
+  </div>
+  <div>
+    {% include 'page-multi-column', content: page.content %}
+  </div>
+</div>
+
+<style>
+  .centered{
+   text-align: center; 
+    margin-bottom: 40px;
+  }
+  
+  
+  .page-title{
+   margin-bottom: 0px; 
+  }
+  
+  .gifting-inner p{
+   font-size: 18px; 
+  }
+  
+  a.gift-tile:hover .img-wrapper{
+   background: #9CB6D2; 
+  }
+  
+  .img-wrapper{
+   border-radius: 999px;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto 15px auto;
+    padding: 10px;
+    background: #f7fafa ;
+  }
+  
+  .gift-title{
+   margin-bottom: 5px;
+    font-size: 24px;
+  }
+  
+  .gifting-options{
+   display: flex;
+    max-width: 680px;
+    margin: 40px auto 20px auto;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .gift-tile{
+   width: 50%;
+   max-width: 300px;
+   padding: 10px;
+  }
+  
+  
+  /*navigation hiding 
+  a.mobile_nav {
+    display : none !important;
+  }
+
+
+  div.newsletter_section {
+    display : none;
+  }
+
+  #header .swym-wishlist{
+    display : none !important;
+  }
+
+  div.nav {
+    display : none;
+  }
+
+  span.animate_search {
+    display : none;
+  }
+  ul.left {
+    display : none;
+  }
+
+  ul.menu.right{
+    display : none;
+  }
+  
+  #header .icon-search{
+     display : none !important;
+  }
+*/
+
+  @media(max-width: 480px){
+ 
+    
+    .gift-title{
+      font-size: 18px;
+    } 
+    
+    .gift-tile{
+     padding: 10px 0; 
+    }
+
+    .gift-tile:nth-of-type(1){
+		padding-right: 10px;
+    }
+
+    .gift-tile:nth-of-type(2){
+		padding-left: 10px;
+    }
+    
+      .img-wrapper{
+      border-radius: 999px;
+       height: 140px;
+       width: 140px;
+      }
+    
+    .gift-desc{
+     font-size: 13px; 
+    }
+
+    .centered{
+      min-height: 70vh;
+    }
+
+  }
+</style>

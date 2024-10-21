@@ -1,0 +1,246 @@
+<script
+  type="application/json"
+  data-section-type="collection-list"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{%- assign id = section.id -%}
+
+{% comment %} Content settings {% endcomment %}
+{%- assign title = section.settings.heading | escape -%}
+{%- assign blocks = section.blocks -%}
+{% comment %} End content settings {% endcomment %}
+
+{% comment %} Advanced {% endcomment %}
+{%- assign css_class = section.settings.css_class -%}
+{%- assign custom_css = section.settings.custom_css -%}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: custom_css,
+    id: id
+  %}
+{% endstyle %}
+
+{% if blocks.size > 0 %}
+  <section class="section {{ css_class }}">
+    <div class="page-width is-flex">
+      {% if title != blank %}
+      <div class="title-wrapper is-flex">
+        <h4 class="title is-flex">{{ title }}</h4>   
+        <hr />
+      </div>
+      {% endif %}    
+
+      <div class="list-collections-wrapper">
+        <div class="description freight-text-pro">
+          {{section.settings.description}}
+        </div>
+         {% for block in blocks %}           
+            {%- assign image = block.settings.image -%}        
+            {%- assign image_hover = block.settings.image_hover -%} 
+            <a class="item item-{{block.settings.title | handleize}} is-flex" href="{{block.settings.collection_link}}">
+              <h1>{{ block.settings.title}}</h1>
+              {% if image != blank %}
+                    {%- assign width = image.width | divided_by: 2.25 -%}
+                    <div class="image__container">
+                      {%
+                        render 'image-element',
+                        image: image.src,
+                        alt: image.alt,
+                        object_fit: true,
+                        max_height: 114
+                      %}
+                      {%
+                        render 'image-element',
+                        image: image_hover.src,
+                        alt: image_hover.alt,
+                        object_fit: true,
+                        max_height: 114,
+                        additional_classes: 'image-hover'
+
+                      %}
+                    </div>
+              {% endif %}
+            
+            </a>
+          {% endfor %}
+      </div>
+      
+    </div>
+  </section>
+{% endif %}
+<script>
+  var counter = 0;
+  var newInterval = setInterval(function() {
+      var changewait = document.querySelector('.list-collections-wrapper a');
+      if (!changewait) {
+          if (counter++ >= 25) {
+              clearInterval(newInterval);
+          }
+          return;
+      }
+
+      clearInterval(newInterval);
+      
+  let intervalId;
+  let lastRandomIndex = -1;
+
+  function addHoverState() {
+    const listItems = document.querySelectorAll('.list-collections-wrapper a');
+    if (listItems.length === 0) return;
+
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * listItems.length);
+    } while (randomIndex === lastRandomIndex); 
+    lastRandomIndex = randomIndex;
+
+    const randomElement = listItems[randomIndex];
+    randomElement.classList.add("hover-state");
+
+    setTimeout(() => {
+      randomElement.classList.remove("hover-state");
+    }, 1250);
+  }
+
+  function startInterval() {
+    intervalId = setInterval(addHoverState, 1750);
+  }
+
+  function stopInterval() {
+    clearInterval(intervalId);
+    addHoverState(); 
+  }
+
+  startInterval();
+
+  const list = document.querySelector('.list-collections-wrapper');
+  list.addEventListener('mouseenter', stopInterval);
+  list.addEventListener('mouseleave', startInterval);
+  }, 250);    
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var galleryElements = document.querySelectorAll('.list-collections-wrapper a');
+
+    galleryElements.forEach(function(galleryElement) {
+      galleryElement.addEventListener('click', function(event) {
+        event.stopPropagation();
+        console.log("Collection link was clicked!");
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          send_to: ['G-RT7CZWR9GS', 'G-WX88FVTSY4'],
+          event: 'convrsn_experiment_click',
+          convrsn_click_url: galleryElement.href
+        });
+      });
+    });
+  });
+</script>
+<style>
+  #shopify-section-{{section.id}}{
+    background:{{section.settings.bgcolor}};
+  }
+  .hover-state  h1{
+      color: #9CB6D2 !important;
+      font-style: italic !important;
+  }                
+  .hover-state .custom_primry{
+      opacity: 0 !important;
+      display: none !important;
+  }
+  .hover-state .custom_primry.image-hover{
+      opacity: 1 !important;             
+      display: block !important;
+      transition: all 1s ease-in-out 0 !important;                    
+  }
+  .shopify-section--collection-text .list-collections-wrapper .item.hover-state,.shopify-section--collection-text .list-collections-wrapper .item:hover{
+    text-decoration: underline;
+    text-decoration-color: #9CB6D2;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 5px;
+  }
+</style>
+{% schema %}
+{
+  "name": "Collection Text",
+  "class": "shopify-section--collection-text",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "Background"    
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Collection list"
+    },  
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "collection_link",
+          "label": "URL"
+        },        
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_hover",
+          "label": "Image - Hover"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Collection Text",
+    "category": "Collection",
+    "blocks": [
+      {
+        "type": "collection"
+      },
+      {
+        "type": "collection"
+      },
+      {
+        "type": "collection"
+      }
+    ]
+  }]
+}
+
+{% endschema %}

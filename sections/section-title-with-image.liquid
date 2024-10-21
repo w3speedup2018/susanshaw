@@ -1,0 +1,159 @@
+
+<section class="section-title {% if section.settings.custom_class != blank%}{{section.settings.custom_class}}{% endif %}">
+    <div class="page-width">
+        <div class="title-wrapper is-flex is-align-center is-justify-space-between">
+            {%- if section.settings.image_left != blank -%}
+                <span class="image-left small--hide">
+                    {%
+                    render 'image-element',
+                    image: section.settings.image_left,
+                    alt: block.settings.image_left.alt,
+                    object_fit: true,
+                    max_height: "100px"                   
+                    %}
+                </span>
+            {%- endif -%}
+            
+            <div class="titles">               
+                <h1>{{section.settings.title}}</h1>
+                {%- if section.settings.sub_title != blank -%}
+                <h3 class="byronrr-medium">{{section.settings.sub_title}}</h3>
+                {%- endif -%}                
+            </div>
+            {%- if section.settings.image_right != blank -%}
+            <span class="image-right small--hide">
+                {%
+                render 'image-element',
+                image: section.settings.image_right,
+                alt: block.settings.image_right.alt,
+                object_fit: true,
+                max_height: "100px"              
+                %}
+            </span>
+            {% endif%}
+        </div>
+       
+        
+    </div>
+</section>
+
+<style>
+    #shopify-section-{{ section.id }} .page-width{
+        max-width: 1200px;
+        padding-top: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .title-wrapper{
+        padding: 0;
+    }
+    #shopify-section-{{ section.id }} h1{
+        margin:20px 0;                   
+    }
+    #shopify-section-{{ section.id }} h3{       
+        margin:0;       
+        font-size: 35px;
+        text-align: {{section.settings.text_align}};       
+    }
+    #shopify-section-{{ section.id }} img{
+        max-height: 160px;
+    }
+ 
+   @media screen and (max-width: 768px) {
+        #shopify-section-{{ section.id }} .title-wrapper{
+            padding: 30px 0;
+            justify-content: center;
+        }
+        #shopify-section-{{ section.id }} img{
+                max-width: 55px;
+            }
+        #shopify-section-{{ section.id }} h1{       
+            margin:0 0 10px 0;
+            font-size: 32px;       
+            text-align: {{section.settings.text_align}};
+        }
+        #shopify-section-{{ section.id }} h3{       
+            margin:0;    
+            font-size: 25px;   
+            text-align: {{section.settings.text_align}};       
+        }
+   }
+
+</style>
+{% schema %}
+    {
+        "name": "Title with Image",
+        "class": "section-title",
+        "settings": [            
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },   
+            {
+                "type": "text",
+                "id": "sub_title",
+                "label": "Subtitle"
+            },        
+            {
+                "type": "range",
+                "id": "font_size",
+                "label": "Font Size - Desktop",
+                "unit": "px",
+                "min": 12,
+                "max": 100,
+                "step": 1,
+                "default": 12
+            },
+            {
+                "type": "range",
+                "id": "font_size_m",
+                "label": "Font Size - Mobile",
+                "unit": "px",
+                "min": 12,
+                "max": 100,
+                "step": 1,
+                "default": 12
+            },
+            {
+                "type": "select",
+                "id": "text_align",
+                "label": "Text Align",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "Left"                        
+                    },
+                    {
+                        "value": "right",
+                        "label": "Right"                        
+                    },
+                    {
+                        "value": "center",
+                        "label": "Center"                        
+                    }
+                ]
+            },
+            {
+                "type": "image_picker",
+                "id": "image_left",
+                "label": "Image - Left"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_right",
+                "label": "Image - Right"
+            },
+            {
+                "type": "text",
+                "id": "custom_class",
+                "label": "Custom Class"
+            }
+        ],        
+        "presets": [
+            {
+            "name": "Title with Image",
+            "category": "Custom"
+            }
+        ]
+    }
+{% endschema %}

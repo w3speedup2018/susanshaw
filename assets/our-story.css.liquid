@@ -1,0 +1,634 @@
+@media screen and (max-width:768px) {
+    .shopify-section--our-story{
+        overflow-x: hidden;
+     }
+}
+.shopify-section--our-story .h1{
+    font-weight: 500;
+} 
+
+/*  About Susan */
+.about-susan{
+    background:var(--colorClassicNavy);
+}
+.about-susan .page-width{
+    flex-direction: column-reverse;
+}
+.about-susan .image{
+    flex-direction: column-reverse; 
+}
+.about-susan .image1{
+    max-width: 90%;
+    margin-top: 40px;
+    
+}
+.about-susan .image2{  
+    width: 37%;
+    top: 20px;
+    right: 15px;
+}
+.about-susan .image2,
+.about-susan .image3,
+.about-susan .image4{
+    position: absolute;
+
+}
+
+.about-susan .copy{
+    padding:0 30px 30px 30px;
+    text-align: center;
+}
+@media screen and (max-width:768px) {
+    .about-susan .h1{      
+        padding:0 20px;
+    }
+    .about-susan .image3{
+        width: 25%;
+        bottom: 19%;
+        left: -4%;
+    }
+    .about-susan .image4{
+        width: 20%;
+        bottom: 18%;
+        right: 2%;
+    }
+}
+
+@media screen and (min-width:769px) {
+    .about-susan .page-width,
+    .about-susan .image{
+        flex-direction: row;
+    }
+    .about-susan .copy,
+    .about-susan .image{
+        flex:0 0 50%;
+    }
+    .about-susan .copy{
+        padding: 30px 50px 0 0%;
+        text-align: right;
+        max-width: 31%;
+        margin-left: 18%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .about-susan .h1{      
+        font-size: 2.4vw;
+    }
+    .about-susan .text{      
+        font-size: 0.85vw;
+    }
+    .about-susan .image1{
+        position: relative;
+        top: 10%;
+        left: 0;
+        margin-left: 0;
+        flex: 0 0 60%;
+        
+    }
+    .about-susan .image2{
+        position: absolute;       
+        right: 10%;
+        flex: 0 0 50%;
+        width: 18%;
+    
+    }   
+    .about-susan .image3{
+        width: 15%;
+        top: 30%;
+        left: -1%; 
+    }
+    .about-susan .image4{
+        width: 10%;
+        right: 16%;
+        bottom: 5%
+    }
+}
+@media screen and (min-width:769px) and (max-width:1024px) {
+    .about-susan .h1{      
+        font-size: 3vw;
+    }
+    .about-susan .copy{
+      
+    }
+}
+@media screen and (min-width:1025px) and (max-width:1199px) {
+    .about-susan .h1{      
+        font-size: 50px;
+    }
+    .about-susan .copy{       
+        max-width: 32%;
+        margin-left: 15%;
+    }
+}
+@media screen and (min-width:1921px) {
+    .about-susan .h1{      
+        font-size: 64px;
+    }
+    .about-susan .copy{       
+        max-width: 32%;
+        margin-left: 15%;
+    }
+}
+
+/*  Featured Copy */
+.featured-copy{
+   
+}
+.featured-copy .h1,
+.featured-copy h2{   
+    color:var(--colorClassicNavy);
+}
+.featured-copy .h1{
+    margin-top: 0;
+    font-size: 45px;
+}
+.featured-copy h2{
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+@media screen and (min-width:769px) {
+    .featured-copy{
+        padding:100px 20px;
+    }
+    .featured-copy h2{
+        font-size: 48px;
+    }
+    .featured-copy .h1{
+        margin:0;
+        font-size: 90px !important;
+        font-weight: 600 !important;      
+    }
+}
+
+/*  Snapshot */
+.susan-snapshot{
+    background:var(--colorClassicNavy);
+    padding: 20px 10px;
+}
+.susan-snapshot h1.italic{
+    font-size: 45px;
+}
+.susan-snapshot .certified-traveler{
+    position: absolute;
+    width: 61px;
+    right: 0%;
+    top: 30%;
+}
+.susan-snapshot h1,
+.susan-snapshot h2{
+    margin:0 20px 0 0;
+
+}
+.susan-snapshot .desc{
+    font-family: var(--byronrr-medium);
+    font-size: 28px;
+    text-align: center;
+}
+
+.susan-snapshot .swipe-slider{    
+    margin: 30px 0;
+    height:260px;   
+}   
+.susan-snapshot .swipe-slider .card{
+    background: #efebdf;
+    max-width: 550px;
+}
+
+.swipe-slider img{
+    height:250px !important;   
+    width: 100%;  
+    object-fit: cover;
+    border: 5px solid #efebdf;
+}
+/*
+.swipe-slider img.image_contain{    
+    object-fit: contain;
+}
+.swipe-slider img.image_cover{    
+    object-fit: cover;
+}
+*/
+
+.swipe-slider .swiper-button-prev,
+.swipe-slider .swiper-button-next{
+    width: 40px;
+    height: 40px;
+}
+
+.swipe-slider .card span:nth-of-type(2) {
+    font-family: var(--byronrr-medium);
+    font-size: 16px;
+}   
+
+@media screen and (max-width:768px) {
+    .susan-snapshot .page-width{
+        padding: 0 10px;
+    }
+    .susan-snapshot .desc{        
+        font-size: 13px;        
+    }
+   
+   .swipe-slider .swiper-slide.swiper-slide-active:hover .back .h1{
+        font-size: 24px;
+        margin: 0;
+    }
+    
+}
+@media screen and (min-width:769px) {
+    .susan-snapshot{
+        background:var(--colorClassicNavy);
+        padding:20px 20px 50px 20px;
+    }
+    .susan-snapshot h1.italic{
+        font-size: 75px;
+    }
+    .susan-snapshot .certified-traveler{    
+        width: 150px;
+        right: 8%;
+        top: auto;
+    }
+    .susan-snapshot h1,
+    .susan-snapshot h2{
+        margin:0 20px 0 0;
+    
+    }
+    .susan-snapshot .swipe-slider{    
+        width:95%;
+        height:750px;
+        margin:3% auto;
+    }   
+    .swipe-slider img{
+        width: 100%;
+        height: 700px !important;         
+        border: 15px solid #efebdf;     
+    }
+
+    .swipe-slider .swiper-button-prev,
+    .swipe-slider .swiper-button-next{
+        width: 60px;
+        height: 60px;
+    }
+    .swipe-slider .back{       
+        border: 15px solid #efebdf;
+        padding: 20px 30px;
+        font-size: 18px;
+    }
+    .swipe-slider .swiper-slide.swiper-slide-active:hover .back .h1{
+        margin-bottom: 30px;
+    }    
+    .swipe-slider .card span:nth-of-type(2){      
+        font-size: 30px;
+    }
+}
+
+/* flip the pane when hovered */
+.swiper-slide-active:hover .card, .swiper-slider.hover .card,
+.happy-family .galleries .gallery:hover > .card{
+    transform: rotateY(180deg);
+}
+/* flip speed goes here */
+.card,
+.happy-family .galleries .gallery .image-element__wrap{
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}  
+
+/* hide back of pane during swap */
+.swipe-slider .swiper-slide.swiper-slide-active:hover .back,
+.happy-family .galleries .gallery:hover .back{
+    opacity: 1;   
+    color: #000;
+}
+
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+.back {
+    display: flex;
+    align-items: center;
+	transform: rotateY(180deg);
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    padding: 10px;
+    margin: 0;
+    background-color:var(--colorFrenchBlue);
+    color: white;
+    opacity:0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+    box-sizing: border-box;  
+    border: 5px solid #efebdf;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.swipe-slider .swiper-slide:not(.swiper-slide-active){
+    opacity: 0.9;
+   /* filter: grayscale( 100% );
+    -webkit-filter: grayscale( 100% ); */
+}
+.swipe-slider .swiper-slide:not(.swiper-slide-active) img{
+    object-fit: cover !important;
+}
+
+ 
+.swipe-slider .card span:nth-of-type(1){
+    font-family: var( --sweet-sans-pro-medium);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after{
+    display: none !important;
+}
+
+.swipe-slider .swiper-button-prev:hover svg path,
+.swipe-slider .swiper-button-next:hover svg path{
+    fill: var(--colorFrenchBlue);
+
+}
+
+/*  What We Made */
+.what-we-made .image-element__wrap{ 
+    flex: 0 0 60%;
+    margin-top:-10%
+    
+}
+
+.what-we-made img::selection,
+.what-we-made h1::selection{
+    background: transparent!important;
+} 
+.what-we-made .content{
+    flex: 0 0 40%;
+    position: relative;
+}
+.what-we-made .content .h1{
+    margin-top: 0;
+    color:var(--colorClassicNavy);
+}
+.what-we-made .story-24k{
+    position: absolute;
+    width: 65%;
+    top: 29%;
+    left: -22%;
+}
+.what-we-made .story-silver{
+    position: absolute;
+    top: 46%;
+    left: -24%;
+}
+.what-we-made .story-hand-made{
+    position: absolute;
+    top: 70%;
+    left: -31%;
+}
+
+@media screen and (max-width:768px) {
+    .what-we-made{
+        padding-bottom: 30px;
+    }
+    .what-we-made  .h1{
+        margin-bottom: 0;
+    }
+    .what-we-made .image-element__wrap:nth-of-type(1){
+        margin: 0 0 0 -18%;
+        flex: 0 0 75%;    
+    }
+    .what-we-made .content{
+        flex: 0 0 60%;
+        margin: 19% 0 0 3%;
+    }
+}
+
+/* Happy Family */
+.happy-family{
+    padding:20px 20px 30px 20px;
+    background:var(--colorFrenchBlue);    
+}
+.happy-family .page-width{
+    padding: 0;    
+}
+.happy-family h1.italic{
+    font-size: 75px;
+}
+.happy-family h1,
+.happy-family h2{
+    margin:0 20px 0 0;
+
+}
+.happy-family .galleries{
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0 30px 0;   
+    overflow-x: hidden;
+}
+.happy-family .gallery{
+    position: relative;
+}
+.happy-family .galleries .gallery-1{
+    flex: 0 0 50%;   
+}
+.happy-family .galleries .gallery-1 .back {
+	transform: rotateY(180deg);
+    backface-visibility: hidden;    
+    width: 100%;
+    height:100%;
+    background-size: 100%;
+    padding: 0 15% 10% 24%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+    background:var(--colorFrenchBlue) url('{{"story-fam_1_hover.png" | file_url}}') no-repeat;
+    background-size: 100%;
+    color: white;
+    opacity:0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+    box-sizing: border-box;  
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+}
+.happy-family .galleries .gallery-2{
+    flex: 0 0 50%;
+    display: flex;
+    flex-wrap: wrap;   
+}
+.happy-family .galleries .gallery-2 .image-element__wrap:nth-of-type(1),
+.happy-family .galleries .gallery-2 .image-element__wrap:nth-of-type(2){
+    flex: 0 0 50%;
+    padding: 0 10px;
+}
+.happy-family .galleries .gallery-3{
+    flex: 0 0 58%;
+    padding: 0;
+}
+.happy-family .galleries .gallery-4{
+    flex: 0 0 32%;
+    margin-top: 30px;
+    margin-right: 0;
+}
+
+.happy-family .instagram-ribbon{
+    position: absolute;
+    width: 40%;
+    margin-top:-3%;
+    right: -20px;
+}
+@media screen and (max-width:768px) {
+    .happy-family .galleries{
+        flex-wrap: wrap;
+    }
+    .happy-family h1.italic{
+        font-size: 45px;
+        margin-bottom: 10px;
+    }
+    .happy-family .galleries .gallery-2 .image-element__wrap:nth-of-type(3){
+        flex: 0 0 90%;       
+        margin-top: 10px;
+    }
+    .happy-family .galleries .gallery-4 .image-element__wrap:nth-of-type(1){
+        margin-bottom: 10px;
+
+    }
+
+}
+@media screen and (min-width:769px){
+    .happy-family .instagram-ribbon{       
+        width: 20%;
+    }
+    .happy-family .galleries .gallery-1{
+        flex: 0 0 30%;
+        margin-left: -7%;
+        padding: 0 10px;
+    }
+    .happy-family .galleries .gallery-2{
+        flex: 0 0 32%;        
+        padding: 0 10px;
+    }
+    .happy-family .galleries .gallery-2 .image-element__wrap:nth-of-type(1),
+    .happy-family .galleries .gallery-2 .image-element__wrap:nth-of-type(2){
+        flex: 0 0 50%;
+        padding: 0 10px;
+    }
+    .happy-family .galleries .gallery-2 .image-element__wrap:nth-of-type(3){
+        flex: 0 0 100%;
+        padding: 20px 10px 0 10px;
+    }
+    .happy-family .galleries .gallery-3{
+        flex: 0 0 33%;
+        padding: 0 10px;
+    }
+    .happy-family .galleries .gallery-4{
+        flex: 0 0 15%;
+        padding: 0 10px;
+        margin-right: -4%;
+        margin-top:-5%;
+    }
+}
+
+/* Susan HQ */
+.susan-hq{
+    padding:50px 0;
+}
+.susan-hq .hq-title{
+    position: absolute;
+    width: 29%;
+    left: 36%;
+    top: 9%;  
+}
+.susan-hq .hq-wtree{
+    flex:0 0 60%;    
+}
+.susan-hq .hq-wtree svg:hover .cls-2{
+    fill: #a8bd7e;
+}
+.susan-hq .hq-wtree svg:hover .cls-3{
+    fill: #9cb6d2;
+}
+.hq-titles{
+    display: none;
+}
+.susan-hq .hq-wtree:hover  .hq-titles{
+    display: block !important;
+} 
+
+.susan-hq .shop-local{
+    flex:0 0 40%;    
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.susan-hq .shop-local .h1{
+    margin:0;
+    font-size: 90px;
+    font-weight: 600 !important;
+    color:var(--colorClassicNavy);
+}
+.susan-hq .shop-local .h3{
+    font-weight: 600;
+    padding:0 20px;
+}
+.susan-hq .shop-local .cta{
+    margin-top: 30px;
+}
+
+.susan-jewelry-box{
+    background: var(--colorClassicNavy);
+    padding:30px 0;
+    margin-bottom:30px;
+
+}
+
+@media screen and (max-width:768px) {
+    .susan-jewelry-box {
+        padding:10px 0;
+    }
+    
+    .susan-jewelry-box h1{
+        font-size: 32px;
+    }
+
+    .susan-hq .hq-title{     
+        position: absolute;
+        width: 47%;
+        left: 52%;
+        top: 3%;
+    }
+    .susan-hq .page-width{
+        flex-direction: column;
+    }
+    .susan-hq .shop-local{
+        padding: 0;
+    }
+    .susan-hq .h1 {   
+        margin-top: 20px !important;    
+        font-size: 45px !important;
+    }
+    .susan-hq .shop-local .h3{      
+        padding:0;
+    }
+}

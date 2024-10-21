@@ -1,0 +1,481 @@
+
+
+{%- comment -%}
+
+-get block size
+-divide by 3
+-show the blocks evenly
+{%- endcomment -%}
+
+
+{%- comment -%} Assign Images Evenly {%- endcomment -%}
+
+{%- for block in section.blocks -%}  
+  {%- capture block_size -%} {{ forloop.length | times: 1}} {%- endcapture -%}        
+{% endfor %}
+
+
+  {%- capture column1_html -%}
+    {%- for block in section.blocks -%} 
+      {%- assign index = forloop.index -%}
+      {%- assign length = forloop.length -%}   
+
+      {%- liquid
+        assign block_items = block_size | divided_by: 3  
+        assign block_items2=  block_items | times: 2
+        assign block_items3 =  block_items2 | plus: 1       
+      -%}    
+
+      {%- capture image_html -%}    
+        <div class="image-wrapper">              
+          {%
+            render 'image-element',
+            image: block.settings.image, 
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image'
+          %}   
+        </div>   
+      {%- endcapture -%}   
+
+
+      {%- capture video_html -%}
+      <div class="image-wrapper">
+        <video width="100%"  muted playsinline autoplay loop preload="none"> 
+          <source src="{{ block.settings.video_text | file_url}}" type="video/mp4">    
+        Your browser does not support the video tag.
+        </video>
+      </div>
+      {%- endcapture -%}      
+    
+      
+      {%- if index <= block_items -%}
+          {%- case block.type -%}
+            {%- when "title" -%}
+              {{image_html}}
+            {%- else -%}              
+              {{video_html}}
+          {%- endcase -%}  
+      {%- endif -%}
+
+
+
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- capture column2_html -%}
+    {%- for block in section.blocks -%} 
+      {%- assign index = forloop.index -%}
+      {%- assign length = forloop.length -%}    
+
+      {%- liquid
+        assign block_items = block_size | divided_by: 3  
+        assign block_items2=  block_items | times: 2
+        assign block_items3 =  block_items2 | plus: 1       
+      -%} 
+      
+
+      {%- capture image_html -%}    
+        <div class="image-wrapper">              
+          {%
+            render 'image-element',
+            image: block.settings.image, 
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image'
+          %}   
+        </div>   
+      {%- endcapture -%}   
+
+
+      {%- capture video_html -%}
+      <div class="image-wrapper">
+        <video width="100%"  muted playsinline autoplay loop preload="none"> 
+          <source src="{{ block.settings.video_text | file_url}}" type="video/mp4">    
+        Your browser does not support the video tag.
+        </video>
+      </div>
+      {%- endcapture -%}      
+    
+
+
+      {%- if index > block_items and index <= block_items2-%}
+        {%- case block.type -%}
+          {%- when "title" -%}
+            {{image_html}}
+          {%- else -%}            
+            {{video_html}}
+        {%- endcase -%}  
+      {%- endif -%}
+
+    {%- endfor -%}
+  {%- endcapture -%}
+
+
+  {%- capture column3_html -%}
+    {%- for block in section.blocks -%} 
+      {%- assign index = forloop.index -%}
+      {%- assign length = forloop.length -%}
+
+      {%- liquid
+        assign block_items = block_size | divided_by: 3  
+        assign block_items2=  block_items | times: 2
+        assign block_items3 =  block_items2 | plus: 1       
+      -%}       
+
+      {%- capture image_html -%}    
+        <div class="image-wrapper">              
+          {%
+            render 'image-element',
+            image: block.settings.image, 
+            alt: block.settings.image.alt,
+            additional_classes: 'marquee__image'
+          %}   
+        </div>   
+      {%- endcapture -%}   
+
+
+      {%- capture video_html -%}
+      <div class="image-wrapper">
+        <video width="100%"  muted playsinline autoplay loop preload="none"> 
+          <source src="{{ block.settings.video_text | file_url}}" type="video/mp4">    
+        Your browser does not support the video tag.
+        </video>
+      </div>
+      {%- endcapture -%}      
+    
+
+
+
+      {%- if index > block_items3 and index != length -%}
+        {%- case block.type -%}
+          {%- when "title" -%}
+            {{image_html}}
+          {%- else -%}            
+            {{video_html}}
+        {%- endcase -%}  
+      {%- endif -%}
+      
+    {%- endfor -%}
+  {%- endcapture -%}
+
+
+<div class="parent container w-100">
+  <div class="coin-1">&nbsp;</div>
+  <div class="coin-2">&nbsp;</div>
+  <div class="coin-3">&nbsp;</div>
+ 
+
+  <div class="marquee-block d-flex is-justify-space-between is-align-center">
+      <div class="marquee">
+        {{column1_html}}
+        {{column1_html}}        
+      </div>
+      <div class="marquee reverse">
+          {{column2_html}}
+          {{column2_html}}   
+      </div>
+      <div class="marquee random small--hide">
+        {{column3_html}}
+        {{column3_html}}          
+      </div>     
+  </div>
+  
+</div>
+
+
+<style>
+  #shopify-section-{{section.id}} .container {
+      overflow:hidden;
+      text-align:center;     
+      height:300px;
+      margin: 30px auto;
+      overflow: hidden;
+      position: relative;
+      box-sizing: border-box;
+      padding:0;
+  }
+  
+  #shopify-section-{{section.id}} .container .coin-1{
+      position: absolute;
+      background-image:url("{{ 'coin-napoleon.svg' | file_url }}"); 
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: -10% center;
+      width: 80px;
+      height: 80px;
+      z-index: 1;
+      top: 50%;
+      left: -5%;
+  }
+  #shopify-section-{{section.id}} .container .coin-2{
+      position: absolute;
+      background-image:url("{{ 'coin-queen.svg' | file_url }}");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: -10% center;
+      width: 80px;
+      height: 80px;
+      z-index: 1;
+      top: 10%;
+      right: 40%;
+  }
+  #shopify-section-{{section.id}} .container .coin-3{
+      position: absolute;
+      background-image:url("{{ 'coin-metal.svg' | file_url }}");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: -10% center;
+      width: 105px;
+      height: 105px;
+      z-index: 1;
+      bottom: -5%;
+      right: -2%;
+  }
+  
+  #shopify-section-{{section.id}} .marquee-block{
+      display:flex;
+      width:100%;
+      height: calc(500px * {{block_size | times: 2 }});
+      pointer-events:none;
+      z-index: 0;     
+  }
+  #shopify-section-{{section.id}} .marquee {
+      display: flex;
+      flex-direction: column;
+      flex:0 0 50%;
+      height:100%;
+      pointer-events:auto;
+      top: 50px;     
+      animation: marqueeTop 50s linear infinite;      
+      position: relative;
+      box-sizing: border-box;  
+      z-index: 0;
+      pointer-events: none
+  }  
+  
+  #shopify-section-{{section.id}} .marquee {       
+      animation: marqueeTop 40s linear infinite;
+  }
+  #shopify-section-{{section.id}} .marquee.reverse{
+      animation: marqueeBottom 50s linear infinite;
+  }
+  #shopify-section-{{section.id}} .marquee.random{
+      animation: marqueeRandom 40s linear infinite;
+  }  
+  #shopify-section-{{section.id}} .marquee .image-wrapper{
+    padding: 10px;
+    transition: all .2s ease-out;
+  }
+  
+  
+  /* Make it move! */
+  @keyframes marqueeTop{
+    0% {
+      top: 0;
+    }
+    100% {
+      top: -2000px;
+    }
+  }
+  @keyframes marqueeBottom{
+    0% { 
+      top: -2000px; 
+    }
+    100% {
+      top: 350px; 
+    }
+  }
+  @keyframes marqueeRandom{
+    0% {
+      top: -400px;
+    }
+    100% {
+      top: -2000px;
+    }
+  }
+  
+  
+  @media screen and (min-width: 769px){
+    #shopify-section-{{section.id}} .container .coin-1{   
+      width: 150px;
+      height: 150px;   
+      top: 45%;
+      left: 28%;
+    }
+    #shopify-section-{{section.id}} .container .coin-2{   
+      width: 150px;
+      height: 150px;   
+      top: 1%;
+      left: 62%;
+    }
+    #shopify-section-{{section.id}} .container .coin-3{   
+      width: 170px;
+      height: 170px;   
+      bottom: 0%;
+      left: 61%;
+    }
+    #shopify-section-{{section.id}} .marquee {
+      display: flex;
+      flex-direction: column;
+      flex:0 0 33.3333%;
+      height:100%;
+      top: 10px;
+      position: relative;
+      box-sizing: border-box;   
+    }
+
+    #shopify-section-{{section.id}} .marquee:hover,
+    #shopify-section-{{section.id}} .marquee.reverse:hover,
+    #shopify-section-{{section.id}} .marquee.random:hover{
+        animation-play-state: paused;
+    }
+    #shopify-section-{{section.id}} .container {
+      overflow:hidden;
+      text-align:center;      
+      height:800px;
+      margin: 30px auto;
+      overflow: hidden;
+      position: relative;
+      box-sizing: border-box;
+      padding:0;
+    }
+  
+    
+    #shopify-section-{{section.id}} .marquee-block{          
+        height: calc(500px * {{block_size | times: 2 }});
+        pointer-events:auto;
+    }
+    #shopify-section-{{section.id}} .marquee {    
+      pointer-events:auto;
+        top: 50px;     
+        animation: marqueeTop 50s linear infinite;
+    }
+    #shopify-section-{{section.id}} .marquee.reverse{
+        animation: marqueeBottom 50s linear infinite;
+    }
+    #shopify-section-{{section.id}} .marquee.random{
+        animation: marqueeRandom 50s linear infinite;
+    }
+    #shopify-section-{{section.id}} .marquee.random{
+        display: flex;
+    }    
+    /* Make it move! */
+    @keyframes marqueeTop{
+      0% {
+        top: 0;
+      }
+      100% {
+        top: calc(-500px * {{block_size | divided_by:2 }});
+      }
+    }
+    @keyframes marqueeBottom{
+      0% { 
+        top: calc(-500px * {{block_size | divided_by: 2}});
+      }
+      100% {
+        top: 0; 
+      }
+    }
+    @keyframes marqueeRandom{
+      0% {
+        top: 0;
+      }
+      100% {
+        top: calc(-500px * {{block_size | divided_by: 2}});
+      }
+    }
+  }
+  </style>
+
+ 
+{% schema %}
+{
+  "name": "Marquee Vertical Slider",
+  "class": "shopify-section--collection-list collection--edit shopify-section--marquee-vertical",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "Background",
+      "default": "#223346"     
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "video_1",
+      "label": "Video 1 Filename"      
+    },
+    {
+      "type": "text",
+      "id": "video_2",
+      "label": "Video 2 Filename"      
+    },
+    {
+      "type": "text",
+      "id": "video_3",
+      "label": "Video 3 Filename"      
+    },
+    {
+      "type": "text",
+      "id": "video_4",
+      "label": "Video 4 Filename"      
+    }
+  ], 
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+        },      
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Images"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+            "type": "text",
+            "id": "video_text",
+            "label": "Video Filename"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Vertical Slider",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "title"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

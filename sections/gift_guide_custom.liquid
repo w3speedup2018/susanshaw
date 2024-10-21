@@ -1,0 +1,133 @@
+{% render 'owlCarousels' %}
+
+<h2 class="title">{{ section.settings.title }}</h2>
+<div class="featured_text container">  
+<section class="gg_main">
+  <div class="gg_box">
+    {% for block in section.blocks %}
+    {% assign settingCollection = block.settings.slider %}
+    {% if block.settings.slider_pos == 'right' %}
+
+    <div class="gg_inner">
+      <div class="gg_left"> 
+        <img src="{{ block.settings.image | img_url :'original' }}">
+      </div>
+      <div class="gg_right">
+        <div class="gg_slider">
+          <div class="owl-carousel owl-theme gg_slide_show">
+              {% for pro in collections[settingCollection].products %}
+             <div class="item">
+             <a href ="{{ pro.url }}">
+                <img class="owl-lazy" data-src="{{ pro.featured_image | img_url :'original' }}">
+                <p>{{ pro.title }}</p>
+               <span>{{ pro.price | money }}</span>
+               </a>
+             </div> 
+            {% endfor %}
+            </div>
+          {% if block.settings.lable != blank %}
+          <div class="last_btn">
+          <a class="gift_btn" href="{{ collections[settingCollection].url }}">{{ block.settings.lable }}</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% else %}
+   <div class="gg_inner">
+      <div class="gg_right">
+        <div class="gg_slider">
+          <div class="owl-carousel owl-theme gg_slide_show">
+             {% for pro in collections[settingCollection].products %}
+             <div class="item">
+                <a href ="{{ pro.url }}">
+                <img class="owl-lazy" data-src="{{ pro.featured_image | img_url :'original' }}">
+                <p>{{ pro.title }}</p>
+                <span>{{ pro.price | money }}</span>
+               </a>
+             </div> 
+            {% endfor %}
+            </div>
+          {% if block.settings.lable != blank %}
+          <div class="last_btn">
+          <a class="gift_btn" href="{{ collections[settingCollection].url }}">{{ block.settings.lable }}</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="gg_left">
+        <img src="{{ block.settings.image | img_url :'original' }}">
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+  </div>
+</section>
+<style>
+  .featured_text{
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .gg_inner .gg_left,
+    .gg_inner .gg_right{
+      width: 100% !important;
+    }
+    .gg_box .gg_inner{
+      padding: 1em 0 !important;
+    }
+</style>
+
+{% schema %}
+  {
+    "name": "Slider Products",
+    "class": "gift_guide_custom",
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Slider Products",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "slider",
+            "label": "Select Collection"
+          },
+         {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+         {
+            "type": "text",
+            "id": "lable",
+            "label": "Button Label"
+          },
+         {
+          "type": "select",
+          "id": "slider_pos",
+          "label": "Slider position",
+          "default": "right",
+          "options": [
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            }
+            
+         ]
+        }
+          
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Slider Products"
+      }
+    ]
+  }
+{% endschema %}

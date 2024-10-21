@@ -1,0 +1,316 @@
+{
+  "sections": {
+    "sidebar": {
+      "type": "product-sidebar",
+      "disabled": true,
+      "settings": {
+        "toggle": false
+      }
+    },
+    "main": {
+      "type": "product-template",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "27518577-7991-43cf-8eb5-e27e5a6db242": {
+          "type": "tags",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "display_savings": true
+          }
+        },
+        "c18745fe-ee6a-4d82-be1f-dc2d7f2127a3": {
+          "type": "shopify:\/\/apps\/stamped-reviews\/blocks\/star-rating-badge\/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "use_metafields": true,
+            "sku_tagtype": "sku",
+            "is_featured_product": false,
+            "featured_product_handle": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "delivery_enable": true,
+            "delivery_estimate": "<p>Expected to ship by August 5, 2024. <\/p>",
+            "delivery_copy": "<p>Shop <a href=\"https:\/\/susanshaw.com\/collections\/ready-to-ship\" title=\"https:\/\/susanshaw.com\/collections\/ready-to-ship\">Guaranteed Gifts<\/a> Delivered by Dec 24.<\/p>",
+            "delivery_tag": "ships_aug_5",
+            "benefits_copy_1": "Complimentary Box & Pouch for Every Piece",
+            "benefits_image_1": "shopify:\/\/shop_images\/ss-box.png",
+            "benefits_copy_2": "Perfect to Layer, Mix or Match!",
+            "benefits_image_2": "shopify:\/\/shop_images\/JewelryBox_1.png",
+            "benefits_copy_3": "Handmade to Order in Texas",
+            "benefits_image_3": "shopify:\/\/shop_images\/ss-select.png",
+            "benefits_copy_4": "Ethically Sourced Materials",
+            "benefits_image_4": "shopify:\/\/shop_images\/ss-glass.png"
+          }
+        },
+        "7afcff32-a395-437d-b4dc-5fcaf085164f": {
+          "type": "sku",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {}
+        },
+        "87f717fb-90d2-4ed7-b42d-5e63ac13cdd6": {
+          "type": "tabs",
+          "settings": {
+            "show_product_description": false,
+            "show_tabs_below_product_gallery": false,
+            "tab_heading_1": "Details",
+            "tab_text_1": "",
+            "tab_heading_2": "Wearing It",
+            "tab_text_2": "{{ product.metafields.pdp.wearing_it | metafield_tag }}",
+            "tab_heading_3": "Care",
+            "tab_text_3": "<p>Keep your pieces in premium condition by following a few simple tips. To clean jewelry, use a dry, clean cloth. Do not wear while swimming or showering. When not being worn, keep your pieces in our free keepsize pouch that comes with every piece!<\/p>",
+            "tab_heading_4": "Shipping",
+            "tab_text_4": "<p>• Free shipping on all orders $125+<br\/>• All pieces are handmade to order <br\/>• Easy exchanges or refunds within 15 days<\/p><p><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "27518577-7991-43cf-8eb5-e27e5a6db242",
+        "price",
+        "c18745fe-ee6a-4d82-be1f-dc2d7f2127a3",
+        "description",
+        "form",
+        "7afcff32-a395-437d-b4dc-5fcaf085164f",
+        "share",
+        "87f717fb-90d2-4ed7-b42d-5e63ac13cdd6"
+      ],
+      "settings": {
+        "product_breadcrumb": true,
+        "media_position": "is-flex-row",
+        "set_product_height": false,
+        "product_height": 650,
+        "video_looping": true,
+        "product_thumbs": true,
+        "gallery_arrows": true,
+        "enable_product_lightbox": false,
+        "activate_zoom": false,
+        "slideshow_speed": 0,
+        "slideshow_animation": "slide",
+        "thumbnail_position": "left",
+        "enable_thumbnail_slider": true
+      }
+    },
+    "cf49f0b4-083d-4cfe-9323-4cd370b4f4ba": {
+      "type": "divider",
+      "settings": {
+        "divider_spacing": 0,
+        "divider_border": false,
+        "css_class": "hr-divider small--hide",
+        "custom_css": ""
+      }
+    },
+    "16632493506b572ede": {
+      "type": "five-icons",
+      "settings": {
+        "bgcolor": "#263344"
+      }
+    },
+    "3d12ee11-cbe4-4dc7-a4f3-9a17ddc6d022": {
+      "type": "product-collection",
+      "blocks": {
+        "template--16684950454487__3d12ee11-cbe4-4dc7-a4f3-9a17ddc6d022-1672268943511bc5c9-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-placeholder.jpg",
+            "image_crop": "none",
+            "subtitle": "",
+            "title": "Magnolia <em>Collection<\/em>",
+            "text": "<p>On a trip to New Orleans, Susan dreamt up a gold and pearl take on Louisiana’s State Flower. The Magnolia Collection is perfect for those warmer days. <\/p>",
+            "button_label": "Explore Collection",
+            "link": "#",
+            "button_label_2": "",
+            "link_2": "",
+            "bg_color": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16684950454487__3d12ee11-cbe4-4dc7-a4f3-9a17ddc6d022-1672268943511bc5c9-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "wide_display": false,
+        "bgcolor": "#9cb6d2",
+        "featured_links_per_row": "1",
+        "frontpage_text_align": "center",
+        "frontpage_image_position": "row",
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "52a6a5da-c688-4d01-ace0-3429a59320b6": {
+      "type": "featured-products-images",
+      "settings": {
+        "wide_display": true,
+        "frontpage_product_stagger": false,
+        "activate_autoplay": false,
+        "enable_product_lightbox": false,
+        "gallery_arrows": false,
+        "activate_zoom": false,
+        "slideshow_animation": "slide",
+        "display_vendor": false,
+        "enable_shopify_product_badges": false,
+        "display_savings": false,
+        "frontpage_display_description": false,
+        "product_description_position": "top",
+        "show_payment_button": true
+      }
+    },
+    "165892315922be1c8d": {
+      "type": "review-product",
+      "settings": {
+        "enable": true
+      }
+    },
+    "1719947417269658da": {
+      "type": "apps",
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_pQznQN": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "114824",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        },
+        "rebuy_personalization_engine_rebuy_widget_wycBt3": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "disabled": true,
+          "settings": {
+            "enabled": true,
+            "id": "116043",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_pQznQN",
+        "rebuy_personalization_engine_rebuy_widget_wycBt3"
+      ],
+      "settings": {}
+    },
+    "9dbf8c44-a875-48fd-aadb-f80ca6652265": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": "<div data-rebuy-id=\"114824\" data-rebuy-shopify-product-ids=\"{{ product.id }}\"><\/div>",
+        "css_class": "rebuy-recommendation",
+        "custom_css": ""
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "show_product_recommendations": true,
+        "wide_display": false,
+        "product_recommendations_style": "slider",
+        "product_recommendations_heading": "Our Customers Also Love",
+        "products_per_row": 4,
+        "recommended_products_limit": 8
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "settings": {
+        "rv_title": "Recently Viewed Items",
+        "rv_max_display": 4,
+        "rv_per": 4,
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "c43d0898-75c3-4d38-aa65-5b84f97f1f9a": {
+      "type": "divider",
+      "settings": {
+        "divider_spacing": 10,
+        "divider_border": false,
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "b14207e9-9cee-4750-9d18-f86079243a2c": {
+      "type": "image-text",
+      "blocks": {
+        "template--16684950454487__b14207e9-9cee-4750-9d18-f86079243a2c-1672238608fe16993d-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/our-jewelry.jpg",
+            "image_crop": "none",
+            "subtitle": "Our Jewelry",
+            "title": "Liveable, Lightweight and <br><em>Always Durable<\/em>",
+            "text": "<p>We only use sterling silver and 24K gold plating because they wear well and look great. We always use semi-precious gemstones, genuine freshwater pearls, hand-painted beads and built-to-last materials like Lucite and Venetian glass. Our pieces may be designed for everyday occasions, but that doesn’t mean they won’t last a lifetime.<\/p>",
+            "button_label": "LEARN MORE",
+            "link": "shopify:\/\/pages\/about-the-jewelry",
+            "button_label_2": "",
+            "link_2": "",
+            "bg_color": "rgba(0,0,0,0)",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16684950454487__b14207e9-9cee-4750-9d18-f86079243a2c-1672238608fe16993d-0"
+      ],
+      "settings": {
+        "wide_display": true,
+        "bgcolor": "#f5f3ee",
+        "featured_links_per_row": "1",
+        "frontpage_text_align": "left",
+        "frontpage_image_position": "row-reverse",
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "disabled": true,
+      "settings": {
+        "wide_display": true,
+        "display_first_name": false,
+        "display_last_name": false,
+        "newsletter_title": "Never miss another sale",
+        "newsletter_text": "",
+        "newsletter_section_text_align": "center",
+        "css_class": "",
+        "custom_css": ""
+      }
+    }
+  },
+  "order": [
+    "sidebar",
+    "main",
+    "cf49f0b4-083d-4cfe-9323-4cd370b4f4ba",
+    "16632493506b572ede",
+    "3d12ee11-cbe4-4dc7-a4f3-9a17ddc6d022",
+    "52a6a5da-c688-4d01-ace0-3429a59320b6",
+    "165892315922be1c8d",
+    "1719947417269658da",
+    "9dbf8c44-a875-48fd-aadb-f80ca6652265",
+    "recommendations",
+    "recently-viewed",
+    "c43d0898-75c3-4d38-aa65-5b84f97f1f9a",
+    "b14207e9-9cee-4750-9d18-f86079243a2c",
+    "newsletter"
+  ]
+}

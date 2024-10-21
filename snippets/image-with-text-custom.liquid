@@ -1,0 +1,25 @@
+<div class="main_new">
+  <div class="left_custom">
+      <div class="left_image">
+        <img src="{{ block.settings.left_image | img_url : 'original' }}">
+      </div>
+      <div class="left_text">
+        <div class="data_cus">
+         {{ block.settings.rigt_cont }}
+          <h1>
+          	<img src="{{ block.settings.sign_img | img_url : 'original' }}">
+          </h1>
+        </div>
+      </div>
+  </div>
+  <div class="right_custom">
+      <div class="right_text">
+        <div class="custom_testdata">
+        {{ block.settings.left_cont }}
+        </div>
+      </div>
+      <div class="right_image">
+        <img src="{{ block.settings.right_img | img_url : 'original' }}">
+      </div>
+  </div>
+</div>

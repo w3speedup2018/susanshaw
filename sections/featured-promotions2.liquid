@@ -1,0 +1,341 @@
+{% comment %}
+** Featured promotions - homepage partial **
+- Draggable section
+- Uses blocks
+{% endcomment %}
+
+{% assign featured_promos_per_row = section.settings.featured_promos_per_row | minus: 0 %}
+{% assign title_on_image = section.settings.promo_text_on_image_enabled %}
+
+{% if section.blocks.size > 0 %}
+  <div class="custom_desktop featured-promotions container full-width--{{ section.settings.featured_promos_grid }}">
+    <div  class="js-featured-promotions promo-per-row-{{ featured_promos_per_row }} clearfix"
+          data-promo-animation="{{ section.settings.featured_links_animation }}">
+        {% for block in section.blocks %}
+          <figure class="feature-section section-{{ forloop.index }} promo-{{ forloop.index }} title-overlay-{{ title_on_image }} {% if section.settings.featured_links_animation != blank %}promo-animation--true{% endif %}" {{ block.shopify_attributes }}>
+              <div class="feature-inner feature-style--{{ section.settings.feature_style }} ">
+                {% if block.settings.image != nil %}
+                  {% include 'image-element', image: block.settings.image, alt: block.settings.image.alt, stretch_width: true %}
+                {% else %}
+                  {% capture i %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+                  {{ 'collection-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--promotions' }}
+                {% endif %}
+                {% if block.settings.text != blank or block.settings.button_label != blank or block.settings.title != blank and title_on_image != blank %}
+                  <figcaption class="feature-overlay">
+                    <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}class="link-promo" data-title="{{ block.settings.title | escape }}" title="{{ block.settings.title | escape }}"></a>
+                      <div class="feature-wrap">
+                        {% if block.settings.title != blank %}
+                          <h3 class="title">{{ block.settings.title }}</h3>
+                        {% endif %}
+                        <div class="feature-details">
+                          {% if block.settings.text != blank %}
+                            <div class="description">{{ block.settings.text }}</div>
+                          {% endif %}
+
+                          {% if block.settings.button_label != blank %}
+                            <div class="button">{{ block.settings.button_label }}</div>
+                          {% endif %}
+                        </div>
+                      </div>
+                  </figcaption>
+                {% elsif block.settings.link != blank %}
+                  <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}class="link-promo" data-title="Title" title="Title"></a>
+                {% endif %}
+              </div>
+            {% if title_on_image == blank %}
+              {% if block.settings.title != blank %}
+                <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}>
+                  <h2 class="title title-below">{{ block.settings.title }}</h2>
+                </a>
+              {% endif %}
+            {% endif %}
+          </figure>
+        {% endfor %}
+    </div>
+  </div>
+  
+ {% comment %}
+  <div class="custom_mobile featured-promotions container full-width--{{ section.settings.featured_promos_grid }}">
+    <div  class="js-featured-promotions promo-per-row-{{ featured_promos_per_row }} clearfix"
+         data-promo-animation="{{ section.settings.featured_links_animation }}">
+      <div class="owl-carousel owl-theme" id ="featured_slider">
+        {% for block in section.blocks %}
+        <div class="item">
+          <figure class="feature-section section-{{ forloop.index }} promo-{{ forloop.index }} title-overlay-{{ title_on_image }} {% if section.settings.featured_links_animation != blank %}promo-animation--true{% endif %}" {{ block.shopify_attributes }}>
+            <div class="feature-inner feature-style--{{ section.settings.feature_style }} ">
+              {% if block.settings.image != nil %}
+              {% include 'image-element', image: block.settings.image, alt: block.settings.image.alt, stretch_width: true %}
+              {% else %}
+              {% capture i %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+              {{ 'collection-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--promotions' }}
+              {% endif %}
+              {% if block.settings.text != blank or block.settings.button_label != blank or block.settings.title != blank and title_on_image != blank %}
+              <figcaption class="feature-overlay">
+                <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}class="link-promo" data-title="{{ block.settings.title | escape }}" title="{{ block.settings.title | escape }}"></a>
+                <div class="feature-wrap">
+                  {% if block.settings.title != blank %}
+                  <h2 class="title">{{ block.settings.title }}</h2>
+                  {% endif %}
+                  <div class="feature-details">
+                    {% if block.settings.text != blank %}
+                    <div class="description">{{ block.settings.text }}</div>
+                    {% endif %}
+
+                    {% if block.settings.button_label != blank %}
+                    <div class="button">{{ block.settings.button_label }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+              </figcaption>
+              {% elsif block.settings.link != blank %}
+              <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}class="link-promo" data-title="Title" title="Title"></a>
+              {% endif %}
+            </div>
+            {% if title_on_image == blank %}
+            {% if block.settings.title != blank %}
+            <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}>
+              <h2 class="title title-below">{{ block.settings.title }}</h2>
+            </a>
+            {% endif %}
+            {% endif %}
+          </figure>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+ {% endcomment %}
+
+  <script type="text/javascript">
+    window.addEventListener("load", () => {  
+      console.log('slider');
+      requestIdleCallback(() => {
+        let slide_match = window.matchMedia('screen and (min-width: 799px)');
+          function productInfoSlider(e) {
+            if (e.matches) {
+              if (typeof featuredPromotions == "object") {
+                featuredPromotions.init();
+              }
+              $('.custom_desktop .js-featured-promotions.flickity-enabled').flickity('destroy');
+            } else {
+              requestIdleCallback(() => {
+                 $('.custom_desktop .js-featured-promotions').flickity({
+//                     autoPlay: 2000,
+                    wrapAround: true,
+                    pageDots: false,
+	                groupCells: 1,
+	                cellAlign: 'left'
+                  });
+              });              
+            }
+          }
+        slide_match.addListener(productInfoSlider);
+        productInfoSlider(slide_match)
+      });  
+    });
+  </script>
+  <style>
+    #shopify-section-{{ section.id }} .custom_desktop {
+      display: block;
+    }
+
+    @media only screen and (max-width: 798px) {
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4:not(.flickity-enabled) {
+        display: flex;
+        overflow-x: auto;
+      }
+      
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4:not(.flickity-enabled) .feature-section {
+        flex-shrink: 0;
+      }
+      
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4 {
+        margin-right: 0px;
+        margin-left: 0px;
+      }
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4 .feature-section {
+        width: 50%;
+        margin-left: 0px !important;
+        margin-right: 10px !important;
+      }
+      
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions button.flickity-prev-next-button.next svg .arrow,
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions button.flickity-prev-next-button.previous svg .arrow {
+        fill: #186f6f !important;
+        opacity: 1;
+      }
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .flickity-prev-next-button.previous,
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .flickity-prev-next-button.next {
+        background: transparent;
+        width: 48px;
+        padding: 0;
+        opacity: 1;
+        filter: alpha(opacity=100);
+      }
+
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions button.flickity-prev-next-button.previous svg,
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions button.flickity-prev-next-button.next svg {
+        height: 30px;
+        width: 30px;
+        border-radius: 100px;
+        background: #fff !important;
+        opacity: 1;
+        padding: 7px 0;
+      }
+
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .flickity-prev-next-button:hover, 
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions .flickity-prev-next-button:active {
+        filter: alpha(opacity=100);
+        opacity: 1;
+      }
+    }
+    
+    @media only screen and (max-width: 480px) { 
+      #shopify-section-{{ section.id }} .custom_desktop .js-featured-promotions.promo-per-row-4 .feature-section {
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+      }
+    }
+
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Featured promotions",
+  "class": "featured-promotions-section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "featured_promos_grid",
+      "label": "Wide display",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "promo_text_on_image_enabled",
+      "label": "Show title on image",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "featured_promos_per_row",
+      "label": "Promotions per row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "featured_links_animation",
+      "label": "Promotions animation",
+      "options": [
+        {
+          "value": "fadeIn",
+          "label": "Fade In"
+        },
+        {
+          "value": "fadeInUp",
+          "label": "Fade Up"
+        },
+        {
+          "value": "fadeInDown",
+          "label": "Fade Down"
+        },
+        {
+          "value": "",
+          "label": "None"
+        }
+      ],
+      "default": "fadeInDown"
+    },
+    {
+      "type": "select",
+      "id": "feature_style",
+      "label": "Promotions style",
+      "options": [
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "rounded",
+          "label": "Rounded"
+        }
+      ],
+      "default": "square"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Promotion",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "840 x 840px recommended"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Header",
+          "default": "Feature"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Promotion description details.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Featured promotions2",
+    "category": "Image",
+    "settings": {
+      "featured_promos_grid": true
+    },
+    "blocks": [
+      {
+        "type": "image",
+        "settings": {
+
+        }
+      },
+      {
+        "type": "image",
+        "settings": {
+
+        }
+      },
+      {
+        "type": "image",
+        "settings": {
+
+        }
+      }
+    ]
+  }]
+}
+
+{% endschema %}

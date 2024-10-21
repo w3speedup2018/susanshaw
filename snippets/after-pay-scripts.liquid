@@ -1,0 +1,106 @@
+<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.0.2) -->
+
+<script>
+  
+	document.addEventListener('DOMContentLoaded', function (event) {
+      // Editable fields:
+      window.afterpay_logo_theme = 'black'; // Can be 'colour', 'black' or 'white'.
+      window.afterpay_min = 0.04;
+      window.afterpay_max = 1000.00;
+
+      
+      if (document.documentElement.clientWidth < 768 || window.innerWidth < 768) {
+        window.afterpay_product_selector = '.shopify-app-block';
+      } else {
+        window.afterpay_product_selector = '.purchase-details .bnpl';
+      } 
+
+      // Overrides:
+      // var afterpay_product_selector = '.purchase-details .bnpl';
+      // var afterpay_cart_integration_enabled = true;
+      window.afterpay_cart_static_selector = '#cart_form .cart_subtotal.js-cart_subtotal';
+      // var afterpay_variable_price_fallback_selector = '#ProductPrice';
+      // var afterpay_variable_price_fallback = true; // Requires afterpay_product_selector
+      window.afterpay_show_currency_code = false;
+      window.afterpay_modal_responsive = true;
+      // var afterpay_hide_range_decimals = true;
+      // var afterpay_hide_lower_limit = false;
+      // var afterpay_hide_upper_limit = true; 
+      
+      // Non-editable fields:
+      window.afterpay_shop_currency = {{ shop.currency | json }};
+      window.afterpay_shop_money_format = {{ shop.money_format | json }};
+      window.afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+      window.afterpay_theme_name = {{ theme.name | json }};
+      window.afterpay_product = {{ product | json }};
+      window.afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+      window.afterpay_cart_total_price = {{ cart.total_price | json }};
+      window.afterpay_js_snippet_version = '1.0.2';        
+   
+      delayed('https://static.afterpay.com/shopify-afterpay-javascript.js', 'script', 100) 
+    });
+  
+    window.addEventListener('load', function (event) {
+      jQuery('.afterpay-linkpopup').click(function(){
+        jQuery('.afterpay-link-inner').trigger('click');
+      });
+    });
+</script>
+<!-- End Shopify-Afterpay JavaScript Snippet (v1.0.2) -->
+
+
+<style type="text/css">
+  afterpay-placement{
+    margin:10px 0 0 0;
+    text-align: center;
+  }
+  @media only screen and (min-width : 768px) {
+    afterpay-placement{
+      margin:-15px 0 0 0;     
+    }
+  }
+
+  afterpay-placement p.afterpay-paragraph {
+    color: inherit !important;
+    font-family: inherit !important;
+    display: block !important;
+    font-size: 14px !important;
+  }
+
+  #cart_form p.afterpay-paragraph {
+    text-align: center; 
+  }
+
+  .afterpay-instalments {
+    font-weight: bold !important;
+  }
+
+  .afterpay-link-inner { 
+    font-size: 12px;
+    margin-left: 2px;
+  }
+
+  .afterpay-logo {
+    width: 75px !important;
+    height: auto !important;
+  }
+
+  .afterpay-text2 {
+    margin-right: 1px;
+  }
+
+  @media only screen and (max-width : 768px) {
+    .afterpay-paragraph {
+      font-size: 12px;      
+    }
+
+    .afterpay-link-inner {
+      font-size: 12px;
+    }
+
+    .afterpay-logo {
+      /*                    width: 6em !important;
+      height: auto !important; */
+    }
+  }
+</style>

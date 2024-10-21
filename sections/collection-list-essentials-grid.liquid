@@ -1,0 +1,252 @@
+<script
+  type="application/json"
+  data-section-type="collection-list"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{%- assign id = section.id -%}
+
+{% comment %} Content settings {% endcomment %}
+{%- assign title = section.settings.title | escape -%}
+{%- assign description = section.settings.description -%}
+{%- assign blocks = section.blocks -%}
+{% comment %} End content settings {% endcomment %}
+
+{% comment %} Advanced {% endcomment %}
+{%- assign css_class = section.settings.css_class -%}
+{%- assign custom_css = section.settings.custom_css -%}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: custom_css,
+    id: id
+  %}
+{% endstyle %}
+
+
+
+{% if blocks.size > 0 %}
+  <section {% if title != blank %}id="{{title | handleize}}" {% endif %} class="section {{ css_class }}">
+    <div class="container"> 
+      {% if title != blank %}
+        <div class="title-wrapper one-whole column center d-flex is-justify-space-between is-align-center">
+          <h1 class="title">{{ title }}</h1>
+          <div class="description small--hide">
+              {{description}}
+          </div>          
+        </div>
+
+      {% endif %}
+
+      <div class="one-whole column">
+        <div class="list-collections-wrapper">
+          <div class="list-collections equal-columns--outside-trim is-flex is-flex-wrap">
+            {% for block in blocks %}
+              {% comment %} Content settings {% endcomment %}
+              {%- assign collection = collections[block.settings.feature_collection] -%}
+              {%- assign image = block.settings.image -%}
+              {% comment %} End content settings {% endcomment %}
+
+              {% if image %}
+                {%- assign collection_image = image -%}
+                {%- assign collection_image_alt = image.alt | escape -%}
+              {% elsif collection.image != blank %}
+                {%- assign collection_image = collection.image -%}
+                {%- assign collection_image_alt = collection.title | escape -%}
+              {% else collection.empty? == false %}
+                {%- assign collection_image = collection.products.first.featured_image -%}
+                {%- assign collection_image_alt = collection.products.first.featured_image.alt | escape -%}
+              {% endif %}
+
+              <div class="{% render 'column-width', value: section.settings.frontpage_collections_per_row %} column {% if section.settings.collection_count == blank and section.settings.frontpage_collections_title == blank %}blank{% endif %} thumbnail {% if settings.mobile_products_per_row == '1' %} medium-down--one-half small-down--one-whole {% else %} medium-down--one-half small-down--one-half {% endif %}" {{ block.shopify_attributes }}>
+                <div class="product-wrap">
+                  {% if collection_image != blank %}
+                    <div class="image__container">
+                      {%
+                        render 'image-element',
+                        image: collection_image.src,
+                        alt: collection_image_alt,
+                        object_fit: section.settings.align_height,
+                        max_height: section.settings.collection_height
+                      %}
+                    </div>
+                  {% else %}
+                    {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+                    {{ 'collection-' | append: num | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+
+                  {% if collection != blank %}
+                    <h2 class="title">
+                      <a href="{{ collection.url }}" class="hidden-product-link">
+                          {{ collection.title }}   
+                      </a>
+                    </h2>
+                  {% endif %}
+
+                  {% if settings.thumbnail_hover_enabled %}
+                    <div class="thumbnail-overlay">
+                      <a href="{{ collection.url }}" class="hidden-product-link">
+                        {% if collection != blank %}
+                          {{ collection.title }}
+                        {% else %}
+                          {{ 'homepage.onboarding.collection_title' | t }}
+                        {% endif %}
+                      </a>
+
+                      <div class="info">
+                        <div class="collection-details">
+                          <span class="title">
+                            {% if collection != blank %}
+                              {{ collection.title }}
+                            {% else %}
+                              {{ 'homepage.onboarding.collection_title' | t }}
+                            {% endif %}
+                          </span>
+                        </div>
+                        <a
+                          href="{{ collection.url }}"
+                          title="{{ collection_title }}"
+                          class="thumbnail-overlay__button global-button global-button--product-grid-text-hover"
+                        >
+                          {{ 'collections.general.view_all' | t }}
+                        </a>
+                      </div>
+                    </div>
+                  {% endif %}
+
+                 
+                  <a class="h3 collection-info__caption text-left {% if settings.thumbnail_hover_enabled %}hidden{% endif %} d-flex is-justify-space-between is-align-center" href="{{ collection.url }}">
+                    <span class="title">
+                      {% if block.settings.title != blank %}
+                        {{ block.settings.title }}
+                      {% else %}
+                        {{ collection.title }}
+                      {% endif %}
+                    </span>
+                    <span class="count sweet-sans-pro">
+                     ( {{collection.all_products_count}} )
+                    </span>
+                  </a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if section.settings.align_height == true %}
+  <style>
+    #shopify-section-{{ section.id }} .list-collections .thumbnail img {
+      max-height: {{ section.settings.collection_height }}px;
+    }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Collections - Essentials2",
+  "class": "shopify-section--collection-list collection--essentials",
+  "max_blocks": 15,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collection list"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "align_height",
+      "label": "Align height of collection images",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "collection_height",
+      "label": "Collection image height",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "default": 200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "frontpage_collections_per_row",
+      "label": "Collections per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "feature_collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Collections - Essentials2",
+    "category": "Collection",
+    "blocks": [
+      {
+        "type": "collection"
+      },
+      {
+        "type": "collection"
+      },
+      {
+        "type": "collection"
+      }
+    ]
+  }]
+}
+
+{% endschema %}

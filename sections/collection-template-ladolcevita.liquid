@@ -1,0 +1,607 @@
+<script
+  type="application/json"
+  data-section-type="collection-template"
+  data-section-id="{{ section.id }}"
+>
+</script>
+<style>
+  html {
+      scroll-behavior: smooth;
+  }
+</style>
+{%- assign filter_tree_vertical_style = shop.metafields.bc-sf-filter.settings | split: 'general":' | last | split: 'filterTreeVerticalStyle":"' | last | split: '","' | first | strip -%}
+{%- assign enable_filter_sticky_d = shop.metafields.bc-sf-filter.settings | split: 'general":' | last | split: 'stickyFilterOnDesktop":' | last | split: ',' | first | strip -%}
+{%- assign enable_filter_sticky_m = shop.metafields.bc-sf-filter.settings | split: 'general":' | last | split: 'stickyFilterOnMobile":' | last | split: ',' | first |  split: '}}' | first | strip -%}
+
+{%- assign enable_filter_tree_button_desktop_v = false -%}
+{%- if filter_tree_vertical_style == 'style-off-canvas' or filter_tree_vertical_style == 'style-expand' -%}
+  {%- assign enable_filter_tree_button_desktop_v = true -%}
+{%- endif -%}
+
+{% if collection.image %}
+  {%- assign image = collection.image -%}
+{%- elsif section.settings.image -%}
+  {%- assign image = section.settings.image -%}
+{%- else %}
+  {%- assign image = collection.products.first.featured_image -%}
+{% endif %}
+{%- assign mobile_image = section.settings.mobile_image -%}
+{%- assign background_style = section.settings.caption_content_background -%}
+{%- assign mobile_crop = 'mobile-banner--crop-' | append: section.settings.mobile_image_crop -%}
+{%- assign wide_display = section.settings.wide_display -%}
+{%- assign display_collection_title = section.settings.display_collection_title -%}
+{%- assign banner_title = collection.title -%}
+{%- assign boost_settings = shop.metafields.bc-sf-filter.settings -%}
+{%- assign boost_in_collection_search = boost_settings | split: 'enableCollectionSearch":' | last | split: ',"' | first | strip -%}
+{%- assign description_excerpt = collection.description | split: '<!-- split -->' | first -%}
+{%- assign description_full = collection.description | split: '<!-- split -->' | last -%}
+
+
+{% if section.settings.featured_collection_image %}
+  {%
+    render 'template-banner',
+    image: image,
+    mobile_image: mobile_image,
+    background_style: background_style,
+    mobile_crop: mobile_crop,
+    wide_display: wide_display,
+    banner_title: banner_title,
+    show_caption: display_collection_title
+  %}
+{% endif %}
+<section class="section">
+  {% if section.settings.featured_collection_image == blank %}
+  <a name="pagecontent" id="pagecontent"></a>
+  {% endif %}
+  <div class="container collection-{{collection.handle}}-wrapper">
+    {% paginate collection.products by section.settings.pagination_limit %}
+    <div class="one-whole column small--hide">
+      <div class="breadcrumb-collection">
+        {% if section.settings.collection_breadcrumb %}
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "item": {
+                    "@id": "{{ shop.url }}",
+                    "name": "{{ 'general.breadcrumbs.home' | t }}"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "item": {
+                    "@id": "{{ routes.collections_url }}/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}",
+                    "name": "{{ collection.title }}"
+                  }
+                }
+                {% if current_tags %}
+                  {% for tag in current_tags %}
+                    {% unless tag contains 'meta-' %}
+                      ,
+                      {
+                        "@type": "ListItem",
+                        "position": {{ forloop.index | plus: 2 }},
+                        "item": {
+                          "@id": "{{ routes.collections_url }}/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}",
+                          "name": "{{ tag }}"
+                        }
+                      }
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
+              ]
+            }
+          </script>
+        <div class="breadcrumb_text">
+          <a href="{{ routes.root_url }}" title="{{ shop.name | escape }}">
+            <span>{{ 'general.breadcrumbs.home' | t }}</span>
+          </a>
+          <span class="breadcrumb-divider">/</span>
+          <a href="{{ collection.url }}" title="{{ collection.title | escape }}" class="breadcrumb_link">
+            <span class="boost-pfs-filter-collection-header">{{ collection.title }}</span>
+          </a>
+          <span class="boost-pfs-filter-top-pagination"></span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% if section.settings.display_collection_title and section.settings.featured_collection_image == false %}
+    <div class="ldv-title-wrapper one-whole column medium-down--one-whole">
+      <h4 class="boost-pfs-filter-collection-header">
+        Our SS23 Collection is here. Inspired by a bygone era of retro style and celebrating the pursuit of leisure.
+      </h4>
+      <h1 class="boost-pfs-filter-collection-header">     
+        {%
+          render 'image-element-fileurl',
+          image: 'ldv-title.png',
+          alt: block.settings.image.alt,
+          stretch_width: true,
+          additional_classes: mobile_crop 
+        %}
+      </h1>      
+    </div>
+    <div class="blog-button d-flex is-justify-center">
+      <a class="global-button" href="/blogs/news/la-dolce-vita">READ BEHIND THE SCENES BLOG</a>
+    </div>
+    {% endif %}
+
+
+    {%- assign description_excerpt = collection.description | split: '<!-- split -->' | first -%}
+    {%- assign description_full = collection.description | split: '<!-- split -->' | last -%}
+
+    {%- comment -%}Show images to Crown Collection{%- endcomment -%}
+    {%- if collection.url contains "the-crown-collection" -%}
+      <div class="collection-image-wrapper d-md-flex w-100">
+          <div class="col-image">          
+            {% render 'image-element',
+                  image: image,
+                  alt: image.alt,
+                  stretch_width: true,
+                  progressive: true,
+                  additional_classes: mobile_crop
+            %}    
+          </div>
+          <div class="col-desc">
+            {% if collection.description != blank %}
+                <div class="rich-text__text small--hide">                   
+                  {{ collection.description }}
+                </div>
+                <div class="rich-text__text medium-up--hide">     
+                  <input type="checkbox" class="read-more-state" id="read-more" />
+                  <div class="read-more-wrap">                  
+                      <div class="read-more-target">
+                      {{ collection.description }}
+                      </div>  
+                  </div>
+                  <label for="read-more" class="read-more-trigger global-button--clear">                 
+                  </label>      
+            
+              </div>
+            {% endif %}
+          </div>
+      </div>
+    {%- else -%}           
+      
+      {% if collection.description contains "<!-- split -->" %}              
+          <div class="rich-text__text">           
+
+              {{description_excerpt}}       
+              <input type="checkbox" class="read-more-state" id="read-more" />
+              <div class="read-more-wrap">                  
+                  <div class="read-more-target">
+                  {{ description_full}}
+                  </div>  
+              </div>
+              <label for="read-more" class="read-more-trigger global-button--clear">                 
+              </label>   
+          </div>
+      {% else %}
+        <div class="rich-text__text">   
+            {{collection.description}}      
+        </div>
+      {% endif %}
+
+    {%- endif -%}
+
+
+    {% if boost_in_collection_search == 'true' %}
+      <div class="boost-pfs-in-collection-search">
+        {% render 'boost-pfs-filter-skeleton', width: 4 %}
+      </div>
+    {% endif %}
+
+   
+      {%- if enable_filter_tree_button_desktop_v  -%}
+        <div class="boost-pfs-filter-tree-desktop-button-wrapper {% if enable_filter_sticky_d  %} boost-pfs-filter-tree-desktop-button-sticky-wrapper {% endif %}">
+          <div class="boost-pfs-filter-tree-desktop-button">{%- render 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+      {%- endif -%}
+        <div class="boost-pfs-filter-tree-mobile-button">{% render 'boost-pfs-filter-skeleton', type: 'button' %}</div>
+
+        <div class="{% if section.settings.display_collection_title and section.settings.featured_collection_image == false %}one-whole column medium-down--one-whole{% else %}one-whole column{% endif %} section_select">
+          {% if collection.handle != blank and collection.products_count > 0 %}
+            <div class='boost-pfs-filter-refine-by-wrapper-h is-desktop' data-is-dektop></div>
+            {% if section.settings.collection_sort %}
+            <select aria-label="Sort by" class="sort_by boost-pfs-filter-top-sorting">
+              {% render 'boost-pfs-filter-skeleton', width: 2 %}
+            </select>
+            {% endif %}
+          {% endif %}
+        </div>
+    
+      {%- if enable_filter_tree_button_desktop_v  -%}
+        </div>
+      {%- endif -%}
+
+      <div class="one-whole column  m-filter-wrapper {% if enable_filter_sticky_d  %} boost-pfs-filter-tree-desktop-button-sticky-wrapper {% endif %}">       
+        <div class='boost-pfs-filter-refine-by-wrapper-h is-mobile' data-is-mobile></div>
+      </div>
+   
+
+    
+    {% comment %} Check to see if sidebar should be enabled {% endcomment %}
+    {%- assign sidebar = true -%}   
+    <div id="main-content-wrapper" class="content-wrapper is-flex is-flex-wrap boost-pfs-filter-wrapper">
+      <div class="boost-pfs-filter-left-col" {% if context=='product' %}data-product-sidebar{% endif %}>
+        <div class="sidebar-wrap">
+          <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">
+            {%- unless enable_filter_tree_button_desktop_v -%}
+              {% render 'boost-pfs-filter-skeleton', type: 'filter-tree' %}
+            {%- endunless -%}
+          </div>
+        </div>
+      </div>
+      <div class="boost-pfs-filter-right-col">   
+        <div class="container">
+            <div itemtype="http://schema.org/ItemList" class="boost-pfs-filter-products product-list product-list--collection is-flex is-flex-wrap equal-columns--outside-trim">
+              {% assign products_per_row = section.settings.products_per_row %}
+              
+               {%
+                  render 'product-loop-placeholder',
+                  paginate: paginate,
+                  products: products,
+                  products_per_row: products_per_row,
+                  sidebar: sidebar
+                %} 
+               
+            </div>
+        </div>
+        <div class="paginate boost-pfs-filter-bottom-pagination">
+          {% if settings.pagination_type == 'basic_pagination' %}
+          {% render 'pagination', paginate: paginate %}
+          {% endif %}
+        </div>
+        <div class="boost-pfs-filter-load-more"></div>
+
+       {%- comment -%}
+        {% if collection.description != blank %}
+        <div class="container">
+          <div class="one-whole column">
+            <div class="collection_description boost-pfs-filter-collection-description">
+              {{ collection.description }}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      
+       {%- endcomment -%}
+      </div>
+    </div>
+    {% endpaginate %}
+  </div>
+</section>
+{%- comment -%}
+<a href="#pagecontent" class="footer__back-to-top d-flex position-lg-fixed flex-center show" data-js-button-back-to-top="600">
+  <i>
+  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-theme-014" viewBox="0 0 24 24">
+  <g>
+  <path d="M11.791,21.505c-0.169,0-0.316-0.062-0.439-0.186c-0.124-0.124-0.186-0.271-0.186-0.439V4.883l-4.551,4.57
+  C6.485,9.571,6.335,9.63,6.166,9.63c-0.169,0-0.319-0.059-0.449-0.176C5.6,9.324,5.541,9.174,5.541,9.005
+  c0-0.169,0.059-0.319,0.176-0.449l5.625-5.625c0.039-0.026,0.075-0.049,0.107-0.068c0.032-0.02,0.068-0.042,0.107-0.068
+  c0.078-0.026,0.156-0.039,0.234-0.039s0.156,0.013,0.234,0.039c0.039,0.026,0.075,0.049,0.107,0.068
+  c0.032,0.02,0.068,0.042,0.107,0.068l5.625,5.625c0.117,0.13,0.176,0.28,0.176,0.449c0,0.169-0.059,0.319-0.176,0.449
+  c-0.065,0.052-0.137,0.095-0.215,0.127c-0.078,0.033-0.156,0.049-0.234,0.049s-0.156-0.016-0.234-0.049
+  c-0.078-0.032-0.15-0.075-0.215-0.127l-4.551-4.57V20.88c0,0.169-0.062,0.315-0.186,0.439
+  C12.107,21.443,11.96,21.505,11.791,21.505z"></path>
+  </g>
+  </svg>
+</i><span class="mt-4 ml-2">TOP</span>
+</a>
+{%- endcomment -%}
+
+{% comment %} Shopify-XR {% endcomment %}
+{% if product.media %}
+  <script>
+    window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)}
+    {% assign models = product.media | where: 'media_type', 'model' | json %}
+    ShopifyXR('addModels', {{ models }});
+  </script>
+{% endif %}
+
+<script defer src="https://cdn.shopify.com/shopifycloud/shopify-xr-js/assets/v1.0/shopify-xr.en.js"></script>
+<script defer src="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.en.js"></script>
+
+
+{%- comment -%} Remove the unused Best Selling 
+<script>
+   var checkSortHtml = setInterval(function() {
+    var best_selling_option =  jQuery('.boost-pfs-filter-top-sorting option[value="best-selling"]');
+   // console.log('=====best selling'+best_selling_option.attr('class'));
+    best_selling_option.addClass('hide');    
+    clearInterval(checkSortHtml);      
+
+  }, 1500);
+</script>
+{%- endcomment -%}
+
+<script>
+// Declare boostPFSThemeConfig variable
+var boostPFSThemeConfig = {
+  label: {
+    sale: {{ 'product.badge.sale' | t | json}},
+    sold_out: {{ 'product.badge.sold_out' | t | json }},
+    sold_out_text: {{ settings.sold_out_text | json }},
+    new: {{ 'collections.general.new' | t | json }},
+    coming_soon: {{ 'collections.general.coming_soon' | t | json }},
+    pre_order: {{ 'collections.general.pre_order' | t | json}},
+    quick_shop: {{ 'collections.general.quick_shop' | t | json }},
+    free_price: {{ settings.free_price_text | json }},
+    from_price: {{ 'products.general.from' | t | json }},
+    view_detail: {{ 'collections.general.view_product_details' | t | escape | json }},
+    breadcrumb_page: {{ 'general.breadcrumbs.page' | t | json }},
+    breadcrumb_home: {{ 'general.breadcrumbs.home' | t | json}},
+    paginate_prev: {{ 'shopify.pagination.previous' | t | json }},
+    paginate_next: {{ 'shopify.pagination.next' | t | json }}
+  },
+  custom: {
+    sidebar: {% if sidebar != nil %} {{ sidebar | json }} {% else %} false {% endif %},
+    products_per_page: {% if section.settings.pagination_limit %} {{ section.settings.pagination_limit | json }} {% else %} 20 {% endif %},
+    products_per_row: {% if section.settings.products_per_row %} {{ section.settings.products_per_row }} {% else %} 4 {% endif %},
+    mobile_products_per_row: {% if settings.mobile_products_per_row %} {{ settings.mobile_products_per_row | json }} {% else %} '1' {% endif %},
+    secondary_image: {% if settings.collection_secondary_image != nil %} {{ settings.collection_secondary_image | json }} {% else %} false {% endif %},
+    sale_banner_enabled: {% if settings.sale_banner_enabled != nil %} {{ settings.sale_banner_enabled | json }} {% else %} false {% endif %},
+    image_loading_style: {% if settings.image_loading_style %} {{ settings.image_loading_style | json }} {% else %} '' {% endif %},
+    vendor_enable: {% if settings.display_vendor != nil %} {{ settings.display_vendor | json }} {% else %} false {% endif %},
+    quick_shop_enabled: {% if settings.quick_shop_enabled != nil %} {{ settings.quick_shop_enabled | json }} {% else %} false {% endif %},
+    quick_shop_style: {% if settings.quick_shop_style %} {{ settings.quick_shop_style | json }} {% else %} "popup" {% endif %},
+    collection_swatches: {% if settings.collection_swatches != nil %} {{ settings.collection_swatches | json }} {% else %} false {% endif %},
+    description_words: {% if settings.description_words %} {{ settings.description_words | json }} {% else %} 25 {% endif %},
+    loader_image_url: "{{ 'loader.gif' | asset_url }}",
+    thumbnail_hover_enabled: {% if settings.thumbnail_hover_enabled != nil %} {{ settings.thumbnail_hover_enabled | json }} {% else %} false {% endif %},
+    enable_shopify_collection_badges: {% if settings.enable_shopify_collection_badges != nil %} {{ settings.enable_shopify_collection_badges | json }} {% else %} false {% endif %},
+    enable_shopify_review_comments: {% if settings.enable_shopify_review_comments != nil %} {{ settings.enable_shopify_review_comments | json }} {% else %} false {% endif %},
+    align_height: {% if settings.align_height != nil %} {{ settings.align_height | json }} {% else %} false {% endif %},
+    collection_height: {% if settings.collection_height %} {{ settings.collection_height | plus: 0 }} {% else %} 0 {% endif %},
+    pagination_type: {% if settings.pagination_type %} {{ settings.pagination_type | json }} {% else %} "basic_pagination" {% endif %},
+    currency_format: {% if settings.currency_format %} {{ settings.currency_format | json }} {% else %} "money_with_currency_format" {% endif %},
+    display_price: {% if settings.display_price != nil %} {{ settings.display_price | json }} {% else %} false {% endif %},
+    sticker_style: {% if settings.sticker_style %} {{ settings.sticker_style | json }} {% else %} '' {% endif %}
+  }
+};
+ 
+
+// Declare Templates
+var boostPFSTemplate = {
+  // Grid Template
+  'productGridItemHtml': {% render 'boost-pfs-filter-html', layout: 'productGridItemHtml' %},
+
+  // Label Template
+  'quickViewBtnHtml':  {% render 'boost-pfs-filter-html', layout: 'quickViewBtnHtml' %},
+  'newRowHtml': {% render 'boost-pfs-filter-html', layout: 'newRowHtml' %},
+
+  // Pagination Template
+  'previousHtml': {% render 'boost-pfs-filter-html', layout: 'previousHtml' %},
+  'nextHtml': {% render 'boost-pfs-filter-html', layout: 'nextHtml' %},
+  'pageItemHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemHtml' %},
+  'pageItemSelectedHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemSelectedHtml' %},
+  'pageItemRemainHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemRemainHtml' %},
+  'paginateHtml': {% render 'boost-pfs-filter-html', layout: 'paginateHtml' %},
+
+  // Sorting Template
+  'sortingHtml': {% render 'boost-pfs-filter-html', layout: 'sortingHtml' %},
+};
+</script>
+
+{% schema %}
+
+
+{
+  "name": "Collection",
+  "class": "collection-template-section section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "display_collection_title",
+      "label": "Show collection title"
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_breadcrumb",
+      "label": "Show breadcrumb links",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_tags",
+      "label": "Enable filtering by product tag"
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_sort",
+      "label": "Enable collection sorting"
+    },
+    {
+      "type": "header",
+      "content": "Collection tabs"
+    },
+    {
+      "type": "collection_list",
+      "id": "collection_tabs",
+      "label": "Collection Tabs"
+    },
+    {
+      "type": "header",
+      "content": "Banner image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1800 x 1000px recommended"
+    },
+    {
+      "type": "checkbox",
+      "id": "featured_collection_image",
+      "label": "Show top banner image",
+      "info": "The collection's featured image will be used by default. Optionally upload a banner image as a fallback."
+    },
+    {
+      "type": "checkbox",
+      "id": "image_darken",
+      "label": "Darken banner image",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row",
+      "label": "Products per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "pagination_limit",
+      "label": "Products per page",
+      "min": 2,
+      "max": 70,
+      "step": 1,
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "paragraph",
+      "content": "Create a sidebar by adding content blocks."
+    },
+    {
+      "type": "checkbox",
+      "id": "toggle",
+      "label": "Toggle sidebar content",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter_by_collection",
+      "name": "Collection list",
+      "limit": 1
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "custom_menu_linklist",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
+        {
+          "type": "page",
+          "id": "content_page",
+          "label": "Page"
+        }
+      ]
+    },
+    {
+      "type": "recently_viewed",
+      "name": "Recently viewed products",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "To test the recently viewed products, view your online store outside of the Editor and visit multiple product pages. [Learn more](https:\/\/help.outofthesandbox.com\/hc\/en-us\/articles\/115008765228)"
+        },
+        {
+          "type": "text",
+          "id": "sidebar_rv_title",
+          "label": "Title",
+          "default": "Recently Viewed"
+        },
+        {
+          "type": "range",
+          "id": "sidebar_rv_per",
+          "label": "Products limit",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 3
+        }
+      ]
+    },
+    {
+      "type": "filter",
+      "name": "Tag filter",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "filter_name",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "filter_tags",
+          "label": "Filter tags",
+          "info": "Add a comma-separated list of product tags. Only the tags found in the collection will be displayed as filters. [Learn more](https://help.outofthesandbox.com/hc/en-us/articles/115008642047)"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_filter_swatches",
+          "label": "Display color swatches"
+        }
+      ]
+    },
+    {
+      "type": "filter_by_tag",
+      "name": "Tag list",
+      "limit": 1
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Text area can be used for special announcements or general information.</p>"
+        }
+      ]
+    },
+    {
+      "type": "filter_by_type",
+      "name": "Type list",
+      "limit": 1
+    },
+    {
+      "type": "filter_by_vendor",
+      "name": "Vendor list",
+      "limit": 1
+    }
+  ]
+}
+
+{% endschema %}
+
+<script>
+  window.addEventListener("load", () => {
+    $('.fliters').click(function(){
+      $(this).toggleClass('active_f');
+      $('.coll_sidebar').slideToggle('350');
+    });
+  });
+</script>

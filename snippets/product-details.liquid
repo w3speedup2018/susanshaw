@@ -1,0 +1,44 @@
+{% if settings.thumbnail_hover_enabled or settings.quick_shop_enabled and settings.quick_shop_style == 'popup' %}
+  <div class="thumbnail-overlay">
+     {%- comment -%} Collection LP {%- endcomment -%}   
+    {%- if template.suffix contains "collection-lp" -%}   
+      <a href="{{ product.url | within: collection }}" itemprop="url" class="js-quick-shop-link cursor-pointer hidden-product-link" data-id="{{ product.id }}"
+        data-url="{{ product.url }}">
+        {{ product.title }}
+        {{ collection_handles }}
+      </a>
+    {%- else -%}
+      <a href="{{ product.url | within: collection }}" itemprop="url" class="hidden-product-link">
+        {{ product.title }}
+        {{ collection_handles }}
+      </a>
+    {%- endif -%}
+    
+
+    <div class="info"> 
+      {% if settings.thumbnail_hover_enabled %}
+        {%
+          render 'product-info',
+          product: product,
+          collection_handles: collection_handles,
+        %}
+      {% endif %}
+
+      {%- comment -%}
+      //rs: disable quick view in other pages except for collection
+      {% if settings.quick_shop_enabled and settings.quick_shop_style == 'popup' %}
+        {%
+          render 'quick-shop-button',
+          product: product,
+        %}
+      {% endif %}
+      {%- endcomment -%}
+    </div>
+  </div>
+{% endif %}
+
+{%
+  render 'price-ui-badges',
+  product: product,
+  collection_handles: collection_handles,
+%}

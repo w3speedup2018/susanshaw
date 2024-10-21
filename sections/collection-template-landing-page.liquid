@@ -1,0 +1,314 @@
+{% comment %}
+** Collections - default view **
+- Collection template
+- Uses blocks
+{% endcomment %}
+
+{% if section.settings.featured_collection_image %}
+  <header class="banner center page_banner dark-overlay-{{ section.settings.image_darken }}">
+      {% if collection.image %}
+        {% assign image = collection.image %}
+      {%- elsif section.settings.image -%}
+        {% assign image = section.settings.image %}
+      {%- else %}
+        {% assign image = collection.products.first.featured_image %}
+      {% endif %}
+
+      {% include 'image-element', image: image, alt: collection.title, stretch_width: true, progressive: true %}
+
+      {% if section.settings.display_collection_title %}
+        <div class="caption captionOverlay--true">
+          <h1 class="headline">{{ collection.title }}</h1>
+        </div>
+      {% endif %}
+  </header>
+{% endif %}
+
+
+
+<div class="container">  
+  {% paginate collection.products by section.settings.pagination_limit %}   
+    
+    {%- comment -%}
+     <div class="sixteen columns">
+      {% if collection.description != blank %}
+       {% unless collection.description contains "<!-- split -->" %}
+        <div class="section clearfix collection_description">
+           	{{ collection.description }} 
+		</div>
+      {% endunless %}
+      {% endif %}
+      <div class="feature_divider"></div>     
+    </div>   
+    {%- endcomment -%}
+
+      {% if collection.products.size == 0 %}
+        <div class="section clearfix collection-matrix">
+          <p class="quote">{{ 'collections.general.no_matches' | t }}</p>
+        </div>
+      {% else %}
+        {% assign products_per_row = section.settings.products_per_row %}
+        {% include 'product-loop', sidebar: sidebar, pagination_type: "load_more_button", link_type: "new_tab" %}
+      {% endif %} 
+  </div>
+  {% endpaginate %}
+ 
+
+
+<script type="text/javascript">  
+  window.addEventListener("load", () => {    
+    if (window.innerWidth < 767){      
+      let slide_match = window.matchMedia('screen and (min-width: 799px)');
+      $('.mobile-slider').flickity({
+                    wrapAround: true,
+                    pageDots: true,
+                    prevNextButtons:false,
+                    groupCells: 1,
+                    cellAlign: 'left', 
+                    imagesLoaded: true
+                  });
+      $(".m-secondary-image").addClass("pageloaded");
+      /*if (window.innerWidth > 767){
+        $('.custom_desktop').html('');
+      } */  
+    }      
+    
+  }); 
+
+  const links = document.querySelectorAll(".cta-shop-all");
+
+    for (let link of links) {
+    link.addEventListener("click", (e) => {
+        //const collectionWrapper = document.querySelector('.collection-template-section');       
+        //collectionWrapper.scrollIntoView();
+        scrollToDiv() 
+        console.log('===testss');
+    });
+    }  
+
+    function scrollToDiv() {
+        const targetDiv = document.querySelector('.collection-template-section');       
+        const offset = 180; // Adjust the offset value as needed (in pixels)
+
+        const topOffset = targetDiv.getBoundingClientRect().top + window.pageYOffset;
+        const scrollOptions = {
+            top: topOffset - offset,
+            behavior: "smooth", // This provides smooth scrolling, remove for instant jump
+        };
+
+        window.scrollTo(scrollOptions);
+    }
+</script>
+
+<style>
+  .section-wrapper--collection{
+    padding: 0!important;
+    overflow-y: hidden;
+  }
+</style>
+
+{% schema %}
+
+{
+  "name": "Collection",
+  "class": "collection-template-section section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "display_collection_title",
+      "label": "Show collection title"
+    },  
+    {
+      "type": "checkbox",
+      "id": "collection_breadcrumb",
+      "label": "Show breadcrumb links",
+      "default": true
+    },     
+    {
+      "type": "checkbox",
+      "id": "collection_sort",
+      "label": "Enable collection sorting"
+    },
+    {
+      "type": "header",
+      "content": "Collection tabs"
+    },
+    {
+      "type": "collection_list",
+      "id": "collection_tabs",
+      "label": "Collection Tabs"
+    },
+    {
+      "type": "header",
+      "content": "Banner image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1800 x 1000px recommended"
+    },
+    {
+      "type": "checkbox",
+      "id": "featured_collection_image",
+      "label": "Show top banner image",
+      "info": "The collection's featured image will be used by default. Optionally upload a banner image as a fallback."
+    },
+    {
+      "type": "checkbox",
+      "id": "image_darken",
+      "label": "Darken banner image",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row",
+      "label": "Products per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "pagination_limit",
+      "label": "Products per page",
+      "min": 2,
+      "max": 50,
+      "step": 1,
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "paragraph",
+      "content": "Create a sidebar by adding content blocks."
+    },
+    {
+      "type": "checkbox",
+      "id": "toggle",
+      "label": "Toggle sidebar content",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter_by_collection",
+      "name": "Collection list",
+      "limit": 1
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "custom_menu_linklist",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
+        {
+          "type": "page",
+          "id": "content_page",
+          "label": "Page"
+        }
+      ]
+    },
+    {
+      "type": "recently_viewed",
+      "name": "Recently viewed products",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "To test the recently viewed products, view your online store outside of the Editor and visit multiple product pages. [Learn more](https:\/\/help.outofthesandbox.com\/hc\/en-us\/articles\/115008765228)"
+        },
+        {
+          "type": "text",
+          "id": "sidebar_rv_title",
+          "label": "Title",
+          "default": "Recently Viewed"
+        },
+        {
+          "type": "range",
+          "id": "sidebar_rv_per",
+          "label": "Products limit",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 3
+        }
+      ]
+    },
+    {
+      "type": "filter",
+      "name": "Tag filter",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "filter_name",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "filter_tags",
+          "label": "Filter tags",
+          "info": "Add a comma-separated list of product tags. Only the tags found in the collection will be displayed as filters. [Learn more](https://help.outofthesandbox.com/hc/en-us/articles/115008642047)"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_filter_swatches",
+          "label": "Display color swatches"
+        }
+      ]
+    },
+    {
+      "type": "filter_by_tag",
+      "name": "Tag list",
+      "limit": 1
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Text area can be used for special announcements or general information.</p>"
+        }
+      ]
+    },
+    {
+      "type": "filter_by_type",
+      "name": "Type list",
+      "limit": 1
+    },
+    {
+      "type": "filter_by_vendor",
+      "name": "Vendor list",
+      "limit": 1
+    }
+  ]
+}
+
+{% endschema %}
+

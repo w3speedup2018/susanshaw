@@ -1,0 +1,83 @@
+{% liquid 
+    assign collection = collections['cart-upsell'].products 
+    assign per_slide = 4 
+    assign visible_products = 1
+%}
+<h4>Complete the look</h4>
+<div class="slider-gallery js-product-cart-slider products-length-{{ products_length }} transparentBackground--{{settings.slideshow_button_style}}"
+      data-products-per-slide="{{ visible_products }}"
+      data-products-limit="{{ limit }}"
+      data-products-available="{{ products_length }}">
+  {% for product in collection limit: 20 %}
+
+    {%- assign collection_handles = product.collections | map: 'handle' -%}
+
+    {% if product.id != skip_product.id %}
+    <div class="gallery-cell
+                  thumbnail
+                  visible-{{ visible_products }}
+                  quick-shop-style--{{ settings.quick_shop_style }}
+                  product__details
+                  thumbnail-hover-enabled--{{ settings.thumbnail_hover_enabled }}
+                  product-{{ product.id }}">
+        <div class="product-wrap {% if settings.collection_secondary_image != blank and product.media[1] != blank %}has-secondary-media-swap{% endif %} d-flex">
+          <div class="relative product_image">
+            <a href="{{ product.url | within: collection }}">
+              <div class="image__container">
+                {% if settings.quick_shop_enabled and settings.quick_shop_style == 'inline' and product.selected_or_first_available_variant.image %}
+                  {%
+                    render 'image-element',
+                    image: product.selected_or_first_available_variant.image,
+                    alt: alt_text,
+                    object_fit: settings.align_height,
+                    max_height: settings.collection_height,
+                  %}
+                {% else %}
+                  {%
+                    render 'image-element',
+                    image: product.featured_media.preview_image,
+                    alt: alt_text,
+                    object_fit: settings.align_height,
+                    max_height: settings.collection_height,
+                  %}
+                {% endif %}
+                {% if settings.collection_secondary_image != blank and product.media[1] != blank %}
+                  {% if product.media[1].media_type == 'external_video' %}
+                    <div class="external-video__container lazyload lazypreload secondary-media-hidden video-on-hover">
+                      <div class="youtube-wrapper" data-youtube-video>
+                        {{ product.media[1] | external_video_tag }}
+                      </div>
+                    </div>
+                  {% elsif product.media[1].media_type == 'video' %}
+                    <div class="video__container lazyload lazypreload secondary-media-hidden video-on-hover" data-html5-video>
+                      {{ product.media[1] | video_tag: controls: false }}
+                    </div>
+                  {% else %}
+                    {% render 'image-element',
+                            image: product.media[1].preview_image,
+                            alt: alt_text,
+                            additional_classes: 'secondary secondary-media-hidden'
+                    %}
+                  {% endif %}
+                {% endif %}
+              </div>
+            </a>
+           
+          </div>
+          <div class="product-info__caption {% if settings.thumbnail_hover_enabled %}hidden{% endif %}" href="{{ product.url | within: collection }}">
+            {%
+              render 'product-info',
+              product: product,
+              collection_handles: collection_handles
+            %}
+
+            {% render 'product-cart-carousel-form' ,product: product %}
+
+          </div>
+        </div>
+             
+    </div>
+
+    {% endif %}
+  {% endfor %}
+</div>

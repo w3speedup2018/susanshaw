@@ -1,0 +1,78 @@
+
+<section class="section-title">
+    <div class="page-width">
+        <h1>{{section.settings.title}}</h1>
+    </div>
+</section>
+
+<style>
+   #shopify-section-{{ section.id }} h1{
+       font-size: {{section.settings.font_size_m}}px;
+       text-align: {{section.settings.text_align}};
+       margin:20px;
+   }
+   @media screen and (min-width: 769px) {
+        #shopify-section-{{ section.id }} h1{
+            margin:20px 0;
+            font-size: {{section.settings.font_size}}px;          
+        }
+   }
+</style>
+{% schema %}
+    {
+        "name": "Title",
+        "class": "section-title",
+        "settings": [            
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },         
+            {
+                "type": "range",
+                "id": "font_size",
+                "label": "Font Size - Desktop",
+                "unit": "px",
+                "min": 12,
+                "max": 100,
+                "step": 1,
+                "default": 12
+            },
+            {
+                "type": "range",
+                "id": "font_size_m",
+                "label": "Font Size - Mobile",
+                "unit": "px",
+                "min": 12,
+                "max": 100,
+                "step": 1,
+                "default": 12
+            },
+            {
+                "type": "select",
+                "id": "text_align",
+                "label": "Text Align",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "Left"                        
+                    },
+                    {
+                        "value": "right",
+                        "label": "Right"                        
+                    },
+                    {
+                        "value": "center",
+                        "label": "Center"                        
+                    }
+                ]
+            }
+        ],        
+        "presets": [
+            {
+            "name": "Title",
+            "category": "Custom"
+            }
+        ]
+    }
+{% endschema %}

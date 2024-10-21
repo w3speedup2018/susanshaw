@@ -1,0 +1,171 @@
+<div class="overlays medium-up--hide"></div>
+<script
+  type="application/json"
+  data-section-type="giftguide-sidebar"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{%- assign id = section.id -%}
+
+{% comment %} Content settings {% endcomment %}
+{%- assign blocks = section.blocks -%}
+{% comment %} End content settings {% endcomment %}
+
+{% comment %} Advanced {% endcomment %}
+{%- assign css_class = section.settings.css_class -%}
+{%- assign custom_css = section.settings.custom_css -%}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: custom_css,
+    id: id
+  %}
+{% endstyle %}
+
+{% if blocks.size > 0 %}
+  <section
+    class="section 
+        {% if section.settings.wide_display == true %}
+        is-width-wide
+        has-no-side-gutter
+      {% endif %}
+      {{ css_class }}
+    "
+  >
+  <a class="cta-close medium-up--hide">  
+   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" stroke="#000" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">  
+   <path d="M12.5 12.5L5.512 5.511l6.988 6.987 6.988-6.987-6.988 6.987zm0 0l-6.988 6.987L12.5 12.5l6.988 6.988L12.5 12.5z" transform="translate(-775 -147) translate(775 147)"></path>  
+  </svg>  
+  </a>
+    <ul class="breadcrumb">
+        <li><a href="{{ routes.root_url }}" title="{{ shop.name | escape }}" class="breadcrumb_link">
+            <span>{{ 'general.breadcrumbs.home' | t }}</span>
+          </a>
+        </li>
+        <li><span class="breadcrumb-divider">/</span></li>
+        <li><a href="{{page.url}}" title="{{ page.title | escape }}" class="breadcrumb_link">
+            <span>{{"Gift Guide" }}</span>
+          </a>
+        </li>
+    </ul>
+    <div class="sidebar-wrapper">
+      <h2>{{section.settings.title}}</h2>
+      <ul class="nav-items">
+        {% for block in blocks %}
+          {%- if block.type == "spacer" -%}
+              <li class="spacer"></li>      
+          {%- else -%}
+              <li><a href="{{block.settings.link}}">{{block.settings.title}}</a></li>   
+          {%- endif -%}        
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endif %}
+
+<style>
+  #shopify-section-{{ section.id }} .featured-promotions{
+    padding: 10px 5px;
+    background: #f7fafa;
+  }
+  #shopify-section-{{ section.id }} ul{
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+  #shopify-section-{{ section.id }} .spacer{
+    height:10px; 
+    list-style: none;
+    list-style-type: none;
+  }          
+</style>
+
+{% schema %}
+{
+  "name": "Gift Guide - Sidebar",
+  "class": "giftguide-sidebar",
+  "max_blocks": 30,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "wide_display",
+      "label": "Wide display",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },    
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": [      
+        {
+            "type": "header",
+            "content": "Spacer"          
+        }
+        
+      ]
+    },
+    {
+        "type": "link",
+        "name": "Links",
+        "settings": [   
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }          
+        ]
+      }
+  ],
+  "presets": [{
+    "name": "Gift Guide - Sidebar",
+    "category": "Gift Guide",
+    "blocks": [
+      {
+        "type": "link"
+      },
+      {
+        "type": "link"
+      },
+      {
+        "type": "link"
+      }
+    ]
+  }]
+}
+
+{% endschema %}

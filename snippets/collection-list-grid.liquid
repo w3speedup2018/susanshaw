@@ -1,0 +1,61 @@
+{% capture collection_title %}{{ collection.title | escape }}{% endcapture %}    
+{%- assign first_letter = first_letter -%}
+{%- assign collection_first_letter = collection_title | slice: 0 -%}
+
+{% if collection_first_letter == first_letter %}
+
+    <div class="collection--all collection--{{collection_title_first}} col--{{collection.id}} collection-wrap {% render 'column-width', value: 5 %} column thumbnail {% if settings.mobile_products_per_row == '1' %}medium-down--one-half small-down--one-whole{% else %}medium-down--one-half small-down--one-half{% endif %}">
+        <div class="product-wrap">
+        <div class="image__container">
+            {% if collection.image %}
+            {%- assign collection_image = collection.image.src -%}
+            {% else %}
+            {%- assign collection_image = collection.products.first.featured_image -%}
+            {% endif %}
+
+            {%  
+            render 'image-element',
+            image: collection_image,
+            alt: collection.title,
+            object_fit: true,
+            max_height: 400
+            %} 
+        </div>
+
+        <a href="{{ collection.url }}" title="{{ collection_title }}" class="hidden-product-link">{{ collection_title }}</a>
+
+        {% if settings.thumbnail_hover_enabled %}
+            <div class="thumbnail-overlay">
+            <a href="{{ collection.url }}" title="{{ collection_title }}" class="hidden-product-link">{{ collection_title }}</a>
+
+            <div class="info">
+                <div class="collection-details">
+                <span class="title">{{ collection.title }}</span>
+                </div>
+                <a
+                href="{{ collection.url }}"
+                title="{{ collection_title }}"
+                class="thumbnail-overlay__button global-button global-button--product-grid-text-hover"
+                >
+                {{ 'collections.general.view_all' | t }}
+                </a>
+            </div>
+            </div>
+        {% endif %}
+
+        
+        <a class="h3 collection-info__captions text-left {% if settings.thumbnail_hover_enabled %}hidden{% endif %} d-flex is-justify-space-between is-align-center" href="{{ collection.url }}">
+        <span class="title">
+            {% if block.settings.title != blank %}
+            {{ block.settings.title }}
+            {% else %}
+            {{ collection.title }}
+            {% endif %}
+        </span>
+        <span class="count sweet-sans-pro">
+            ( {{collection.all_products_count}} )
+        </span>
+        </a>
+        </div>
+  </div>
+{%- endif -%}

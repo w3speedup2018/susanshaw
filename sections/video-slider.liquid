@@ -1,0 +1,237 @@
+<script
+  type="application/json"
+  data-section-type="collection-list"
+  data-section-id="{{ section.id }}"
+>
+</script>
+{%- comment -%}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const videoWrappers = document.querySelectorAll('.video-wrapper');
+    
+      videoWrappers.forEach(videoWrapper => {
+        const video = videoWrapper.querySelector('video');
+    
+        videoWrapper.addEventListener('mouseenter', () => {         
+          video.play();
+        });
+    
+        videoWrapper.addEventListener('mouseleave', () => {          
+          video.pause();
+        });
+      });
+    });
+  
+</script>
+{%- endcomment -%}
+
+
+{%- assign id = section.id -%}
+
+{% comment %} Content settings {% endcomment %}
+{%- assign title = section.settings.title | escape -%}
+{%- assign blocks = section.blocks -%}
+{% comment %} End content settings {% endcomment %}
+
+{% comment %} Advanced {% endcomment %}
+{%- assign css_class = section.settings.css_class -%}
+{%- assign custom_css = section.settings.custom_css -%}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: custom_css,
+    id: id
+  %}
+{% endstyle %}
+
+{% if blocks.size > 0 %}
+  <section class="section-fluid {{ css_class }}">
+    <div class="section">
+      {% if title != blank %}
+        <div class="one-whole column center">
+          <h2 class="title">{{ title }}</h2>
+          <div class="feature_divider"></div>
+        </div>
+      {% endif %}
+
+     
+        <div class="js-video-slider">
+          <div class="video-slider">
+            {% for block in blocks %}
+              {% comment %} Content settings {% endcomment %}         
+              {%- assign video = block.settings.video -%}
+              {% comment %} End content settings {% endcomment %}
+
+              <div class="{% render 'column-width', value: section.settings.videos_per_row %} column {% if section.settings.collection_count == blank and section.settings.frontpage_collections_title == blank %}blank{% endif %} thumbnail {% if settings.mobile_products_per_row == '1' %} medium-down--one-half small-down--one-whole {% else %} medium-down--one-half small-down--one-half {% endif %}" {{ block.shopify_attributes }}>
+                <div class="video-wrapper">
+                  <div class="video--content">
+                    <a class="h2 {% if settings.thumbnail_hover_enabled %}hidden{% endif %}" href="{{ block.settings.button_link }}">
+                      {{block.settings.title}}
+                    </a>
+                    <a href="{{ block.settings.button_link }}" class="global-button--clear">
+                      {{block.settings.button_label}}
+                    </a>
+                  </div>
+                  {% if video != blank %}                  
+                      <video class="video-{{ section.id }}"autoplay muted loop playsinline preload="metadata">
+                        <source src="{{ video }}" type="video/mp4">
+                      </video>                    
+                  {% else %}
+                    {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+                    {{ 'collection-' | append: num | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      
+    </div>
+  </section>
+{% endif %}
+
+{% if section.settings.align_height == true %}
+  <style>
+    #shopify-section-{{ section.id }} .list-collections .thumbnail img {
+      max-height: {{ section.settings.video_height }}px;
+    }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Video Slider",
+  "class": "shopify-section--video-slider",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Video List"
+    },
+    {
+      "type": "checkbox",
+      "id": "align_height",
+      "label": "Align height of collection images",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "video_height",
+      "label": "Video image height",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "default": 200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "videos_per_row",
+      "label": "Videos per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },   
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay video",
+      "info": "Limited browser support for autoplaying video. [Learn more](https:\/\/help.outofthesandbox.com\/hc\/en-us\/articles\/360000661568-Why-won-t-my-video-autoplay-)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "autoloop",
+      "label": "Autoloop video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mute_video",
+      "label": "Mute video",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show video controls",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_dark_overlay",
+      "label": "Darken video",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",     
+      "settings":[ 
+        {
+          "type": "text",
+          "id": "video",
+          "label": "Video Link"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },       
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button",
+          "default": "SHOP"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Video Slider",
+    "category": "Gift Guide",
+    "blocks": [
+      {
+        "type": "video"
+      },
+      {
+        "type": "video"
+      },
+      {
+        "type": "video"
+      }
+    ]
+  }]
+}
+
+{% endschema %}

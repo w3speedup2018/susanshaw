@@ -1,0 +1,37 @@
+{% if back_to_basics %}
+  <div class="image-element__wrap" style="{{ background_color }}{{ crop_to_aspect_ratio }};">
+      <img  alt="{{ alt | escape }}" src="{{ image | img_url: '1600x' }}"
+            {% if inline_style %}style="{{ inline_style }}"{% endif %}
+            {% if additional_classes %}class="{{ additional_classes }}"{% endif %}/>
+  </div>
+{% else %}
+  <div class="image-element__wrap" style="{% unless stretch_width == true %}max-width: {{ image.width }}px;{% endunless %}">
+    <img  alt="{{ alt | escape }}"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{ image.width }} {{ image.height }}'%3E%3C/svg%3E"
+          data-src="{{ image | img_url: '100x' }}"
+          data-srcset="{%- capture lazysrcs -%}
+                       {%- if small == true -%}
+                         {{ image | img_url: '600x' }} 600w,
+                         {{ image | img_url: '500x' }} 500w,
+                         {{ image | img_url: '400x' }} 400w,
+                       	 {{ image | img_url: '300x' }} 300w,
+                         {{ image | img_url: '200x' }} 200w
+                       {%- else -%}
+                         {{ image | img_url: '1600x' }} 1600w,
+                         {{ image | img_url: '1400x' }} 1400w,
+                         {{ image | img_url: '1200x' }} 1200w,
+                         {{ image | img_url: '1000x' }} 1000w,
+                         {{ image | img_url: '800x' }} 800w,
+                         {{ image | img_url: '600x' }} 600w,
+                         {{ image | img_url: '500x' }} 500w,
+                         {{ image | img_url: '400x' }} 400w,
+                       	 {{ image | img_url: '300x' }} 300w,
+                         {{ image | img_url: '200x' }} 200w
+                       {%- endif -%}{%- endcapture -%}{{lazysrcs | strip_newlines}}"
+          height="{{ image.height }}"
+          width="{{ image.width }}"
+          style="{{ inline_style }};"
+          class="custom_primry lazyimage transition--{{ settings.image_loading_style }} {{ additional_classes }}"
+    />
+  </div>
+{% endif %}

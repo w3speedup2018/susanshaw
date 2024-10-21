@@ -1,0 +1,21 @@
+<h1 class="byronrr-medium text-center">Favorite Stories</h1>
+
+<div class="favorite-stories--articles d-flex is-justify-start is-justify-md-center">
+    {% for article in blogs.reflecting-on-45-years.articles reversed %}
+        <div class="article column one-fourth medium-down--one-half">               
+        {% if article.image != blank %}
+        <a href="{{ article.url }}" title="{{ article.title | escape }}">
+            {%
+            render 'image-element',
+            image: article.image,
+            alt: image.alt,
+            %}
+        </a>
+        {% endif %}   
+        <h3 class="tit_blog"><a href="{{ article.url }}">{{ article.title }}</a></h3>    
+        {% if article.excerpt != blank %}
+            <div class="excerpt text-center"> {{ article.excerpt }}</div>
+        {% endif %}   
+    </div>          
+    {% endfor %}
+</div>

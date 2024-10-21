@@ -1,0 +1,84 @@
+<div class="homepage_content clearfix">
+  <div class="container-fluid">
+    <div class="sixteen columns">
+      <div class="section clearfix">
+          <h2 class="title text-center">Proudly Carried By</h2>
+          <div class="custom_logo_bar_slider">
+            <div class="item">
+              <img class="lazyimage"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3C/svg%3E"
+                   data-src="https://cdn.shopify.com/s/files/1/3098/4704/files/Biltmore_ac0c8c2f-89ba-494a-8cb9-3e457ce1f13b_x120.png?13521">
+            </div> 
+            <div class="item">
+              <img class="lazyimage"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3C/svg%3E"
+                   data-src="https://cdn.shopify.com/s/files/1/3098/4704/files/Four_Seasons_9703f39f-8061-45c8-8d5d-c8d351a315eb_x120.png?13521">
+            </div> 
+            <div class="item">
+              <img class="lazyimage"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3C/svg%3E"
+                   data-src="https://cdn.shopify.com/s/files/1/3098/4704/files/PGA_7f6ff8da-eb91-4167-bd90-47f01e8aee61_x120.png?13521">
+            </div> 
+            <div class="item">
+              <img class="lazyimage"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3C/svg%3E"
+                   data-src="https://cdn.shopify.com/s/files/1/3098/4704/files/Sea_island_16b8a450-52d9-4ced-a898-0b284992bf14_x120.png?13521">
+            </div> 
+            <div class="item">
+              <img class="lazyimage"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3C/svg%3E"
+                   data-src="https://cdn.shopify.com/s/files/1/3098/4704/files/The_Ritz_Carlton_f651013f-46e7-464c-85ba-491be9605e66_x120.png?13521">
+            </div> 
+            <div class="item">
+              <img class="lazyimage"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3C/svg%3E"
+                   data-src="https://cdn.shopify.com/s/files/1/3098/4704/files/The_Broadmoor_f40cf9b8-d3e5-4743-b5f5-0686a6a8a082_x120.png?13521">
+            </div> 
+            <div class="item">
+              <img class="lazyimage"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3C/svg%3E"
+                   data-src="https://cdn.shopify.com/s/files/1/3098/4704/files/Waldorf_Astoria_e53cba67-59f1-46b5-a41a-2f62ef9985ac_x120.png?13521">
+            </div> 
+            <div class="item">
+              <img class="lazyimage"
+                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3C/svg%3E"
+                   data-src="https://cdn.shopify.com/s/files/1/3098/4704/files/George_HW_Bush_fe378ff0-7de6-4859-ae18-f4771f26e1d3_x120.png?13521">
+            </div>  
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom_logo_bar_slider .item {
+    width: 25%;
+    margin-right: 10px;
+  }
+  .custom_logo_bar_slider .item img {
+    max-width: 160px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  @media (max-width: 1000px) {
+    .custom_logo_bar_slider .item {
+		width: 50%;
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    requestIdleCallback(() => {
+        $('.custom_logo_bar_slider').flickity({
+            autoPlay: 2000,
+            wrapAround: true,
+            pageDots: false,
+            prevNextButtons: false,
+            contain: true,
+            groupCells: 2
+        });
+  	});  
+  });
+</script>

@@ -1,0 +1,89 @@
+{% layout none %}
+{%- capture style -%}
+<style>
+  * { box-sizing: border-box; }
+  .preview_action {
+    display: flex;
+    align-items: center;
+  }
+  .preview_wrapper * {
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .preview_wrapper {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    z-index: 999999999999;
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    box-shadow: -1px -4px 15px 1px #3333334a;
+    justify-content: space-between;
+    align-items: center;
+    transition: .5s;
+  }
+  .preview_close {
+    color: #fff;
+    background: #5563c1;
+    padding: 8px 14px;
+    border-radius: 5px;
+  }
+  .preview_close:hover {
+    color: #fff !important;
+    opacity: 0.7;
+  }
+  .preview_hide {
+    height: 41px;
+    font-size: 12px;
+    margin-left: 10px;
+    background: #fff;
+    margin-bottom: 0px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .preview_hide:hover {
+    opacity: 0.7;
+  }
+  .preview_title_theme {
+    margin: 0;
+    font-size: 14px;
+  }
+  .preview_sub {
+    line-height: 1 !important;
+    margin: 0;
+    font-size: 12px;
+    color: #000000b0;
+  }
+  @media (max-width: 480px) {
+    .preview_title {
+      display: none;
+    }
+    .preview_action {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+</style>
+{%- endcapture -%}
+
+{%- capture elementHTML -%}
+<div class="preview_wrapper">
+  <div class="preview_title">
+    <h5 class="preview_sub">Your are previewing theme: (${theme_role})</h5>
+    <h3 class="preview_title_theme">${theme_title}</h3>
+  </div>
+  
+  <div class="preview_action">
+    <a class="preview_close" href="${theme_colse_url}">CLOSE PREVIEW</a>
+  	<button class="preview_hide" onclick="myl.remove();">HIDE BAR</button>
+  </div>
+</div>
+{%- endcapture -%}
+
+{{ style | lstrip  | replace: "'", '"' | strip_newlines }}
+{{ elementHTML | strip_newlines | replace: "'", '"' }}

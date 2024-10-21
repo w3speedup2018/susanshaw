@@ -1,0 +1,30 @@
+<div class="mobile-banner-image">
+  <div class="mbi_inner">
+     <img src="{{ section.settings.image | img_url:'master' }}" />
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Mobile Banner Image",
+    "class": "mobile-banner-custom",
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Mobile image",
+        "settings": [
+          {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Image"
+          } 
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Mobile Banner Image"
+      }
+    ]
+  }
+{% endschema %}

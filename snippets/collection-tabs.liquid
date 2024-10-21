@@ -1,0 +1,96 @@
+{% unless section.settings.collection_tabs == blank %}
+<style>    
+  .scroll-bar{
+     width: auto;
+    overflow: scroll;
+    display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .scroll-bar{
+    width: auto;
+    overflow: scroll;
+    display: flex !important;    
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 20px;
+ }
+  
+
+  
+  .collection-option{
+    white-space: nowrap;
+    text-decoration: none !Important;
+    padding: 10px 15px; 
+    color: #000000;
+    font-size: 14px;
+    font-style: normal;
+  }
+    
+    .collection-option:nth-child(1){
+     padding-left: 20px; 
+    }
+  
+   .collection-option.last{
+     padding-right: 20px; 
+    }
+    
+  .collection-option p{
+    font-weight: 600;
+    color: #000;
+    opacity: .7;
+    font-style: normal;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .active-link{
+   padding-bottom: 0; 
+  }
+  
+  .active-link p{
+    font-weight: 600 !important;
+    color: #000;
+     opacity: 1;
+    padding-bottom: 7px;
+    border-bottom: 3px solid #1f6468;
+  }
+     
+
+    
+  
+</style>
+<div class="containers"> 
+  <div class="clearfix breadcrumb-collection" style="display: flex;" >
+    <div class="eight columns breadcrumb_text medium-down--one-whole">
+      <div class="scroll-bar">
+        {% for tab in section.settings.collection_tabs %}
+          {% assign xxxxtab_label = tab.title | remove: ' Styles' | remove: ' Collection' | remove: 'The ' | remove: ' Concho' | strip %}
+        {% assign tab_label = tab.title | strip %}
+        {%- comment -%}
+        {% if forloop.first %}
+        	{% assign tab_label = 'All' %}
+        {% endif %}
+        {%- endcomment -%}
+        {% unless tab.metafields.navigation.tab_title == blank %}
+        {% assign tab_label = tab.metafields.navigation.tab_title %}
+        {% endunless %}
+        <a class="collection-option {%if collection.url == tab.url %}active-link{% endif %} index--{{ forloop.index }}" href="{{ tab.url}}"><p>{{ tab_label }}</p></a>
+        {% endfor %}
+<!--         <a class="collection-option active-link" href="/collections/the-crossroads-collection"><p>All</p></a>
+        <a class="collection-option" href="/collections/the-connie-concho"><p>Connie</p></a>
+        <a class="collection-option" href="/collections/the-annie-concho"><p>Annie</p></a>
+        <a class="collection-option" href="/collections/the-kelly-concho"><p>Kelly</p></a>
+        <a class="collection-option" href="/collections/the-jane-concho"><p>Jane</p></a>
+        <a class="collection-option last" href="/collections/the-dolly-concho"><p>Dolly</p></a> -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endunless %}

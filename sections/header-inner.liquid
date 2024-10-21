@@ -1,0 +1,728 @@
+{%- comment -%}Get Navigation Colors{%- endcomment -%}
+{%- assign nav_colors = section.settings.nav_color -%}
+{%- if nav_colors == "white" -%}
+  {%- assign nav_color = "#ffffff" -%}
+{%- else -%}
+  {%- assign nav_color = "#223346" -%}
+{%- endif -%}
+
+{%- comment -%}Assign header colors{%- endcomment -%}
+{%- if template.suffix contains "bee-collection-lp" -%}
+  {%- assign header_color = "dark" -%}
+{%- else -%}
+  {%- assign header_color = "light" -%}
+{%- endif -%%}
+
+{%- comment -%}Preload Videos{%- endcomment -%}
+{%- comment -%}
+{%- if template.suffix == "coin-collection-lp" -%}
+  <link rel="preload" as="video" href="{{'3306W-v1.mp4' | file_url}}">
+  <link rel="preload" as="video" href="{{'9613BG-v1.mp4' | file_url}}">
+{%- endif -%}
+
+
+{%- if template.suffix == "bee-collection-lp" -%}
+  <link rel="preload" as="video" href="{{'bee-slider--2.mp4' | file_url}}">
+  <link rel="preload" as="video" href="{{'bee-slider--3.mp4' | file_url}}">
+  <link rel="preload" as="video" href="{{'bee-slider--8.mp4' | file_url}}">
+  <link rel="preload" as="video" href="{{'bee-slider--12.mp4'| file_url}}">  
+{%- endif -%}
+
+
+{%- endcomment -%}
+
+<script
+  type="application/json"
+  data-section-type="header"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{% comment %} Structured data {% endcomment %}
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "{{ shop.name }}",
+    {% if section.settings.logo %}
+      {% assign image_size = section.settings.logo.width | append:'x' %}
+      "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+    {% endif %}
+    "sameAs": [ 
+      "{{ settings.twitter_link }}",
+      "{{ settings.facebook_link }}",
+      "{{ settings.pinterest_link }}",
+      "{{ settings.instagram_link }}",
+      "{{ settings.tumblr_link }}",
+      "{{ settings.snapchat_link }}",
+      "{{ settings.youtube_link }}",
+      "{{ settings.vimeo_link }}"
+    ],
+    "url": "{{ shop.url }}{{ page.url }}"
+  }
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ routes.search_url }}?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}
+
+{%- assign locale_selector = false -%}
+{%- assign currency_selector = false -%}
+
+{%- if section.settings.show_currency_selector and shop.enabled_currencies.size > 1 -%}
+  {%- assign currency_selector = true -%}
+{%- endif -%}
+
+{%- if section.settings.show_locale_selector and shop.published_locales.size > 1 -%}
+  {%- assign locale_selector = true -%}
+{%- endif -%}
+
+
+
+<header class="container header--{{header_color}} {% if section.settings.logo_home != blank %}secondary_logo--true{% endif %} search-enabled--{{ section.settings.search_enabled }} {% if feature_image %}feature_image {% endif%}" 
+  data-desktop-header
+  data-header-feature-image="{{ feature_image }}"
+>
+  <div class="header header-fixed--{{ section.settings.fixed_header }}  {% if feature_image %}is-transparent{% endif %}"  data-header-is-absolute="{% if feature_image %}true{% endif %}">
+    <div class="main-nav__wrapper {% if template.name contains "index" %}hp-logo{% endif %}">
+      {% if section.settings.promo_text != blank %}
+        <div class="promo-banner">
+          <div class="promo-banner__content">
+            {{ section.settings.promo_text }}
+          </div> 
+          <div class="promo-banner__close"></div>
+        </div>
+      {% endif %}
+      <div class="main-nav menu-position--{{ section.settings.menu_position }} logo-alignment--{{ section.settings.logo_alignment }} logo-position--{{ section.settings.logo_position }} search-enabled--{{ section.settings.search_enabled }}" {% if section.settings.dropdown_click == true %}data-show-dropdown-on-click{% endif %}>
+        {% capture logo %}
+          <div class="header__logo {% if section.settings.logo_home == blank and section.settings.logo == blank %}logo--text{% else %}logo--image{% endif %}">
+            <a href="{{ routes.root_url }}" title="{{ shop.name }}">
+               {%- if header_color == "light" -%}
+                    <img src="{{ 'ss-logo-white.svg' | asset_url }}" class="secondary_logo lazyload medium-up--hide" alt="{{ shop.name | escape }}" />
+                    <img src="{{ 'ss-logo-black.svg' | asset_url }}" class="secondary_logo lazyload small--hide" alt="{{ shop.name | escape }}" />
+                {%- else -%%}
+                    <img src="{{ 'ss-logo-white.svg' | asset_url }}" class="secondary_logo lazyload" alt="{{ shop.name | escape }}" />                  
+               {%- endif -%}
+            </a> 
+            
+          </div>
+        {% endcapture %} 
+
+        {% capture menu_right_html %}
+          <div class="top-bar--right-menu">             
+            
+            {% if section.settings.show_cart %}
+              <div class="cart-container">
+                <a class="cta-shop-all btn global-button {% if header_color == "light"%}global-button--blue{% else %}global-button--white{% endif %%} small--hide">SHOP NOW</a>             
+                {%- if header_color == "light" -%} 
+                  <a href="{{ routes.cart_url }}" class="mini_cart dropdown_link" data-no-instant>
+                    <span class="icon">{% render 'icon-shopping-bag' %}</span>
+                    <span class="cart_count">{{ cart.item_count }}</span>
+                  </a>
+                {%- else -%}  
+                  <a href="{{ routes.cart_url }}" class="mini_cart dropdown_link" data-no-instant>
+                    <span class="icon">{% render 'icon-shopping-bag-white' %}</span>
+                    <span class="cart_count" style="color:#fff !important;">{{ cart.item_count }}</span>
+                  </a>
+                {%- endif -%}
+    
+                {%- comment -%} CART SIDEBAR {%- endcomment -%}
+                {% unless settings.cart_action == 'ajax' and template contains 'cart' %}
+                  <div class="tos_warning cart_content animated fadeIn">
+                    <div class="your-cart d-flex is-justify-space-between is-align-center">        
+                      <a class="close-cart"></a>            
+                      <h4>YOUR BAG</h4>
+                      <a href="{{ routes.cart_url }}" class="mini_cart dropdown_link" data-no-instant>
+                        <span class="icon">{% render 'icon-shopping-bag' %}</span>
+                        <span class="cart_count">{{ cart.item_count }}</span>
+                      </a>
+                    </div>
+
+                    {% assign shipping_value = 1000 %}
+                    {% assign cart_total = cart.total_price %}
+                    {% assign shipping_value_left = shipping_value | minus: cart_total %}
+                    {% assign shippingProgress = 10000 | minus: cart_total | money %}
+                    {% assign progressBar = cart_total | divided_by: shipping_value %}
+                    {% assign progressBarWidth = progressBar | times: 10 %}
+                   
+                    <div class="free-shipping-wrapper  {% if cart.item_count == 0 %}hidden{% endif %} {% if cart_total >= 10000 %}free-shipping{% endif %}">               
+
+                      {%- comment -%} Below $100 {%- endcomment -%}
+                      <div class="shipping-progress-top">   
+                        <p class="shipping-messages text-center">                         
+                           <span class="shipping-progress  {% if cart_total >= 10000 %}hidden{% endif %}">
+                            You're {{ shippingProgress }} away from Free Shipping
+                           </span>                          
+                           <span class="shipping-free {% if cart_total < 10000 %}hidden {% endif %}">
+                            You've earn complimentary free shipping!
+                            </span>      
+                        </p>                    
+                        <div class="filledBar">
+                          <div class="progress-bar {% if cart_total < 10000 %}filling{% else %}filling all-the-way{% endif%}" style="width:{{progressBarWidth}}%"></div>
+                        </div>        
+                      </div>
+
+                      {%- comment -%} Above $100 
+                      <div class="shipping-progress-top">
+                        <div class="filledBar">
+                          <div class="filling all-the-way"></div>
+                        </div>
+                        <p>Congrats! You've unlocked free shipping!</p>
+                      </div>
+                      {%- endcomment -%}
+
+                      {% if cart_total < 10000 %}
+                      <script>
+                        window.addEventListener('load', function (event) {    
+                          $('.filling').css('width', {{progressBarWidth}} + '%');      
+                        }); 
+                      </script>
+                      {% endif %}                              
+                              
+                      {% if cart_total >= 10000 %}                                
+                        <script>
+                          window.addEventListener('load', function (event) {     
+                            $('.filling').css('width', '100%');      
+                          }); 
+                        </script>
+                      {% endif %}                          
+                    </div>
+                    
+                    <div class="js-empty-cart__message {% if cart.item_count > 0 %}hidden{% endif %}">
+                      <p class="empty_cart">{{ 'layout.general.empty_cart' | t }}</p>
+                    </div>
+    
+           
+                    <form action="{{ routes.cart_url }}"
+                          method="post"
+                          class="{% if cart.item_count == 0 %}hidden{% endif %}"
+                          data-total-discount="{{ cart.total_discount }}"
+                          data-money-format="{{ shop.money_format | strip_html }}"
+                          data-shop-currency="{{ shop.currency }}"
+                          data-shop-name="{{ shop.name | escape }}"
+                          data-cart-form="mini-cart">
+               
+                     {%- comment -%}
+                      <a class="cart_content__continue-shopping secondary_button">
+                        {{ 'Continue Shopping' }}
+                      </a>
+                     {%- endcomment -%}
+    
+                     <div class="cart-items-wrapper">
+                        <ul class="cart_items js-cart_items">
+                          {%- assign total_saving = 0 -%}
+      
+                          {% for item in cart.items %}
+                            {% if item.variant.compare_at_price > item.variant.price %}
+                              {%- assign saving = item.variant.compare_at_price | minus: item.variant.price | times: item.quantity -%}
+                              {%- assign total_saving = saving | plus: total_saving -%}
+                            {% endif %}
+      
+                            <li class="mini-cart__item" data-cart-item data-line-id="{{ forloop.index }}" data-variant-id="{{ item.id }}">
+                              <a href="{{ item.url }}">
+                                {% if item.image %}
+                                  <div class="cart_image mini-cart__item-image">
+                                    <img src="{{ item.image | img_url: '320x' }}" alt="{{ item.title | escape }}" class="lazyload" />
+                                  </div>
+                                {% endif %}
+                              </a>
+      
+                              <div class="mini-cart__item-content">
+                                <div class="mini-cart__item-title">
+                                  <a href="{{ item.url }}">
+                                    {{ item.product.title }}
+                                  </a>
+                                <span class="option">
+                                  {% unless item.product.has_only_default_variant or item.variant.title contains "Title" %}                                  
+                                    {% for option in item.product.options %}
+                                      {{ item.variant.options[forloop.index0] }} {% unless forloop.last %}/{% endunless %}
+                                    {% endfor %}
+                                  {% endunless %}
+                                </span>
+      
+                                  {% if item.selling_plan_allocation.selling_plan %}
+                                    <p class="meta">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                                  {% endif %}
+      
+                                  {% if item.properties %}
+                                    {% for p in item.properties %}
+                                      {% if p.last != blank %}
+                                        <div class="line-item">
+                                          {{ p.first }}: {{ p.last }}
+                                        </div>
+                                      {% endif %}
+                                    {% endfor %}
+                                  {% endif %}
+                                </div>
+      
+                                <div class="mini-cart__item-price">
+                                  {% if item.price > 0 %}
+                                    <span class="money {% if item.price < item.variant.compare_at_price or item.line_level_discount_allocations.size > 0 %}sale{% endif %}">
+                                      {% if item.properties['FREE GIFT'] %}
+                                      {{ settings.free_price_text }}
+                                          {% else %}
+                                        {%
+                                          render 'price-element',
+                                          price: item.final_line_price
+                                        %}
+                                            {% endif %}
+                                    </span>
+      
+                                    {% if item.price < item.variant.compare_at_price or item.line_level_discount_allocations.size > 0 %}
+                                      <span class="money was_price">
+                                        {%
+                                          render 'price-element',
+                                          price: item.variant.compare_at_price
+                                        %}
+                                      </span>
+                                    {% endif %}
+                                  {% else %}
+                                    {{ settings.free_price_text }}
+                                  {% endif %}
+                                </div>
+      
+                                {%
+                                  render 'unit-price',
+                                  item: item,
+                                  variant: item.variant,
+                                  product: item.product,
+                                  class: 'mini-cart__unit-price'
+                                %}
+      
+                                {% if item.line_level_discount_allocations.size > 0 %}
+                                
+                                    {% for discount_allocation in item.line_level_discount_allocations %}
+                                    {% if item.properties['FREE GIFT'] %}
+                                      <p class="notification-discount meta">
+                                        {{ discount_allocation.discount_application.title }}
+                                      </p>
+                                      {% endif %} 
+                                    {% endfor %}
+                                
+                                {% endif %}
+                                
+                                {%- unless item.properties['FREE GIFT']  -%}
+                                <div class="product-quantity-box">
+                                  <span class="ss-icon product-minus js-change-quantity" data-func="minus">
+                                    <span class="icon-minus"></span>
+                                  </span>
+      
+                                  <input type="number" min="0" size="2" class="quantity" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" data-cart-quantity-input="mini-cart" {% if settings.limit_quantity and item.variant.inventory_management != blank and item.variant.inventory_quantity > 0 and item.variant.inventory_policy == "deny" %}max="{{ item.variant.inventory_quantity }}"{% endif %}/>
+      
+                                  <span class="ss-icon product-plus js-change-quantity" data-func="plus">
+                                    <span class="icon-plus"></span>
+                                  </span>
+                                </div>
+                                {%- endunless -%}
+                              </div>
+      
+                              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="cart__remove-btn" data-line-id="{{ forloop.index }}" data-remove-item="mini-cart"><span class="remove-icon"></span></a>
+                            </li>
+                          {% endfor %}                                 
+                        </ul>
+                        <ul class="cart-other-info">
+                          <div>
+                            {% if settings.display_special_instructions and settings.go_to_checkout %}
+                              <textarea id="note" name="note" rows="2" placeholder="{{ 'layout.general.cart_note' | t }}">{{ cart.note }}</textarea>
+                            {% endif %}
+                          </div>
+  
+                          <div class="cart-upsell-wrapper">
+                            {% render 'cart-product-slider' %}
+                          </div>
+  
+                         
+                        </ul>
+                        
+                        <div class="cart-footer">   
+
+                      
+                        <div class="cart_discounts js-cart_discounts sale d-flex justify-content-space-between">                             
+                          {% for discount_application in cart.cart_level_discount_applications %}                               
+                            <span class="cart_discounts--title text-left"><strong>Discount</strong></span>       
+                            <span class="cart_discounts--title text-right">{{ discount_application.title }}</span>       
+                            <span class="cart_discounts--price">
+                              -<span class="money">
+                                {%
+                                  render 'price-element',
+                                  price: discount_application.total_allocated_amount
+                                %}
+                              </span>
+                            </span>
+                          {% endfor %}
+                        </div>    
+                      
+
+                          <div class="cart_subtotal js-cart_subtotal">
+                            <span class="right">
+                              <span class="money">
+                                {%
+                                  render 'price-element',
+                                  price: cart.total_price
+                                %}
+                              </span>
+                            </span>
+      
+                            <span>{{ 'layout.general.subtotal' | t }}</span>
+                          </div>    
+                          <div class="cart_savings sale js-cart_savings">
+                            {% if settings.display_savings and total_saving > 0 or settings.display_savings and cart.total_discount > 0 %}
+                              <span class="right">
+                                <span class="money">
+                                  {% assign total_savings = total_saving | plus: cart.total_discount %}
+                                  {%
+                                    render 'price-element',
+                                    price: total_savings
+                                  %}
+                                </span>
+                              </span>
+      
+                              <span>{{ 'layout.general.savings' | t }}</span>
+                            {% endif %}
+                          </div>                      
+                          <div class="cart_total-wrapper">
+                              {% if settings.display_tos_checkbox and settings.go_to_checkout %}
+                              <p class="tos">
+                                <input type="checkbox" class="tos_agree" id="sliding_agree" required />
+      
+                                <label class="tos_label">
+                                  {{ 'cart.general.agree_to_terms_html' | t }}
+                                </label>
+      
+                                {% if settings.tos_page != blank %}
+                                  <a href="{{ settings.tos_page }}" target="_blank" class="tos_icon">{{ 'cart.general.view_terms' | t }}</a>
+                                {% endif %}
+                              </p>
+                            {% endif %}
+      
+                            {% if settings.cart_message != blank %}
+                              <div class="cart_text">
+                                {{ settings.cart_message }}
+                              </div>
+                            {% endif %}
+                            {% include 'tabarnapp-active-discount' %}    
+                             
+                            <button type="submit" class="global-button global-button--primary add_to_cart" id="checkout" data-minicart-checkout-button  name="checkout">{% if settings.show_lock_icon %}<span class="icon-lock"></span>{% endif %}{{ 'cart.general.checkout' | t }}</button>
+                          </div>                     
+                      
+                        </div>
+                     </div>
+                     
+                      
+
+                    </form>
+                  
+                  </div>
+                {% endunless %}
+              </div>
+            {% endif %}
+
+          </div>
+        
+        {% endcapture %}
+
+        {% capture menu_right %}
+          {%
+            render 'navigation-desktop',
+            menu: section.settings.main_linklist2,
+            style: menu_style,
+          %}
+        {% endcapture %} 
+        
+
+        {% if section.settings.menu_position == 'inline' %}          
+            <div class="nav nav--left {{ section.settings.menu_alignment }}">
+              {%- if header_color == "light" -%} 
+                  <img src="{{ 'handmadebadge-white.png' | file_url }}" alt="{{ shop.name | escape }}" class="lazyload medium-up--hide" width="60" />           
+                  <img src="{{ 'handmadebadge-navy.png' | file_url }}" alt="{{ shop.name | escape }}" class="lazyload small--hide" width="150" />     
+              {%- else -%}  
+                <img src="{{ 'handmadebadge-white.png' | file_url }}" alt="{{ shop.name | escape }}" class="lazyload medium-up--hide" width="60" /> 
+                <img src="{{ 'handmadebadge-white.png' | file_url }}" alt="{{ shop.name | escape }}" class="lazyload small--hide" width="150" />  
+              {%- endif -%}    
+            </div>
+            {{ logo }}
+            <div
+              class="nav nav--right {% if section.settings.menu_alignment == 'align_left' %} align_right {% elsif section.settings.menu_alignment == 'align_right' %} align_left {% else %} {{ section.settings.menu_alignment }} {% endif %}">
+              {{ menu_right_html }}
+            </div>        
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>
+ 
+ 
+
+{% comment %}
+  If JS is disabled we always want the non-feature_image style,
+  but we add these dynamically here to avoid waiting for the main
+  bundle to load. This prevents styling jumps for the majority,
+  who do use JS.
+
+  After the bundle loads, separate code toggles these classes during
+  editor events, etc.
+
+  
+{% endcomment %}
+<script>
+  (() => {
+    const header = document.querySelector('[data-header-feature-image="true"]');
+    if (header) {
+      header.classList.add('feature_image');
+    }
+  
+    const headerContent = document.querySelector('[data-header-is-absolute="true"]');
+    if (headerContent) { // Use headerContent instead of header here
+      headerContent.classList.add('is-absolute');
+    }
+  })();
+  
+</script>
+
+<style>
+  {%- if header_color == "light" -%}
+      #shopify-section-{{section.id}}{
+        background:{{section.settings.bgcolor}};
+      }
+  {%- else -%%}
+      #shopify-section-{{section.id}}{
+        background:var(--colorClassicNavy);
+      }
+      #shopify-section-{{section.id}} .
+  {%- endif -%}
+  div.header__logo,
+  div.header__logo img,
+  div.header__logo span,
+  .sticky_nav .menu-position--block .header__logo {
+    max-width: {{ section.settings.logo_display_width | append: 'px' }};
+  }
+  .index .header.is-transparent .main-nav .nav--left .nav-desktop .nav-desktop__tier-1-link,
+  .index .header.is-transparent .main-nav .nav--right .top-bar--right-menu .top-bar__menu a,
+  .index .header.is-transparent .main-nav .nav--right .top-bar--right-menu .top-bar__menu .swym-wishlist-header-counter,  
+  .index .header.is-transparent .main-nav .nav--right .top-bar--right-menu  .cart_count
+  {
+    color: {{nav_color}};  
+  }
+  .index .header.is-transparent .main-nav .nav--right .top-bar--right-menu svg,
+  .index .header.is-transparent .main-nav .nav--right .top-bar--right-menu path{
+    fill: {{nav_color}};  
+    stroke: {{nav_color}};  
+  } 
+  .cart_discounts.sale{
+    border-bottom: 1px solid var(--colorGrayLine);
+    padding:0 0 20px 0;
+    margin-bottom:10px;
+  }
+</style>
+
+
+
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "shopify-section--header",
+  "settings": [    
+   {
+     "type": "color",
+     "id": "bgcolor",
+     "label": "Background"
+   },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show cart",
+      "default": true
+    },   
+   
+    {
+      "type": "header",
+      "content": "Logos"
+    },
+    {
+      "type": "range",
+      "id": "logo_display_width",
+      "label": "Logo display width",
+      "step": 5,
+      "min": 105,
+      "max": 400,
+      "default": 340,
+      "unit": "px"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "400 x 200px recommended"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_home",
+      "label": "Secondary logo over content (optional)",
+      "info": "400 x 200px recommended"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_mobile",
+      "label": "Mobile logo",
+      "info": "100 x 50px recommended"
+    },
+    {
+      "type": "header",
+      "content": "Menus"
+    },
+    {
+      "type": "link_list",
+      "id": "main_linklist",
+      "label": "Main menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "main_linklist2",
+      "label": "Mobile menu"
+    },    
+    {
+      "type": "checkbox",
+      "id": "vertical_menu",
+      "label": "Enable vertical menus",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "dropdown_click",
+      "label": "Open dropdowns on click instead of hover",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "checkbox",
+      "id": "search_enabled",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "fixed_header",
+      "label": "Fixed ('sticky') header",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "label": "Logo position",
+      "info": "Applies when menu position has been set to 'Inline with logo'",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "logo_alignment",
+      "label": "Logo alignment",
+      "info": "Applies when menu position has been set to 'Under logo'",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "menu_position",
+      "label": "Menu position",
+      "default": "inline",
+      "options": [
+        {
+          "value": "inline",
+          "label": "Inline with logo"
+        },
+        {
+          "value": "block",
+          "label": "Under logo"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "menu_alignment",
+      "label": "Menu alignment",
+      "default": "align_left",
+      "options": [
+        {
+          "value": "align_left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "align_right",
+          "label": "Right"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "840 x 840px recommended"
+        },       
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Header",
+          "default": "Feature"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

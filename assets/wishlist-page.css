@@ -1,0 +1,10 @@
+#swym-wishlist-render-container{
+  padding: 50px 20px !important;
+}
+.swym-ui-component.swym-wishlist-page .swym-wishlist-container-title-bar{
+  padding: 20px !important;
+}
+.swym-ui-component .swym-wishlist-grid{
+  justify-content: center !important;
+  padding: 0 20px 30px 20px !important;
+}

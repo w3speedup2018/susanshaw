@@ -1,0 +1,182 @@
+<script
+  type="application/json"
+  data-section-type="featured-collection"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{% assign collection = collections[section.settings.collection] %}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: section.id
+  %}
+  #shopify-section-{{section.id}}{
+    background:{{section.settings.background_color}};
+  }
+  #shopify-section-{{section.id}} .container{
+    margin:0 20px;
+  }
+{% endstyle %}
+
+{% if collection == blank %}
+  {%- assign section_onboarding = true -%}
+  {% comment %} Assign product length to be selected limit for onboarding {% endcomment %}
+  {%- assign products_length = section.settings.products_limit | plus: 0 -%}
+{% else %}
+  {%- assign section_onboarding = false -%}
+{% endif %}
+
+<div class="{{ section.settings.css_class }} page-width">
+  <section class="section">
+    <div class="container">
+      <div class="one-whole column center homepage_content">
+        <div class="featured-header">
+          {% if section.settings.title != blank %}          
+            <h1 class="title text-center byronrr-medium">{{ section.settings.title | escape }}</h1>       
+          {% endif %}
+        </div>
+
+        {% if section.settings.collection_description and collection.description != blank %}
+          <div class="featured-collection__description rte">
+            {{ collection.description }}
+          </div> 
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <div class="js-product-slider homepage-product-slider full-width--true  {% if section.settings.products_per  == 2 or section.settings.products_per  == 4 or section.settings.products_per  == 6 %}even-num-slides{% endif %} featured-collection__products">
+  
+      {% if collection.products.size > 0 %}
+        {%
+          render 'product-slider-reviews',
+          limit: section.settings.products_limit,
+          products: collection.products,
+          collection: collection,
+          per_slide: section.settings.products_per,
+          featured_collection: collection,
+        %}
+      {% endif %}
+    
+  </div>
+  
+</div>
+
+<script>
+  /*window.addEventListener('load', function (event) {
+    var review_message = $('.stamped-reviews-message');   
+    window.setTimeout(() => {
+      review_message.addClass('tttttest'); 
+    }, 1000);
+  }); */
+</script>
+
+{% schema %}
+{
+  "name": "Product Reviews",
+  "class": "shopify-section--featured-reviews",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "radio",
+      "id": "collection_style",
+      "label": "Collection layout",
+      "default": "grid",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "products_per",
+      "label": "Products per row",
+      "min": 2,
+      "max": 7,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Limit products",
+      "min": 2,
+      "max": 50,
+      "step": 1,
+      "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Reviews",
+      "category": "Collection"
+    }
+  ],
+  "templates": [
+    "404",
+    "article",
+    "blog",
+    "cart",
+    "collection",
+    "list-collections",
+    "index",
+    "page",
+    "product",
+    "search"
+  ]
+}
+
+{% endschema %}

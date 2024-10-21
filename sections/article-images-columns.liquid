@@ -1,0 +1,151 @@
+<script
+  type="application/json"
+  data-section-type="text-columns-with-images"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+{%- assign id = section.id -%}
+
+{% comment %} Content settings {% endcomment %}
+{%- assign blocks = section.blocks -%}
+{%- assign title = section.settings.title | escape -%}
+{% comment %} End content settings {% endcomment %}
+
+{% comment %} Advanced {% endcomment %}
+{%- assign css_class = section.settings.css_class -%}
+{%- assign custom_css = section.settings.custom_css -%}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: custom_css,
+    id: id
+  %}
+
+  #shopify-section-{{section.id}} .featured-collection__description,  
+  #shopify-section-{{section.id}} .rte-setting,
+  #shopify-section-{{section.id}} .rte-setting p,
+  #shopify-section-{{section.id}} .rte-setting a{ 
+      font-size: {{section.settings.font_size}}px;
+  }
+  #shopify-section-{{section.id}} .container{
+    max-width:800px; 
+  }
+  #shopify-section-{{section.id}} .container .one-half{
+    width: calc(50% - 10px);
+  }
+  #shopify-section-{{section.id}} .container .one-third{
+    width: calc(33% - 4px);
+  }
+  #shopify-section-{{section.id}} .text-column,
+  #shopify-section-{{section.id}} img{
+    margin:0;
+  }
+{% endstyle %}
+
+<section class="section {{ css_class }}">
+  <div class="container">   
+    {% for block in blocks %}
+      {% comment %} Content settings {% endcomment %}
+      {%- assign image = block.settings.image -%}
+      {% comment %} End content settings {% endcomment %}
+
+      <div class="{% render 'column-width', value: blocks.size %} column {% if blocks.size > 3 %}medium-down--one-half{% else %}medium-down--one-whole{% endif %} text-column" {{ block.shopify_attributes }}>
+        <div class="border-style--{{ block.settings.border_style }} text-align--{{ block.settings.align_text }}">
+          {% if  block.settings.image_url != blank %}
+            <a href="{{ block.settings.image_url }}">
+          {% endif %} 
+
+              {% if block.settings.enable_image %}
+              {% if image != blank %}
+                {%
+                  render 'image-element',
+                  image: image.src,
+                  alt: image.alt
+                %}
+              {% else %}
+                <p>
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </p>
+              {% endif %}
+            {% endif %}
+
+          {% if  block.settings.image_url != blank %}
+              </a>
+          {% endif %} 
+        </div>
+      </div>
+    {% endfor %}
+
+   
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog - Image Columns",
+  "class": "shopify-section--text-columns-with-images",
+  "settings": [  
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },    
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Column",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enable_image",
+          "label": "Show image",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },    
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "URL"      
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog - Image Columns",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

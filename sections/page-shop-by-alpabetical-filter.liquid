@@ -1,0 +1,184 @@
+{% assign alphabet_list = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" | split: ',' %} 
+<section class="section">
+    <div
+      class="
+        container
+        content
+        page
+      "
+    >
+      <div class="one-whole column">
+        <h1 class="h1 text-align--center">Alphabetical</h1>
+         <div class="collection-alphabetical-filter">
+ 
+         
+            <div class="button-group filters-button-group">     
+                <button class="button is-checked" data-filter="*">All</button>   
+                {%- for letter in alphabet_list -%}
+                    {%- assign letter_first = letter | slice: 0 -%}
+                    <button class="button" data-filter=".collection--{{letter_first}}">{{letter}}</button>
+                {%- endfor -%}            
+            </div>    
+         </div>
+      </div>  
+      
+    </div>  
+    <div class="container content"> 
+        {% paginate collections by 500 %}
+          {%- assign collections_per_row = 3 -%}
+    
+     
+          
+          {% comment %} Check to see if sidebar should be enabled {% endcomment %}
+          {% if section.blocks.size > 0 %}
+            {%- assign sidebar = true -%}
+          {% else %}
+            {%- assign sidebar = false -%}
+          {% endif %}
+    
+          <div class="content-wrapper is-flex is-flex-wrap">         
+    
+            <div class="has-sidebar-option sidebar-enabled--{{ sidebar }}">
+              <div class="container">
+                <div class="one-whole column list-collections-wrapper">
+                  <div
+                    class="
+                      list-collections
+                      product-list
+                      product-list--collection
+                      equal-columns--outside-trim
+                      is-flex
+                      is-flex-wrap
+                    "
+                  >
+                    {% for collection in collections %}
+                      {% unless collection.handle == 'frontpage' %}
+                        {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+                        {% assign collection_title_first = collection_title | slice: 0 %}
+
+                        <div class="collection--all collection--{{collection_title_first}} collection-wrap {% render 'column-width', value: collections_per_row %} column thumbnail {% if settings.mobile_products_per_row == '1' %}medium-down--one-half small-down--one-whole{% else %}medium-down--one-half small-down--one-half{% endif %}">
+                          <div class="product-wrap">
+                            <div class="image__container">
+                              {% if collection.image %}
+                                {%- assign collection_image = collection.image.src -%}
+                              {% else %}
+                                {%- assign collection_image = collection.products.first.featured_image -%}
+                              {% endif %}
+     
+                              {% 
+                                render 'image-element',
+                                image: collection_image,
+                                alt: collection.title,
+                                object_fit: true,
+                                max_height: 400
+                              %} 
+                            </div>
+    
+                            <a href="{{ collection.url }}" title="{{ collection_title }}" class="hidden-product-link">{{ collection_title }}</a>
+    
+                            {% if settings.thumbnail_hover_enabled %}
+                              <div class="thumbnail-overlay">
+                                <a href="{{ collection.url }}" title="{{ collection_title }}" class="hidden-product-link">{{ collection_title }}</a>
+    
+                                <div class="info">
+                                  <div class="collection-details">
+                                    <span class="title">{{ collection.title }}</span>
+                                  </div>
+                                  <a
+                                    href="{{ collection.url }}"
+                                    title="{{ collection_title }}"
+                                    class="thumbnail-overlay__button global-button global-button--product-grid-text-hover"
+                                  >
+                                    {{ 'collections.general.view_all' | t }}
+                                  </a>
+                                </div>
+                              </div>
+                            {% endif %}
+    
+                            
+                            <a class="h3 collection-info__captions text-left {% if settings.thumbnail_hover_enabled %}hidden{% endif %} d-flex is-justify-space-between is-align-center" href="{{ collection.url }}">
+                            <span class="title">
+                                {% if block.settings.title != blank %}
+                                {{ block.settings.title }}
+                                {% else %}
+                                {{ collection.title }}
+                                {% endif %}
+                            </span>
+                            <span class="count sweet-sans-pro">
+                                ( {{collection.all_products_count}} )
+                            </span>
+                            </a>
+                          </div>
+                        </div>
+                      {% endunless %}
+                    {% endfor %}
+                     
+                    {% include 'pagination', paginate: paginate %}
+                
+                  {% if paginate.next.url %}
+                      <span class="js-load-more load-more">
+                      <a href="{{ paginate.next.url }}" data-no-instant data-load-more class="global-button global-button--text">{{ 'collections.general.load_more_collections' | t }}</a>
+                      </span>
+                  {% endif %} 
+                  
+                  </div>
+    
+                  <div class="load-more__icon"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endpaginate %}
+      </div>
+  </section>
+  <script src="{{ 'isotope.pkgd.min.js' | asset_url }}"></script>
+<script>
+  // external js: isotope.pkgd.js
+    // https://isotope.metafizzy.co/
+
+    // init Isotope
+    var iso = new Isotope( '.list-collections-wrapper', {
+      itemSelector: '.collection-wrap',
+      layoutMode: 'fitRows'
+    });
+
+    // filter functions
+    var filterFns = {
+      // show if name ends with -ium
+      ium: function( itemElem ) {
+        var name = itemElem.querySelector('.name').textContent;
+        return name.match( /ium$/ );
+      }
+    };
+
+    // bind filter button click
+    var filtersElem = document.querySelector('.filters-button-group');
+    filtersElem.addEventListener( 'click', function( event ) {
+      // only work with buttons
+      if ( !matchesSelector( event.target, 'button' ) ) {
+        return;
+      }
+      var filterValue = event.target.getAttribute('data-filter');
+      // use matching filter function
+      filterValue = filterFns[ filterValue ] || filterValue;
+      iso.arrange({ filter: filterValue });
+    });
+
+    // change is-checked class on buttons
+    var buttonGroups = document.querySelectorAll('.button-group');
+    for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
+      var buttonGroup = buttonGroups[i];
+      radioButtonGroup( buttonGroup );
+    }
+    function radioButtonGroup( buttonGroup ) {
+      buttonGroup.addEventListener( 'click', function( event ) {
+        // only work with buttons
+        if ( !matchesSelector( event.target, 'button' ) ) {
+          return;
+        }
+        buttonGroup.querySelector('.is-checked').classList.remove('is-checked');
+        event.target.classList.add('is-checked');
+      });
+    }
+
+</script>

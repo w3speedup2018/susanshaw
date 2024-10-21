@@ -1,0 +1,54 @@
+{%- capture preconnect -%}
+  <link rel="preload" as="style" href="{{ 'styles.scss.css' | asset_url }}" >
+  <link rel="preload" as="font" href="{{ "turbo.woff" | asset_url }}" crossorigin >
+  <link rel="preconnect" href="https://fonts.shopifycdn.com" />
+  <link rel="preconnect" href="https://cdn.shopify.com" />
+  <link rel="preconnect" href="https://v.shopify.com" />
+  <link rel="preconnect" href="https://cdn.shopifycloud.com" />
+  {% if settings.enable_shopify_review_comments %}
+  	<link rel="preconnect" href="https://productreviews.shopifycdn.com" />
+  {% endif %}
+{%- endcapture -%}
+
+{{ preconnect | strip_newlines  }}
+
+<script type="text/javascript">
+  window.requestIdleCallback=window.requestIdleCallback||function(e){var n=Date.now();return setTimeout(function(){e({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-n))}})},1)},window.cancelIdleCallback=window.cancelIdleCallback||function(e){clearTimeout(e)};
+  window.delayed=function(e,t,n){return!!n&&(!!t&&(!!e&&void setTimeout(function(){var n;"link"==t&&((n=document.createElement("link")).type="text/css",n.rel="stylesheet",n.href=e,document.head.appendChild(n));"script"==t&&((n=document.createElement("script")).type="text/javascript",n.async=!0,n.src=e,document.head.appendChild(n))},n)))};
+  window.emitEvent=function(e,n,t){if(e){n=n||window,t=t||{};var a=new CustomEvent(e,{bubbles:!0,cancelable:!0,detail:t});n.dispatchEvent(a)}};
+  window.getClosest=function(e,t){for(Element.prototype.matches||(Element.prototype.matches=Element.prototype.matchesSelector||Element.prototype.mozMatchesSelector||Element.prototype.msMatchesSelector||Element.prototype.oMatchesSelector||Element.prototype.webkitMatchesSelector||function(e){for(var t=(this.document||this.ownerDocument).querySelectorAll(e),o=t.length;--o>=0&&t.item(o)!==this;);return o>-1});e&&e!==document;e=e.parentNode)if(e.matches(t))return e;return null};
+  /*! lozad.js - v1.16.0 - 2020-09-10
+* https://github.com/ApoorvSaxena/lozad.js
+* Copyright (c) 2020 Apoorv Saxena; Licensed MIT */
+!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):t.lozad=e()}(this,function(){"use strict";
+/**
+   * Detect IE browser
+   * @const {boolean}
+   * @private
+   */var g="undefined"!=typeof document&&document.documentMode,v=function(t){return window&&window[t]},h=["data-iesrc","data-alt","data-src","data-srcset","data-background-image","data-toggle-class"],p={rootMargin:"0px",threshold:0,enableAutoReload:!1,load:function(t){if("picture"===t.nodeName.toLowerCase()){var e=t.querySelector("img"),r=!1;null===e&&(e=document.createElement("img"),r=!0),g&&t.getAttribute("data-iesrc")&&(e.src=t.getAttribute("data-iesrc")),t.getAttribute("data-alt")&&(e.alt=t.getAttribute("data-alt")),r&&t.append(e)}if("video"===t.nodeName.toLowerCase()&&!t.getAttribute("data-src")&&t.children){for(var a=t.children,o=void 0,i=0;i<=a.length-1;i++)(o=a[i].getAttribute("data-src"))&&(a[i].src=o);t.load()}t.getAttribute("data-poster")&&(t.poster=t.getAttribute("data-poster")),t.getAttribute("data-src")&&(t.src=t.getAttribute("data-src")),t.getAttribute("data-srcset")&&t.setAttribute("srcset",t.getAttribute("data-srcset"));var n=",";if(t.getAttribute("data-background-delimiter")&&(n=t.getAttribute("data-background-delimiter")),t.getAttribute("data-background-image"))t.style.backgroundImage="url('"+t.getAttribute("data-background-image").split(n).join("'),url('")+"')";else if(t.getAttribute("data-background-image-set")){var d=t.getAttribute("data-background-image-set").split(n),u=d[0].substr(0,d[0].indexOf(" "))||d[0];// Substring before ... 1x
+u=-1===u.indexOf("url(")?"url("+u+")":u,1===d.length?t.style.backgroundImage=u:t.setAttribute("style",(t.getAttribute("style")||"")+"background-image: "+u+"; background-image: -webkit-image-set("+d+"); background-image: image-set("+d+")")}t.getAttribute("data-toggle-class")&&t.classList.toggle(t.getAttribute("data-toggle-class"))},loaded:function(){}};
+/**
+   *
+   * @param {string} type
+   *
+   */function k(t){t.setAttribute("data-loaded",!0)}var y=function(t){return"true"===t.getAttribute("data-loaded")},w=function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:document;return t instanceof Element?[t]:t instanceof NodeList?t:e.querySelectorAll(t)};return function(){var r,a,e,o=0<arguments.length&&void 0!==arguments[0]?arguments[0]:".lozad",t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},i=Object.assign({},p,t),n=i.root,d=i.rootMargin,u=i.threshold,g=i.enableAutoReload,s=i.load,c=i.loaded,l=void 0,b=void 0;v("IntersectionObserver")&&(l=new IntersectionObserver((r=s,a=c,function(t,e){t.forEach(function(t){(0<t.intersectionRatio||t.isIntersecting)&&(e.unobserve(t.target),y(t.target)||(r(t.target),k(t.target),a(t.target)))})}),{root:n,rootMargin:d,threshold:u})),v("MutationObserver")&&g&&(b=new MutationObserver((e=s,function(t){t.forEach(function(t){y(t.target)&&"attributes"===t.type&&-1<h.indexOf(t.attributeName)&&e(t.target)})})));for(var f,m=w(o,n),A=0;A<m.length;A++)(f=m[A]).getAttribute("data-placeholder-background")&&(f.style.background=f.getAttribute("data-placeholder-background"));return{observe:function(){for(var t=w(o,n),e=0;e<t.length;e++)y(t[e])||(l?(b&&g&&b.observe(t[e],{subtree:!0,attributes:!0,attributeFilter:h}),l.observe(t[e])):(s(t[e]),k(t[e]),c(t[e])))},triggerLoad:function(t){y(t)||(s(t),k(t),c(t))},observer:l,mutationObserver:b}}});
+</script>
+
+{%- capture favicons -%}
+{% if collection.previous_product %}<link rel="prev" href="{{ collection.previous_product }}">{% endif %}
+{% if collection.next_product %}<link rel="next" href="{{ collection.next_product }}">{% endif %}
+{% if settings.favicon != nil %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ settings.favicon | img_url: '180x180' }}">
+<link rel="apple-touch-icon" href="{{ settings.favicon | img_url: '180x180' }}"/>
+<link rel="apple-touch-icon" sizes="57x57" href="{{ settings.favicon | img_url: '57x57' }}"/>
+<link rel="apple-touch-icon" sizes="60x60" href="{{ settings.favicon | img_url: '60x60' }}"/>
+<link rel="apple-touch-icon" sizes="72x72" href="{{ settings.favicon | img_url: '72x72' }}"/>
+<link rel="apple-touch-icon" sizes="76x76" href="{{ settings.favicon | img_url: '76x76' }}"/>
+<link rel="apple-touch-icon" sizes="114x114" href="{{ settings.favicon | img_url: '114x114' }}"/>
+<link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | img_url: '180x180' }}"/>
+<link rel="apple-touch-icon" sizes="228x228" href="{{ settings.favicon | img_url: '228x228' }}"/>
+{% else %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ 'favicon.png' | asset_url }}">
+{% endif %}
+{%- endcapture -%}
+{{ favicons | strip_newlines  }}

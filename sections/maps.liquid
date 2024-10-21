@@ -1,0 +1,200 @@
+<script
+  type="application/json"
+  data-section-type="custom-liquid"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+
+
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const pinLocations = document.querySelectorAll('.pin--location');
+    pinLocations.forEach(pinLocation => {
+      const marker = pinLocation.querySelector('.marker');
+      pinLocation.addEventListener('mouseenter', () => {
+        pinLocation.classList.add('hover');
+        console.log('hover');
+      });
+      pinLocation.addEventListener('mouseleave', () => {
+        pinLocation.classList.remove('hover');
+        console.log('out');
+      });
+    });
+  });
+
+  
+</script>
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: section.id,
+  %}
+{% endstyle %}
+
+<section class="section {{ section.settings.css_class }}">
+  <div class="container">
+      <div class="map-content">
+        {%
+            render 'image-element-gift-guide',
+            image: section.settings.image_badge,
+            alt: section.settings.image_badge.alt,
+            stretch_width: true,
+            additional_classes: 'certified-traveler'
+        %}
+        <h1>PACK YOUR BAGS</h1>
+        <div class="map-desc">
+          <p>Come fly with us and explore the map to find your 
+          favorite handmade pieces inspired by our world travels.</p>
+          <p>Click on the different location dots on the map to find jewelry pieces inspired by the region's influences. </p>
+        </div>
+      </div>      
+  </div>
+  <div class="container"> 
+    <div class="map-wrapper">
+      {%
+        render 'image-element-gift-guide',
+        image: section.settings.image,
+        alt: section.settings.image.alt,
+        stretch_width: true,
+        additional_classes: 'small--hide'
+      %}      
+      {%
+        render 'image-element-gift-guide',
+        image: section.settings.image_mobile,
+        alt: section.settings.image_mobile.alt,
+        stretch_width: true,
+        additional_classes: 'medium-up--hide'
+      %}      
+
+    {%- for block in section.blocks -%}
+      {% liquid
+        assign title = block.settings.title
+        assign collection_title = block.settings.collection_title        
+        assign collection = collections[block.settings.collection] 
+        assign position_top = block.settings.position_top
+        assign position_left = block.settings.position_left
+      %}
+      <div class="pin--location icon--{{title | handleize}}-{{forloop.index}}">
+          <div class="marker">
+          	{% render 'icon-marker' %}
+          </div>
+          <div class="location--content">
+              <h3>{{title}}</h3>
+              <h4><a href="{{collection.url}}">{{collection_title}}</a></h4>
+          </div>
+          <style>
+              .icon--{{title | handleize}}-{{forloop.index}}{             
+                  top:{{position_top}}%;
+                  left:{{position_left}}%;
+              }
+          </style>
+      </div>
+     
+    {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Maps",
+  "class": "shopify-section--maps",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_badge",
+      "label": "Badge"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Map"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Map Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "blocks":[
+      {
+        "type": "location",
+        "name": "Location",
+        "settings":[           
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "text",
+                "id": "collection_title",
+                "label": "Collection"
+            },
+            {
+              "type": "collection",
+              "id": "collection",
+              "label": "Collection"
+            },  
+            {
+                "type": "range",
+                "id": "position_top",
+                "min": 1,
+                "max": 100,
+                "step": 1,
+                "unit": "%",
+                "label": "Top",
+                "default":1                  
+            },
+            {
+                "type": "range",
+                "id": "position_left",
+                "min": 1,
+                "max": 100,
+                "step": 1,
+                "unit": "%",
+                "label": "Left",
+                "default":1                  
+            }
+        ]
+        
+    }
+  ],
+  "presets": [
+    {
+      "name": "Maps",
+      "category": "Gift Guide"
+    }
+  ]
+}
+
+{% endschema %}

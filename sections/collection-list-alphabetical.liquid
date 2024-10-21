@@ -1,0 +1,728 @@
+{% assign alphabet_list = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" | split: ',' %}    
+{%- assign exclude_collection = "413070557399,153416106080,265972318387,158621106272,32015712303,38339706927,400823222487,236181782707,246900392115,282898694323,282898432179,282895155379,411290370263,411291975895,233646129331,233628041395,156093710432,233743515827,236296143027,234944364723,38832177199,412054946007,153412632672,153018171488,400265478359,281518440627,281976012979,281517818035,281517752499,400265380055,400265314519,35851960367,412041052375,42312204335" -%}
+
+<section class="section">
+  <div
+    class="
+      container
+      content
+      page
+    "
+  >
+ 
+    {%- comment -%}
+    <div class="collection-alphabetical-filter">    
+      <h1 class="h1 text-align--center">Alphabetical</h1>     
+      <ul class="d-flex is-justify-center">
+      {%- for letter in alphabet_list -%}
+          {%- assign letter_first = letter | slice: 0 -%}
+          <li class="letter-{{letter}}"><a href="#collection--{{letter}}">{{letter}}</a></button>
+      {%- endfor -%}           
+      </ul> 
+     
+    </div>
+   
+    {%- endcomment -%}
+  
+    <div class="content-wrapper">       
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}           
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+              <h1 id="collection--A">A</h1>
+            </div>
+              {% for collection in collections %}    
+                {% include 'collection-list-grid' with first_letter: 'A' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+              <h1 id="collection--B">B</h1>
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'B' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+        
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+              <h1 id="collection--C">C</h1>
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'C' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+          
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >           
+            {%- capture collection_html -%}
+              <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+              <h1 id="collection--D">D</h1>    
+              </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'D' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+        
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+              <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+              <h1 id="collection--E">E</h1>    
+              </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'E' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--F">F</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'F' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--G">G</h1>     
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'G' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+          
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--H">H</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'H' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+        
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--I">I</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'I' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--J">J</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'J' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+          
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--K">K</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'K' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+            
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--L">L</h1> 
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'L' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--M">M</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'M' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--N">N</h1>   
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'N' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--O">O</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'O' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--P">P</h1>      
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'P' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+          
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--Q">Q</h1>      
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'Q' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+        
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--R">R</h1>        
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'R' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--S">S</h1>       
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'S' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+          
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--T">T</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'T' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--U">U</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'U' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+       
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--V">V</h1>      
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'V' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+         
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--W">W</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'W' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+        
+          <div class="one-whole column list-collections-wrapper">
+            <div
+              class="
+                list-collections
+                product-list
+                product-list--collection
+                equal-columns--outside-trim
+                is-flex
+                is-flex-wrap
+              "
+            >
+            {%- capture collection_html -%}
+            <div class="collection--all collection--title collection-wrap  one-fifth column thumbnail medium-down--one-half small-down--one-half">
+            <h1 id="collection--X">X</h1>    
+            </div>
+              {% for collection in collections %}       
+              {%- if exclude_collection contains collection.id  -%}
+                {%- continue -%}
+              {%- endif -%}
+                {% include 'collection-list-grid' with first_letter: 'X' %}
+              {% endfor %}   
+            {%- endcapture -%}         
+
+            {{collection_html}}
+            </div>  
+          </div>
+
+          
+    </div>
+    
+   
+   
+  </div>
+
+</section>
+<style>
+
+  @media screen and (max-width: 1024px) {
+    #shopify-section-{{section.id}}{
+      top:124px;
+      overflow-x: scroll;
+      margin-bottom:30px;
+    }
+  }
+</style>
+
+
+{% schema %}
+{
+  "name": "Collections - Alphabet",
+  "class": "shopify-section--collection-list collection--alphabetical",
+  "settings": [    
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }   
+  ],
+  "presets": [{
+    "name": "Collections - Alphabet"    
+  }]
+}
+
+{% endschema %}
