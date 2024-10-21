@@ -606,13 +606,13 @@
 {% if context == 'product' %}
   {% comment %} Shopify-XR {% endcomment %}
   {% if product.media %}
-    <script>
+    <script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
       window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)}
         {% assign models = product.media | where: 'media_type', 'model' | json %}
         ShopifyXR('addModels', {{ models }});
     </script>
   {% endif %}
 
-  <script defer src="https://cdn.shopify.com/shopifycloud/shopify-xr-js/assets/v1.0/shopify-xr.en.js"></script>
-  <script defer src="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.en.js"></script>
+  <script{% if template contains 'product' %} type="lazyload_int" data-{% else %} defer {% endif %}src="https://cdn.shopify.com/shopifycloud/shopify-xr-js/assets/v1.0/shopify-xr.en.js"></script>
+  <script{% if template contains 'product' %} type="lazyload_int" data-{% else %} defer {% endif %}src="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.en.js"></script>
 {% endif %} 

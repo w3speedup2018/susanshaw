@@ -1,4 +1,4 @@
-<script>
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
   if(window.ak_mm){
   }
   else{
@@ -31,18 +31,18 @@
 {% assign realMinKey="ak_p_miQ_"|append: pid %}
 {% assign realMaxKey="ak_p_maQ_"|append: pid %}
 
-<script>
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
   var pid="{{field | first}}";
   metafieldArray[pid]="{{ field | last }}";
 </script>
 
 {% if key == realMinKey %}
-<script>
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
   ak_mm.product_min_qty="{{ field | last }}";
 </script>
 {% endif %}
 {% if key == realMaxKey %}
-<script>
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
   ak_mm.product_max_qty="{{ field | last }}";
 </script>
 {% endif %}
@@ -54,7 +54,7 @@
 {% assign realMinKey="ak_p_miQ_"|append: item.product_id %}
 {% assign realMaxKey="ak_p_maQ_"|append: item.product_id %}
 {% assign instructions = product.metafields.ak_mm_minmax %}
-<script>
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
   var cartObj={};
 
   cartObj.pid="{{item.product_id}}";
@@ -84,7 +84,7 @@
 {% assign metaValue= shop.metafields.ak_mm_minmax.enforcement_status %}
 
 {% if metaValue == "1" %} 
-  <script>delayed('{{ 'ak_mm_swal.js'  | asset_url }}', 'script', 3000)</script>
+  <script{% if template contains 'product' %} type="lazyload_int"{% endif %}>delayed('{{ 'ak_mm_swal.js'  | asset_url }}', 'script', 3000)</script>
   {% comment %}{{ 'ak_mm_swal.js'  | asset_url | script_tag}}{% endcomment %}
 
 

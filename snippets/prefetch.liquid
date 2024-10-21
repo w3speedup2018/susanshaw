@@ -1,3 +1,4 @@
+{% unless template contains 'product' %}
 <script type="text/javascript">
     {% if template != 'cart' %}
     const uLTS=new MutationObserver(a=>{a.forEach(({addedNodes:a})=>{a.forEach(a=>{1===a.nodeType&&"IFRAME"===a.tagName&&(a.src.includes("youtube.com")||a.src.includes("vimeo.com"))&&(a.setAttribute("loading","lazy"),a.setAttribute("data-src",a.src),a.removeAttribute("src")),1===a.nodeType&&"SCRIPT"===a.tagName&&(("analytics"==a.className||"boomerang"==a.className)&&(a.type="script/lazyload"),a.innerHTML.includes("asyncLoad")&&(a.innerHTML=a.innerHTML.replace("if(window.attachEvent)","document.addEventListener('asyncLazyLoad',function(event){asyncLoad();});if(window.attachEvent)").replaceAll(", asyncLoad",", function(){}")),(a.innerHTML.includes("PreviewBarInjector")||a.innerHTML.includes("adminBarInjector"))&&(a.innerHTML=a.innerHTML.replace("DOMContentLoaded","loadBarInjector")))})})});uLTS.observe(document.documentElement,{childList:!0,subtree:!0});
@@ -6,4 +7,5 @@
     {% else %}
     const uLTS = new MutationObserver(mutations => {}); uLTS.observe(document.documentElement, {childList: true, subtree: true});
     {% endif %}
-  </script>
+</script>
+{% endunless %}

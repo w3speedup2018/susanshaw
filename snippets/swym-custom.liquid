@@ -1,4 +1,4 @@
-<script defer >
+<script{% if template contains 'product' %} type="lazyload_int" {% else %} defer {% endif %}>
   function swymCallbackFn(swat){
     // your API calls go here
     $(document).on("swym:infiniteload",function(){

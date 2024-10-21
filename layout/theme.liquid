@@ -1,13 +1,11 @@
 {% capture content %}
 <!DOCTYPE html>
 <html class="no-js no-touch" lang="{{ request.locale.iso_code }}">
-    <head>
-
-     
-        {% comment %}{% render 'font-css' %}{% endcomment %}     
-        
-        {% render 'prefetch' %}
-       
+    <head>             
+        {% if template contains 'product' %}
+            {% render 'w3_header' %}
+        {% endif %}
+        {% render 'prefetch' %}       
         <meta charset="utf-8">
         <meta http-equiv="cleartype" content="on">
         <meta name="robots" content="index,follow">    
@@ -45,7 +43,7 @@
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <!-- Preload Assets -->
-        
+        {% unless template contains 'product' %}
         <link rel="preload" href="{{ 'fancybox.css' | asset_url }}" as="style">
         <link rel="preload" href="{{ 'styles.css' | asset_url }}" as="style">
         <link rel="preload" href="{{ 'custom.css' | asset_url }}" as="style">
@@ -55,33 +53,22 @@
         <link rel="preload" href="{{ 'utilities.js' | asset_url }}" as="script">
         <link rel="preload" href="{{ 'app.js' | asset_url }}" as="script">
         <link rel="preload" href="{{ 'custom.js' | asset_url }}" as="script">
-        
-        <!-- Adobe Fonts -->
-        
-        <link rel="stylesheet" href="https://use.typekit.net/tbd8dfn.css">
-        
+        {% endunless %}
+        <!-- Adobe Fonts -->                      
         <!-- Stylesheet for Fancybox library -->
         <!-- Stylesheets for Turbo -->
-        
-        
-        {{ 'fancybox.css' | asset_url | stylesheet_tag }}        
-        {{ 'styles.css' | asset_url | stylesheet_tag }}            
-        {% comment %}
-        {% if request.page_type == 'collection' or request.page_type == 'search' %}
+        {% if template contains 'product' %}
+          {% render 'product-css' %}
+          {% render 'font-load' %}
+            <link rel="stylesheet" data-href="https://use.typekit.net/tbd8dfn.css">
+            <link rel="stylesheet" data-href="{{ 'fancybox.css' | asset_url }}">
+            <link rel="stylesheet" data-href="{{ 'styles.css' | asset_url }}">                        
         {% else %}
-            {% if template contains 'index' %} 
-                {% render 'homepage-critical-css' %}
-            {% elsif template contains 'product' %}
-                {% render 'product-critical-css' %}
-            {% else %}
-                {% render 'all-css' %}
-                {% render 'all-css-2' %}
-                {% render 'all-css-3' %}         
-            {% endif %}
-            <link rel="stylesheet" data-href="{{ 'fancybox.css' | asset_url }}">        
-            <link rel="stylesheet" data-href="{{ 'styles.css' | asset_url }}">
-        {% endif %}        
-        {% endcomment %}
+            <link rel="stylesheet" href="https://use.typekit.net/tbd8dfn.css">
+            {{ 'fancybox.css' | asset_url | stylesheet_tag }}
+            {{ 'styles.css' | asset_url | stylesheet_tag }}
+        {% endif %}
+                
         <!-- Custom Stylesheets -->
         {% include 'css-variables' %}
         
@@ -90,16 +77,13 @@
             {{ 'collection.css' | asset_url | stylesheet_tag }}
         {%- endif -%}
         
-
-        {{ 'custom.css' | asset_url | stylesheet_tag }}
-        {% comment %}
-        {% if request.page_type == 'collection' or request.page_type == 'search' %}
+        {% if template contains 'product' %}            
+            <link rel="stylesheet" data-href="{{ 'custom.css' | asset_url }}">                        
         {% else %}
-            <link rel="stylesheet" data-href="{{ 'custom.css' | asset_url }}">
-        {% endif %}
-        {% endcomment %}
+            {{ 'custom.css' | asset_url | stylesheet_tag }}
+        {% endif %}        
         {%- if template.name contains 'blog' or template.name contains 'article' or template.suffix contains 'all-articles'-%}
-        {{ 'blog.css' | asset_url | stylesheet_tag }}     
+            {{ 'blog.css' | asset_url | stylesheet_tag }}     
         {%- endif -%}
         
         {%- comment -%}      
@@ -137,144 +121,158 @@
         <link rel="canonical" href="{{ canonical_url }}"/>
         {% if template contains 'customer' %}
             <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
-            <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>      {% endif %}
-            {% comment %}Inject theme-object begin{% endcomment %}
-            <script>
-                window.PXUTheme = window.PXUTheme || {};
-                window.PXUTheme.version = '2.0';
-                window.PXUTheme.name = 'Susan Shaw';
-            </script>
-            {% comment %}Inject theme-object end{% endcomment %}
-            {% comment %}Inject @pixelunion/shopify-price-ui/price-ui-globals begin{% endcomment %}
-            {%- capture price -%}{%- render 'price-ui-templates', template: 'price' -%}{%- endcapture -%}
-            {%- capture price_percent -%}{%- render 'price-ui-templates', template: 'price-percent' -%}{%- endcapture -%}
-            {%- capture price_min -%}{%- render 'price-ui-templates', template: 'price-min' -%}{%- endcapture -%}
-            {%- capture price_max -%}{%- render 'price-ui-templates', template: 'price-max' -%}{%- endcapture -%}
-            {%- capture unit_quantity -%}{%- render 'price-ui-templates', template: 'unit-quantity' -%}{%- endcapture -%}
-            {%- capture unit_price -%}{%- render 'price-ui-templates', template: 'unit-price' -%}{%- endcapture -%}
-            {%- capture unit_measurement -%}{%- render 'price-ui-templates', template: 'unit-measurement' -%}{%- endcapture -%}      
-            <template id="price-ui">{%- render 'price-ui-templates', template: 'price-ui' -%}</template>
-            <template id="price-ui-badge">{%- render 'price-ui-templates', template: 'price-ui-badge' -%}</template>      
-            <template id="price-ui__price">{{ price }}</template>
-            <template id="price-ui__price-range">{{- 'product.price.range_html' | t: price_min: price_min, price_max: price_max -}}</template>
-            <template id="price-ui__unit-pricing">{{- 'product.price.unit_pricing_html' | t: unit_quantity: unit_quantity, unit_price: unit_price, unit_measurement: unit_measurement -}}</template>
-            <template id="price-ui-badge__percent-savings-range">{{- 'product.badge.sale_percentage_range_html' | t: price_percent: price_percent -}}</template>
-            <template id="price-ui-badge__percent-savings">{{- 'product.badge.sale_percentage_single_html' | t: price_percent: price_percent -}}</template>
-            <template id="price-ui-badge__price-savings-range">{{- 'product.badge.sale_money_range_html' | t: price: price -}}</template>
-            <template id="price-ui-badge__price-savings">{{- 'product.badge.sale_money_single_html' | t: price: price -}}</template>
-            <template id="price-ui-badge__on-sale">{{- 'product.badge.sale' | t -}}</template>
-            <template id="price-ui-badge__sold-out">{{- 'product.badge.sold_out' | t -}}</template>
-            <template id="price-ui-badge__in-stock">{{- 'product.badge.in_stock' | t -}}</template>
-            {% comment %}Inject @pixelunion/shopify-price-ui/price-ui-globals end{% endcomment %}
-            <script>
-                {% render 'js-variables' %}
-            </script>
-            
+            <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>      
+        {% endif %}
+        {% comment %}Inject theme-object begin{% endcomment %}
+        <script>
+            window.PXUTheme = window.PXUTheme || {};
+            window.PXUTheme.version = '2.0';
+            window.PXUTheme.name = 'Susan Shaw';
+        </script>
+        {% comment %}Inject theme-object end{% endcomment %}
+        {% comment %}Inject @pixelunion/shopify-price-ui/price-ui-globals begin{% endcomment %}
+        {%- capture price -%}{%- render 'price-ui-templates', template: 'price' -%}{%- endcapture -%}
+        {%- capture price_percent -%}{%- render 'price-ui-templates', template: 'price-percent' -%}{%- endcapture -%}
+        {%- capture price_min -%}{%- render 'price-ui-templates', template: 'price-min' -%}{%- endcapture -%}
+        {%- capture price_max -%}{%- render 'price-ui-templates', template: 'price-max' -%}{%- endcapture -%}
+        {%- capture unit_quantity -%}{%- render 'price-ui-templates', template: 'unit-quantity' -%}{%- endcapture -%}
+        {%- capture unit_price -%}{%- render 'price-ui-templates', template: 'unit-price' -%}{%- endcapture -%}
+        {%- capture unit_measurement -%}{%- render 'price-ui-templates', template: 'unit-measurement' -%}{%- endcapture -%}      
+        <template id="price-ui">{%- render 'price-ui-templates', template: 'price-ui' -%}</template>
+        <template id="price-ui-badge">{%- render 'price-ui-templates', template: 'price-ui-badge' -%}</template>      
+        <template id="price-ui__price">{{ price }}</template>
+        <template id="price-ui__price-range">{{- 'product.price.range_html' | t: price_min: price_min, price_max: price_max -}}</template>
+        <template id="price-ui__unit-pricing">{{- 'product.price.unit_pricing_html' | t: unit_quantity: unit_quantity, unit_price: unit_price, unit_measurement: unit_measurement -}}</template>
+        <template id="price-ui-badge__percent-savings-range">{{- 'product.badge.sale_percentage_range_html' | t: price_percent: price_percent -}}</template>
+        <template id="price-ui-badge__percent-savings">{{- 'product.badge.sale_percentage_single_html' | t: price_percent: price_percent -}}</template>
+        <template id="price-ui-badge__price-savings-range">{{- 'product.badge.sale_money_range_html' | t: price: price -}}</template>
+        <template id="price-ui-badge__price-savings">{{- 'product.badge.sale_money_single_html' | t: price: price -}}</template>
+        <template id="price-ui-badge__on-sale">{{- 'product.badge.sale' | t -}}</template>
+        <template id="price-ui-badge__sold-out">{{- 'product.badge.sold_out' | t -}}</template>
+        <template id="price-ui-badge__in-stock">{{- 'product.badge.in_stock' | t -}}</template>
+        {% comment %}Inject @pixelunion/shopify-price-ui/price-ui-globals end{% endcomment %}
+        <script>
+            {% render 'js-variables' %}
+        </script>
+
+        {% if template contains 'product' %}
+            <script type="lazyload_int" data-src="{{ 'jquery.min.js' | asset_url }}"></script>      
+            <script type="lazyload_int" data-src="{{ 'vendors.js' | asset_url }}"></script>
+            <script type="lazyload_int" data-src="{{ 'sections.js' | asset_url }}"></script>
+            <script type="lazyload_int" data-src="{{ 'utilities.js' | asset_url }}"></script>
+            <script type="lazyload_int" data-src="{{ 'app.js' | asset_url }}"></script>         
+            <script type="lazyload_int" data-src="{{ 'custom.js' | asset_url }}"></script>  
+            <script type="lazyload_int" data-src="{{ 'instantpage.js' | asset_url }}" data-w3-type="module"></script>   
+        {% else %}
             <script src="{{ 'jquery.min.js' | asset_url }}" defer></script>      
             <script src="{{ 'vendors.js' | asset_url }}" defer></script>
             <script src="{{ 'sections.js' | asset_url }}" defer></script>
             <script src="{{ 'utilities.js' | asset_url }}" defer></script>
             <script src="{{ 'app.js' | asset_url }}" defer></script>         
             <script src="{{ 'custom.js' | asset_url }}" defer></script>  
-            <script src="{{ 'instantpage.js' | asset_url }}" type="module" defer></script>   
-            {% comment %}
-            {% if request.page_type == 'collection' or request.page_type == 'search' %}
-            {% else %}
-                <script  data-src="{{ 'jquery.min.js' | asset_url }}"></script>      
-                <script  data-src="{{ 'vendors.js' | asset_url }}"></script>
-                <script  data-src="{{ 'sections.js' | asset_url }}"></script>
-                <script  data-src="{{ 'utilities.js' | asset_url }}"></script>
-                <script  data-src="{{ 'app.js' | asset_url }}"></script>         
-                <script  data-src="{{ 'custom.js' | asset_url }}"></script>  
-                <script  data-src="{{ 'instantpage.js' | asset_url }}" data-w3-type="module"></script>   
-            {% endif %}
-            {% endcomment %}
-            {% if canonical_url contains '/policies/terms-of-service' %}
-                {% render 'terms-page-load' %}
-            {% endif %}
-            {% unless settings.performance == "sport" or template contains "customer" %}     
-            <script src="{{ 'instantclick.min.js' | asset_url }}" data-no-instant defer></script>
-        
-
-            <script data-no-instant> 
-            window.addEventListener('DOMContentLoaded', function() {
-
-                function inIframe() {
-                try {
-                    return window.self !== window.top;
-                } catch (e) {
-                    return true;
-                }
-                }
-
-                if (!inIframe()){
-                InstantClick.on('change', function() {
-
-                    $('head script[src*="shopify"]').each(function() {
-                    var script = document.createElement('script');
-                    script.type = 'text/javascript';
-                    script.src = $(this).attr('src');
-
-                    $('body').append(script);
+            <script src="{{ 'instantpage.js' | asset_url }}" type="module" defer></script>       
+        {% endif %}
+                
+        {% if canonical_url contains '/policies/terms-of-service' %}
+            {% render 'terms-page-load' %}
+        {% endif %}
+        {% unless settings.performance == "sport" or template contains "customer" %}    
+            {% if template contains 'product' %}            
+                <script type="lazyload_int" data-src="{{ 'instantclick.min.js' | asset_url }}" data-no-instant></script>        
+                <script type="lazyload_int" data-no-instant> 
+                    window.addEventListener('DOMContentLoaded', function() {    
+                        function inIframe() {
+                            try {
+                                return window.self !== window.top;
+                            } catch (e) {
+                                return true;
+                            }
+                        }    
+                        if (!inIframe()){
+                            InstantClick.on('change', function() {        
+                                $('head script[src*="shopify"]').each(function() {
+                                    var script = document.createElement('script');
+                                    script.type = 'text/javascript';
+                                    script.src = $(this).attr('src');        
+                                    $('body').append(script);
+                                });        
+                                $('body').removeClass('fancybox-active');
+                                $.fancybox.destroy();        
+                                InstantClick.init();        
+                            });
+                        }
                     });
-
-                    $('body').removeClass('fancybox-active');
-                    $.fancybox.destroy();
-
-                    InstantClick.init();
-
-                });
-                }
-            });
-            </script>
-            
-        {% endunless %}
-
-            <script>
-                {{ settings.custom_scripts }}
-            </script>
-            {%- if request.design_mode or template contains 'cart' or template contains 'checkout' or request.page_type == 'collection' or request.page_type == 'search'  or template contains 'swym' -%}
-                {{ content_for_header }}
-            {%- else -%}
-                {% capture content_for_header2 %}{{ content_for_header }}{% endcapture %}
-                {{ content_for_header2 | replace: ' async="async" ', '  ' | replace: ' defer="defer" ', '  ' | replace: " src=", " data-src="| replace: "DOMContentLoaded", "w3-DOMContentLoaded" | replace: "window.addEventListener('load', asyncLoad, false);", "window.addEventListener('w3-DOMContentLoaded', asyncLoad, false);" | replace: "addEventListener('load', prefetchAssets);", "addEventListener('w3-DOMContentLoaded', prefetchAssets);" }}
-                <script>var trekkie=[];trekkie.integrations=!0;window.BOOMR={},window.BOOMR.version=true;</script>
-            {%- endif -%}
-            {% if canonical_url contains '/pages/reviews' %}
-                <script async src="https://cdn-stamped-io.azureedge.net/files/widget.min.js?shop=susan-shaw-jewelry.myshopify.com"></script>
-                <script async src="https://cdn1.stamped.io/files/widget.min.js?shop=susan-shaw-jewelry.myshopify.com"></script>
+                </script>
+            {% else %}
+                <script src="{{ 'instantclick.min.js' | asset_url }}" data-no-instant defer></script>      
+                <script data-no-instant> 
+                    window.addEventListener('DOMContentLoaded', function() {        
+                        function inIframe() {
+                            try {
+                                return window.self !== window.top;
+                            } catch (e) {
+                                return true;
+                            }
+                        }        
+                        if (!inIframe()){
+                            InstantClick.on('change', function() {            
+                                $('head script[src*="shopify"]').each(function() {
+                                    var script = document.createElement('script');
+                                    script.type = 'text/javascript';
+                                    script.src = $(this).attr('src');            
+                                    $('body').append(script);
+                                });            
+                                $('body').removeClass('fancybox-active');
+                                $.fancybox.destroy();            
+                                InstantClick.init();            
+                            });
+                        }
+                    });
+                </script>
             {% endif %}
-            {% render 'social-meta-info' %}
-            {% if collection.previous_product %}<link rel="prev" href="{{ collection.previous_product }}">{% endif %}
-            {% if collection.next_product %}<link rel="next" href="{{ collection.next_product }}">{% endif %}       
-            <!--begin-boost-pfs-filter-css-->	
-            {% render 'boost-pfs-style' %}	
-            <!--end-boost-pfs-filter-css-->
-            {%- comment -%}Microsoft Clarity{%- endcomment -%}
-            <script >
-                (function(c,l,a,r,i,t,y){
-                    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-                })(window, document, "clarity", "script", "hr3qgyzc85");
-            </script>
-           
-            {%- comment -%}
-             {% render 'app-block' %}     
-            {%- endcomment -%}
-          
-
-            {%- comment -%}Intelligems{%- endcomment -%}
-            <script>
-                window.Shopify = window.Shopify || {theme: {id: {{ theme.id }}, role: '{{ theme.role }}' } };
-                window._template = {
-                    directory: "{{ template.directory }}",
-                    name: "{{ template.name }}",
-                    suffix: "{{ template.suffix }}"
-                }
-              </script> 
-             <script src="https://cdn.intelligems.io/3f57756d4417.js"></script>
-            
+        {% endunless %}
+        <script>
+            {{ settings.custom_scripts }}
+        </script>
+        {%- unless template contains 'product' -%}
+            {{ content_for_header }}
+        {%- else -%}
+            {% capture content_for_header2 %}{{ content_for_header }}{% endcapture %}
+            {{ content_for_header2 | replace: ' async="async" ', ' type="lazyload_int" ' | replace: ' defer="defer" ', ' type="lazyload_int" ' | replace: " src=", " data-src="| replace: "DOMContentLoaded", "w3-DOMContentLoaded" | replace: "window.addEventListener('load', asyncLoad, false);", "window.addEventListener('w3-DOMContentLoaded', asyncLoad, false);" | replace: "addEventListener('load', prefetchAssets);", "addEventListener('w3-DOMContentLoaded', prefetchAssets);" | replace: 'async type="module" data-' , 'data-w3-type="module" data-' | replace: '<script type="module">' , '<script type="lazyload_int" data-w3-type="module">' | replace: '<script type="lazyload_int" data-w3-type="module">!function(o){' , '<script type="module">!function(o){' }}
+            <script>var trekkie=[];trekkie.integrations=!0;window.BOOMR={},window.BOOMR.version=true;</script>
+        {%- endunless -%}
+        {% if canonical_url contains '/pages/reviews' %}
+            <script async src="https://cdn-stamped-io.azureedge.net/files/widget.min.js?shop=susan-shaw-jewelry.myshopify.com"></script>
+            <script async src="https://cdn1.stamped.io/files/widget.min.js?shop=susan-shaw-jewelry.myshopify.com"></script>
+        {% endif %}
+        {% render 'social-meta-info' %}
+        {% if collection.previous_product %}<link rel="prev" href="{{ collection.previous_product }}">{% endif %}
+        {% if collection.next_product %}<link rel="next" href="{{ collection.next_product }}">{% endif %}       
+        <!--begin-boost-pfs-filter-css-->	
+        {% render 'boost-pfs-style' %}	
+        <!--end-boost-pfs-filter-css-->
+        {%- comment -%}Microsoft Clarity{%- endcomment -%}
+        <script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "hr3qgyzc85");
+        </script>                         
+        {%- comment -%}Intelligems{%- endcomment -%}
+        <script>
+            window.Shopify = window.Shopify || {theme: {id: {{ theme.id }}, role: '{{ theme.role }}' } };
+            window._template = {
+                directory: "{{ template.directory }}",
+                name: "{{ template.name }}",
+                suffix: "{{ template.suffix }}"
+            }
+        </script> 
+        <script{% if template contains 'product' %} type="lazyload_int" data-{% else %} {% endif %}src="https://cdn.intelligems.io/3f57756d4417.js"></script>            
+        {% render 'app-block' %}
+        {% if template contains 'product' %}
+        {% render 'custom-css-new' %}
+        {% endif %}
     </head>
     {%- assign feature_image = true -%}
     {%- comment -%}
@@ -304,7 +302,7 @@
             {%- assign feature_image = false -%}
         {% endif %}
     {%- endcomment -%}
-    <body class="{% if template == '404' %}error-404{% else %}{{ template | replace: '.', '-' | handle }}{% endif %}" template--{{template.name }}
+    <body class="template-{{ template.name }} {% if template == '404' %}error-404{% else %}{{ template | replace: '.', '-' | handle }}{% endif %}" template--{{template.name }}
         data-money-format="
             {%- if settings.currency_format == 'money_with_currency_format' -%}
                 {{- shop.money_with_currency_format | strip_html -}}
@@ -386,9 +384,7 @@
                 </div> 
                 {% render 'collection-list-include' %}            
             {%- endif -%}        
-        </div>
-
-     
+        </div>     
         {%- comment -%} Hide Header for Specific Collection{%- endcomment -%}
         {%- unless template.suffix contains "collection-lp" -%}
             {% section 'footer' %}    
@@ -396,8 +392,7 @@
             {% section 'footer-inner' %}
         {%- endunless -%}  
         {% render 'mobile-search' %}   
-        {%- comment -%}############# START APPS & 3RD PARTY SCRIPT ##############{%- endcomment -%}    
-     
+        {%- comment -%}############# START APPS & 3RD PARTY SCRIPT ##############{%- endcomment -%}         
         {%- comment -%}
             //rs: Unload resources in HP
         {%- endcomment -%}
@@ -422,12 +417,10 @@
                 .product_gallery {
                     opacity: 1; 
                 }
-
                 .multi_select,
                 form .select {
                     display: block !important;
                 }
-
                 .image-element__wrap {
                     display: none;
                 }
@@ -443,94 +436,72 @@
         </style>
         {% if settings.quick_shop_enabled %}
             {% render 'popup-quick-shop' %} 
-        {% endif %}
-       
-        {% render 'content_for_footer' %}
-     
+        {% endif %}       
+        {% render 'content_for_footer' %}     
         {% render 'layout-get-credits' %}
         {%- comment -%} Rebuy custom smart cart theme {%- endcomment -%}  
         {% render 'rebuy-extensions'%}
         {%- comment -%}skimlinks.com - merchants{%- endcomment -%}
-        <script type="text/javascript" src="https://s.skimresources.com/js/238654X1721699.skimlinks.js"></script>
-        <script type="text/javascript" src="https://s.skimresources.com/js/238747X1721795.skimlinks.js"></script>
-        
-
-         {% comment %}Loop Integrations {% endcomment%}
-        <script src="https://cdn.jsdelivr.net/npm/@loophq/onstore-sdk@latest/dist/loop-onstore-sdk.min.js"></script>
-        <script> 
+        <script{% if template contains 'product' %} type="lazyload_int" data-{% else %} type="text/javascript" {% endif %}src="https://s.skimresources.com/js/238654X1721699.skimlinks.js"></script>
+        <script{% if template contains 'product' %} type="lazyload_int" data-{% else %} type="text/javascript" {% endif %}src="https://s.skimresources.com/js/238747X1721795.skimlinks.js"></script>        
+        {% comment %}Loop Integrations {% endcomment %}
+        <script{% if template contains 'product' %} type="lazyload_int" data-{% else %} {% endif %}src="https://cdn.jsdelivr.net/npm/@loophq/onstore-sdk@latest/dist/loop-onstore-sdk.min.js"></script>
+        <script{% if template contains 'product' %} type="lazyload_int"{% endif %}> 
             LoopOnstore.init({ 
-            key: "6bce0d3b1f202e98903c6d608d7970721726290d", 
-            attach: "#checkout"
+                key: "6bce0d3b1f202e98903c6d608d7970721726290d", 
+                attach: "#checkout"
             });
-        </script>
-                  
+        </script>                  
         {% comment %}Accessibe{% endcomment %}
-         <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : 'Accessibility', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#223346', triggerColor : '#223346', triggerRadius : '50%', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>
-
-                  
-
+        <script{% if template contains 'product' %} type="lazyload_int"{% endif %}> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : 'Accessibility', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#223346', triggerColor : '#223346', triggerRadius : '50%', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>              
         {%- comment -%}
         <script type='text/javascript'> tbn_cart = {{cart | json}} </script>
         <script type='text/javascript' src="https://cdn.tabarn.app/cdn/automatic-discount/wallsh_dp.min.js?shop={{shop.permanent_domain}}"></script>
-        {%- endcomment -%}        
-         <script>
-              	var site_nav_link_burger = true;
-              	document.addEventListener("DOMContentLoaded", function() {
-                    var icon_menu = document.querySelector("[data-mobile-menu-icon]");
-                    icon_menu.addEventListener("click", function() {
-              			if(site_nav_link_burger) {
-              				event.preventDefault();
-              				site_nav_link_burger = false;
-              			}
-              		});
-              	}) 
-        </script>               
-{%- comment -%}
+        {%- endcomment -%}                                      
+        {%- comment -%} Klaviyo BIS {%- endcomment -%}
+        <script{% if template contains 'product' %} type="lazyload_int" data-{% else %} {% endif %}src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+        <script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
+            var klaviyo = klaviyo || [];
+            klaviyo.init({
+                account: "H9MY8X",
+                list: "YndQeF",
+                platform: "shopify"           
+            });
+            klaviyo.enable("backinstock",{ 
+                trigger: {      
+                    product_page_class: "add_to_cart global-button",       
+                },
+                modal: {
+                    headline: "{product_name}",
+                    body_content: "Register to receive a notification when this item comes back in stock.",
+                    email_field_label: "Email",
+                    newsletter_subscribe_label: "Add me to your email list.",
+                    button_label: "NOTIFY ME WHEN AVAILABLE",
+                    subscription_success_label: "You're in! We'll let you know when it's back.",
+                    footer_content: '',
+                    additional_styles: "@import url('https://fonts.googleapis.com/css?family=Helvetica+Neue');",
+                    drop_background_color: "#000",
+                    background_color: "#fff",
+                    text_color: "#222",
+                    button_text_color: "#fff",
+                    button_background_color: "#223346",
+                    close_button_color: "#ccc",
+                    error_background_color: "#fcd6d7",
+                    error_text_color: "#C72E2F",
+                    success_background_color: "#f5f3ee",
+                    success_text_color: "#223346",
+                    headers_font_family: "freightbigcmp-pro,serif",
+                    font_family: 'sweet-sans-pro,sans-serif'               
+                }
+            });
+        </script>   
         {% render 'footer-app-block' %}
-        
-{%- endcomment -%}
-
-    {%- comment -%} Klaviyo BIS {%- endcomment -%}
-    <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
-    <script>
-        var klaviyo = klaviyo || [];
-        klaviyo.init({
-            account: "H9MY8X",
-            list: "YndQeF",
-            platform: "shopify"           
-        });
-        klaviyo.enable("backinstock",{ 
-        trigger: {      
-        product_page_class: "add_to_cart global-button",       
-        },
-        modal: {
-        headline: "{product_name}",
-        body_content: "Register to receive a notification when this item comes back in stock.",
-        email_field_label: "Email",
-        newsletter_subscribe_label: "Add me to your email list.",
-        button_label: "NOTIFY ME WHEN AVAILABLE",
-        subscription_success_label: "You're in! We'll let you know when it's back.",
-        footer_content: '',
-        additional_styles: "@import url('https://fonts.googleapis.com/css?family=Helvetica+Neue');",
-        drop_background_color: "#000",
-        background_color: "#fff",
-        text_color: "#222",
-        button_text_color: "#fff",
-        button_background_color: "#223346",
-        close_button_color: "#ccc",
-        error_background_color: "#fcd6d7",
-        error_text_color: "#C72E2F",
-        success_background_color: "#f5f3ee",
-        success_text_color: "#223346",
-        headers_font_family: "freightbigcmp-pro,serif",
-        font_family: 'sweet-sans-pro,sans-serif'
-       
-        }
-    });
-    </script>
-       
+        {% if template contains 'product' %}            
+            {% render 'custom-js' %}
+            {% render 'w3_footer' %}
+        {% endif %}
     </body>  
-  </html>
+</html>
 {% endcapture %}
 {% assign content = content | replace_first: '<!DOCTYPE', '!DOCTYPE' | split: ' <' %}
 {% for html in content %}

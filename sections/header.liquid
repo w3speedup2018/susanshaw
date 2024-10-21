@@ -454,7 +454,7 @@
                       {%- endcomment -%}
 
                       {% if cart_total < 10000 %}
-                      <script>
+                      <script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
                         window.addEventListener('load', function (event) {    
                           $('.filling').css('width', {{progressBarWidth}} + '%');      
                         }); 
@@ -462,7 +462,7 @@
                       {% endif %}                              
                               
                       {% if cart_total >= 10000 %}                                
-                        <script>
+                        <script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
                           window.addEventListener('load', function (event) {     
                             $('.filling').css('width', '100%');      
                           }); 

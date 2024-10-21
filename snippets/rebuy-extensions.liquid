@@ -1,4 +1,4 @@
-<script src="https://cdn.rebuyengine.com/onsite/js/rebuy.js?shop={{ shop.permanent_domain }}" async></script> 
+<script {% if template contains 'product' %} type="lazyload_int" data-{% else %} async {% endif %}src="https://cdn.rebuyengine.com/onsite/js/rebuy.js?shop={{ shop.permanent_domain }}"></script> 
 {% raw %}
 <script id="rebuy-widget-110043" type="text/template">
     <div class="rebuy-widget rebuy-custom-swatch"

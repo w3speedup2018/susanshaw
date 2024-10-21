@@ -2038,9 +2038,9 @@ select.currencies {
   padding-bottom: 0;
   cursor: pointer;
   @if (lightness(#f5f3ee) > 50) {
-    background-image: url(//susanshaw.com/cdn/shop/t/229/assets/select.png?v=51992501115514909491725491226); // Lighter background
+    background-image: url(//susanshaw.com/cdn/shop/t/236/assets/select.png?v=51992501115514909491729159279); // Lighter background
   } @else {
-    background-image: url(//susanshaw.com/cdn/shop/t/229/assets/select_light.png?v=38379460423634441311725491226); // Darker background
+    background-image: url(//susanshaw.com/cdn/shop/t/236/assets/select_light.png?v=38379460423634441311729159280); // Darker background
   }
   @include respond-to('medium-down'){
     font-size: 16px;
@@ -3887,7 +3887,7 @@ select::-ms-expand {
 }
 
 select {
-  background: #fff url(//susanshaw.com/cdn/shop/t/229/assets/select.png?v=51992501115514909491725491226) no-repeat 96% 50%;
+  background: #fff url(//susanshaw.com/cdn/shop/t/236/assets/select.png?v=51992501115514909491729159279) no-repeat 96% 50%;
   background-size: 18px 12px;
   
   padding: 8px 14px 8px;
@@ -5904,7 +5904,7 @@ a.tag {
   height: 0;
   width: 0;
   transition: all 0.3s linear;
-  background: url(//susanshaw.com/cdn/shop/t/229/assets/loader.gif) center center no-repeat;
+  background: url(//susanshaw.com/cdn/shop/t/236/assets/loader.gif) center center no-repeat;
   background-size: 32px 32px;
   margin: 0 auto;
   position:relative;
@@ -8443,11 +8443,11 @@ Remodal's default mobile first theme
 
 @font-face {
   font-family: 'turbo';
-  src: url('//susanshaw.com/cdn/shop/t/229/assets/turbo.eot?v=48734892740725754481725491283');
-  src: url('//susanshaw.com/cdn/shop/t/229/assets/turbo.eot?v=48734892740725754481725491283') format('embedded-opentype'),
-       url('//susanshaw.com/cdn/shop/t/229/assets/turbo.woff?v=150966577236684244781725491285') format('woff'),
-       url('//susanshaw.com/cdn/shop/t/229/assets/turbo.ttf?v=77481909974496710951725491284') format('truetype'),
-       url('//susanshaw.com/cdn/shop/t/229/assets/turbo.svg?v=173366358466109711321725491283') format('svg');
+  src: url('//susanshaw.com/cdn/shop/t/236/assets/turbo.eot?v=48734892740725754481729159329');
+  src: url('//susanshaw.com/cdn/shop/t/236/assets/turbo.eot?v=48734892740725754481729159329') format('embedded-opentype'),
+       url('//susanshaw.com/cdn/shop/t/236/assets/turbo.woff?v=150966577236684244781729159330') format('woff'),
+       url('//susanshaw.com/cdn/shop/t/236/assets/turbo.ttf?v=77481909974496710951729159330') format('truetype'),
+       url('//susanshaw.com/cdn/shop/t/236/assets/turbo.svg?v=173366358466109711321729159329') format('svg');
   font-weight: normal;
   font-style: normal;
          font-display: block;

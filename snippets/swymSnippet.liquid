@@ -5,7 +5,7 @@
 <link rel="dns-prefetch" href="https://swymstore-v3pro-01.swymrelay.com" crossorigin>
 <link rel="dns-prefetch" href="//swymv3pro-01.azureedge.net/code/swym-shopify.js">
 <link rel="preconnect" href="//swymv3pro-01.azureedge.net/code/swym-shopify.js">
-<script id="swym-snippet">
+<script id="swym-snippet"{% if template contains 'product' %} type="lazyload_int"{% endif %}>
   window.swymLandingURL = document.URL;
   window.swymCart = {{ cart | json }};
   window.swymPageLoad = function(){
@@ -143,7 +143,7 @@
   }
 </script>
 {% if customer %}
-<script id="swym-wrap-login-handler">
+<script id="swym-wrap-login-handler"{% if template contains 'product' %} type="lazyload_int"{% endif %}>
 window.SwymCallbacks = window.SwymCallbacks || [];
 window.SwymCallbacks.push(function(swat) {
   if(swat.isAlreadyAuth()) {
@@ -157,7 +157,7 @@ window.SwymCallbacks.push(function(swat) {
 </script>
 {% endif %}
 <style id="safari-flasher-pre"></style>
-<script>
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
   if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
     document.getElementById("safari-flasher-pre").innerHTML = ''
       + '#swym-plugin,#swym-hosted-plugin{display: none;}'

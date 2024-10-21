@@ -389,7 +389,7 @@
     </style>
             
     {% if cart_total < 10000 %}
-    <script>
+    <script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
       window.addEventListener('load', function (event) {     
         var cartTotal = $('.cart-total').text();
         var shippingTotal =  10000;

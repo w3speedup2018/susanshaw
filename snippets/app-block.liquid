@@ -1,225 +1,37 @@
-<script src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=H9MY8X"></script>
-<script>!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script>
+<!-- BEGIN app block: shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507 -->
+<script {% if template contains 'product' %}type="lazyload_int" data-{% else %}async {% endif %}src="https://static.klaviyo.com/onsite/js/H9MY8X/klaviyo.js?company_id=H9MY8X"></script>
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script>
 {% if template contains 'product' %}
-<script id="viewed_product">
-    if (item == null) {
-        var _learnq = _learnq || [];
-        var item = {
-            Name: "{{ product.title }}", 
-            ProductID: {{ product.id }},            
-            {% capture 'product_categories' %}
-                {% for product in product.collections %}"{{ product.title }}",{% endfor %}
-            {% endcapture %} 
-            Categories: [{{ product_categories | replace: '",]' , '"]' }}],                      
-            ImageURL: "https:{{ product.featured_image | img_url: '1024x1024' }}",            
-            URL: "{{ shop.url }}{{ product.url }}",
-            Brand: "{{ product.vendor }}",
-            Price: "{{ product.price | money }}",
-            CompareAtPrice: "{{ product.compare_at_price_min | money }}"
-        };
-        _learnq.push(['track', 'Viewed Product', item]);
-        _learnq.push(['trackViewedItem', {
-            Title: item.Name,
-            ItemId: item.ProductID,
-            Categories: item.Categories,
-            ImageUrl: item.ImageURL,
-            Url: item.URL,
-            Metadata: {
-                Brand: item.Brand,
-                Price: item.Price,
-                CompareAtPrice: item.CompareAtPrice
-            }
-        }]);
-    }
-</script>
-{% endif %}
-<!-- BEGIN app block: shopify://apps/elevar-conversion-tracking/blocks/dataLayerEmbed/bc30ab68-b15c-4311-811f-8ef485877ad6 -->
-<script data-w3-type="module">
-    try {
-        const response = await fetch("https://shopify-gtm-suite.getelevar.com/configs/7c7685bc083898f1adca6ad911148b8345c1fdb9/config.json");
-        const config = await response.json();
-        const scriptUrl = config.script_src_app_theme_embed;
-        if (scriptUrl) {
-            const { handler } = await import(scriptUrl);  
-            handler(
-                config,
-                {
-                    cartData: {
-                        attributes: {{- cart.attributes | json -}},
-                        cartTotal: "{{- cart.total_price | times: 0.01 | json -}}",
-                        currencyCode: {{- cart.currency.iso_code | json -}},
-                        items: [
-                            {%- for line_item in cart.items -%}
-                                {
-                                    {%- if line_item.sku != blank -%}
-                                        id: {{- line_item.sku | json -}},
-                                    {%- else -%}
-                                        id: "{{- line_item.product_id | json -}}",
-                                    {%- endif -%}
-                                    name: {{- line_item.product.title | json -}},
-                                    brand: {{- line_item.vendor | json -}},
-                                    category: {{- line_item.product.type | json -}},
-                                    variant: {{- line_item.variant.title | json -}},
-                                    price: "{{- line_item.final_price | times: 0.01 | json -}}",
-                                    position: {{- forloop.index -}},
-                                    quantity: "{{- line_item.quantity | json -}}",
-                                    productId: "{{- line_item.product_id | json -}}",
-                                    variantId: "{{- line_item.variant_id -}}",
-                                    compareAtPrice: "{{- line_item.variant.compare_at_price | times: 0.01 | json -}}",
-                                    image: "{{- line_item.image | image_url -}}"
-                                },
-                            {%- endfor -%}
-                        ]
-                    }
-                    ,
-                    user: {
-                        {%- if checkout -%}
-                            cartTotal: "{{- checkout.total_price | times: 0.01 | json -}}",
-                            currencyCode: {{- checkout.currency | json -}},
-                        {%- else -%}
-                            cartTotal: "{{- cart.total_price | times: 0.01 | json -}}",
-                            currencyCode: {{- cart.currency.iso_code | json -}},
-                        {%- endif -%}
-                        {%- if customer -%}
-                            customer: {
-                                id: "{{- customer.id | json -}}",
-                                email: {{- customer.email | json -}},
-                                firstName: {{- customer.first_name | json -}},
-                                lastName: {{- customer.last_name | json -}},
-                                phone: {{- customer.phone | json -}},
-                                city: {{- customer.default_address.city | json -}},
-                                zip: {{- customer.default_address.zip | json -}},
-                                address1: {{- customer.default_address.address1 | json -}},
-                                address2: {{- customer.default_address.address2 | json -}},
-                                country: {{- customer.default_address.country | json -}},
-                                countryCode: {{- customer.default_address.country_code | json -}},
-                                province: {{- customer.default_address.province | json -}},
-                                provinceCode: {{- customer.default_address.province_code | json -}},
-                                tags: {{- customer.tags | join: ', ' | json -}}
-                            }
-                        {%- endif -%}
-                    },
-                    {% if template contains 'cart' %}
-                        isOnCartPage:true,
-                    {% else %}
-                        isOnCartPage:false,
-                    {% endif %}
-                    collectionView:{
-                        currencyCode: {{- cart.currency.iso_code | json -}},
-                        items: [
-                            {%- assign itemIndex = 1 -%}
-                            {%- for product in collection.products -%}
-                                {%- assign default_variant = product.selected_or_first_available_variant -%}
-                                {
-                                    {%- if default_variant.sku != blank -%}
-                                        id: {{- default_variant.sku | json -}},
-                                    {%- else -%}
-                                        id: "{{- default_variant.id | json -}}",
-                                    {%- endif -%}
-                                    name: {{- product.title | json -}},
-                                    brand: {{- product.vendor | json -}},
-                                    category: {{- product.type | json -}},
-                                    variant: {{- default_variant.title | json -}},
-                                    price: "{{- product.price | times: 0.01 | json -}}",
-                                    position: {{- itemIndex -}},
-                                    productId: "{{- product.id | json -}}",
-                                    variantId: "{{- default_variant.id | json -}}",
-                                    handle: {{- product.handle | json -}}
-                                },
-                                {%- assign itemIndex = itemIndex | plus: 1 -%}
-                            {%- endfor -%}
-                        ]
-                    },
-                    searchResultsView:{
-                        currencyCode: {{- cart.currency.iso_code | json -}},
-                        items: [
-                            {%- assign itemIndex = 1 -%}
-                            {%- for product in search.results -%}
-                                {%- if product.object_type == 'product' -%}
-                                    {%- for variant in product.variants -%}
-                                        {
-                                            {%- if variant.sku != blank -%}
-                                                id: {{- variant.sku | json -}},
-                                            {%- else -%}
-                                                id: "{{- variant.id | json -}}",
-                                            {%- endif -%}
-                                            name: {{- product.title | json -}},
-                                            brand: {{- product.vendor | json -}},
-                                            category: {{- product.type | json -}},
-                                            variant: {{- variant.title | json -}},
-                                            price: "{{- product.price | times: 0.01 | json -}}",
-                                            position: {{- itemIndex -}},
-                                            productId: "{{- product.id | json -}}",
-                                            variantId: "{{- variant.id | json -}}",
-                                            handle: {{- product.handle | json -}}
-                                        },
-                                    {%- endfor -%}
-                                    {%- assign itemIndex = itemIndex | plus: 1 -%}
-                                {%- endif -%}
-                            {%- endfor -%}
-                        ]
-                    },
-                    productView:{
-                        attributes: {{- cart.attributes | json -}},
-                        currencyCode: {{- cart.currency.iso_code | json -}},
-                        {%- assign default_variant = product.selected_or_first_available_variant -%}
-                        {%- if default_variant != blank -%}
-                            defaultVariant: {
-                                {%- if default_variant.sku != blank -%}
-                                    id: {{- default_variant.sku | json -}},
-                                {%- else -%}
-                                    id: "{{- default_variant.id | json -}}",
-                                {%- endif -%}
-                                name: {{- product.title | json -}},
-                                brand: {{- product.vendor | json -}},
-                                category: {{- product.type | json -}},
-                                variant: {{- default_variant.title | json -}},
-                                price: "{{- default_variant.price | times: 0.01 | json -}}",
-                                productId: "{{- product.id | json -}}",
-                                variantId: "{{- default_variant.id | json -}}",
-                                compareAtPrice: "{{- default_variant.compare_at_price | times: 0.01 | json -}}",
-                                {%- if default_variant.featured_image != blank -%}
-                                    image: {{- default_variant.featured_image.src | json -}},
-                                {%- else -%}
-                                    image: {{- product.featured_image.src | json -}},
-                                {%- endif -%}
-                                inventory: "{{- default_variant.inventory_quantity -}}"
-                            },
-                        {%- else -%}
-                            defaultVariant: null,
-                        {%- endif -%}
-                        items: [
-                            {%- for variant in product.variants -%}
-                                {
-                                {%- if variant.sku != blank -%}
-                                    id: {{- variant.sku | json -}},
-                                {%- else -%}
-                                    id: "{{- variant.id | json -}}",
-                                {%- endif -%}
-                                name: {{- product.title | json -}},
-                                brand: {{- product.vendor | json -}},
-                                category: {{- product.type | json -}},
-                                variant: {{- variant.title | json -}},
-                                price: "{{- variant.price | times: 0.01 | json -}}",
-                                productId: "{{- product.id | json -}}",
-                                variantId: "{{- variant.id | json -}}",
-                                compareAtPrice: "{{- variant.compare_at_price | times: 0.01 | json -}}",
-                                {%- if variant.featured_image != blank -%}
-                                    image: {{- variant.featured_image.src | json -}},
-                                {%- else -%}
-                                    image: {{- product.featured_image.src | json -}},
-                                {%- endif -%}
-                                inventory: "{{- variant.inventory_quantity -}}"
-                                },
-                            {%- endfor -%}
-                        ]
-                    },
-                    checkoutComplete: null
+    <script id="viewed_product"{% if template contains 'product' %} type="lazyload_int"{% endif %}>
+        if (item == null) {
+            var _learnq = _learnq || [];
+            var item = {
+                Name: {{ product.title | json }},
+                ProductID: {{ product.id | json }},            
+                Categories: {{ product.collections | map: 'title' | json }},
+                ImageURL: "https:{{ product.featured_image.src | img_url: 'grande' }}",
+                URL: "{{ shop.secure_url }}{{ product.url }}",
+                Brand: {{ product.vendor | json }},
+                Price: {{ product.price | money | json }},
+                CompareAtPrice: {{ product.compare_at_price_max | money | json }}
+            };
+            _learnq.push(['track', 'Viewed Product', item]);
+            _learnq.push(['trackViewedItem', {
+                Title: item.Name,
+                ItemId: item.ProductID,
+                Categories: item.Categories,
+                ImageUrl: item.ImageURL,
+                Url: item.URL,
+                Metadata: {
+                    Brand: item.Brand,
+                    Price: item.Price,
+                    CompareAtPrice: item.CompareAtPrice
                 }
-            );
+            }]);
         }
-    } catch (error) {
-        console.error("Elevar Error:", error);
-    }
+    </script>
+{% endif %}
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
+    window.klaviyoReviewsProductDesignMode = false
 </script>
 <!-- END app app block -->

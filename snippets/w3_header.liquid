@@ -1,7 +1,6 @@
 <style id="w3_bg_load">div:not(.w3_bg), section:not(.w3_bg), iframelazy:not(.w3_bg){background-image:none !important;}</style>
 <script>
-var w3_lazy_load_by_px = 200,
-    blank_image_webp_url = "https://d2pk8plgu825qi.cloudfront.net/wp-content/uploads/blank.pngw3.webp",
+var w3_lazy_load_by_px = 200,    
     google_fonts_delay_load = 1e4,
     w3_mousemoveloadimg = !1,
     w3_page_is_scrolled = !1,
@@ -149,7 +148,7 @@ class w3_loadscripts {
                 }
             })
         }
-        t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), s(document, "onreadystatechange"), s(window, "onload"), s(window, "onpageshow")
+        t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), s(document, "onreadystatechange"), s(window, "onload")
     }
     hold_jquery(e) {
         let t = window.jQuery;
@@ -207,7 +206,7 @@ class w3_loadscripts {
         return new Promise(e => requestAnimationFrame(e))
     }
     static execute() {
-        let e = new w3_loadscripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]);
+        let e = new w3_loadscripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel", "click"]);
         e.load_fonts(e.w3_fonts), e.user_events_add(e), e.excluded_js || e.hold_jquery(e), e.w3_lazy_load_js || (e.scripts_load_fire = 1, e.triggerListener_on_load());
         let t = setInterval(function e(s) {
             null != document.body && (document.body.getBoundingClientRect().top < -30 && s.triggerListener(), clearInterval(t))
@@ -231,4 +230,39 @@ class w3_loadscripts {
 setTimeout(function(){
 w3_loadscripts.execute();
 },1000);
+</script>
+<script>
+(() => {
+    try {        
+        const setAttribute = (element, attr, value) => element.setAttribute(attr, value);
+        const removeAttribute = (element, attr) => element.removeAttribute(attr);        
+        new MutationObserver((mutations) => {
+            mutations.forEach(({ addedNodes }) => {
+                addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        if (node.tagName === "SCRIPT" && node.id === 'web-pixels-manager-setup') {                                                  
+                            node.type = "lazyload_int";                            
+                        } else if (node.tagName === "SCRIPT" && node.src.includes('rebuy-extensions.js') || node.innerHTML.includes('window.rebuyAppEmbedEnabled')) {                                  
+                            if (node.src) {
+                                node.setAttribute("data-src", node.src);
+                                node.removeAttribute("src");
+                            }                                                            
+                            node.type = "lazyload_int";                            
+                        } else if (node.tagName === "SCRIPT" && node.innerHTML.includes('/a/elevar/')) {                              
+                            if (node.type === "module") {
+                                node.setAttribute("data-w3-type", node.type);
+                            }                                                              
+                            node.type = "lazyload_int";                            
+                        }
+                    }
+                });
+            });
+        }).observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
+    } catch (error) {
+        console.error("Error in MutationObserver:", error);
+    }
+})();  
 </script>

@@ -1,4 +1,8 @@
-{{ 'pdp.css' | asset_url | stylesheet_tag }}
+    {% if template contains 'product' %} 
+      <link data-href="{{ 'pdp.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+      {% else %}
+      {{ 'pdp.css' | asset_url | stylesheet_tag }}
+    {% endif %}
 
 {%- comment -%} Get Color value from metafields{%- endcomment -%}
 {%  assign product_background_color = product.metafields.pdp.bgcolor.value %}

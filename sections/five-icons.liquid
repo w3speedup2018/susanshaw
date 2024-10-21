@@ -110,7 +110,7 @@
   }
 </style>
 
-<script>
+<script{% if template contains 'product' %} type="lazyload_int"{% endif %}>
   window.addEventListener("load", () => {
     requestIdleCallback(() => {
       let slide_match = window.matchMedia('screen and (min-width: 900px)');
